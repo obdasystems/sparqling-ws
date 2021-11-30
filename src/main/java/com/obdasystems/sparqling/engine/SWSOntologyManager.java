@@ -1,5 +1,6 @@
 package com.obdasystems.sparqling.engine;
 
+import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class SWSOntologyManager {
     private static SWSOntologyManager ontologyManager;
+    private final GraphOLParser_v3 grapholParser;
     private OWLOntology owlOntology;
     private OWLOntologyManager owlOntologyManager;
     static {
@@ -27,6 +29,7 @@ public class SWSOntologyManager {
 
     private SWSOntologyManager() {
         owlOntologyManager = OWLManager.createOWLOntologyManager();
+        grapholParser = new GraphOLParser_v3();
     }
 
     public void loadOWLOntology(InputStream upfileInputStream) throws OWLOntologyCreationException {
@@ -40,6 +43,7 @@ public class SWSOntologyManager {
     public void setGrapholFile(InputStream upfileInputStream) {
         graphol = new BufferedReader(new InputStreamReader(upfileInputStream, StandardCharsets.UTF_8))
                 .lines().collect(Collectors.joining("\n"));
+        owlOntology = grapholParser.parseOWLOntology(graphol, owlOntologyManager);
     }
 
     public String getGraphol() {
