@@ -35,9 +35,9 @@ import javax.validation.constraints.*;
     public Response standaloneOntologyUploadPost(InputStream upfileInputStream, FormDataContentDisposition upfileDetail, SecurityContext securityContext) throws NotFoundException {
         try {
             if(upfileDetail.getFileName().endsWith(".graphol")) {
-                SWSOntologyManager.getOntologyManager().setGrapholFile(upfileInputStream);
+                SWSOntologyManager.getOntologyManager().loadGrapholFile(upfileInputStream);
             } else {
-                SWSOntologyManager.getOntologyManager().loadOWLOntology(upfileInputStream);
+                SWSOntologyManager.getOntologyManager().loadOWLOntologyFile(upfileInputStream);
             }
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         } catch (OWLOntologyCreationException e) {
