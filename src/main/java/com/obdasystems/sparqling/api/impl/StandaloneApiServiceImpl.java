@@ -1,6 +1,7 @@
 package com.obdasystems.sparqling.api.impl;
 
 import com.obdasystems.sparqling.api.*;
+import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.*;
 
 import java.io.File;
@@ -12,6 +13,10 @@ import com.obdasystems.sparqling.api.NotFoundException;
 import java.io.InputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -24,7 +29,11 @@ import javax.validation.constraints.*;
     }
     @Override
     public Response standaloneOntologyUploadPost(InputStream upfileInputStream, FormDataContentDisposition upfileDetail, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            SWSOntologyManager.getOntologyManager().loadOWLOntology(upfileInputStream);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        } catch (OWLOntologyCreationException e) {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
 }

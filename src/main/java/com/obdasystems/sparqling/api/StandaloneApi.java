@@ -76,14 +76,14 @@ import javax.validation.constraints.*;
     @POST
     @Path("/upload")
     @Consumes({ "multipart/form-data" })
-    
+
     @Operation(summary = "Uploads a .graphol or .owl file. This will be used only by standalone Sparqling.", description = "", tags={ "Standalone" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation") })
-    public Response standaloneOntologyUploadPost(@FormDataParam("upfile") InputStream upfileInputStream,
-            @FormDataParam("upfile") FormDataContentDisposition upfileDetail
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.standaloneOntologyUploadPost(upfileInputStream,upfileDetail,securityContext);
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation") })
+    public Response standaloneOntologyUploadPost(@FormDataParam("fileName") InputStream fileNameInputStream,
+                                                 @FormDataParam("fileName") FormDataContentDisposition fileNameDetail
+            ,@Context SecurityContext securityContext)
+            throws NotFoundException {
+        return delegate.standaloneOntologyUploadPost(fileNameInputStream,fileNameDetail,securityContext);
     }
 }
