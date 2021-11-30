@@ -24,13 +24,21 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
     @Override
     public Response standaloneOntologyGrapholGet(SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        String graphol = SWSOntologyManager.getOntologyManager().getGraphol();
+        if (graphol != null) {
+            return Response.ok().entity(graphol).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Graphol not present")).build();
+        }
     }
     @Override
     public Response standaloneOntologyUploadPost(InputStream upfileInputStream, FormDataContentDisposition upfileDetail, SecurityContext securityContext) throws NotFoundException {
         try {
-            SWSOntologyManager.getOntologyManager().loadOWLOntology(upfileInputStream);
+            if(upfileDetail.getFileName().endsWith(".graphol")) {
+                SWSOntologyManager.getOntologyManager().setGrapholFile(upfileInputStream);
+            } else {
+                SWSOntologyManager.getOntologyManager().loadOWLOntology(upfileInputStream);
+            }
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         } catch (OWLOntologyCreationException e) {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();

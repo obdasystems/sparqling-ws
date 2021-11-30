@@ -63,7 +63,7 @@ import javax.validation.constraints.*;
     @GET
     @Path("/graphol")
     
-    @Produces({ "application/json" })
+    @Produces({ "application/xml" })
     @Operation(summary = "Return the graphol file as a string to be parsed by GRAPHOLscape.", description = "", tags={ "Standalone" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
@@ -80,10 +80,10 @@ import javax.validation.constraints.*;
     @Operation(summary = "Uploads a .graphol or .owl file. This will be used only by standalone Sparqling.", description = "", tags={ "Standalone" })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation") })
-    public Response standaloneOntologyUploadPost(@FormDataParam("fileName") InputStream fileNameInputStream,
-                                                 @FormDataParam("fileName") FormDataContentDisposition fileNameDetail
+    public Response standaloneOntologyUploadPost(@FormDataParam("file") InputStream fileInputStream,
+                                                 @FormDataParam("file") FormDataContentDisposition fileDetail
             ,@Context SecurityContext securityContext)
             throws NotFoundException {
-        return delegate.standaloneOntologyUploadPost(fileNameInputStream,fileNameDetail,securityContext);
+        return delegate.standaloneOntologyUploadPost(fileInputStream,fileDetail,securityContext);
     }
 }

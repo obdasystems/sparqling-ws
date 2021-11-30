@@ -18,3 +18,7 @@ Swagger / OpenAPI v3: http://localhost:7979/sparqling/1.0.0/openapi.json
 
 Note that if you have configured the `host` to be something other than localhost, the calls through
 swagger-ui will be directed to that host and not localhost!
+
+Test API here:
+
+https://app.swaggerhub.com/apis/OBDASystems/swagger-sparqling_ws/1.0.0
