@@ -1,5 +1,6 @@
 package com.obdasystems.sparqling.engine;
 
+import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -13,8 +14,12 @@ import java.util.stream.Collectors;
 
 public class SWSOntologyManager {
     private static SWSOntologyManager ontologyManager;
+    private final GraphOLParser_v3 grapholParser;
     private OWLOntology owlOntology;
     private OWLOntologyManager owlOntologyManager;
+
+    private OntologyProximityManager proximityManager;
+
     static {
         SWSOntologyManager.ontologyManager = new SWSOntologyManager();
     }
@@ -27,22 +32,34 @@ public class SWSOntologyManager {
 
     private SWSOntologyManager() {
         owlOntologyManager = OWLManager.createOWLOntologyManager();
+        grapholParser = new GraphOLParser_v3();
     }
 
-    public void loadOWLOntology(InputStream upfileInputStream) throws OWLOntologyCreationException {
+    public void loadGrapholFile(InputStream upfileInputStream) {
+        graphol = new BufferedReader(new InputStreamReader(upfileInputStream, StandardCharsets.UTF_8))
+                .lines().collect(Collectors.joining("\n"));
+        owlOntology = grapholParser.parseOWLOntology(graphol, owlOntologyManager);
+        setProximityManager(owlOntology);
+    }
+
+    public String getGraphol() {
+        return graphol;
+    }
+
+    public void loadOWLOntologyFile(InputStream upfileInputStream) throws OWLOntologyCreationException {
         owlOntology = owlOntologyManager.loadOntologyFromOntologyDocument(upfileInputStream);
+        setProximityManager(owlOntology);
     }
 
     public OWLOntology getOwlOntology() {
         return owlOntology;
     }
 
-    public void setGrapholFile(InputStream upfileInputStream) {
-        graphol = new BufferedReader(new InputStreamReader(upfileInputStream, StandardCharsets.UTF_8))
-                .lines().collect(Collectors.joining("\n"));
+    private void setProximityManager(OWLOntology ontology) {
+        proximityManager = new OntologyProximityManager(owlOntology);
     }
 
-    public String getGraphol() {
-        return graphol;
-    }
+
+
+
 }
