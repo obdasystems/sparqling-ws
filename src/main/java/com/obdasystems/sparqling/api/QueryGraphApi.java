@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class QueryGraphApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class QueryGraphApi  {
    private final QueryGraphApiService delegate;
 
    public QueryGraphApi(@Context ServletConfig servletContext) {
@@ -96,33 +96,35 @@ import javax.validation.constraints.*;
     }
     @PUT
     @Path("/node/delete/{graphElementId}")
-    
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Delete the GraphElement (and all its children) from the query graph and head.", description = "This route is used when the user wants to delete a node from the query graph. All the children of this node will be deleted as well as we do not want to create query with completly separated branches. All the variables that are going to be deleted should also be deleted from the head of the query. **WARNING**, if the node has multiple occurrences (due to join operations) every node should be deleted.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "GraphElement not found") })
-    public Response deleteGraphElementId(@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("graphElementId") String graphElementId
-,@Parameter(in = ParameterIn.DEFAULT, description = "",required=true) QueryGraph body
+    public Response deleteGraphElementId(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("graphElementId") String graphElementId
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.deleteGraphElementId(graphElementId,body,securityContext);
+        return delegate.deleteGraphElementId(body,graphElementId,securityContext);
     }
     @PUT
     @Path("/head/delete/{headTerm}")
-    
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Delete the head term from the query graph.", description = "", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "Head term not found") })
-    public Response deleteHeadTerm(@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
-,@Parameter(in = ParameterIn.DEFAULT, description = "",required=true) QueryGraph body
+    public Response deleteHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.deleteHeadTerm(headTerm,body,securityContext);
+        return delegate.deleteHeadTerm(body,headTerm,securityContext);
     }
     @GET
     @Path("/node")
@@ -157,7 +159,7 @@ import javax.validation.constraints.*;
     @Path("/node/class/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Starting from the actual query graph continue to build the query graph through a class.", description = "This call is used when the user click on a highlighted class and should add a triple pattern of the form like `?x rdf:type <clickedClass>`. The server should find `?x` in the SPARQL code as the variable associated to the `sourceClassIRI`.", tags={ "QueryGraph" })
+    @Operation(summary = "Starting from the current query graph continue to build the query graph through a class.", description = "This call is used when the user click on a highlighted class and should add a triple pattern of the form like `?x rdf:type <targetClassIRI>`. The server should find `?x` in the SPARQL code as the variable associated to the `sourceClassIRI`.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -177,7 +179,7 @@ import javax.validation.constraints.*;
     @Path("/node/dataProperty/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Starting from the actual query graph continue to build the query graph through a data property.", description = "This route is used when the user click a highlighted data property. The triple pattern to add is something like `?x <predicateIRI> ?y` where `?x` should be derived from `selectedClassIRI`. Note that `?y` is fresh new variable that should be added also to the head of the query (we assume data property values are interesting). The variable `?y` should be called according to the entity remainder or label and should add a counter if there is an already defined variable for that data property.", tags={ "QueryGraph" })
+    @Operation(summary = "Starting from the current query graph continue to build the query graph through a data property.", description = "This route is used when the user click a highlighted data property. The triple pattern to add is something like `?x <predicateIRI> ?y` where `?x` should be derived from `selectedClassIRI`. Note that `?y` is fresh new variable that should be added also to the head of the query (we assume data property values are interesting). The variable `?y` should be called according to the entity remainder or label and should add a counter if there is an already defined variable for that data property.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -216,7 +218,7 @@ import javax.validation.constraints.*;
     @Path("/node/objectProperty/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Starting from the actual query graph continue to build the query graph through a object property.", description = "This route is used when the user click a highlighted object property with ornly one `relatedClasses` or, in the case of more than one `relatedClasses` immediatly after choosing one of them. In this case the triple pattern to add is something like `?x <predicateIRI> ?y` where `?x` and `?y` should be derived from the direction of the object property with respect to `sourceClassIRI` and `targetClassIRI`. If there is a cyclic object property the user also should specify the direction if order to correctly assign `?x` and `?y`. Either `?x` or `?y` should be a fresh new variable which should be linked to a new triple pattern `?y rdf:type <targetClassIRI>`. The variable `?y` should be called according to the entity remainder or label and should add a counter if there is an already defined variable for that class.", tags={ "QueryGraph" })
+    @Operation(summary = "Starting from the current query graph continue to build the query graph through a object property.", description = "This route is used when the user click a highlighted object property with ornly one `relatedClasses` or, in the case of more than one `relatedClasses` immediatly after choosing one of them. In this case the triple pattern to add is something like `?x <predicateIRI> ?y` where `?x` and `?y` should be derived from the direction indicated by `isPredicateDirect` of the object property with respect to `sourceClassIRI` and `targetClassIRI`. If there is a cyclic object property the user also should specify the direction if order to correctly assign `?x` and `?y`. Either `?x` or `?y` should be a fresh new variable which should be linked to a new triple pattern `?y rdf:type <targetClassIRI>`. The variable `?y` should be called according to the entity remainder or label and should add a counter if there is an already defined variable for that class.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -228,10 +230,10 @@ import javax.validation.constraints.*;
 ,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the last selected class. It could be selected from the ontology graph or from the query graph.",required=true) @QueryParam("sourceClassIRI") String sourceClassIRI
 ,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the predicate which links source class and target class",required=true) @QueryParam("predicateIRI") String predicateIRI
 ,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the entity clicked on the GRAPHOLscape ontology graph.",required=true) @QueryParam("targetClassIRI") String targetClassIRI
+,@Parameter(in = ParameterIn.QUERY, description = "If true sourceClassIRI is the domain of predicateIRI, if false sourceClassIRI is the range of predicateIRI.",required=true) @QueryParam("isPredicateDirect") Boolean isPredicateDirect
 ,@Parameter(in = ParameterIn.PATH, description = "The id of the node of the selected class in the query graph.",required=true) @PathParam("graphElementId") String graphElementId
-,@Parameter(in = ParameterIn.QUERY, description = "When the predicate is cyclic pass the value to true if you want to traverse the predicate from domain to object, false otherwise.") @QueryParam("isPredicateCyclicDirect") Boolean isPredicateCyclicDirect
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.putQueryGraphObjectProperty(body,sourceClassIRI,predicateIRI,targetClassIRI,graphElementId,isPredicateCyclicDirect,securityContext);
+        return delegate.putQueryGraphObjectProperty(body,sourceClassIRI,predicateIRI,targetClassIRI,isPredicateDirect,graphElementId,securityContext);
     }
 }

@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class StandaloneApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class StandaloneApi  {
    private final StandaloneApiService delegate;
 
    public StandaloneApi(@Context ServletConfig servletContext) {
@@ -66,7 +66,7 @@ import javax.validation.constraints.*;
     @Produces({ "application/xml" })
     @Operation(summary = "Return the graphol file as a string to be parsed by GRAPHOLscape.", description = "", tags={ "Standalone" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/xml", schema = @Schema(implementation = String.class))),
         
         @ApiResponse(responseCode = "404", description = "Ontology not uploaded") })
     public Response standaloneOntologyGrapholGet(@Context SecurityContext securityContext)
@@ -76,14 +76,14 @@ import javax.validation.constraints.*;
     @POST
     @Path("/upload")
     @Consumes({ "multipart/form-data" })
-
+    
     @Operation(summary = "Uploads a .graphol or .owl file. This will be used only by standalone Sparqling.", description = "", tags={ "Standalone" })
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation") })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful operation") })
     public Response standaloneOntologyUploadPost(@FormDataParam("file") InputStream fileInputStream,
-                                                 @FormDataParam("file") FormDataContentDisposition fileDetail
-            ,@Context SecurityContext securityContext)
-            throws NotFoundException {
+            @FormDataParam("file") FormDataContentDisposition fileDetail
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
         return delegate.standaloneOntologyUploadPost(fileInputStream,fileDetail,securityContext);
     }
 }

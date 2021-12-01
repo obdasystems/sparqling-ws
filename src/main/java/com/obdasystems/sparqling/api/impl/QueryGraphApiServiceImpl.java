@@ -11,12 +11,13 @@ import com.obdasystems.sparqling.api.NotFoundException;
 
 import java.io.InputStream;
 
+import com.obdasystems.sparqling.query.QueryGraphBuilder;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class QueryGraphApiServiceImpl extends QueryGraphApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class QueryGraphApiServiceImpl extends QueryGraphApiService {
     @Override
     public Response addHeadTerm(QueryGraph body, String graphElementId, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
@@ -28,19 +29,24 @@ import javax.validation.constraints.*;
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response deleteGraphElementId(String graphElementId,  @NotNull QueryGraph actualGraph, SecurityContext securityContext) throws NotFoundException {
+    public Response deleteGraphElementId(QueryGraph body, String graphElementId, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response deleteHeadTerm(String headTerm,  @NotNull QueryGraph actualQuery, SecurityContext securityContext) throws NotFoundException {
+    public Response deleteHeadTerm(QueryGraph body, String headTerm, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
     public Response getQueryGraph( @NotNull String clickedClassIRI, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphBuilder qgb = new QueryGraphBuilder();
+            return Response.ok().entity(qgb.addClassTriplePattern(clickedClassIRI)).build();
+
+        } catch (Exception e) {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response modifyFilters(QueryGraph body, SecurityContext securityContext) throws NotFoundException {
@@ -63,7 +69,7 @@ import javax.validation.constraints.*;
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response putQueryGraphObjectProperty(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String predicateIRI,  @NotNull String targetClassIRI, String graphElementId,  Boolean isPredicateCyclicDirect, SecurityContext securityContext) throws NotFoundException {
+    public Response putQueryGraphObjectProperty(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String predicateIRI,  @NotNull String targetClassIRI,  @NotNull Boolean isPredicateDirect, String graphElementId, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

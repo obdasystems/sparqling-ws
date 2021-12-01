@@ -1,15 +1,16 @@
 package com.obdasystems.sparqling.engine;
 
+import com.obdasystems.sparqling.model.Entity;
 import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
+import org.semanticweb.owlapi.model.*;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SWSOntologyManager {
@@ -33,6 +34,78 @@ public class SWSOntologyManager {
     private SWSOntologyManager() {
         owlOntologyManager = OWLManager.createOWLOntologyManager();
         grapholParser = new GraphOLParser_v3();
+    }
+
+    public Entity extractEntity(IRI iri, PrefixDocumentFormat pdf) {
+        Entity entity = new Entity();
+        OWLAnnotationProperty labelProp = owlOntology.getOWLOntologyManager().getOWLDataFactory()
+                .getOWLAnnotationProperty(IRI.create("http://www.w3.org/2000/01/rdf-schema#label"));
+        Map<String, String> labels = new HashMap<>();
+        for (OWLAnnotationAssertionAxiom annotation : owlOntology.getAnnotationAssertionAxioms(iri)) {
+            if (!annotation.getValue().asLiteral().isPresent())
+                continue;
+            String value = annotation.getValue().asLiteral().get().getLiteral();
+            String lang = annotation.getValue().asLiteral().get().getLang();
+            if (annotation.getProperty().equals(labelProp)) {
+                labels.put(lang, value);
+            }
+        }
+        entity.setLabels(labels);
+        entity.setIri(iri.toString());
+        String entityShortIri = pdf.getPrefixIRI(iri);
+        if (entityShortIri != null) {
+            entity.setPrefixedIri(entityShortIri);
+        }
+        else {
+            Set<String> prefixNames = pdf.getPrefixNames();
+            List<String> orderedPrefixes = new LinkedList<>();
+            Map<String, String> inv = new HashMap<>();
+            for (String p : prefixNames) {
+                orderedPrefixes.add(pdf.getPrefix(p));
+                inv.put(pdf.getPrefix(p), p);
+            }
+            orderedPrefixes.sort((o1, o2) -> {
+                if (o1 == null)
+                    return 1;
+                if (o2 == null)
+                    return -1;
+                return o1.length() - o2.length();
+            });
+            boolean found = false;
+            for (String p : orderedPrefixes) {
+                String str = entity.getIri();
+                if (str.startsWith(p)) {
+                    String prefixName = inv.get(p);
+                    entity.setPrefixedIri(str.replace(p, prefixName));
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                entity.setPrefixedIri(entityShortIri);
+            }
+        }
+
+        for(OWLClass c:owlOntology.getClassesInSignature()) {
+            if(c.getIRI().equals(iri)) {
+                entity.setType(Entity.TypeEnum.CLASS);
+                return entity;
+            }
+        }
+        for(OWLObjectProperty c:owlOntology.getObjectPropertiesInSignature()) {
+            if(c.getIRI().equals(iri)) {
+                entity.setType(Entity.TypeEnum.OBJECTPROPERTY);
+                return entity;
+            }
+        }
+        for(OWLDataProperty c:owlOntology.getDataPropertiesInSignature()) {
+            if(c.getIRI().equals(iri)) {
+                entity.setType(Entity.TypeEnum.DATAPROPERTY);
+                return entity;
+            }
+        }
+
+        return entity;
     }
 
     public void loadGrapholFile(InputStream upfileInputStream) {

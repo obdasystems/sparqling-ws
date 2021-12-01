@@ -31,7 +31,10 @@ import javax.validation.Valid;
 /**
  * QueryGraph
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class QueryGraph  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class QueryGraph  implements Serializable  {
+  @JsonProperty("distinct")
+  private Boolean distinct = null;
+
   @JsonProperty("head")
   private List<HeadElement> head = new ArrayList<HeadElement>();
 
@@ -58,6 +61,25 @@ import javax.validation.Valid;
 
   @JsonProperty("sparql")
   private String sparql = null;
+
+  public QueryGraph distinct(Boolean distinct) {
+    this.distinct = distinct;
+    return this;
+  }
+
+  /**
+   * Get distinct
+   * @return distinct
+   **/
+  @JsonProperty("distinct")
+  @Schema(description = "")
+  public Boolean isDistinct() {
+    return distinct;
+  }
+
+  public void setDistinct(Boolean distinct) {
+    this.distinct = distinct;
+  }
 
   public QueryGraph head(List<HeadElement> head) {
     this.head = head;
@@ -280,7 +302,8 @@ import javax.validation.Valid;
       return false;
     }
     QueryGraph queryGraph = (QueryGraph) o;
-    return Objects.equals(this.head, queryGraph.head) &&
+    return Objects.equals(this.distinct, queryGraph.distinct) &&
+        Objects.equals(this.head, queryGraph.head) &&
         Objects.equals(this.graph, queryGraph.graph) &&
         Objects.equals(this.filters, queryGraph.filters) &&
         Objects.equals(this.optionals, queryGraph.optionals) &&
@@ -293,7 +316,7 @@ import javax.validation.Valid;
 
   @Override
   public int hashCode() {
-    return Objects.hash(head, graph, filters, optionals, minus, orderBy, groupBy, having, sparql);
+    return Objects.hash(distinct, head, graph, filters, optionals, minus, orderBy, groupBy, having, sparql);
   }
 
 
@@ -302,6 +325,7 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class QueryGraph {\n");
     
+    sb.append("    distinct: ").append(toIndentedString(distinct)).append("\n");
     sb.append("    head: ").append(toIndentedString(head)).append("\n");
     sb.append("    graph: ").append(toIndentedString(graph)).append("\n");
     sb.append("    filters: ").append(toIndentedString(filters)).append("\n");

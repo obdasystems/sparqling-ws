@@ -23,7 +23,7 @@ import javax.validation.Valid;
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
   private Integer id = null;
 
@@ -38,9 +38,6 @@ import javax.validation.Valid;
 
   @JsonProperty("hidden")
   private Boolean hidden = null;
-
-  @JsonProperty("distinct")
-  private Boolean distinct = null;
 
   public HeadElement id(Integer id) {
     this.id = id;
@@ -137,25 +134,6 @@ import javax.validation.Valid;
     this.hidden = hidden;
   }
 
-  public HeadElement distinct(Boolean distinct) {
-    this.distinct = distinct;
-    return this;
-  }
-
-  /**
-   * Get distinct
-   * @return distinct
-   **/
-  @JsonProperty("distinct")
-  @Schema(description = "")
-  public Boolean isDistinct() {
-    return distinct;
-  }
-
-  public void setDistinct(Boolean distinct) {
-    this.distinct = distinct;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -170,13 +148,12 @@ import javax.validation.Valid;
         Objects.equals(this.graphElementId, headElement.graphElementId) &&
         Objects.equals(this.var, headElement.var) &&
         Objects.equals(this.alias, headElement.alias) &&
-        Objects.equals(this.hidden, headElement.hidden) &&
-        Objects.equals(this.distinct, headElement.distinct);
+        Objects.equals(this.hidden, headElement.hidden);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphElementId, var, alias, hidden, distinct);
+    return Objects.hash(id, graphElementId, var, alias, hidden);
   }
 
 
@@ -190,7 +167,6 @@ import javax.validation.Valid;
     sb.append("    var: ").append(toIndentedString(var)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
-    sb.append("    distinct: ").append(toIndentedString(distinct)).append("\n");
     sb.append("}");
     return sb.toString();
   }

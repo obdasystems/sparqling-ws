@@ -48,9 +48,10 @@
       <artifactId>owlapi-distribution</artifactId>
       <version>4.5.4</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-querybuilder -->
     <dependency>
       <groupId>org.apache.jena</groupId>
-      <artifactId>jena-arq</artifactId>
+      <artifactId>jena-querybuilder</artifactId>
       <version>3.13.1</version>
     </dependency>
     <dependency>

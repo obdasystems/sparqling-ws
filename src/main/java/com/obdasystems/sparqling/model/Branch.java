@@ -25,12 +25,15 @@ import javax.validation.Valid;
 /**
  * Branch
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class Branch  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class Branch  implements Serializable  {
   @JsonProperty("objectPropertyIRI")
   private String objectPropertyIRI = null;
 
   @JsonProperty("cyclic")
   private Boolean cyclic = null;
+
+  @JsonProperty("direct")
+  private Boolean direct = null;
 
   @JsonProperty("relatedClasses")
   private List<String> relatedClasses = null;
@@ -73,6 +76,25 @@ import javax.validation.Valid;
     this.cyclic = cyclic;
   }
 
+  public Branch direct(Boolean direct) {
+    this.direct = direct;
+    return this;
+  }
+
+  /**
+   * Get direct
+   * @return direct
+   **/
+  @JsonProperty("direct")
+  @Schema(description = "")
+  public Boolean isDirect() {
+    return direct;
+  }
+
+  public void setDirect(Boolean direct) {
+    this.direct = direct;
+  }
+
   public Branch relatedClasses(List<String> relatedClasses) {
     this.relatedClasses = relatedClasses;
     return this;
@@ -112,12 +134,13 @@ import javax.validation.Valid;
     Branch branch = (Branch) o;
     return Objects.equals(this.objectPropertyIRI, branch.objectPropertyIRI) &&
         Objects.equals(this.cyclic, branch.cyclic) &&
+        Objects.equals(this.direct, branch.direct) &&
         Objects.equals(this.relatedClasses, branch.relatedClasses);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyIRI, cyclic, relatedClasses);
+    return Objects.hash(objectPropertyIRI, cyclic, direct, relatedClasses);
   }
 
 
@@ -128,6 +151,7 @@ import javax.validation.Valid;
     
     sb.append("    objectPropertyIRI: ").append(toIndentedString(objectPropertyIRI)).append("\n");
     sb.append("    cyclic: ").append(toIndentedString(cyclic)).append("\n");
+    sb.append("    direct: ").append(toIndentedString(direct)).append("\n");
     sb.append("    relatedClasses: ").append(toIndentedString(relatedClasses)).append("\n");
     sb.append("}");
     return sb.toString();

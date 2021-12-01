@@ -27,9 +27,9 @@ import javax.validation.Valid;
 /**
  * GraphElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class GraphElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class GraphElement  implements Serializable  {
   @JsonProperty("id")
-  private Integer id = null;
+  private String id = null;
 
   @JsonProperty("entities")
   private List<Entity> entities = null;
@@ -37,22 +37,22 @@ import javax.validation.Valid;
   @JsonProperty("children")
   private List<GraphElement> children = null;
 
-  public GraphElement id(Integer id) {
+  public GraphElement id(String id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Get id
+   * This id corrensopond to the variable when entity type is a class.
    * @return id
    **/
   @JsonProperty("id")
-  @Schema(description = "")
-  public Integer getId() {
+  @Schema(description = "This id corrensopond to the variable when entity type is a class.")
+  public String getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(String id) {
     this.id = id;
   }
 
