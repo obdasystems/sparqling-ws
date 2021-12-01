@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * Entity
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class Entity  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class Entity  implements Serializable  {
   /**
    * Gets or Sets type
    */

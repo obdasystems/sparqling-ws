@@ -27,12 +27,12 @@ import javax.validation.Valid;
 /**
  * GraphElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class GraphElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class GraphElement  implements Serializable  {
   @JsonProperty("id")
   private Integer id = null;
 
-  @JsonProperty("entity")
-  private Entity entity = null;
+  @JsonProperty("entities")
+  private List<Entity> entities = null;
 
   @JsonProperty("children")
   private List<GraphElement> children = null;
@@ -56,24 +56,32 @@ import javax.validation.Valid;
     this.id = id;
   }
 
-  public GraphElement entity(Entity entity) {
-    this.entity = entity;
+  public GraphElement entities(List<Entity> entities) {
+    this.entities = entities;
+    return this;
+  }
+
+  public GraphElement addEntitiesItem(Entity entitiesItem) {
+    if (this.entities == null) {
+      this.entities = new ArrayList<Entity>();
+    }
+    this.entities.add(entitiesItem);
     return this;
   }
 
   /**
-   * Get entity
-   * @return entity
+   * It could have more than one entity only when entity type is a class (could be derived after clicking on two borther classes)
+   * @return entities
    **/
-  @JsonProperty("entity")
-  @Schema(description = "")
+  @JsonProperty("entities")
+  @Schema(description = "It could have more than one entity only when entity type is a class (could be derived after clicking on two borther classes)")
   @Valid
-  public Entity getEntity() {
-    return entity;
+  public List<Entity> getEntities() {
+    return entities;
   }
 
-  public void setEntity(Entity entity) {
-    this.entity = entity;
+  public void setEntities(List<Entity> entities) {
+    this.entities = entities;
   }
 
   public GraphElement children(List<GraphElement> children) {
@@ -115,13 +123,13 @@ import javax.validation.Valid;
     }
     GraphElement graphElement = (GraphElement) o;
     return Objects.equals(this.id, graphElement.id) &&
-        Objects.equals(this.entity, graphElement.entity) &&
+        Objects.equals(this.entities, graphElement.entities) &&
         Objects.equals(this.children, graphElement.children);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, entity, children);
+    return Objects.hash(id, entities, children);
   }
 
 
@@ -131,7 +139,7 @@ import javax.validation.Valid;
     sb.append("class GraphElement {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
+    sb.append("    entities: ").append(toIndentedString(entities)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -24,28 +24,28 @@ import javax.validation.Valid;
 /**
  * OntologyUploadBody
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class OntologyUploadBody  implements Serializable  {
-  @JsonProperty("upfile")
-  private File upfile = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T10:38:29.116Z[GMT]")public class OntologyUploadBody  implements Serializable  {
+  @JsonProperty("file")
+  private File file = null;
 
-  public OntologyUploadBody upfile(File upfile) {
-    this.upfile = upfile;
+  public OntologyUploadBody file(File file) {
+    this.file = file;
     return this;
   }
 
   /**
-   * The file to upload.
-   * @return upfile
+   * Get file
+   * @return file
    **/
-  @JsonProperty("upfile")
-  @Schema(description = "The file to upload.")
+  @JsonProperty("file")
+  @Schema(description = "")
   @Valid
-  public File getUpfile() {
-    return upfile;
+  public File getFile() {
+    return file;
   }
 
-  public void setUpfile(File upfile) {
-    this.upfile = upfile;
+  public void setFile(File file) {
+    this.file = file;
   }
 
 
@@ -58,12 +58,12 @@ import javax.validation.Valid;
       return false;
     }
     OntologyUploadBody ontologyUploadBody = (OntologyUploadBody) o;
-    return Objects.equals(this.upfile, ontologyUploadBody.upfile);
+    return Objects.equals(this.file, ontologyUploadBody.file);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(upfile);
+    return Objects.hash(file);
   }
 
 
@@ -72,7 +72,7 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class OntologyUploadBody {\n");
     
-    sb.append("    upfile: ").append(toIndentedString(upfile)).append("\n");
+    sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("}");
     return sb.toString();
   }
