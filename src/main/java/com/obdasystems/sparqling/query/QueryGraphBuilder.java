@@ -5,11 +5,18 @@ import com.obdasystems.sparqling.model.GraphElement;
 import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.query.Query;
+import org.apache.jena.sparql.core.TriplePath;
+import org.apache.jena.sparql.core.Var;
+import org.apache.jena.sparql.syntax.ElementPathBlock;
+import org.apache.jena.sparql.syntax.ElementVisitorBase;
+import org.apache.jena.sparql.syntax.ElementWalker;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class QueryGraphBuilder {
@@ -33,7 +40,7 @@ public class QueryGraphBuilder {
         if(!ontology.containsClassInSignature(iri)) {
             throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
-        String var = guessNewVarFromIRI(iri);
+        String var = guessNewVarFromIRI(iri, null);
         SelectBuilder sb = new SelectBuilder();
         sb.addPrefixes(prefixes);
         sb.addVar(var).addWhere(var, "a", iri.toQuotedString());
@@ -44,16 +51,57 @@ public class QueryGraphBuilder {
         qg.setSparql(sb.build().serialize());
         GraphElement root = new GraphElement();
         root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
-        root.setId(var);
+        root.setId(var.substring(1));
         qg.setGraph(root);
         return qg;
     }
 
-    private String guessNewVarFromIRI(IRI iri) {
+    private static String guessNewVarFromIRI(IRI iri, Query q) {
         String res = iri.getFragment();
         if(res.isEmpty()) {
             res = "x" + System.currentTimeMillis();
+        } else {
+            res = getNewCountedVarFromQuery(res, q);
         }
         return "?" + res;
+    }
+
+    public static String getNewCountedVarFromQuery(String varName, Query q) {
+        final int[] count = {0};
+        String ret = varName + count[0];
+        if (q == null) return ret;
+        final boolean[] found = {true};
+        while (found[0]) {
+            ret = varName + count[0];
+            String finalRet = ret;
+            ElementWalker.walk(
+                    q.getQueryPattern(),
+                    new ElementVisitorBase() {
+                        @Override
+                        public void visit(ElementPathBlock el) {
+                            Iterator<TriplePath> it = el.patternElts();
+                            while (it.hasNext()) {
+                                TriplePath triple = it.next();
+                                if (triple.getSubject().isVariable()) {
+                                    if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
+                                        found[0] = true;
+                                        count[0]++;
+                                        return;
+                                    }
+                                }
+                                if (triple.getObject().isVariable()) {
+                                    if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
+                                        found[0] = true;
+                                        count[0]++;
+                                        return;
+                                    }
+                                }
+                            }
+                            found[0] = false;
+                        }
+                    }
+            );
+        }
+        return ret;
     }
 }
