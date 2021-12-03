@@ -42,8 +42,7 @@ import javax.validation.constraints.*;
     public Response getQueryGraph( @NotNull String clickedClassIRI, SecurityContext securityContext) throws NotFoundException {
         try {
             QueryGraphBuilder qgb = new QueryGraphBuilder();
-            return Response.ok().entity(qgb.addClassTriplePattern(clickedClassIRI)).build();
-
+            return Response.ok().entity(qgb.getQueryGraph(clickedClassIRI)).build();
         } catch (Exception e) {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
@@ -55,8 +54,12 @@ import javax.validation.constraints.*;
     }
     @Override
     public Response putQueryGraphClass(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String targetClassIRI, String graphElementId, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphBuilder qgb = new QueryGraphBuilder();
+            return Response.ok().entity(qgb.putQueryGraphClass(body, sourceClassIRI, targetClassIRI, graphElementId)).build();
+        } catch (Exception e) {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response putQueryGraphDataProperty(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String predicateIRI, String graphElementId, SecurityContext securityContext) throws NotFoundException {

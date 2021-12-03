@@ -6,8 +6,10 @@ import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
+import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
+import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.sparql.syntax.ElementWalker;
@@ -35,7 +37,7 @@ public class QueryGraphBuilder {
         }
     }
 
-    public QueryGraph addClassTriplePattern(String clickedClassIRI) {
+    public QueryGraph getQueryGraph(String clickedClassIRI) {
         IRI iri = IRI.create(clickedClassIRI);
         if(!ontology.containsClassInSignature(iri)) {
             throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
@@ -103,5 +105,13 @@ public class QueryGraphBuilder {
             );
         }
         return ret;
+    }
+
+    public QueryGraph putQueryGraphClass(QueryGraph body, String sourceClassIRI, String targetClassIRI, String graphElementId) {
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        SelectBuilder sb = new SelectBuilder();
+
+        return null;
     }
 }
