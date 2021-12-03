@@ -1,6 +1,7 @@
 package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
+import com.obdasystems.sparqling.model.QueryGraph;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +19,9 @@ public class TestQueryGraphBuilder {
     @Test
     public void getQueryGraph() {
         QueryGraphBuilder qgb = new QueryGraphBuilder();
-        System.out.println(qgb.getQueryGraph("http://www.obdasystems.com/books/Book"));
+        QueryGraph qg = qgb.getQueryGraph("http://www.obdasystems.com/books/Book");
+        System.out.println(qgb.putQueryGraphClass(
+                qg,"","http://www.obdasystems.com/books/AudioBook","Book0"));
     }
     @Test
     public void testGuessNewVar() {

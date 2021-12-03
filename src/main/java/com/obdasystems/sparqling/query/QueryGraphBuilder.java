@@ -4,15 +4,18 @@ import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.GraphElement;
 import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
+import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.arq.querybuilder.handlers.WhereHandler;
+import org.apache.jena.graph.Node;
+import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
+import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.lang.SPARQLParser;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
-import org.apache.jena.sparql.syntax.ElementVisitorBase;
-import org.apache.jena.sparql.syntax.ElementWalker;
+import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -108,10 +111,24 @@ public class QueryGraphBuilder {
     }
 
     public QueryGraph putQueryGraphClass(QueryGraph body, String sourceClassIRI, String targetClassIRI, String graphElementId) {
+        IRI iri = IRI.create(targetClassIRI);
+        if(!ontology.containsClassInSignature(iri)) {
+            throw new RuntimeException("Iri " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
+        }
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
-        SelectBuilder sb = new SelectBuilder();
+        WhereHandler wh = new WhereHandler(q);
 
-        return null;
+        PrefixMapping p = q.getPrefixMapping();
+        wh.addWhere(new TriplePath(new Triple(
+                AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
+                AbstractQueryBuilder.makeNode(iri.toQuotedString(), p)
+        )));
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId, body.getGraph());
+        gef.getFound().addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        body.setSparql(q.serialize());
+        return body;
     }
 }
