@@ -2,7 +2,7 @@ package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -11,14 +11,14 @@ import java.io.FileNotFoundException;
 import static org.junit.Assert.assertEquals;
 
 public class TestQueryGraphBuilder {
-    @Before
-    public void init() throws FileNotFoundException {
+    @BeforeClass
+    public static void init() throws FileNotFoundException {
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_ontology.graphol"));
     }
     @Test
-    public void addClassTriplePattern() {
+    public void getQueryGraph() {
         QueryGraphBuilder qgb = new QueryGraphBuilder();
-        System.out.println(qgb.addClassTriplePattern("http://www.obdasystems.com/books/Book"));
+        System.out.println(qgb.getQueryGraph("http://www.obdasystems.com/books/Book"));
     }
     @Test
     public void testGuessNewVar() {
