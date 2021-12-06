@@ -3,10 +3,7 @@ package com.obdasystems.sparqling.engine;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.parameters.Imports;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class OntologyProximityManager {
 
@@ -52,6 +49,7 @@ public class OntologyProximityManager {
         this.objPropAncestorsMap = new HashMap<>();
         this.dataPropChildrenMap = new HashMap<>();
         this.dataPropAncestorsMap = new HashMap<>();
+
     }
 
     public void run(){
@@ -62,19 +60,19 @@ public class OntologyProximityManager {
             }
             else {
                 if(axiom instanceof OWLDisjointClassesAxiom) {
-
+                    processDisjointClassesAxiom((OWLDisjointClassesAxiom) axiom);
                 }
                 else {
                     if(axiom instanceof OWLObjectPropertyDomainAxiom) {
-
+                        processObjPropDomainAxiom((OWLObjectPropertyDomainAxiom) axiom);
                     }
                     else {
                         if(axiom instanceof OWLObjectPropertyRangeAxiom) {
-
+                            processObjPropRangeAxiom((OWLObjectPropertyRangeAxiom) axiom);
                         }
                         else {
                             if(axiom instanceof OWLDataPropertyDomainAxiom) {
-
+                                processDataPropDomainAxiom((OWLDataPropertyDomainAxiom) axiom);
                             }
                         }
                     }
@@ -105,7 +103,26 @@ public class OntologyProximityManager {
         });
     }
 
-    //CLASSES
+    //CLASS INCLUSION
+    private boolean isAcceptedSuperClassExpression(OWLClassExpression expr) {
+        if(expr instanceof  OWLClass) {
+            return true;
+        }
+        if(expr instanceof OWLObjectSomeValuesFrom) {
+            return true;
+        }
+        if(expr instanceof OWLDataSomeValuesFrom) {
+            return true;
+        }
+        if(expr instanceof OWLObjectComplementOf) {
+            OWLClassExpression disjExpr = ((OWLObjectComplementOf) expr).getOperand();
+            if(disjExpr instanceof OWLClass || disjExpr instanceof OWLObjectUnionOf) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void processSubClassAxiom(OWLSubClassOfAxiom axiom) {
         OWLClassExpression sub = axiom.getSubClass();
         OWLClassExpression sup = axiom.getSuperClass();
@@ -129,27 +146,28 @@ public class OntologyProximityManager {
                         processClassContainment(sup, (OWLObjectUnionOf) sub);
                     } else {
                         if (sub instanceof OWLObjectSomeValuesFrom) {
+                            //Obj props domain-range
                             OWLObjectSomeValuesFrom objSomeVal = (OWLObjectSomeValuesFrom) sub;
-                            if ((objSomeVal).getFiller().isOWLThing()) {
+                            if (objSomeVal.getFiller().isOWLThing()) {
                                 if (sup instanceof OWLClass) {
-                                    OWLObjectPropertyExpression prop = objSomeVal.getProperty();
-                                    OWLObjectProperty named = prop.getNamedProperty();
-                                    if (prop instanceof OWLObjectProperty) {
-                                        objPropDomainMap.get(named).add((OWLClass) sup);
-                                    } else {
-                                        if (prop instanceof OWLObjectInverseOf) {
-                                            objPropRangeMap.get(named).add((OWLClass) sup);
-                                        }
+                                    processObjPropDomainRangeFromContainment(sup.asOWLClass(), objSomeVal);
+                                }else {
+                                    if(sup instanceof OWLObjectUnionOf) {
+                                        processObjPropDomainRangeFromContainment((OWLObjectUnionOf) sup, objSomeVal);
                                     }
                                 }
                             }
                         } else {
                             if (sub instanceof OWLDataSomeValuesFrom) {
+                                //Data prop domain
                                 OWLDataSomeValuesFrom dataSomeVal = (OWLDataSomeValuesFrom) sub;
                                 if ((dataSomeVal).getFiller().isTopDatatype()) {
-                                    OWLDataPropertyExpression prop = dataSomeVal.getProperty();
                                     if (sup instanceof OWLClass) {
-                                        dataPropDomainMap.get(prop.asOWLDataProperty()).add((OWLClass) sup);
+                                        processDataPropDomainRangeFromContainment(sup.asOWLClass(), dataSomeVal);
+                                    }else {
+                                        if(sup instanceof OWLObjectUnionOf) {
+                                            processDataPropDomainRangeFromContainment((OWLObjectUnionOf) sup, dataSomeVal);
+                                        }
                                     }
                                 }
                             }
@@ -160,10 +178,64 @@ public class OntologyProximityManager {
         }
     }
 
+    private void processObjPropDomainRangeFromContainment(OWLObjectUnionOf sup, OWLObjectSomeValuesFrom objSomeVal) {
+        sup.getOperands().forEach(operand-> {
+            if(operand instanceof OWLClass) {
+                processObjPropDomainRangeFromContainment(operand.asOWLClass(), objSomeVal);
+            }
+            else {
+                if(operand instanceof OWLObjectUnionOf) {
+                    processObjPropDomainRangeFromContainment((OWLObjectUnionOf) operand, objSomeVal);
+                }
+            }
+        });
+    }
+
+    private void processObjPropDomainRangeFromContainment(OWLClass sup, OWLObjectSomeValuesFrom objSomeVal) {
+        if ((objSomeVal).getFiller().isOWLThing()) {
+            OWLObjectPropertyExpression prop = objSomeVal.getProperty();
+            OWLObjectProperty named = prop.getNamedProperty();
+            if (prop instanceof OWLObjectProperty) {
+                objPropDomainMap.get(named).add((OWLClass) sup);
+            } else {
+                if (prop instanceof OWLObjectInverseOf) {
+                    objPropRangeMap.get(named).add(sup);
+                }
+            }
+        }
+    }
+
+    private void processDataPropDomainRangeFromContainment(OWLObjectUnionOf sup, OWLDataSomeValuesFrom dataSomeVal) {
+        sup.getOperands().forEach(operand-> {
+            if(operand instanceof OWLClass) {
+                processDataPropDomainRangeFromContainment(operand.asOWLClass(), dataSomeVal);
+            }
+            else {
+                if(operand instanceof OWLObjectUnionOf) {
+                    processDataPropDomainRangeFromContainment((OWLObjectUnionOf) operand, dataSomeVal);
+                }
+            }
+        });
+    }
+
+    private void processDataPropDomainRangeFromContainment(OWLClass sup, OWLDataSomeValuesFrom dataSomeVal) {
+        if ((dataSomeVal).getFiller().isTopDatatype()) {
+            OWLDataPropertyExpression prop = dataSomeVal.getProperty();
+            if (sup instanceof OWLClass) {
+                dataPropDomainMap.get(prop.asOWLDataProperty()).add(sup);
+            }
+        }
+    }
+
     private void processClassComplementOf(OWLObjectComplementOf sup, OWLObjectUnionOf sub) {
         sub.getOperands().forEach(operand-> {
             if(operand instanceof OWLClass) {
                 processClassComplementOf(sup, (OWLClass) operand);
+            }
+            else {
+                if(operand instanceof OWLObjectUnionOf) {
+                    processClassComplementOf(sup, (OWLObjectUnionOf) operand);
+                }
             }
         });
     }
@@ -189,6 +261,11 @@ public class OntologyProximityManager {
             if(operand instanceof OWLClass) {
                 processClassContainment(sup, (OWLClass) operand);
             }
+            else {
+                if(operand instanceof OWLObjectUnionOf) {
+                    processClassContainment(sup, (OWLObjectUnionOf) operand);
+                }
+            }
         });
     }
 
@@ -213,25 +290,133 @@ public class OntologyProximityManager {
         }
     }
 
-    private boolean isAcceptedSuperClassExpression(OWLClassExpression expr) {
-        if(expr instanceof  OWLClass) {
-            return true;
-        }
-        if(expr instanceof OWLObjectSomeValuesFrom) {
-            return true;
-        }
-        if(expr instanceof OWLDataSomeValuesFrom) {
-            return true;
-        }
-        if(expr instanceof OWLObjectComplementOf) {
-            OWLClassExpression disjExpr = ((OWLObjectComplementOf) expr).getOperand();
-            if(disjExpr instanceof OWLClass || disjExpr instanceof OWLObjectUnionOf) {
-                return true;
+    //CLASS DISJOINTNESS
+    private void processDisjointClassesAxiom(OWLDisjointClassesAxiom axiom) {
+        List<OWLClassExpression> operandList = axiom.getClassExpressionsAsList();
+        for(int i=0;i<operandList.size()-1;i++) {
+            OWLClassExpression first = operandList.get(i);
+            if(first instanceof OWLClass) {
+                for(int j=i+1;j<operandList.size();j++) {
+                    OWLClassExpression second = operandList.get(j);
+                    if(second instanceof OWLClass) {
+                        classDisjointMap.get(first.asOWLClass()).add(second.asOWLClass());
+                        classDisjointMap.get(second.asOWLClass()).add(first.asOWLClass());
+                    }
+                }
             }
         }
-        return false;
+    }
+
+    //PROP DOMAIN-RANGE
+    private void processObjPropDomainAxiom(OWLObjectPropertyDomainAxiom axiom) {
+        OWLObjectPropertyExpression prop = axiom.getProperty();
+        OWLClassExpression domainExpr = axiom.getDomain();
+        if(domainExpr instanceof OWLClass) {
+            if(prop instanceof OWLObjectInverseOf) {
+                processObjPropRange(domainExpr.asOWLClass(), ((OWLObjectInverseOf) prop).getInverse().asOWLObjectProperty());
+            }
+            else {
+                processObjPropDomain(domainExpr.asOWLClass(), prop.asOWLObjectProperty());
+            }
+        }
+        else {
+            if(domainExpr instanceof OWLObjectUnionOf) {
+                if(prop instanceof OWLObjectInverseOf) {
+                    processObjPropRange((OWLObjectUnionOf)domainExpr, ((OWLObjectInverseOf) prop).getInverse().asOWLObjectProperty());
+                }
+                else {
+                    processObjPropDomain((OWLObjectUnionOf)domainExpr, prop.asOWLObjectProperty());
+                }
+            }
+        }
+    }
+
+    private void processObjPropDomain(OWLObjectUnionOf union, OWLObjectProperty prop) {
+        union.getOperands().forEach(clExpr->{
+            if(clExpr instanceof OWLClass) {
+                processObjPropDomain(clExpr.asOWLClass(), prop);
+            }
+            else {
+                if(clExpr instanceof OWLObjectUnionOf) { {
+                    processObjPropDomain((OWLObjectUnionOf) clExpr, prop);
+                }}
+            }
+        });
+    }
+
+    private void processObjPropDomain(OWLClass cl, OWLObjectProperty prop) {
+        objPropDomainMap.get(prop).add(cl);
+    }
+
+    private void processObjPropRangeAxiom(OWLObjectPropertyRangeAxiom axiom) {
+        OWLObjectPropertyExpression prop = axiom.getProperty();
+        OWLClassExpression rangeExpr = axiom.getRange();
+        if(rangeExpr instanceof OWLClass) {
+            if(prop instanceof OWLObjectInverseOf) {
+                processObjPropDomain(rangeExpr.asOWLClass(), ((OWLObjectInverseOf) prop).getInverse().asOWLObjectProperty());
+            }
+            else {
+                processObjPropRange(rangeExpr.asOWLClass(), prop.asOWLObjectProperty());
+            }
+        }
+        else {
+            if(rangeExpr instanceof OWLObjectUnionOf) {
+                if(prop instanceof OWLObjectInverseOf) {
+                    processObjPropDomain((OWLObjectUnionOf)rangeExpr, ((OWLObjectInverseOf) prop).getInverse().asOWLObjectProperty());
+                }
+                else {
+                    processObjPropRange((OWLObjectUnionOf)rangeExpr, prop.asOWLObjectProperty());
+                }
+            }
+        }
+    }
+
+    private void processObjPropRange(OWLObjectUnionOf union, OWLObjectProperty prop) {
+        union.getOperands().forEach(clExpr->{
+            if(clExpr instanceof OWLClass) {
+                processObjPropRange(clExpr.asOWLClass(), prop);
+            }
+            else {
+                if(clExpr instanceof OWLObjectUnionOf) { {
+                    processObjPropRange((OWLObjectUnionOf) clExpr, prop);
+                }}
+            }
+        });
+    }
+
+    private void processObjPropRange(OWLClass cl, OWLObjectProperty prop) {
+        objPropRangeMap.get(prop).add(cl);
     }
 
 
+    private void processDataPropDomainAxiom(OWLDataPropertyDomainAxiom axiom) {
+        OWLDataPropertyExpression prop = axiom.getProperty();
+        OWLClassExpression domainExpr = axiom.getDomain();
+        if(domainExpr instanceof OWLClass) {
+            processDataPropDomain(domainExpr.asOWLClass(), prop.asOWLDataProperty());
 
+        }
+        else {
+            if(domainExpr instanceof OWLObjectUnionOf) {
+                processDataPropDomain((OWLObjectUnionOf)domainExpr, prop.asOWLDataProperty());
+            }
+        }
+    }
+
+    private void processDataPropDomain(OWLObjectUnionOf union, OWLDataProperty prop) {
+        union.getOperands().forEach(clExpr->{
+            if(clExpr instanceof OWLClass) {
+                processDataPropDomain(clExpr.asOWLClass(), prop);
+            }
+            else {
+                if(clExpr instanceof OWLObjectUnionOf) { {
+                    processDataPropDomain((OWLObjectUnionOf) clExpr, prop);
+                }}
+            }
+        });
+    }
+
+    private void processDataPropDomain(OWLClass cl, OWLDataProperty prop) {
+        dataPropDomainMap.get(prop).add(cl);
+    }
 }
