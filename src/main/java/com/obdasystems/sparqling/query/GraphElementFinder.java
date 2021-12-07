@@ -19,6 +19,9 @@ public class GraphElementFinder {
     }
 
     public GraphElement getFound() {
+        if (found == null) {
+            throw new RuntimeException("Graph element not found!");
+        }
         return found;
     }
 }

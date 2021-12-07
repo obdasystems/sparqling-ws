@@ -6,6 +6,8 @@ import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
+import org.apache.jena.arq.querybuilder.handlers.SelectHandler;
 import org.apache.jena.arq.querybuilder.handlers.WhereHandler;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
@@ -38,27 +40,6 @@ public class QueryGraphBuilder {
         } else {
             prefixes = new HashMap<>();
         }
-    }
-
-    public QueryGraph getQueryGraph(String clickedClassIRI) {
-        IRI iri = IRI.create(clickedClassIRI);
-        if(!ontology.containsClassInSignature(iri)) {
-            throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
-        }
-        String var = guessNewVarFromIRI(iri, null);
-        SelectBuilder sb = new SelectBuilder();
-        sb.addPrefixes(prefixes);
-        sb.addVar(var).addWhere(var, "a", iri.toQuotedString());
-        QueryGraph qg = new QueryGraph();
-        HeadElement headElement = new HeadElement();
-        headElement.setVar(var);
-        qg.addHeadItem(headElement);
-        qg.setSparql(sb.build().serialize());
-        GraphElement root = new GraphElement();
-        root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
-        root.setId(var.substring(1));
-        qg.setGraph(root);
-        return qg;
     }
 
     private static String guessNewVarFromIRI(IRI iri, Query q) {
@@ -110,25 +91,134 @@ public class QueryGraphBuilder {
         return ret;
     }
 
+    /********************
+     ROUTES METHODS IMPL
+     ********************/
+
+    public QueryGraph getQueryGraph(String clickedClassIRI) {
+        IRI iri = IRI.create(clickedClassIRI);
+        if(!ontology.containsClassInSignature(iri)) {
+            throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        // Modify SPARQL
+        String var = guessNewVarFromIRI(iri, null);
+        SelectBuilder sb = new SelectBuilder();
+        sb.addPrefixes(prefixes);
+        sb.addVar(var).addWhere(var, "a", iri.toQuotedString());
+        // Modify Graph
+        QueryGraph qg = new QueryGraph();
+        HeadElement headElement = new HeadElement();
+        headElement.setVar(var);
+        qg.addHeadItem(headElement);
+        qg.setSparql(sb.build().serialize());
+        GraphElement root = new GraphElement();
+        root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        root.setId(var.substring(1));
+        qg.setGraph(root);
+        return qg;
+    }
+
     public QueryGraph putQueryGraphClass(QueryGraph body, String sourceClassIRI, String targetClassIRI, String graphElementId) {
         IRI iri = IRI.create(targetClassIRI);
         if(!ontology.containsClassInSignature(iri)) {
             throw new RuntimeException("Iri " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
+        //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
-
         PrefixMapping p = q.getPrefixMapping();
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode("?" + graphElementId, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
                 AbstractQueryBuilder.makeNode(iri.toQuotedString(), p)
         )));
+        body.setSparql(q.serialize());
+        //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
         gef.findElementById(graphElementId, body.getGraph());
         gef.getFound().addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        return body;
+    }
+
+    public QueryGraph putQueryGraphObjectProperty(QueryGraph body, String sourceClassIRI, String predicateIRI, String targetClassIRI, Boolean isPredicateDirect, String graphElementId) {
+        IRI target = IRI.create(targetClassIRI);
+        if(!ontology.containsClassInSignature(target)) {
+            throw new RuntimeException("Class " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        IRI predicate = IRI.create(predicateIRI);
+        if(!ontology.containsObjectPropertyInSignature(predicate)) {
+            throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        WhereHandler wh = new WhereHandler(q);
+        PrefixMapping p = q.getPrefixMapping();
+        String var = guessNewVarFromIRI(target, q);
+        if(isPredicateDirect) {
+            wh.addWhere(new TriplePath(new Triple(
+                    AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                    (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
+                    AbstractQueryBuilder.makeNode(var, p)
+            )));
+        } else {
+            wh.addWhere(new TriplePath(new Triple(
+                    AbstractQueryBuilder.makeNode(var, p),
+                    (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
+                    AbstractQueryBuilder.makeNode("?" + graphElementId, p)
+            )));
+        }
+        wh.addWhere(new TriplePath(new Triple(
+                AbstractQueryBuilder.makeNode(var, p),
+                (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
+                AbstractQueryBuilder.makeNode(target.toQuotedString(), p)
+        )));
         body.setSparql(q.serialize());
+        //Modify graph
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId, body.getGraph());
+        GraphElement ge = new GraphElement();
+        ge.setId("x" + System.currentTimeMillis());
+        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(predicate, pdf));
+        GraphElement ge1 = new GraphElement();
+        ge1.setId(var.substring(1));
+        ge1.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(target, pdf));
+        ge.addChildrenItem(ge1);
+        gef.getFound().addChildrenItem(ge);
+        return body;
+    }
+
+    public QueryGraph putQueryGraphDataProperty(QueryGraph body, String sourceClassIRI, String predicateIRI, String graphElementId) {
+        IRI iri = IRI.create(predicateIRI);
+        if(!ontology.containsDataPropertyInSignature(iri)) {
+            throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        AggregationHandler aggHandler = new AggregationHandler(q);
+        SelectHandler sh = new SelectHandler(aggHandler);
+        WhereHandler wh = new WhereHandler(q);
+        PrefixMapping p = q.getPrefixMapping();
+        String var = guessNewVarFromIRI(iri, q);
+        sh.addVar(AbstractQueryBuilder.makeVar(var));
+        wh.addWhere(new TriplePath(new Triple(
+                AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
+                AbstractQueryBuilder.makeNode(var, p)
+        )));
+        body.setSparql(q.serialize());
+        //Modify graph
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId, body.getGraph());
+        GraphElement ge = new GraphElement();
+        ge.setId(var);
+        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        gef.getFound().addChildrenItem(ge);
+        HeadElement headItem = new HeadElement();
+        headItem.setVar(var);
+        body.addHeadItem(headItem);
         return body;
     }
 }
