@@ -237,45 +237,40 @@ public class SimpleOwlOntologyDeductiveClosure {
             }
             //end of Rule 3 application
 
-            /*
+
             //Rule 15: "If existsQ1 in NOT existsQ2, then Q1 in NOT Q2."
-            if (src instanceof ExistentialRole &&
-                    tgt instanceof NegatedBasicConcept)  {
-
-                NegatedBasicConcept negTgt = (NegatedBasicConcept)tgt;
-
-                if (negTgt.getNegatedConcept() instanceof ExistentialRole)  {
-
+            if (src instanceof OWLObjectSomeValuesFrom &&
+                    tgt instanceof OWLObjectComplementOf)  {
+                OWLObjectComplementOf negTgt = (OWLObjectComplementOf)tgt;
+                if (negTgt.getOperand() instanceof OWLObjectSomeValuesFrom)  {
                     //once our check is complete, add assertion to GR
-                    IBasicRole newSrc = ((ExistentialRole)src).getBasicRole();
-                    IBasicRole newTgt = ((ExistentialRole)negTgt.getNegatedConcept()).getBasicRole();
+                    OWLObjectPropertyExpression newSrc = ((OWLObjectSomeValuesFrom)src).getProperty();
+                    OWLObjectPropertyExpression newTgt = ((OWLObjectSomeValuesFrom)negTgt.getOperand()).getProperty();
+                    /*TODO come implemento negatedBasicRole (E' necessario?)
                     NegatedBasicRole newNegTgt = new NegatedBasicRole(df, newTgt);
-
                     GR.addVertex(newSrc);
                     GR.addVertex(newNegTgt);
                     GR.addEdge(newSrc, newNegTgt);
+                     */
                 }
             }
             //end of Rule 15 application
 
 
             //Rule 16-1: "If dom(CA1) in NOT dom(CA2), then CA1 in NOT CA2."
-            if (src instanceof ConceptAttributeDomain &&
-                    tgt instanceof NegatedBasicConcept)  {
-
-                NegatedBasicConcept negTgt = (NegatedBasicConcept)tgt;
-
-                if (negTgt.getNegatedConcept() instanceof ConceptAttributeDomain)  {
-
+            if (src instanceof OWLDataSomeValuesFrom &&
+                    tgt instanceof OWLObjectComplementOf)  {
+                OWLObjectComplementOf negTgt = (OWLObjectComplementOf)tgt;
+                if (negTgt.getOperand() instanceof OWLDataSomeValuesFrom)  {
                     //once our check is complete, add assertion to GCA
-                    ConceptAttribute newSrc = ((ConceptAttributeDomain)src).getConceptAttribute();
-                    ConceptAttribute newTgt = ((ConceptAttributeDomain)negTgt.getNegatedConcept()).getConceptAttribute();
+                    OWLDataPropertyExpression newSrc = ((OWLDataSomeValuesFrom)src).getProperty();
+                    OWLDataPropertyExpression newTgt = ((OWLDataSomeValuesFrom)negTgt.getOperand()).getProperty();
+                    /*TODO come implemento NegatedConceptAttribute (E' necessario?)
                     NegatedConceptAttribute newNegTgt = new NegatedConceptAttribute(df, newTgt);
-
                     GCA.addVertex(newSrc);
                     GCA.addVertex(newNegTgt);
                     GCA.addEdge(newSrc, newNegTgt);
-
+                     */
                 }
             }
 
@@ -293,21 +288,17 @@ public class SimpleOwlOntologyDeductiveClosure {
             //            - dom(RA)- in NOT dom(RA)-; (taken care of by 18-1)
             //            - RA in NOT RA;
             //            - rng(RA) in NOT rng(RA)."
-            if (src instanceof ExistentialRole &&
-                    tgt instanceof NegatedBasicConcept)  {
-                NegatedBasicConcept negTgt = (NegatedBasicConcept)tgt;
-
-                if (negTgt.getNegatedConcept() instanceof ExistentialRole)  {
-                    ExistentialRole srcExistential = (ExistentialRole)src;
-                    ExistentialRole tgtExistential = (ExistentialRole)negTgt.getNegatedConcept();
-
+            if (src instanceof OWLObjectSomeValuesFrom && tgt instanceof OWLObjectComplementOf)  {
+                OWLObjectComplementOf negTgt = (OWLObjectComplementOf)tgt;
+                if (negTgt.getOperand() instanceof OWLObjectSomeValuesFrom)  {
+                    OWLObjectSomeValuesFrom srcExistential = (OWLObjectSomeValuesFrom)src;
+                    OWLObjectSomeValuesFrom tgtExistential = (OWLObjectSomeValuesFrom)negTgt.getOperand();
                     if (srcExistential.equals(tgtExistential))  {
-
                         //clever passage: if they are equals, one of the two
                         //is already contained in the graphs, thus we only insert the inverted one
-                        ExistentialRole newSrc = new ExistentialRole(df, (srcExistential.getBasicRole().getInverted()));
-                        NegatedBasicConcept newTgt = new NegatedBasicConcept(df,
-                                new ExistentialRole(df, (tgtExistential.getBasicRole().getInverted())));
+                        OWLObjectSomeValuesFrom newSrc = dataFactory.getOWLObjectSomeValuesFrom(srcExistential.getProperty().getInverseProperty(), dataFactory.getOWLThing());
+                        OWLObjectComplementOf newTgt = dataFactory.getOWLObjectComplementOf(
+                                dataFactory.getOWLObjectSomeValuesFrom(srcExistential.getProperty().getInverseProperty(), dataFactory.getOWLThing()));
 
                         GC.addVertex(newSrc);
                         GC.addVertex(newTgt);
@@ -315,49 +306,26 @@ public class SimpleOwlOntologyDeductiveClosure {
 
                         //and we must also insert the other two
                         //first, same sign
-                        IBasicRole newSrc2 = srcExistential.getBasicRole();
-                        NegatedBasicRole newTgt2 = new NegatedBasicRole(df, tgtExistential.getBasicRole());
-
+                        OWLObjectPropertyExpression newSrc2 = srcExistential.getProperty();
+                        OWLObjectPropertyExpression newTgt2 = tgtExistential.getProperty();
+                        /*TODO come implemento negatedBasicRole (E' necessario?)
+                        NegatedBasicRole newNegTgt2 = new NegatedBasicRole(df, tgtExistential.getBasicRole());
                         GR.addVertex(newSrc2);
-                        GR.addVertex(newTgt2);
-                        GR.addEdge(newSrc2, newTgt2);
+                        GR.addVertex(newNegTgt2);
+                        GR.addEdge(newSrc2, newNegTgt2);
+                         */
 
                         //secondly, opposite sign
-                        IBasicRole newSrc3 = (srcExistential.getBasicRole()).getInverted();
-                        NegatedBasicRole newTgt3 = new NegatedBasicRole(df, (tgtExistential.getBasicRole()).getInverted());
-
+                        OWLObjectPropertyExpression newSrc3 = srcExistential.getProperty().getInverseProperty();
+                        OWLObjectPropertyExpression newTgt3 = tgtExistential.getProperty().getInverseProperty();
+                        /*TODO come implemento negatedBasicRole (E' necessario?)
+                        NegatedBasicRole newNegTgt3 = new NegatedBasicRole(df, tgtExistential.getBasicRole());
                         GR.addVertex(newSrc3);
-                        GR.addVertex(newTgt3);
-                        GR.addEdge(newSrc3, newTgt3);
-
-
-                        //now we complete 20-1 by examining the cases for RA and rng(RA)
-                        if (srcExistential.getBasicRole() instanceof RoleAttributeDomain &&
-                                tgtExistential.getBasicRole() instanceof RoleAttributeDomain)  {
-
-                            RoleAttribute ra = ((RoleAttributeDomain)srcExistential.getBasicRole()).getRoleAttribute();
-
-                            NegatedRoleAttribute newTgt4 = new NegatedRoleAttribute(df, ra);
-
-                            //RA in NOT RA
-                            GRA.addVertex(ra);
-                            GRA.addVertex(newTgt4);
-                            GRA.addEdge(ra, newTgt4);
-
-                            RoleAttributeRange newSrc5 = new RoleAttributeRange(df, ra);
-                            NegatedBasicValueSet newTgt5 = new NegatedBasicValueSet(df, new RoleAttributeRange(df, ra));
-
-                            //rng(RA) in NOT rng(RA)
-                            GVS.addVertex(newSrc5);
-                            GVS.addVertex(newTgt5);
-                            GVS.addEdge(newSrc5, newTgt5);
-
-                        }
-
+                        GR.addVertex(newNegTgt3);
+                        GR.addEdge(newSrc2, newNegTgt3);
+                         */
                     }
-
                 }
-
             }
 
             //Rule 19-1: "If dom(CA) in NOT dom(CA),
@@ -365,38 +333,25 @@ public class SimpleOwlOntologyDeductiveClosure {
             //            - the said assertion;
             //            - rng(CA) in NOT rng(CA);
             //            - CA in NOT CA."
-            if (src instanceof ConceptAttributeDomain &&
-                    tgt instanceof NegatedBasicConcept)  {
-                NegatedBasicConcept negTgt = (NegatedBasicConcept)tgt;
+            if (src instanceof OWLDataSomeValuesFrom &&
+                    tgt instanceof OWLObjectComplementOf)  {
+                OWLObjectComplementOf negTgt = (OWLObjectComplementOf)tgt;
 
-                if (negTgt.getNegatedConcept() instanceof ConceptAttributeDomain)  {
-                    ConceptAttributeDomain srcDom = (ConceptAttributeDomain)src;
-                    ConceptAttributeDomain tgtDom = (ConceptAttributeDomain)negTgt.getNegatedConcept();
-
+                if (negTgt.getOperand() instanceof OWLDataSomeValuesFrom)  {
+                    OWLDataSomeValuesFrom srcDom = (OWLDataSomeValuesFrom)src;
+                    OWLDataSomeValuesFrom tgtDom = (OWLDataSomeValuesFrom)negTgt.getOperand();
                     if (srcDom.equals(tgtDom))  {
-
                         //the first assertion is present
-
+                        OWLDataPropertyExpression ca = srcDom.getProperty();
                         //the second
-                        ConceptAttribute ca = srcDom.getConceptAttribute();
-
-                        ConceptAttributeRange newSrc = new ConceptAttributeRange(df, ca);
-                        NegatedBasicValueSet newTgt = new NegatedBasicValueSet(df, new ConceptAttributeRange(df, ca));
-
-                        GVS.addVertex(newSrc);
-                        GVS.addVertex(newTgt);
-                        GVS.addEdge(newSrc, newTgt);
-
-                        //the third
+                        /*TODO come implemento NegatedConceptAttribute (E' necessario?)
                         NegatedConceptAttribute newTgt2 = new NegatedConceptAttribute(df, ca);
-
                         GCA.addVertex(ca);
                         GCA.addVertex(newTgt2);
                         GCA.addEdge(ca, newTgt2);
-
+                         */
                     }
                 }
-
             }
 
             //ok, up until now it's been mostly dependent on the
@@ -405,20 +360,16 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //Rule 21: "If B1 in NOT B1 (empty concept) && B2 in B1, then
             //          B2 in NOT B2 (empty concept)."
-            if (src instanceof IBasicConcept &&
-                    tgt instanceof IBasicConcept)  {
-                IBasicConcept basicTgt = (IBasicConcept)tgt;
-
+            if (src instanceof OWLClassExpression &&
+                    tgt instanceof OWLClassExpression)  {
+                OWLClassExpression basicTgt = (OWLClassExpression)tgt;
                 //we must check if tgt is an empty
                 //if it is, it "infects" the src
                 if (emptyConcepts.contains(basicTgt))  {
-                    IBasicConcept basicSrc = (IBasicConcept)src;
-
+                    OWLClassExpression basicSrc = (OWLClassExpression)src;
                     //mark as empty
                     emptyConcepts.add(basicSrc);
-
-                    NegatedBasicConcept newTgt = new NegatedBasicConcept(df, basicSrc);
-
+                    OWLObjectComplementOf newTgt = dataFactory.getOWLObjectComplementOf(basicSrc);
                     //insert empty assertion in GC
                     GC.addVertex(basicSrc);
                     GC.addVertex(newTgt);
@@ -428,63 +379,68 @@ public class SimpleOwlOntologyDeductiveClosure {
             }
 
             //Rule 28 (Claudio Corona): "If B1 \isa \exists Q.B, then B1 \isa \exists Q"
-            if (src instanceof IBasicConcept && tgt instanceof QualifiedExistentialConcept) {
-                QualifiedExistentialConcept qec = (QualifiedExistentialConcept)tgt;
-                ExistentialRole er = qec.deleteQualification();
-                if (!er.equals(src)) {
-                    GC.addVertex(er);
-                    GC.addEdge(src, er);
+            if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom) {
+                if(!((OWLObjectSomeValuesFrom) tgt).getFiller().isOWLThing()) {
+                    OWLObjectSomeValuesFrom er = dataFactory.getOWLObjectSomeValuesFrom(((OWLObjectSomeValuesFrom) tgt).getProperty(), dataFactory.getOWLThing());
+                    if (!er.equals(src)) {
+                        GC.addVertex(er);
+                        GC.addEdge(src, er);
+                    }
                 }
             }
 
             //Rule 29 (Claudio Corona): "If B1 \isa \exists Q.B2 and Q \isa Q1, then B1 \isa \exists Q1.B2"
-            if (src instanceof IBasicConcept && tgt instanceof QualifiedExistentialConcept) {
-                QualifiedExistentialConcept qec = (QualifiedExistentialConcept)tgt;
-                IBasicRole br = qec.getBasicRole();
-                if (GR.containsVertex(br)) {
-                    Set<DefaultEdge> outgoingEdgesForBr = GR.outgoingEdgesOf(br);
-                    Iterator<DefaultEdge> it = outgoingEdgesForBr.iterator();
-                    Set<QualifiedExistentialConcept> toAdd = new HashSet<QualifiedExistentialConcept>();
-                    while(it.hasNext()) {
-                        DefaultEdge outgoingEdgeForBr = it.next();
-                        IRole target = GR.getEdgeTarget(outgoingEdgeForBr);
-                        if (target instanceof IBasicRole) {
-                            IBasicRole newRole = (IBasicRole)target;
-                            QualifiedExistentialConcept newQec = df.getNewQualifiedExistentialConcept(newRole, qec.getBasicConcept());
-                            toAdd.add(newQec);
+            if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom) {
+                OWLObjectSomeValuesFrom qec = (OWLObjectSomeValuesFrom) tgt;
+                if(!qec.getFiller().isOWLThing()) {
+                    OWLObjectPropertyExpression br = qec.getProperty();
+                    if (GR.containsVertex(br)) {
+                        Set<DefaultEdge> outgoingEdgesForBr = GR.outgoingEdgesOf(br);
+                        Iterator<DefaultEdge> it = outgoingEdgesForBr.iterator();
+                        Set<OWLObjectSomeValuesFrom> toAdd = new HashSet<OWLObjectSomeValuesFrom>();
+                        while (it.hasNext()) {
+                            DefaultEdge outgoingEdgeForBr = it.next();
+                            OWLObjectPropertyExpression target = GR.getEdgeTarget(outgoingEdgeForBr);
+                            if (target instanceof OWLObjectPropertyExpression) {
+                                OWLObjectPropertyExpression newRole = (OWLObjectPropertyExpression) target;
+                                OWLObjectSomeValuesFrom newQec = dataFactory.getOWLObjectSomeValuesFrom(newRole, qec.getFiller());
+                                toAdd.add(newQec);
+                            }
                         }
-                    }
-                    for (QualifiedExistentialConcept add : toAdd) {
-                        GC.addVertex(add);
-                        GC.addEdge(src, add);
+                        for (OWLObjectSomeValuesFrom add : toAdd) {
+                            GC.addVertex(add);
+                            GC.addEdge(src, add);
+                        }
                     }
                 }
             }
 
             //Rule 30 (Claudio Corona): "If B1 \isa \exists Q.B2 and B2 \isa B3, then B1 \isa \exists Q1.B3"
-            if (src instanceof IBasicConcept && tgt instanceof QualifiedExistentialConcept) {
-                QualifiedExistentialConcept qec = (QualifiedExistentialConcept)tgt;
-                IBasicConcept bc = qec.getBasicConcept();
-                if (GC.containsVertex(bc)) {
-                    Set<DefaultEdge> outgoingEdgesForBc = GC.outgoingEdgesOf(bc);
-                    Iterator<DefaultEdge> it = outgoingEdgesForBc.iterator();
-                    Set<QualifiedExistentialConcept> toAdd = new HashSet<QualifiedExistentialConcept>();
-                    while(it.hasNext()) {
-                        DefaultEdge outgoingEdgeForBc = it.next();
-                        IConcept target = GC.getEdgeTarget(outgoingEdgeForBc);
-                        if (target instanceof IBasicConcept && !(this.fragment instanceof Fragments_OWL2QLContext && !(target instanceof AtomicConcept))) {
-                            IBasicConcept newBasicConcept = (IBasicConcept)target;
-                            QualifiedExistentialConcept newQec = df.getNewQualifiedExistentialConcept(qec.getBasicRole(), newBasicConcept);
-                            toAdd.add(newQec);
+            if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom)  {
+                OWLObjectSomeValuesFrom qec = (OWLObjectSomeValuesFrom) tgt;
+                if(!qec.getFiller().isOWLThing()) {
+                    OWLClassExpression bc = qec.getFiller();
+                    if (GC.containsVertex(bc)) {
+                        Set<DefaultEdge> outgoingEdgesForBc = GC.outgoingEdgesOf(bc);
+                        Iterator<DefaultEdge> it = outgoingEdgesForBc.iterator();
+                        Set<OWLObjectSomeValuesFrom> toAdd = new HashSet<OWLObjectSomeValuesFrom>();
+                        while (it.hasNext()) {
+                            DefaultEdge outgoingEdgeForBc = it.next();
+                            OWLClassExpression target = GC.getEdgeTarget(outgoingEdgeForBc);
+                            if (!(target instanceof OWLObjectComplementOf) && !(target instanceof OWLClass)) {
+                                OWLClassExpression newBasicConcept = (OWLClassExpression) target;
+                                OWLObjectSomeValuesFrom newQec = dataFactory.getOWLObjectSomeValuesFrom(qec.getProperty(), newBasicConcept);
+                                toAdd.add(newQec);
+                            }
                         }
-                    }
-                    for (QualifiedExistentialConcept add : toAdd) {
-                        GC.addVertex(add);
-                        GC.addEdge(src, add);
+                        for (OWLObjectSomeValuesFrom add : toAdd) {
+                            GC.addVertex(add);
+                            GC.addEdge(src, add);
+                        }
                     }
                 }
             }
-
+/*
             //Rule 31 (Claudio Corona): "If B1 \isa \exists Q.B2 and B2 \isa \not B2, then B1 \isa \not B1"
             if (src instanceof IBasicConcept && tgt instanceof QualifiedExistentialConcept) {
                 IBasicConcept bcSrc = (IBasicConcept)src;
