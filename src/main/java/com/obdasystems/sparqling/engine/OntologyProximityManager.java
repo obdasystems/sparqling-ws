@@ -54,6 +54,8 @@ public class OntologyProximityManager {
 
     public void run(){
         processSignature();
+
+
         ontology.getTBoxAxioms(Imports.INCLUDED).forEach(axiom->{
             if(axiom instanceof OWLSubClassOfAxiom) {
                 processSubClassAxiom((OWLSubClassOfAxiom) axiom);
