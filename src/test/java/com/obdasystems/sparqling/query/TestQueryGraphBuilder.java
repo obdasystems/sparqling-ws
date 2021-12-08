@@ -20,8 +20,14 @@ public class TestQueryGraphBuilder {
     public void getQueryGraph() {
         QueryGraphBuilder qgb = new QueryGraphBuilder();
         QueryGraph qg = qgb.getQueryGraph("http://www.obdasystems.com/books/Book");
-        System.out.println(qgb.putQueryGraphClass(
-                qg,"","http://www.obdasystems.com/books/AudioBook","Book0"));
+        qg = qgb.putQueryGraphClass(
+                qg,"","http://www.obdasystems.com/books/AudioBook","Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", "http://www.obdasystems.com/books/writtenBy",
+                "http://www.obdasystems.com/books/Author", true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", "http://www.obdasystems.com/books/name", "Author0");
+        System.out.println(qg);
     }
     @Test
     public void testGuessNewVar() {
