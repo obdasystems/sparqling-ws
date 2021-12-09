@@ -39,7 +39,7 @@ import javax.validation.constraints.*;
             } else {
                 SWSOntologyManager.getOntologyManager().loadOWLOntologyFile(upfileInputStream);
             }
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "File successfully loaded.")).build();
         } catch (OWLOntologyCreationException e) {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
