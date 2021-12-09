@@ -50,11 +50,21 @@ public class SimpleOwlOntologyDeductiveClosure {
                 OWLClassExpression sup = castAxiom.getSuperClass();
                 if (sub instanceof OWLObjectUnionOf) {
                     OWLObjectUnionOf union = (OWLObjectUnionOf) sub;
-                    processConceptInclusionWithUnionOnTheLeft(union, sup);
+                    if(sup instanceof OWLObjectIntersectionOf) {
+                        processConceptInclusionWithUnionOnTheLeftAndIntersectionOnTheRight(union, (OWLObjectIntersectionOf) sup);
+                    }
+                    else {
+                        processConceptInclusionWithUnionOnTheLeft(union, sup);
+                    }
                 } else {
-                    GC.addVertex(sub);
-                    GC.addVertex(sup);
-                    GC.addEdge(sub, sup);
+                    if(sup instanceof OWLObjectIntersectionOf) {
+                        processConceptInclusionWithIntersectionOnTheRight(sub, (OWLObjectIntersectionOf) sup);
+                    }
+                    else {
+                        GC.addVertex(sub);
+                        GC.addVertex(sup);
+                        GC.addEdge(sub, sup);
+                    }
                 }
             } else {
                 if (axiom instanceof OWLSubObjectPropertyOfAxiom) {
@@ -81,10 +91,20 @@ public class SimpleOwlOntologyDeductiveClosure {
                                 for (int j = i + 1; j < classExpressions.size(); j++) {
                                     OWLClassExpression second = classExpressions.get(j);
                                     if (first instanceof OWLObjectUnionOf) {
-                                        processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) first, second);
+                                        if(second instanceof OWLObjectIntersectionOf) {
+                                            processConceptInclusionWithUnionOnTheLeftAndIntersectionOnTheRight((OWLObjectUnionOf)first, (OWLObjectIntersectionOf) second);
+                                        }
+                                        else {
+                                            processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) first, second);
+                                        }
                                     } else {
                                         if (second instanceof OWLObjectUnionOf) {
-                                            processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) second, first);
+                                            if(first instanceof OWLObjectIntersectionOf) {
+                                                processConceptInclusionWithUnionOnTheLeftAndIntersectionOnTheRight((OWLObjectUnionOf)second, (OWLObjectIntersectionOf) first);
+                                            }
+                                            else {
+                                                processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) second, first);
+                                            }
                                         } else {
                                             GC.addVertex(first);
                                             GC.addVertex(second);
@@ -198,13 +218,48 @@ public class SimpleOwlOntologyDeductiveClosure {
                                                 } else {
                                                     if (axiom instanceof OWLObjectPropertyDomainAxiom) {
                                                         //inserisci arco exist R --> C
+                                                        OWLObjectPropertyDomainAxiom castAxiom = (OWLObjectPropertyDomainAxiom) axiom;
+                                                        OWLObjectPropertyExpression prop = castAxiom.getProperty();
+                                                        OWLClassExpression filler = castAxiom.getDomain();
+                                                        OWLObjectSomeValuesFrom exProp = dataFactory.getOWLObjectSomeValuesFrom(prop, dataFactory.getOWLThing());
+                                                        if(filler instanceof OWLObjectIntersectionOf) {
+                                                            processConceptInclusionWithIntersectionOnTheRight(exProp, (OWLObjectIntersectionOf) filler);
+                                                        }
+                                                        else {
+                                                            GC.addVertex(exProp);
+                                                            GC.addVertex(filler);
+                                                            GC.addEdge(exProp, filler);
+                                                        }
                                                     } else {
                                                         if (axiom instanceof OWLObjectPropertyRangeAxiom) {
                                                             //inserisci arco exist R^- --> C
-
+                                                            OWLObjectPropertyRangeAxiom castAxiom = (OWLObjectPropertyRangeAxiom) axiom;
+                                                            OWLObjectPropertyExpression prop = castAxiom.getProperty().getInverseProperty();
+                                                            OWLClassExpression filler = castAxiom.getRange();
+                                                            OWLObjectSomeValuesFrom exProp = dataFactory.getOWLObjectSomeValuesFrom(prop, dataFactory.getOWLThing());
+                                                            if(filler instanceof OWLObjectIntersectionOf) {
+                                                                processConceptInclusionWithIntersectionOnTheRight(exProp, (OWLObjectIntersectionOf) filler);
+                                                            }
+                                                            else {
+                                                                GC.addVertex(exProp);
+                                                                GC.addVertex(filler);
+                                                                GC.addEdge(exProp, filler);
+                                                            }
                                                         } else {
                                                             if (axiom instanceof OWLDataPropertyDomainAxiom) {
                                                                 //inserisci arco exist U --> C
+                                                                OWLDataPropertyDomainAxiom castAxiom = (OWLDataPropertyDomainAxiom) axiom;
+                                                                OWLDataPropertyExpression prop = castAxiom.getProperty();
+                                                                OWLClassExpression filler = castAxiom.getDomain();
+                                                                OWLDataSomeValuesFrom exProp = dataFactory.getOWLDataSomeValuesFrom(prop, dataFactory.getTopDatatype());
+                                                                if(filler instanceof OWLObjectIntersectionOf) {
+                                                                    processConceptInclusionWithIntersectionOnTheRight(exProp, (OWLObjectIntersectionOf) filler);
+                                                                }
+                                                                else {
+                                                                    GC.addVertex(exProp);
+                                                                    GC.addVertex(filler);
+                                                                    GC.addEdge(exProp, filler);
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -304,8 +359,45 @@ public class SimpleOwlOntologyDeductiveClosure {
             } else {
                 GC.addVertex(op);
                 GC.addVertex(sup);
-                GC.addEdge(sub, sup);
+                GC.addEdge(op, sup);
             }
+        });
+    }
+
+    private void processConceptInclusionWithIntersectionOnTheRight(OWLClassExpression sub, OWLObjectIntersectionOf sup) {
+        sup.getOperands().forEach(intOp->{
+            if(intOp instanceof OWLObjectIntersectionOf) {
+                processConceptInclusionWithIntersectionOnTheRight(sub, (OWLObjectIntersectionOf) intOp);
+            } else {
+                GC.addVertex(sub);
+                GC.addVertex(intOp);
+                GC.addEdge(sub, intOp);
+            }
+        });
+    }
+
+    private void processConceptInclusionWithUnionOnTheLeftAndIntersectionOnTheRight(OWLObjectUnionOf sub, OWLObjectIntersectionOf sup) {
+        sub.getOperands().forEach(op -> {
+            sup.getOperands().forEach(intOp->{
+                if (op instanceof OWLObjectUnionOf) {
+                    if(intOp instanceof OWLObjectIntersectionOf) {
+                        processConceptInclusionWithUnionOnTheLeftAndIntersectionOnTheRight((OWLObjectUnionOf) op, (OWLObjectIntersectionOf) intOp);
+                    }
+                    else {
+                        processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) op, intOp);
+                    }
+                } else {
+                    if(intOp instanceof OWLObjectIntersectionOf) {
+                        processConceptInclusionWithIntersectionOnTheRight(op, (OWLObjectIntersectionOf) intOp);
+                    }
+
+                    else {
+                        GC.addVertex(op);
+                        GC.addVertex(intOp);
+                        GC.addEdge(op, intOp);
+                    }
+                }
+            });
         });
     }
 
