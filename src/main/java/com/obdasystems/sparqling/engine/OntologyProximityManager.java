@@ -174,15 +174,6 @@ public class OntologyProximityManager {
 
     private void closeClassRolesAndAttributesMaps() {
         Set<OWLClass> tops = getClassesWithNoFather();
-        System.out.println();
-        System.out.println();
-        System.out.println("CLASSES WITH NO FATHER");
-        tops.forEach(t->{
-            System.out.println(t);
-        });
-        System.out.println();
-        System.out.println();
-
         tops.forEach(t->{
             Set<OWLObjectProperty> tRoles = classRolesMap.get(t);
             Set<OWLDataProperty> tAttrs = classAttributesMap.get(t);
