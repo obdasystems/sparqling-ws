@@ -119,6 +119,7 @@ public class OntologyProximityManager {
         });
         computeDisjointSiblingsMap();
         closeClassRolesAndAttributesMaps();
+        closePropertiesDomainRangeMaps();
     }
 
     private void processSignature() {
@@ -189,6 +190,30 @@ public class OntologyProximityManager {
                 classRolesMap.get(desc).addAll(tRoles);
                 classAttributesMap.get(desc).addAll(tAttrs);
             });
+        });
+    }
+
+    private void closePropertiesDomainRangeMaps() {
+        objPropDomainMap.forEach((prop, set)->{
+            Set<OWLClass> toAdd = new HashSet<>();
+            set.forEach(domCl->{
+                toAdd.addAll(classDescendantsMap.get(domCl));
+            });
+            set.addAll(toAdd);
+        });
+        objPropRangeMap.forEach((prop, set)->{
+            Set<OWLClass> toAdd = new HashSet<>();
+            set.forEach(domCl->{
+                toAdd.addAll(classDescendantsMap.get(domCl));
+            });
+            set.addAll(toAdd);
+        });
+        dataPropDomainMap.forEach((prop, set)->{
+            Set<OWLClass> toAdd = new HashSet<>();
+            set.forEach(domCl->{
+                toAdd.addAll(classDescendantsMap.get(domCl));
+            });
+            set.addAll(toAdd);
         });
     }
 
