@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class SimpleOwlOntologyDeductiveClosure {
-    static Logger logger = LoggerFactory.getLogger(SimpleOwlOntologyDeductiveClosure.class);
+public class SimpleOwlOntologyDeductiveClosureProcesor {
+    static Logger logger = LoggerFactory.getLogger(SimpleOwlOntologyDeductiveClosureProcesor.class);
 
     private OWLOntology inputOntology;
 
@@ -28,13 +28,13 @@ public class SimpleOwlOntologyDeductiveClosure {
     private SimpleDirectedGraph<OWLObjectPropertyExpression, DefaultEdge> GR = null;
     private SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA = null;
 
-    public SimpleOwlOntologyDeductiveClosure(OWLOntology ontology) {
+    public SimpleOwlOntologyDeductiveClosureProcesor(OWLOntology ontology) {
         inputOntology = ontology;
         ontologyManager = OWLManager.createOWLOntologyManager();
         dataFactory = ontologyManager.getOWLDataFactory();
     }
 
-    public void computeSimpleDeductiveClosure() {
+    public Set<OWLAxiom> computeSimpleDeductiveClosure() {
         logger.debug("TBoxGraphDeductiveClosure started... ");
         long t = System.currentTimeMillis();
 
@@ -304,23 +304,53 @@ public class SimpleOwlOntologyDeductiveClosure {
         } while (initialTotalIAs != finalTotalIAs);
 
         //checkForTBoxInconsistentcies
-        addEventualInconsistency();
+        //addEventualInconsistency();
 
         //as a finishing touch, we must infer all trivials
-        Set<OWLAxiom> trivials = inferAllTrivials();
+        //Set<OWLAxiom> trivials = inferAllTrivials();
 
         //And finally, we must extract all assertions from the five graphs
         Set<OWLAxiom> simpleDeductiveClosure = extractAllAssertionsFromGraphs(GC, GR, GCA);
 
-
         t = System.currentTimeMillis() - t;
         logger.debug("SimpleOwlOntologyDeductiveClosure completed (" + t + " ms).");
+        return simpleDeductiveClosure;
     }
 
     private Set<OWLAxiom> extractAllAssertionsFromGraphs(SimpleDirectedGraph<OWLClassExpression, DefaultEdge> GC,
-                                                                    SimpleDirectedGraph<OWLObjectPropertyExpression, DefaultEdge> GR,
-                                                                    SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA)  {
-        return null;
+                                                         SimpleDirectedGraph<OWLObjectPropertyExpression, DefaultEdge> GR,
+                                                         SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA) {
+        //our result
+        Set<OWLAxiom> result = new HashSet<OWLAxiom>();
+        //Inspection of GC
+        Set<DefaultEdge> allConceptIAs = GC.edgeSet();
+        Iterator<DefaultEdge> it = allConceptIAs.iterator();
+        while (it.hasNext()) {
+            DefaultEdge edgeIA = it.next();
+            OWLSubClassOfAxiom newIA = dataFactory.getOWLSubClassOfAxiom(GC.getEdgeSource(edgeIA), GC.getEdgeTarget(edgeIA));
+            result.add(newIA);
+        }//end of GC
+
+        //Inspection of GR
+        Set<DefaultEdge> allRoleIAs = GR.edgeSet();
+        Iterator<DefaultEdge> it2 = allRoleIAs.iterator();
+        while (it2.hasNext()) {
+            DefaultEdge edgeIA = it2.next();
+            OWLSubObjectPropertyOfAxiom newIA = dataFactory.getOWLSubObjectPropertyOfAxiom(GR.getEdgeSource(edgeIA), GR.getEdgeTarget(edgeIA));
+            result.add(newIA);
+        }
+
+        //Inspection of GCA
+        Set<DefaultEdge> allCAIAs = GCA.edgeSet();
+        Iterator<DefaultEdge> it3 = allCAIAs.iterator();
+        while (it3.hasNext()) {
+            DefaultEdge edgeIA = it3.next();
+            OWLSubDataPropertyOfAxiom newIA = dataFactory.getOWLSubDataPropertyOfAxiom(GCA.getEdgeSource(edgeIA), GCA.getEdgeTarget(edgeIA));
+            result.add(newIA);
+        }//end of GCA
+
+        return result;
+
     }
 
     private Set<OWLAxiom> inferAllTrivials() {
@@ -352,15 +382,15 @@ public class SimpleOwlOntologyDeductiveClosure {
 
         //Concepts
         Iterator<OWLClass> it = allConcepts.iterator();
-        while (it.hasNext())  {
+        while (it.hasNext()) {
             OWLClass c = it.next();
             //A in A
-            OWLSubClassOfAxiom trivialAssertion = dataFactory.getOWLSubClassOfAxiom(c,c);
+            OWLSubClassOfAxiom trivialAssertion = dataFactory.getOWLSubClassOfAxiom(c, c);
             result.add(trivialAssertion);
 
             //!A in !A
             OWLObjectComplementOf notC = dataFactory.getOWLObjectComplementOf(c);
-            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notC,notC);
+            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notC, notC);
             result.add(tnAssertion);
 
             //A in TopC
@@ -370,57 +400,57 @@ public class SimpleOwlOntologyDeductiveClosure {
 
         //Roles
         Iterator<OWLObjectProperty> it2 = allRoles.iterator();
-        while (it2.hasNext())  {
+        while (it2.hasNext()) {
             OWLObjectProperty r = it2.next();
 
             //P in P
-            OWLSubObjectPropertyOfAxiom trivialAssertion = dataFactory.getOWLSubObjectPropertyOfAxiom(r,r);
+            OWLSubObjectPropertyOfAxiom trivialAssertion = dataFactory.getOWLSubObjectPropertyOfAxiom(r, r);
             result.add(trivialAssertion);
 
             //P- in P-
-            OWLSubObjectPropertyOfAxiom trivialAssertion2 = dataFactory.getOWLSubObjectPropertyOfAxiom(r.getInverseProperty(),r.getInverseProperty());
+            OWLSubObjectPropertyOfAxiom trivialAssertion2 = dataFactory.getOWLSubObjectPropertyOfAxiom(r.getInverseProperty(), r.getInverseProperty());
             result.add(trivialAssertion2);
 
             //existsP in existsP
             OWLObjectSomeValuesFrom exR = dataFactory.getOWLObjectSomeValuesFrom(r, dataFactory.getOWLThing());
-            OWLSubClassOfAxiom trivialAssertion3 = dataFactory.getOWLSubClassOfAxiom(exR,exR);
+            OWLSubClassOfAxiom trivialAssertion3 = dataFactory.getOWLSubClassOfAxiom(exR, exR);
             result.add(trivialAssertion3);
 
             //!existsP in !existsP
             OWLObjectComplementOf notexR = dataFactory.getOWLObjectComplementOf(exR);
-            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notexR,notexR);
+            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notexR, notexR);
             result.add(tnAssertion);
 
             //existsP- in existsP-
             OWLObjectSomeValuesFrom exRInv = dataFactory.getOWLObjectSomeValuesFrom(r.getInverseProperty(), dataFactory.getOWLThing());
-            OWLSubClassOfAxiom trivialAssertion4 = dataFactory.getOWLSubClassOfAxiom(exRInv,exRInv);
+            OWLSubClassOfAxiom trivialAssertion4 = dataFactory.getOWLSubClassOfAxiom(exRInv, exRInv);
             result.add(trivialAssertion3);
             result.add(trivialAssertion4);
 
             //!existsP- in !existsP-
             OWLObjectComplementOf notexRInv = dataFactory.getOWLObjectComplementOf(exRInv);
-            OWLSubClassOfAxiom tnAssertion4 = dataFactory.getOWLSubClassOfAxiom(notexRInv,notexRInv);
+            OWLSubClassOfAxiom tnAssertion4 = dataFactory.getOWLSubClassOfAxiom(notexRInv, notexRInv);
             result.add(tnAssertion4);
         }
 
         //Concept Attributes
         Iterator<OWLDataProperty> it3 = allConceptAttributes.iterator();
-        while (it3.hasNext())  {
+        while (it3.hasNext()) {
             OWLDataProperty ca = it3.next();
 
             //CA in CA
-            OWLSubDataPropertyOfAxiom trivialAssertion = dataFactory.getOWLSubDataPropertyOfAxiom(ca,ca);
+            OWLSubDataPropertyOfAxiom trivialAssertion = dataFactory.getOWLSubDataPropertyOfAxiom(ca, ca);
             result.add(trivialAssertion);
 
             //dom(CA) in dom(CA)
             OWLDataSomeValuesFrom exR = dataFactory.getOWLDataSomeValuesFrom(ca, dataFactory.getTopDatatype());
-            OWLSubClassOfAxiom trivialAssertion2 = dataFactory.getOWLSubClassOfAxiom(exR,exR);
+            OWLSubClassOfAxiom trivialAssertion2 = dataFactory.getOWLSubClassOfAxiom(exR, exR);
             result.add(trivialAssertion2);
             result.add(trivialAssertion2);
 
             //!dom(CA) in !dom(CA)
             OWLObjectComplementOf notexR = dataFactory.getOWLObjectComplementOf(exR);
-            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notexR,notexR);
+            OWLSubClassOfAxiom tnAssertion = dataFactory.getOWLSubClassOfAxiom(notexR, notexR);
             result.add(tnAssertion);
         }
         return result;
@@ -430,11 +460,9 @@ public class SimpleOwlOntologyDeductiveClosure {
         //inconsistencies can derive from: 1) empty Top 2) empty reflexive roles
         if (this.emptyConcepts.contains(dataFactory.getOWLThing())) {
             //it's already ok
-        }
-        else if (this.emptyConceptAttributes.contains(dataFactory.getOWLTopDataProperty())) {
+        } else if (this.emptyConceptAttributes.contains(dataFactory.getOWLTopDataProperty())) {
             addEmptyTopC();
-        }
-        else if (this.emptyRoles.contains(dataFactory.getOWLTopObjectProperty())) {
+        } else if (this.emptyRoles.contains(dataFactory.getOWLTopObjectProperty())) {
             addEmptyTopC();
         }
     }
@@ -485,7 +513,7 @@ public class SimpleOwlOntologyDeductiveClosure {
                 OWLDataSomeValuesFrom cad = dataFactory.getOWLDataSomeValuesFrom(dataProp, dataFactory.getTopDatatype());
                 GC.addVertex(cad);
                 inputOntology.getDatatypesInSignature(Imports.INCLUDED).forEach(dataType -> {
-                    if (!dataType.isBottomEntity()) {
+                    if (!(dataType.isBottomEntity() || dataType.isTopDatatype())) {
                         OWLDataSomeValuesFrom qcad = dataFactory.getOWLDataSomeValuesFrom(dataProp, dataType);
                         GC.addVertex(qcad);
                         GC.addEdge(qcad, cad);
@@ -584,12 +612,13 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //pre-rule 21 operation: if this IA is "B in NOT B", mark
             //B as an empty concept
+            /*TODO SKIP
             if (!(src instanceof OWLObjectComplementOf) &&
                     tgt instanceof OWLObjectComplementOf) {
                 if (src.equals(((OWLObjectComplementOf) tgt).getOperand())) {
                     emptyConcepts.add(src);
                 }
-            }
+            }*/
 
             //RULE 3: "If (C1 in C2), then (!C2 in !C1)."
             //case 1 of 4: direct-direct
@@ -633,6 +662,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
 
             //Rule 15: "If existsQ1 in NOT existsQ2, then Q1 in NOT Q2."
+            /*TODO SKIP
             if (src instanceof OWLObjectSomeValuesFrom &&
                     tgt instanceof OWLObjectComplementOf) {
                 OWLObjectComplementOf negTgt = (OWLObjectComplementOf) tgt;
@@ -640,18 +670,20 @@ public class SimpleOwlOntologyDeductiveClosure {
                     //once our check is complete, add assertion to GR
                     OWLObjectPropertyExpression newSrc = ((OWLObjectSomeValuesFrom) src).getProperty();
                     OWLObjectPropertyExpression newTgt = ((OWLObjectSomeValuesFrom) negTgt.getOperand()).getProperty();
-                    /*TODO come implemento negatedBasicRole (E' necessario?)
+
                     NegatedBasicRole newNegTgt = new NegatedBasicRole(df, newTgt);
                     GR.addVertex(newSrc);
                     GR.addVertex(newNegTgt);
                     GR.addEdge(newSrc, newNegTgt);
-                     */
+
                 }
             }
+            */
             //end of Rule 15 application
 
 
             //Rule 16-1: "If dom(CA1) in NOT dom(CA2), then CA1 in NOT CA2."
+            /*TODO SKIP
             if (src instanceof OWLDataSomeValuesFrom &&
                     tgt instanceof OWLObjectComplementOf) {
                 OWLObjectComplementOf negTgt = (OWLObjectComplementOf) tgt;
@@ -659,15 +691,14 @@ public class SimpleOwlOntologyDeductiveClosure {
                     //once our check is complete, add assertion to GCA
                     OWLDataPropertyExpression newSrc = ((OWLDataSomeValuesFrom) src).getProperty();
                     OWLDataPropertyExpression newTgt = ((OWLDataSomeValuesFrom) negTgt.getOperand()).getProperty();
-                    /*TODO come implemento NegatedConceptAttribute (E' necessario?)
                     NegatedConceptAttribute newNegTgt = new NegatedConceptAttribute(df, newTgt);
                     GCA.addVertex(newSrc);
                     GCA.addVertex(newNegTgt);
                     GCA.addEdge(newSrc, newNegTgt);
-                     */
+
                 }
             }
-
+            */
 
             //Rule 18-1: "If existsQ in NOT existsQ OR existsQ- in NOT existsQ-,
             //            then all the following 4 assertions hold true:
@@ -727,6 +758,7 @@ public class SimpleOwlOntologyDeductiveClosure {
             //            - the said assertion;
             //            - rng(CA) in NOT rng(CA);
             //            - CA in NOT CA."
+            /*TODO SKIP
             if (src instanceof OWLDataSomeValuesFrom &&
                     tgt instanceof OWLObjectComplementOf) {
                 OWLObjectComplementOf negTgt = (OWLObjectComplementOf) tgt;
@@ -738,15 +770,14 @@ public class SimpleOwlOntologyDeductiveClosure {
                         //the first assertion is present
                         OWLDataPropertyExpression ca = srcDom.getProperty();
                         //the second
-                        /*TODO come implemento NegatedConceptAttribute (E' necessario?)
                         NegatedConceptAttribute newTgt2 = new NegatedConceptAttribute(df, ca);
                         GCA.addVertex(ca);
                         GCA.addVertex(newTgt2);
                         GCA.addEdge(ca, newTgt2);
-                         */
+
                     }
                 }
-            }
+            }*/
 
             //ok, up until now it's been mostly dependent on the
             //current GC edge only; for Rule 21 we need something cleverer;
@@ -754,6 +785,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //Rule 21: "If B1 in NOT B1 (empty concept) && B2 in B1, then
             //          B2 in NOT B2 (empty concept)."
+            /*TODO SKIP
             if (src instanceof OWLClassExpression &&
                     tgt instanceof OWLClassExpression) {
                 OWLClassExpression basicTgt = (OWLClassExpression) tgt;
@@ -770,7 +802,7 @@ public class SimpleOwlOntologyDeductiveClosure {
                     GC.addEdge(basicSrc, newTgt);
 
                 }
-            }
+            }*/
 
             //Rule 28 (Claudio Corona): "If B1 \isa \exists Q.B, then B1 \isa \exists Q"
             if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom) {
@@ -836,6 +868,7 @@ public class SimpleOwlOntologyDeductiveClosure {
             }
 
             //Rule 31 (Claudio Corona): "If B1 \isa \exists Q.B2 and B2 \isa \not B2, then B1 \isa \not B1"
+            /*TODO SKIP
             if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom) {
                 OWLObjectSomeValuesFrom qec = (OWLObjectSomeValuesFrom) tgt;
                 if (!qec.getFiller().isOWLThing()) {
@@ -863,7 +896,7 @@ public class SimpleOwlOntologyDeductiveClosure {
                         }
                     }
                 }
-            }
+            }*/
 
             //Rule 32 (Claudio Corona): "If B1 \isa \domain CA.datatype, then B1 \isa \domain CA"
             if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLDataSomeValuesFrom) {
@@ -904,6 +937,7 @@ public class SimpleOwlOntologyDeductiveClosure {
             }
 
             //Rule 35 (Claudio Corona): "If \exists R^- ISA B, then \exists R \isa \exists R.B"
+            /*TODO SKIP
             if (src instanceof OWLObjectSomeValuesFrom && tgt instanceof OWLClassExpression) {
                 OWLObjectSomeValuesFrom er = (OWLObjectSomeValuesFrom) src;
                 if (er.getFiller().isOWLThing()) {
@@ -916,9 +950,10 @@ public class SimpleOwlOntologyDeductiveClosure {
                     GC.addEdge(inverseEr, qec);
 
                 }
-            }
+            }*/
 
             //Rule 38 (Claudio Corona): "If B1 \isa \exists R.B and \exists R^- \isa \not B, then B1 \isa \not B1"
+            /*TODO SKIP
             if (!(src instanceof OWLObjectComplementOf) && tgt instanceof OWLObjectSomeValuesFrom) {
                 OWLObjectSomeValuesFrom qec = (OWLObjectSomeValuesFrom) tgt;
                 if (!qec.getFiller().isOWLThing()) {
@@ -948,6 +983,7 @@ public class SimpleOwlOntologyDeductiveClosure {
                     }
                 }
             }
+            */
         }
     }
 
@@ -998,7 +1034,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //pre-rule 22 operation: if this IA is "Q in NOT Q", mark
             //Q as an empty role
-            /*TODO Non esiste controparte di NegatedBasicRole
+            /*TODO SKIP
             if (src instanceof IBasicRole &&
                     tgt instanceof NegatedBasicRole)  {
                 IBasicRole basicSrc = (IBasicRole)src;
@@ -1012,7 +1048,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //RULE 5: "If (G1 in G2), then (!G2 in !G1)."
             //case 1 of 4: positive-positive
-            /*TODO Non esiste controparte di NegatedBasicRole
+            /*TODO SKIP
             if (src instanceof IBasicRole &&
                     tgt instanceof IBasicRole)  {
                 NegatedBasicRole newSrc = new NegatedBasicRole(df, (IBasicRole)tgt);
@@ -1074,7 +1110,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
 
             //Rule 17-1: "If dom(RA1) in NOT dom(RA2), then RA1 in NOT RA2."
-            /*TODO inutile
+            /*TODO SKIP
             if (src instanceof RoleAttributeDomain &&
                     tgt instanceof NegatedBasicRole) {
 
@@ -1114,7 +1150,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //clever passage: if they are equals, one of the two
             //is already contained in the graphs, thus we only insert the inverted one
-            /*TODO Non esiste controparte di NegatedBasicRole
+            /*TODO SKIP
             IBasicRole newSrc = basicSrc.getInverted();
             NegatedBasicRole newTgt = new NegatedBasicRole(df, basicSrc.getInverted());
 
@@ -1171,7 +1207,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //Rule 22: "If Q1 in NOT Q1 (empty role) && Q2 in Q1, then
             //          Q2 in NOT Q2 (empty role)."
-            /*TODO Non esiste controparte di NegatedBasicRole
+            /*TODO SKIP
             if (src instanceof IBasicRole &&
                     tgt instanceof IBasicRole) {
                 IBasicRole basicTgt = (IBasicRole) tgt;
@@ -1197,6 +1233,7 @@ public class SimpleOwlOntologyDeductiveClosure {
 
             //Rule 26: "If (Q1 in Q2), then (Q1- in Q2-)."
             //(it should really be: "If (Q1 in R2), then (Q1- in R2-)."
+            /*TODO SKIP
             if (src instanceof OWLObjectPropertyExpression && tgt instanceof OWLObjectPropertyExpression) {
                 OWLObjectPropertyExpression newSrc = src.getInverseProperty();
                 OWLObjectPropertyExpression newTgt = tgt.getInverseProperty();
@@ -1205,7 +1242,6 @@ public class SimpleOwlOntologyDeductiveClosure {
                 GR.addEdge(newSrc, newTgt);
             }
             //Modded rule 26: if Q1 in R2 -> Q1- in R2-
-            /*TODO Non esiste controparte di NegatedBasicRole
             else if (src instanceof IBasicRole &&
                     tgt instanceof NegatedBasicRole) {
                 IBasicRole newSrc = ((IBasicRole) src).getInverted();
@@ -1221,21 +1257,21 @@ public class SimpleOwlOntologyDeductiveClosure {
     }
     //end method
 
-        private void applyAllConceptAttributeIARules(SimpleDirectedGraph<OWLClassExpression, DefaultEdge> GC,
-                SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA)  {
-            //RULE 8: "If (genCA1 in genCA2) && (genCA2 in genCA3), then (genCA1 in genCA3)."
-            TransitiveClosure TC = TransitiveClosure.INSTANCE;
-            TC.closeSimpleDirectedGraph(GCA);
+    private void applyAllConceptAttributeIARules(SimpleDirectedGraph<OWLClassExpression, DefaultEdge> GC,
+                                                 SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA) {
+        //RULE 8: "If (genCA1 in genCA2) && (genCA2 in genCA3), then (genCA1 in genCA3)."
+        TransitiveClosure TC = TransitiveClosure.INSTANCE;
+        TC.closeSimpleDirectedGraph(GCA);
 
-            //outer loop on all edges (concept attribute IAs) of GCA
-            Object[] allEdges = (GCA.edgeSet()).toArray();
-            for (int i=0; i<allEdges.length; i++)  {
-                DefaultEdge conceptAttrIA = (DefaultEdge)allEdges[i];
-                OWLDataPropertyExpression src = GCA.getEdgeSource(conceptAttrIA);
-                OWLDataPropertyExpression tgt = GCA.getEdgeTarget(conceptAttrIA);
+        //outer loop on all edges (concept attribute IAs) of GCA
+        Object[] allEdges = (GCA.edgeSet()).toArray();
+        for (int i = 0; i < allEdges.length; i++) {
+            DefaultEdge conceptAttrIA = (DefaultEdge) allEdges[i];
+            OWLDataPropertyExpression src = GCA.getEdgeSource(conceptAttrIA);
+            OWLDataPropertyExpression tgt = GCA.getEdgeTarget(conceptAttrIA);
 
-                //no further rule is appliable if conceptAttrIA is totally negated
-                /*TODO Non esiste controparte di NegatedConceptAttribute
+            //no further rule is appliable if conceptAttrIA is totally negated
+                /*TODO SKIP
                 if (src instanceof NegatedConceptAttribute)  {
                     continue;
                 }
@@ -1250,11 +1286,10 @@ public class SimpleOwlOntologyDeductiveClosure {
                  */
 
 
+            //pre-rule 24 operation: if this IA is "CA in NOT CA", mark
+            //CA as an empty concept attribute
 
-                //pre-rule 24 operation: if this IA is "CA in NOT CA", mark
-                //CA as an empty concept attribute
-
-                /*TODO Non esiste controparte di NegatedConceptAttribute
+                /*TODO SKIP
                 if (src instanceof ConceptAttribute &&
                         tgt instanceof NegatedConceptAttribute)  {
                     ConceptAttribute caSrc = (ConceptAttribute)src;
@@ -1267,9 +1302,9 @@ public class SimpleOwlOntologyDeductiveClosure {
                  */
 
 
-                //RULE 9: "If (genCA1 in genCA2), then (!genCA2 in !genCA1)."
-                //case 1 of 4: direct-direct
-                /*TODO Non esiste controparte di NegatedConceptAttribute
+            //RULE 9: "If (genCA1 in genCA2), then (!genCA2 in !genCA1)."
+            //case 1 of 4: direct-direct
+                /*TODO SKIP
                 if (src instanceof ConceptAttribute &&
                         tgt instanceof ConceptAttribute)  {
                     NegatedConceptAttribute newSrc = new NegatedConceptAttribute(df, (ConceptAttribute)tgt);
@@ -1313,16 +1348,16 @@ public class SimpleOwlOntologyDeductiveClosure {
                  */
 
 
-                //RULE 13: "If (CA1 in CA2), then (dom(CA1) in dom(CA2)) &&
-                //          (rng(CA1) in rng(CA2))."
-                if (src instanceof OWLDataPropertyExpression &&
-                        tgt instanceof OWLDataPropertyExpression)  {
-                    OWLDataSomeValuesFrom newSrc = dataFactory.getOWLDataSomeValuesFrom(src, dataFactory.getTopDatatype());
-                    OWLDataSomeValuesFrom newTgt = dataFactory.getOWLDataSomeValuesFrom(tgt, dataFactory.getTopDatatype());
+            //RULE 13: "If (CA1 in CA2), then (dom(CA1) in dom(CA2)) &&
+            //          (rng(CA1) in rng(CA2))."
+            if (src instanceof OWLDataPropertyExpression &&
+                    tgt instanceof OWLDataPropertyExpression) {
+                OWLDataSomeValuesFrom newSrc = dataFactory.getOWLDataSomeValuesFrom(src, dataFactory.getTopDatatype());
+                OWLDataSomeValuesFrom newTgt = dataFactory.getOWLDataSomeValuesFrom(tgt, dataFactory.getTopDatatype());
 
-                    GC.addVertex(newSrc);
-                    GC.addVertex(newTgt);
-                    GC.addEdge(newSrc, newTgt);
+                GC.addVertex(newSrc);
+                GC.addVertex(newTgt);
+                GC.addEdge(newSrc, newTgt);
                     /*TODO inutile
                     ConceptAttributeRange newSrc2 = new ConceptAttributeRange(df, caSrc);
                     ConceptAttributeRange newTgt2 = new ConceptAttributeRange(df, caTgt);
@@ -1330,22 +1365,22 @@ public class SimpleOwlOntologyDeductiveClosure {
                     GVS.addVertex(newTgt2);
                     GVS.addEdge(newSrc2, newTgt2);
                      */
-                }
+            }
 
-                //Rule 19-2: "If (CA in NOT CA) (empty concept attrib),
-                //            then all the following 3 assertions hold true:
-                //            - the said assertion;
-                //            - rng(CA) in NOT rng(CA);
-                //            - dom(CA) in NOT dom(CA)."
+            //Rule 19-2: "If (CA in NOT CA) (empty concept attrib),
+            //            then all the following 3 assertions hold true:
+            //            - the said assertion;
+            //            - rng(CA) in NOT rng(CA);
+            //            - dom(CA) in NOT dom(CA)."
 
-                //(we can reuse the check on empty CAs)
-                if (src instanceof OWLDataPropertyExpression &&
-                        emptyConceptAttributes.contains(src))  {
+            //(we can reuse the check on empty CAs)
+            if (src instanceof OWLDataPropertyExpression &&
+                    emptyConceptAttributes.contains(src)) {
 
-                    //the first assertion is present
+                //the first assertion is present
 
-                    //the second
-                    /*TODO inutile
+                //the second
+                    /*TODO SKIP
                     ConceptAttribute ca = (ConceptAttribute)src;
                     ConceptAttributeRange newSrc = new ConceptAttributeRange(df, ca);
                     NegatedBasicValueSet newTgt = new NegatedBasicValueSet(df, new ConceptAttributeRange(df, ca));
@@ -1356,19 +1391,19 @@ public class SimpleOwlOntologyDeductiveClosure {
 
                      */
 
-                    //the third
-                    OWLDataSomeValuesFrom newSrc2 = dataFactory.getOWLDataSomeValuesFrom(src, dataFactory.getTopDatatype());
-                    OWLObjectComplementOf newTgt2 = dataFactory.getOWLObjectComplementOf(newSrc2);
-                    GC.addVertex(newSrc2);
-                    GC.addVertex(newTgt2);
-                    GC.addEdge(newSrc2, newTgt2);
+                //the third
+                OWLDataSomeValuesFrom newSrc2 = dataFactory.getOWLDataSomeValuesFrom(src, dataFactory.getTopDatatype());
+                OWLObjectComplementOf newTgt2 = dataFactory.getOWLObjectComplementOf(newSrc2);
+                GC.addVertex(newSrc2);
+                GC.addVertex(newTgt2);
+                GC.addEdge(newSrc2, newTgt2);
 
-                }
-                //thank God at least this class of IAs doesn't apply rule 20!
+            }
+            //thank God at least this class of IAs doesn't apply rule 20!
 
-                //Rule 24: "If CA1 in NOT CA1 (empty concept attr) && CA2 in CA1, then
-                //          CA2 in NOT CA2 (empty concept attribute)."
-                /*TODO Non esiste controparte di NegatedConceptAttribute
+            //Rule 24: "If CA1 in NOT CA1 (empty concept attr) && CA2 in CA1, then
+            //          CA2 in NOT CA2 (empty concept attribute)."
+                /*TODO SKIP
                 if (src instanceof ConceptAttribute &&
                         tgt instanceof ConceptAttribute)  {
                     ConceptAttribute caTgt = (ConceptAttribute)tgt;
@@ -1391,8 +1426,8 @@ public class SimpleOwlOntologyDeductiveClosure {
                     }
                 }
                  */
-                //end of all rules involving checks on Concept Attribute IAs
-            }
+            //end of all rules involving checks on Concept Attribute IAs
+        }
 
 
     }//end method
