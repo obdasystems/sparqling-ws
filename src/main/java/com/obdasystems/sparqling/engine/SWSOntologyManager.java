@@ -132,7 +132,7 @@ public class SWSOntologyManager {
         proximityManager = new OntologyProximityManager(owlOntology);
     }
 
-
-
-
+    public OntologyProximityManager getOntologyProximityManager() {
+        return proximityManager;
+    }
 }

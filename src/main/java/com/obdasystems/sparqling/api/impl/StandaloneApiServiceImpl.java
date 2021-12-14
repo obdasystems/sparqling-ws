@@ -41,6 +41,7 @@ import javax.validation.constraints.*;
             }
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "File successfully loaded.")).build();
         } catch (OWLOntologyCreationException e) {
+            e.printStackTrace();
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
     }
