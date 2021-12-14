@@ -47,6 +47,7 @@ public class OntologyProximityManager {
         this.objPropAncestorsMap = new HashMap<>();
         this.dataPropChildrenMap = new HashMap<>();
         this.dataPropAncestorsMap = new HashMap<>();
+        init();
     }
 
     //GETTERS
