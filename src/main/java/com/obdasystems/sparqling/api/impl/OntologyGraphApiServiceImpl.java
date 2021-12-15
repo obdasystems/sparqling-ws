@@ -33,43 +33,7 @@ import javax.validation.constraints.*;
     public Response highligths( @NotNull String clickedClassIRI,  List<String> params, SecurityContext securityContext) throws NotFoundException {
         try {
             OntologyProximityManager opm = SWSOntologyManager.getOntologyManager().getOntologyProximityManager();
-            Highlights ret = new Highlights();
-            OWLClass cl = new OWLClassImpl(IRI.create(clickedClassIRI));
-            
-            Set<OWLClass> classes = new HashSet<>();
-            classes.addAll(opm.getClassDescendants(cl));
-            classes.addAll(opm.getClassAncestors(cl));
-            classes.addAll(opm.getClassNonDisjointSiblings(cl));
-            ret.setClasses(classes.stream().map(i -> i.getIRI().toString()).collect(Collectors.toList()));
-
-            for(OWLObjectProperty i : opm.getClassRoles(cl)) {
-                Branch b = new Branch();
-                b.setObjectPropertyIRI(i.getIRI().toString());
-                if(opm.getObjPropDomain(i).contains(cl)) {
-                    if(opm.getObjPropRange(i).contains(cl)) {
-                        b.setCyclic(true);
-                    }
-                    for(OWLClass c:opm.getObjPropRange(i)) {
-                        b.addRelatedClassesItem(c.getIRI().toString());
-                    }
-                    b.setDirect(true);
-                } else if(opm.getObjPropRange(i).contains(cl)) {
-                    if(opm.getObjPropDomain(i).contains(cl)) {
-                        b.setCyclic(true);
-                    }
-                    for(OWLClass c:opm.getObjPropDomain(i)) {
-                        b.addRelatedClassesItem(c.getIRI().toString());
-                    }
-                    b.setDirect(false);
-                }
-                ret.addObjectPropertiesItem(b);
-            }
-
-            for(OWLDataProperty i : opm.getClassAttributes(cl)) {
-                ret.addDataPropertiesItem(i.getIRI().toString());
-            }
-
-            return Response.ok().entity(ret).build();
+            return Response.ok().entity(opm.getHighlights(clickedClassIRI)).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();

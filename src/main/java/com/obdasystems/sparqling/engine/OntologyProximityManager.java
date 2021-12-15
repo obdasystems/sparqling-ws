@@ -1,9 +1,13 @@
 package com.obdasystems.sparqling.engine;
 
+import com.obdasystems.sparqling.model.Branch;
+import com.obdasystems.sparqling.model.Highlights;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.parameters.Imports;
+import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class OntologyProximityManager {
 
@@ -593,5 +597,44 @@ public class OntologyProximityManager {
     private void processDataPropDomain(OWLClass cl, OWLDataProperty prop) {
         dataPropDomainMap.get(prop).add(cl);
         classAttributesMap.get(cl).add(prop);
+    }
+
+    public Highlights getHighlights(String clickedClassIRI) {
+        Highlights ret = new Highlights();
+        OWLClass cl = new OWLClassImpl(IRI.create(clickedClassIRI));
+
+        Set<OWLClass> classes = new HashSet<>();
+        classes.addAll(getClassDescendants(cl));
+        classes.addAll(getClassAncestors(cl));
+        classes.addAll(getClassNonDisjointSiblings(cl));
+        ret.setClasses(classes.stream().map(i -> i.getIRI().toString()).collect(Collectors.toList()));
+
+        for(OWLObjectProperty i : getClassRoles(cl)) {
+            Branch b = new Branch();
+            b.setObjectPropertyIRI(i.getIRI().toString());
+            if(getObjPropDomain(i).contains(cl)) {
+                if(getObjPropRange(i).contains(cl)) {
+                    b.setCyclic(true);
+                }
+                for(OWLClass c:getObjPropRange(i)) {
+                    b.addRelatedClassesItem(c.getIRI().toString());
+                }
+                b.setDirect(true);
+            } else if(getObjPropRange(i).contains(cl)) {
+                if(getObjPropDomain(i).contains(cl)) {
+                    b.setCyclic(true);
+                }
+                for(OWLClass c:getObjPropDomain(i)) {
+                    b.addRelatedClassesItem(c.getIRI().toString());
+                }
+                b.setDirect(false);
+            }
+            ret.addObjectPropertiesItem(b);
+        }
+
+        for(OWLDataProperty i : getClassAttributes(cl)) {
+            ret.addDataPropertiesItem(i.getIRI().toString());
+        }
+        return ret;
     }
 }
