@@ -40,7 +40,7 @@ import javax.validation.constraints.*;
                 SWSOntologyManager.getOntologyManager().loadOWLOntologyFile(upfileInputStream);
             }
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "File successfully loaded.")).build();
-        } catch (OWLOntologyCreationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
