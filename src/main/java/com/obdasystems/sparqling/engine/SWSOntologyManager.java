@@ -111,6 +111,7 @@ public class SWSOntologyManager {
     public void loadGrapholFile(InputStream upfileInputStream) {
         graphol = new BufferedReader(new InputStreamReader(upfileInputStream, StandardCharsets.UTF_8))
                 .lines().collect(Collectors.joining("\n"));
+        clearOntology();
         owlOntology = grapholParser.parseOWLOntology(graphol, owlOntologyManager);
         setProximityManager(owlOntology);
     }
@@ -120,8 +121,17 @@ public class SWSOntologyManager {
     }
 
     public void loadOWLOntologyFile(InputStream upfileInputStream) throws OWLOntologyCreationException {
+        owlOntologyManager.getOntologyStorers().clear();
+        clearOntology();
         owlOntology = owlOntologyManager.loadOntologyFromOntologyDocument(upfileInputStream);
         setProximityManager(owlOntology);
+    }
+
+    private void clearOntology() {
+        Optional<OWLOntology> oldOntology = owlOntologyManager.getOntologies().stream().findAny();
+        if(oldOntology.isPresent()) {
+            owlOntologyManager.removeOntology(oldOntology.get());
+        }
     }
 
     public OWLOntology getOwlOntology() {
