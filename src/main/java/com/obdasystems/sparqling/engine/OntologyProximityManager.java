@@ -397,7 +397,7 @@ public class OntologyProximityManager {
     }
 
     private void processClassComplementOf(OWLObjectComplementOf sup, OWLClass sub) {
-        OWLClassExpression disjExpr = ((OWLObjectComplementOf) sup).getOperand();
+        OWLClassExpression disjExpr =  sup.getOperand();
         if (disjExpr instanceof OWLClass) {
             classDisjointMap.get(sub).add((OWLClass) disjExpr);
         } else {
@@ -433,7 +433,7 @@ public class OntologyProximityManager {
             classDescendantsMap.get(sup).add(sub);
         } else {
             if (sup instanceof OWLObjectSomeValuesFrom) {
-                OWLObjectProperty prop = (OWLObjectProperty) ((OWLObjectSomeValuesFrom) sup).getProperty();
+                OWLObjectProperty prop = ((OWLObjectSomeValuesFrom) sup).getProperty().getNamedProperty();
                 classRolesMap.get(sub).add(prop);
             } else {
                 if (sup instanceof OWLDataSomeValuesFrom) {

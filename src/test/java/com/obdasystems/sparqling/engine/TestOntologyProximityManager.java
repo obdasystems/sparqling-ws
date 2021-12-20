@@ -11,7 +11,8 @@ import java.io.IOException;
 
 public class TestOntologyProximityManager {
 
-    static String owlFilePath = "./src/test/resources/books/Books.owl";
+    //static String owlFilePath = "./src/test/resources/books/Books.owl";
+    static String owlFilePath = "./src/test/resources/lubm/lubm.owl";
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
         //TODO CONTROLLA Set relativi a domain e range delle propertis
