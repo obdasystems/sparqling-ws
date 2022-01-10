@@ -1,6 +1,7 @@
 package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
+import com.obdasystems.sparqling.model.Entity;
 import com.obdasystems.sparqling.model.GraphElement;
 import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
@@ -14,8 +15,12 @@ import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.shared.PrefixMapping;
+import org.apache.jena.sparql.algebra.Algebra;
+import org.apache.jena.sparql.algebra.Op;
+import org.apache.jena.sparql.algebra.OpAsQuery;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
+import org.apache.jena.sparql.engine.Rename;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -24,6 +29,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class QueryGraphBuilder {
@@ -219,6 +225,42 @@ public class QueryGraphBuilder {
         HeadElement headItem = new HeadElement();
         headItem.setVar(var);
         body.addHeadItem(headItem);
+        return body;
+    }
+
+    public QueryGraph putQueryGraphJoin(QueryGraph body, String graphElementId1, String graphElementId2) {
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId1, body.getGraph());
+        GraphElement ge1 = gef.getFound();
+        gef.findElementById(graphElementId2, body.getGraph());
+        GraphElement ge2 = gef.getFound();
+        // Check if nodes refer to same entities
+        RuntimeException diffEntities = new RuntimeException("The two nodes refer to different entities");
+        if(ge1.getEntities().size() != ge2.getEntities().size()) {
+            throw diffEntities;
+        }
+        for (Entity e:ge1.getEntities()) {
+            if (!ge2.getEntities().contains(e)) {
+                throw diffEntities;
+            }
+        }
+        // Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        Op renamed = Rename.renameVar(Algebra.compile(q), AbstractQueryBuilder.makeVar(graphElementId2), AbstractQueryBuilder.makeVar(graphElementId1));
+        body.setSparql(OpAsQuery.asQuery(renamed).serialize());
+        // Modify graph
+        if(ge1.getChildren() != null && ge2.getChildren() != null)
+            ge1.getChildren().addAll(ge2.getChildren());
+        if(ge1.getChildren() == null && ge2.getChildren() != null)
+            ge1.setChildren(ge2.getChildren());
+        ge2.setId(graphElementId1);
+        ge2.setChildren(null);
+        for(HeadElement h:body.getHead()) {
+            if(h.getVar().equals(graphElementId2)) {
+                h.setVar(graphElementId1);
+            }
+        }
         return body;
     }
 }
