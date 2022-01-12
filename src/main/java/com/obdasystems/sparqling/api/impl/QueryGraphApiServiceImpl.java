@@ -25,8 +25,13 @@ import javax.ws.rs.core.SecurityContext;
     }
     @Override
     public Response deleteGraphElementId(QueryGraph body, String graphElementId, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphBuilder qgb = new QueryGraphBuilder();
+            return Response.ok().entity(qgb.deleteQueryGraphElement(body, graphElementId)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response deleteHeadTerm(QueryGraph body, String headTerm, SecurityContext securityContext) throws NotFoundException {

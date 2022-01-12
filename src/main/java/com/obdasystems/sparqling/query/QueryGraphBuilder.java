@@ -5,6 +5,7 @@ import com.obdasystems.sparqling.model.Entity;
 import com.obdasystems.sparqling.model.GraphElement;
 import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.QueryGraph;
+import com.obdasystems.sparqling.query.visitors.DeleteElementVisitor;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
@@ -18,6 +19,7 @@ import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.sparql.algebra.Algebra;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.OpAsQuery;
+import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
@@ -29,8 +31,8 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class QueryGraphBuilder {
     private final OWLOntology ontology;
@@ -114,7 +116,9 @@ public class QueryGraphBuilder {
         // Modify Graph
         QueryGraph qg = new QueryGraph();
         HeadElement headElement = new HeadElement();
+        headElement.setId(0);
         headElement.setVar(var);
+        headElement.setGraphElementId(var.substring(1));
         qg.addHeadItem(headElement);
         qg.setSparql(sb.build().serialize());
         GraphElement root = new GraphElement();
@@ -219,11 +223,13 @@ public class QueryGraphBuilder {
         GraphElementFinder gef = new GraphElementFinder();
         gef.findElementById(graphElementId, body.getGraph());
         GraphElement ge = new GraphElement();
-        ge.setId(var);
+        ge.setId(var.substring(1));
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
         gef.getFound().addChildrenItem(ge);
         HeadElement headItem = new HeadElement();
+        headItem.setId(body.getHead().size());
         headItem.setVar(var);
+        headItem.setGraphElementId(var.substring(1));
         body.addHeadItem(headItem);
         return body;
     }
@@ -258,9 +264,30 @@ public class QueryGraphBuilder {
         ge2.setChildren(null);
         for(HeadElement h:body.getHead()) {
             if(h.getVar().equals(graphElementId2)) {
-                h.setVar(graphElementId1);
+                h.setVar("?" + graphElementId1);
+                h.setGraphElementId(graphElementId1);
             }
         }
+        return body;
+    }
+
+    public QueryGraph deleteQueryGraphElement(QueryGraph body, String graphElementId) {
+        // DELETE ROOT NODE => DELETE EVERYTHING
+        if(body.getGraph().getId().equals(graphElementId)) {
+            return new QueryGraph();
+        }
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(graphElementId);
+        ElementWalker_New.walk(q.getQueryPattern(), deleteQueryGraphElementVisitor);
+        q.getProject().remove(AbstractQueryBuilder.makeVar(graphElementId));
+        body.setSparql(q.serialize());
+        // Modify graph
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.deleteElementById(graphElementId, body.getGraph());
+        gef.deleteObjectPropertiesWithNoChild(body.getGraph());
+        body.setHead(body.getHead().stream().filter(headElement -> !headElement.getVar().equals("?" + graphElementId)).collect(Collectors.toList()));
         return body;
     }
 }

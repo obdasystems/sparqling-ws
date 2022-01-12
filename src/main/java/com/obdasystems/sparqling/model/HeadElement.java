@@ -14,11 +14,8 @@ package com.obdasystems.sparqling.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
 
 /**
  * HeadElement
@@ -28,7 +25,7 @@ import javax.validation.Valid;
   private Integer id = null;
 
   @JsonProperty("graphElementId")
-  private Integer graphElementId = null;
+  private String graphElementId = null;
 
   @JsonProperty("var")
   private String var = null;
@@ -58,7 +55,7 @@ import javax.validation.Valid;
     this.id = id;
   }
 
-  public HeadElement graphElementId(Integer graphElementId) {
+  public HeadElement graphElementId(String graphElementId) {
     this.graphElementId = graphElementId;
     return this;
   }
@@ -69,11 +66,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("graphElementId")
   @Schema(description = "")
-  public Integer getGraphElementId() {
+  public String getGraphElementId() {
     return graphElementId;
   }
 
-  public void setGraphElementId(Integer graphElementId) {
+  public void setGraphElementId(String graphElementId) {
     this.graphElementId = graphElementId;
   }
 
