@@ -3,7 +3,7 @@ package com.obdasystems.sparqling.api;
 import javax.xml.bind.annotation.XmlTransient;
 
 @javax.xml.bind.annotation.XmlRootElement
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class ApiResponseMessage {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class ApiResponseMessage {
     public static final int ERROR = 1;
     public static final int WARNING = 2;
     public static final int INFO = 3;

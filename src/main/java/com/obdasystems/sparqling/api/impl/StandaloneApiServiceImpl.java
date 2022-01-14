@@ -13,15 +13,11 @@ import com.obdasystems.sparqling.api.NotFoundException;
 import java.io.InputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
     @Override
     public Response standaloneOntologyGrapholGet(SecurityContext securityContext) throws NotFoundException {
         String graphol = SWSOntologyManager.getOntologyManager().getGraphol();

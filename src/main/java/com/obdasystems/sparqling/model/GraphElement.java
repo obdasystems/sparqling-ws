@@ -27,9 +27,12 @@ import javax.validation.Valid;
 /**
  * GraphElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class GraphElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class GraphElement  implements Serializable  {
   @JsonProperty("id")
   private String id = null;
+
+  @JsonProperty("variables")
+  private List<String> variables = null;
 
   @JsonProperty("entities")
   private List<Entity> entities = null;
@@ -54,6 +57,33 @@ import javax.validation.Valid;
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public GraphElement variables(List<String> variables) {
+    this.variables = variables;
+    return this;
+  }
+
+  public GraphElement addVariablesItem(String variablesItem) {
+    if (this.variables == null) {
+      this.variables = new ArrayList<String>();
+    }
+    this.variables.add(variablesItem);
+    return this;
+  }
+
+  /**
+   * Get variables
+   * @return variables
+   **/
+  @JsonProperty("variables")
+  @Schema(description = "")
+  public List<String> getVariables() {
+    return variables;
+  }
+
+  public void setVariables(List<String> variables) {
+    this.variables = variables;
   }
 
   public GraphElement entities(List<Entity> entities) {
@@ -123,13 +153,14 @@ import javax.validation.Valid;
     }
     GraphElement graphElement = (GraphElement) o;
     return Objects.equals(this.id, graphElement.id) &&
+        Objects.equals(this.variables, graphElement.variables) &&
         Objects.equals(this.entities, graphElement.entities) &&
         Objects.equals(this.children, graphElement.children);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, entities, children);
+    return Objects.hash(id, variables, entities, children);
   }
 
 
@@ -139,6 +170,7 @@ import javax.validation.Valid;
     sb.append("class GraphElement {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    variables: ").append(toIndentedString(variables)).append("\n");
     sb.append("    entities: ").append(toIndentedString(entities)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");
     sb.append("}");

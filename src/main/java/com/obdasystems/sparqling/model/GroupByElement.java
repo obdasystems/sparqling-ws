@@ -25,12 +25,12 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class GroupByElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class GroupByElement  implements Serializable  {
   @JsonProperty("headElementIds")
   private List<Integer> headElementIds = null;
 
-  @JsonProperty("function")
-  private String function = null;
+  @JsonProperty("aggregateFunction")
+  private String aggregateFunction = null;
 
   public GroupByElement headElementIds(List<Integer> headElementIds) {
     this.headElementIds = headElementIds;
@@ -59,23 +59,23 @@ import javax.validation.Valid;
     this.headElementIds = headElementIds;
   }
 
-  public GroupByElement function(String function) {
-    this.function = function;
+  public GroupByElement aggregateFunction(String aggregateFunction) {
+    this.aggregateFunction = aggregateFunction;
     return this;
   }
 
   /**
-   * Get function
-   * @return function
+   * Get aggregateFunction
+   * @return aggregateFunction
    **/
-  @JsonProperty("function")
+  @JsonProperty("aggregateFunction")
   @Schema(description = "")
-  public String getFunction() {
-    return function;
+  public String getAggregateFunction() {
+    return aggregateFunction;
   }
 
-  public void setFunction(String function) {
-    this.function = function;
+  public void setAggregateFunction(String aggregateFunction) {
+    this.aggregateFunction = aggregateFunction;
   }
 
 
@@ -89,12 +89,12 @@ import javax.validation.Valid;
     }
     GroupByElement groupByElement = (GroupByElement) o;
     return Objects.equals(this.headElementIds, groupByElement.headElementIds) &&
-        Objects.equals(this.function, groupByElement.function);
+        Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headElementIds, function);
+    return Objects.hash(headElementIds, aggregateFunction);
   }
 
 
@@ -104,7 +104,7 @@ import javax.validation.Valid;
     sb.append("class GroupByElement {\n");
     
     sb.append("    headElementIds: ").append(toIndentedString(headElementIds)).append("\n");
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
+    sb.append("    aggregateFunction: ").append(toIndentedString(aggregateFunction)).append("\n");
     sb.append("}");
     return sb.toString();
   }

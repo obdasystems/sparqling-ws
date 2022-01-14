@@ -15,7 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.obdasystems.sparqling.model.BinaryExpression;
+import com.obdasystems.sparqling.model.FilterExpression;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import javax.validation.constraints.*;
@@ -24,11 +24,11 @@ import javax.validation.Valid;
 /**
  * Filter
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class Filter  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class Filter  implements Serializable  {
   @JsonProperty("expression")
-  private BinaryExpression expression = null;
+  private FilterExpression expression = null;
 
-  public Filter expression(BinaryExpression expression) {
+  public Filter expression(FilterExpression expression) {
     this.expression = expression;
     return this;
   }
@@ -40,11 +40,11 @@ import javax.validation.Valid;
   @JsonProperty("expression")
   @Schema(description = "")
   @Valid
-  public BinaryExpression getExpression() {
+  public FilterExpression getExpression() {
     return expression;
   }
 
-  public void setExpression(BinaryExpression expression) {
+  public void setExpression(FilterExpression expression) {
     this.expression = expression;
   }
 

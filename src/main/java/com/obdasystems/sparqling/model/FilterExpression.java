@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.obdasystems.sparqling.model.VarOrConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,59 +24,60 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Optional
+ * FilterExpression
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class Optional  implements Serializable  {
-  @JsonProperty("id")
-  private Integer id = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class FilterExpression  implements Serializable  {
+  @JsonProperty("operator")
+  private String operator = null;
 
-  @JsonProperty("graphIds")
-  private List<String> graphIds = null;
+  @JsonProperty("parameters")
+  private List<VarOrConstant> parameters = null;
 
-  public Optional id(Integer id) {
-    this.id = id;
+  public FilterExpression operator(String operator) {
+    this.operator = operator;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get operator
+   * @return operator
    **/
-  @JsonProperty("id")
+  @JsonProperty("operator")
   @Schema(description = "")
-  public Integer getId() {
-    return id;
+  public String getOperator() {
+    return operator;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setOperator(String operator) {
+    this.operator = operator;
   }
 
-  public Optional graphIds(List<String> graphIds) {
-    this.graphIds = graphIds;
+  public FilterExpression parameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
     return this;
   }
 
-  public Optional addGraphIdsItem(String graphIdsItem) {
-    if (this.graphIds == null) {
-      this.graphIds = new ArrayList<String>();
+  public FilterExpression addParametersItem(VarOrConstant parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<VarOrConstant>();
     }
-    this.graphIds.add(graphIdsItem);
+    this.parameters.add(parametersItem);
     return this;
   }
 
   /**
-   * Path of ids that describe optional.
-   * @return graphIds
+   * Get parameters
+   * @return parameters
    **/
-  @JsonProperty("graphIds")
-  @Schema(description = "Path of ids that describe optional.")
-  public List<String> getGraphIds() {
-    return graphIds;
+  @JsonProperty("parameters")
+  @Schema(description = "")
+  @Valid
+  public List<VarOrConstant> getParameters() {
+    return parameters;
   }
 
-  public void setGraphIds(List<String> graphIds) {
-    this.graphIds = graphIds;
+  public void setParameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
   }
 
 
@@ -87,24 +89,24 @@ import javax.validation.Valid;
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Optional optional = (Optional) o;
-    return Objects.equals(this.id, optional.id) &&
-        Objects.equals(this.graphIds, optional.graphIds);
+    FilterExpression filterExpression = (FilterExpression) o;
+    return Objects.equals(this.operator, filterExpression.operator) &&
+        Objects.equals(this.parameters, filterExpression.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphIds);
+    return Objects.hash(operator, parameters);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Optional {\n");
+    sb.append("class FilterExpression {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    graphIds: ").append(toIndentedString(graphIds)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

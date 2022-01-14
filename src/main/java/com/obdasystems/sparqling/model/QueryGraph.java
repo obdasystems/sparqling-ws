@@ -31,7 +31,7 @@ import javax.validation.Valid;
 /**
  * QueryGraph
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class QueryGraph  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class QueryGraph  implements Serializable  {
   @JsonProperty("distinct")
   private Boolean distinct = null;
 
@@ -58,6 +58,12 @@ import javax.validation.Valid;
 
   @JsonProperty("having")
   private List<Filter> having = null;
+
+  @JsonProperty("limit")
+  private Integer limit = null;
+
+  @JsonProperty("offset")
+  private Integer offset = null;
 
   @JsonProperty("sparql")
   private String sparql = null;
@@ -272,6 +278,44 @@ import javax.validation.Valid;
     this.having = having;
   }
 
+  public QueryGraph limit(Integer limit) {
+    this.limit = limit;
+    return this;
+  }
+
+  /**
+   * Get limit
+   * @return limit
+   **/
+  @JsonProperty("limit")
+  @Schema(description = "")
+  public Integer getLimit() {
+    return limit;
+  }
+
+  public void setLimit(Integer limit) {
+    this.limit = limit;
+  }
+
+  public QueryGraph offset(Integer offset) {
+    this.offset = offset;
+    return this;
+  }
+
+  /**
+   * Get offset
+   * @return offset
+   **/
+  @JsonProperty("offset")
+  @Schema(description = "")
+  public Integer getOffset() {
+    return offset;
+  }
+
+  public void setOffset(Integer offset) {
+    this.offset = offset;
+  }
+
   public QueryGraph sparql(String sparql) {
     this.sparql = sparql;
     return this;
@@ -311,12 +355,14 @@ import javax.validation.Valid;
         Objects.equals(this.orderBy, queryGraph.orderBy) &&
         Objects.equals(this.groupBy, queryGraph.groupBy) &&
         Objects.equals(this.having, queryGraph.having) &&
+        Objects.equals(this.limit, queryGraph.limit) &&
+        Objects.equals(this.offset, queryGraph.offset) &&
         Objects.equals(this.sparql, queryGraph.sparql);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distinct, head, graph, filters, optionals, minus, orderBy, groupBy, having, sparql);
+    return Objects.hash(distinct, head, graph, filters, optionals, minus, orderBy, groupBy, having, limit, offset, sparql);
   }
 
 
@@ -334,6 +380,8 @@ import javax.validation.Valid;
     sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("    groupBy: ").append(toIndentedString(groupBy)).append("\n");
     sb.append("    having: ").append(toIndentedString(having)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
+    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    sparql: ").append(toIndentedString(sparql)).append("\n");
     sb.append("}");
     return sb.toString();
