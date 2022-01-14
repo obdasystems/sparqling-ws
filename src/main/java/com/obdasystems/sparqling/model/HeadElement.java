@@ -14,13 +14,16 @@ package com.obdasystems.sparqling.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
   private Integer id = null;
 

@@ -21,7 +21,7 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-11-29T11:28:53.694Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
     @Override
     public Response standaloneOntologyGrapholGet(SecurityContext securityContext) throws NotFoundException {
         String graphol = SWSOntologyManager.getOntologyManager().getGraphol();

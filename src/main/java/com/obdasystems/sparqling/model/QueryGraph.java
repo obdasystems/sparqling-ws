@@ -31,7 +31,7 @@ import javax.validation.Valid;
 /**
  * QueryGraph
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class QueryGraph  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class QueryGraph  implements Serializable  {
   @JsonProperty("distinct")
   private Boolean distinct = null;
 

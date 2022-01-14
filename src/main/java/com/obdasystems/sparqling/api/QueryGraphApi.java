@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class QueryGraphApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class QueryGraphApi  {
    private final QueryGraphApiService delegate;
 
    public QueryGraphApi(@Context ServletConfig servletContext) {
@@ -143,19 +143,6 @@ import javax.validation.constraints.*;
         return delegate.getQueryGraph(clickedClassIRI,securityContext);
     }
     @PUT
-    @Path("/translate")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Translate the query graph in sparql.", description = "This route will return the same query graph passed in the body but the SPARQL code with the new filters optionals group by and havings. Note that if the filters are related to optional variables they should be put inside the optional block.", tags={ "QueryGraph" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))) })
-    public Response modifyFilters(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
-
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.modifyFilters(body,securityContext);
-    }
-    @PUT
     @Path("/node/class/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
@@ -235,5 +222,18 @@ import javax.validation.constraints.*;
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.putQueryGraphObjectProperty(body,sourceClassIRI,predicateIRI,targetClassIRI,isPredicateDirect,graphElementId,securityContext);
+    }
+    @PUT
+    @Path("/translate")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Translate the query graph in sparql.", description = "This route will return the same query graph passed in the body but the SPARQL code with the new filters, optionals group by and havings. Note that if the filters are related to optional variables they should be put inside the optional block.", tags={ "QueryGraph" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))) })
+    public Response translate(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.translate(body,securityContext);
     }
 }
