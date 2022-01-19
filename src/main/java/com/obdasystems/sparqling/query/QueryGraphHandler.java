@@ -39,6 +39,7 @@ public class QueryGraphHandler {
     private final OWLOntology ontology;
     private final Map<String, String> prefixes;
     private final PrefixDocumentFormat pdf;
+    public static String varPrefix = "?";
 
     public QueryGraphHandler() {
         ontology = SWSOntologyManager.getOntologyManager().getOwlOntology();
@@ -58,7 +59,7 @@ public class QueryGraphHandler {
         } else {
             res = getNewCountedVarFromQuery(res, q);
         }
-        return "?" + res;
+        return varPrefix + res;
     }
 
     public static String getNewCountedVarFromQuery(String varName, Query q) {
@@ -140,7 +141,7 @@ public class QueryGraphHandler {
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         wh.addWhere(new TriplePath(new Triple(
-                AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
                 AbstractQueryBuilder.makeNode(iri.toQuotedString(), p)
         )));
@@ -169,7 +170,7 @@ public class QueryGraphHandler {
         String var = guessNewVarFromIRI(target, q);
         if(isPredicateDirect) {
             wh.addWhere(new TriplePath(new Triple(
-                    AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                    AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
                     (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
                     AbstractQueryBuilder.makeNode(var, p)
             )));
@@ -177,7 +178,7 @@ public class QueryGraphHandler {
             wh.addWhere(new TriplePath(new Triple(
                     AbstractQueryBuilder.makeNode(var, p),
                     (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
-                    AbstractQueryBuilder.makeNode("?" + graphElementId, p)
+                    AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p)
             )));
         }
         wh.addWhere(new TriplePath(new Triple(
@@ -215,7 +216,7 @@ public class QueryGraphHandler {
         String var = guessNewVarFromIRI(iri, q);
         sh.addVar(AbstractQueryBuilder.makeVar(var));
         wh.addWhere(new TriplePath(new Triple(
-                AbstractQueryBuilder.makeNode("?" + graphElementId, p),
+                AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
                 AbstractQueryBuilder.makeNode(var, p)
         )));
@@ -265,7 +266,7 @@ public class QueryGraphHandler {
         ge2.setChildren(null);
         for(HeadElement h:body.getHead()) {
             if(h.getVar().equals(graphElementId2)) {
-                h.setVar("?" + graphElementId1);
+                h.setVar(varPrefix + graphElementId1);
                 h.setGraphElementId(graphElementId1);
             }
         }
@@ -293,7 +294,7 @@ public class QueryGraphHandler {
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
         gef.deleteObjectPropertiesWithNoChild(body.getGraph());
-        body.setHead(body.getHead().stream().filter(headElement -> !headElement.getVar().equals("?" + graphElementId)).collect(Collectors.toList()));
+        body.setHead(body.getHead().stream().filter(headElement -> !headElement.getVar().equals(varPrefix + graphElementId)).collect(Collectors.toList()));
         return body;
     }
 }
