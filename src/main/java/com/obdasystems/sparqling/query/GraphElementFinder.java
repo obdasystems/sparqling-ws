@@ -61,7 +61,8 @@ public class GraphElementFinder {
         Iterator<GraphElement> it = e.getChildren().iterator();
         while(it.hasNext()) {
             GraphElement child = it.next();
-            if(e.getEntities().get(0).getType().equals(Entity.TypeEnum.OBJECTPROPERTY) && child == null) {
+            if(child.getEntities().get(0).getType().equals(Entity.TypeEnum.OBJECTPROPERTY)
+                    && (child.getChildren() == null || child.getChildren().size() == 0)) {
                 it.remove();
             } else {
                 deleteObjectPropertiesWithNoChild(child);
