@@ -10,8 +10,12 @@ public class GraphElementFinder {
 
     public void findElementById(String id, GraphElement e) {
         if(e.getId().equals(id)) {
-            found = e;
-            return;
+            // If this node is a result of join find the element with children
+            if(found != null && e.getChildren() != null && e.getChildren().size() != 0)
+                found = e;
+            else if(found == null) {
+                found = e;
+            }
         }
         if(e.getChildren() == null || e.getChildren().size() == 0) {
             return;
