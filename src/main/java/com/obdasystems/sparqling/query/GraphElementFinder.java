@@ -3,10 +3,17 @@ package com.obdasystems.sparqling.query;
 import com.obdasystems.sparqling.model.Entity;
 import com.obdasystems.sparqling.model.GraphElement;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class GraphElementFinder {
     private GraphElement found;
+    private Set<String> childrenIds;
+
+    public GraphElementFinder() {
+        childrenIds = new HashSet<>();
+    }
 
     public void findElementById(String id, GraphElement e) {
         if(e.getId().equals(id)) {
@@ -60,5 +67,25 @@ public class GraphElementFinder {
                 deleteObjectPropertiesWithNoChild(child);
             }
         }
+    }
+
+    public void findChildrenIds(String id, GraphElement e) {
+        if(e.getId().equals(id)) {
+            found = e;
+        }
+        if(e.getChildren() == null || e.getChildren().size() == 0) {
+            return;
+        }
+        for(GraphElement child:e.getChildren()) {
+            if(found != null) {
+                childrenIds.add(child.getId());
+            }
+            findChildrenIds(id, child);
+        }
+        found = null;
+    }
+
+    public Set<String> getChildrenIds() {
+        return childrenIds;
     }
 }

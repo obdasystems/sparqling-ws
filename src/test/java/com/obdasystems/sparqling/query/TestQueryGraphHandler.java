@@ -11,14 +11,14 @@ import java.io.FileNotFoundException;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestQueryGraphBuilder {
+public class TestQueryGraphHandler {
     @BeforeClass
     public static void init() throws FileNotFoundException {
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_ontology.graphol"));
     }
     @Test
     public void getQueryGraph() {
-        QueryGraphBuilder qgb = new QueryGraphBuilder();
+        QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph("http://www.obdasystems.com/books/Book");
         qg = qgb.putQueryGraphClass(
                 qg,"","http://www.obdasystems.com/books/AudioBook","Book0");
@@ -33,6 +33,6 @@ public class TestQueryGraphBuilder {
     public void testGuessNewVar() {
         SelectBuilder sb = new SelectBuilder();
         sb.addVar("*").addWhere("?Book0", "a", "<http://www.obdasystems.com/books/Book>");
-        assertEquals(QueryGraphBuilder.getNewCountedVarFromQuery("Book", sb.build()), "Book1");
+        assertEquals(QueryGraphHandler.getNewCountedVarFromQuery("Book", sb.build()), "Book1");
     }
 }

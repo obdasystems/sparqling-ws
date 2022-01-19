@@ -32,14 +32,15 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class QueryGraphBuilder {
+public class QueryGraphHandler {
     private final OWLOntology ontology;
     private final Map<String, String> prefixes;
     private final PrefixDocumentFormat pdf;
 
-    public QueryGraphBuilder() {
+    public QueryGraphHandler() {
         ontology = SWSOntologyManager.getOntologyManager().getOwlOntology();
         if(ontology == null) throw new RuntimeException("Please load an ontology before start building queries.");
         pdf = (PrefixDocumentFormat) ontology.getOWLOntologyManager().getOntologyFormat(ontology);
@@ -276,15 +277,20 @@ public class QueryGraphBuilder {
         if(body.getGraph().getId().equals(graphElementId)) {
             return new QueryGraph();
         }
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findChildrenIds(graphElementId, body.getGraph());
+        Set<String> varToBeDeleted = gef.getChildrenIds();
+        varToBeDeleted.add(graphElementId);
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
-        DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(graphElementId);
+        DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted);
         ElementWalker_New.walk(q.getQueryPattern(), deleteQueryGraphElementVisitor);
-        q.getProject().remove(AbstractQueryBuilder.makeVar(graphElementId));
+        for(String var:varToBeDeleted) {
+            q.getProject().remove(AbstractQueryBuilder.makeVar(var));
+        }
         body.setSparql(q.serialize());
         // Modify graph
-        GraphElementFinder gef = new GraphElementFinder();
         gef.deleteElementById(graphElementId, body.getGraph());
         gef.deleteObjectPropertiesWithNoChild(body.getGraph());
         body.setHead(body.getHead().stream().filter(headElement -> !headElement.getVar().equals("?" + graphElementId)).collect(Collectors.toList()));

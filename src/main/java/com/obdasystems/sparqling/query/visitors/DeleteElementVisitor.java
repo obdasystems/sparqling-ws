@@ -5,11 +5,12 @@ import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.syntax.*;
 
 import java.util.Iterator;
+import java.util.Set;
 
 public class DeleteElementVisitor implements ElementVisitor {
-    private final String varToDelete;
+    private final Set<String> varToDelete;
 
-    public DeleteElementVisitor(String varToDelete) {
+    public DeleteElementVisitor(Set<String> varToDelete) {
         this.varToDelete = varToDelete;
     }
 
@@ -23,8 +24,8 @@ public class DeleteElementVisitor implements ElementVisitor {
         Iterator<TriplePath> it = el.patternElts();
         while(it.hasNext()) {
             TriplePath tp = it.next();
-            if(tp.getSubject().isVariable() && tp.getSubject().getName().equals(varToDelete)
-                || tp.getObject().isVariable() && tp.getObject().getName().equals(varToDelete)) {
+            if(tp.getSubject().isVariable() && varToDelete.contains(tp.getSubject().getName())
+                || tp.getObject().isVariable() && varToDelete.contains(tp.getObject().getName())) {
                 it.remove();
             }
         }
