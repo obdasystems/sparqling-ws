@@ -17,7 +17,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public abstract class OntologyGraphApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public abstract class OntologyGraphApiService {
     public abstract Response highligths( @NotNull String clickedClassIRI, List<String> params,SecurityContext securityContext) throws NotFoundException;
     public abstract Response highligthsPaths( @NotNull String lastSelectedIRI, @NotNull String clickedIRI,SecurityContext securityContext) throws NotFoundException;
 }

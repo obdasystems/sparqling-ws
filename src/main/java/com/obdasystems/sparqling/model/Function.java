@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.obdasystems.sparqling.model.VarOrConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,37 +24,60 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * OntologyPath
+ * Function
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class OntologyPath  implements Serializable  {
-  @JsonProperty("entities")
-  private List<String> entities = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class Function  implements Serializable  {
+  @JsonProperty("name")
+  private String name = null;
 
-  public OntologyPath entities(List<String> entities) {
-    this.entities = entities;
-    return this;
-  }
+  @JsonProperty("parameters")
+  private List<VarOrConstant> parameters = null;
 
-  public OntologyPath addEntitiesItem(String entitiesItem) {
-    if (this.entities == null) {
-      this.entities = new ArrayList<String>();
-    }
-    this.entities.add(entitiesItem);
+  public Function name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Starts with lastSelectedIRI and ends with clickedIRI. In between the nodes and edges traversed in the path (ISA edge are marked as ISA)
-   * @return entities
+   * Get name
+   * @return name
    **/
-  @JsonProperty("entities")
-  @Schema(description = "Starts with lastSelectedIRI and ends with clickedIRI. In between the nodes and edges traversed in the path (ISA edge are marked as ISA)")
-  public List<String> getEntities() {
-    return entities;
+  @JsonProperty("name")
+  @Schema(description = "")
+  public String getName() {
+    return name;
   }
 
-  public void setEntities(List<String> entities) {
-    this.entities = entities;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Function parameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
+    return this;
+  }
+
+  public Function addParametersItem(VarOrConstant parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<VarOrConstant>();
+    }
+    this.parameters.add(parametersItem);
+    return this;
+  }
+
+  /**
+   * Get parameters
+   * @return parameters
+   **/
+  @JsonProperty("parameters")
+  @Schema(description = "")
+  @Valid
+  public List<VarOrConstant> getParameters() {
+    return parameters;
+  }
+
+  public void setParameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
   }
 
 
@@ -65,22 +89,24 @@ import javax.validation.Valid;
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OntologyPath ontologyPath = (OntologyPath) o;
-    return Objects.equals(this.entities, ontologyPath.entities);
+    Function function = (Function) o;
+    return Objects.equals(this.name, function.name) &&
+        Objects.equals(this.parameters, function.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(entities);
+    return Objects.hash(name, parameters);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OntologyPath {\n");
+    sb.append("class Function {\n");
     
-    sb.append("    entities: ").append(toIndentedString(entities)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

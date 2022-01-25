@@ -15,25 +15,25 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.obdasystems.sparqling.model.VarOrConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * BinaryExpression
+ * FilterExpression
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T08:18:44.959Z[GMT]")public class BinaryExpression  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class FilterExpression  implements Serializable  {
   @JsonProperty("operator")
   private String operator = null;
 
-  @JsonProperty("leftOperand")
-  private String leftOperand = null;
+  @JsonProperty("parameters")
+  private List<VarOrConstant> parameters = null;
 
-  @JsonProperty("rightOperand")
-  private String rightOperand = null;
-
-  public BinaryExpression operator(String operator) {
+  public FilterExpression operator(String operator) {
     this.operator = operator;
     return this;
   }
@@ -52,42 +52,32 @@ import javax.validation.Valid;
     this.operator = operator;
   }
 
-  public BinaryExpression leftOperand(String leftOperand) {
-    this.leftOperand = leftOperand;
+  public FilterExpression parameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
+    return this;
+  }
+
+  public FilterExpression addParametersItem(VarOrConstant parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<VarOrConstant>();
+    }
+    this.parameters.add(parametersItem);
     return this;
   }
 
   /**
-   * Could be a value or a GraphElement id
-   * @return leftOperand
+   * Get parameters
+   * @return parameters
    **/
-  @JsonProperty("leftOperand")
-  @Schema(description = "Could be a value or a GraphElement id")
-  public String getLeftOperand() {
-    return leftOperand;
+  @JsonProperty("parameters")
+  @Schema(description = "")
+  @Valid
+  public List<VarOrConstant> getParameters() {
+    return parameters;
   }
 
-  public void setLeftOperand(String leftOperand) {
-    this.leftOperand = leftOperand;
-  }
-
-  public BinaryExpression rightOperand(String rightOperand) {
-    this.rightOperand = rightOperand;
-    return this;
-  }
-
-  /**
-   * Could be a value or a GraphElement id
-   * @return rightOperand
-   **/
-  @JsonProperty("rightOperand")
-  @Schema(description = "Could be a value or a GraphElement id")
-  public String getRightOperand() {
-    return rightOperand;
-  }
-
-  public void setRightOperand(String rightOperand) {
-    this.rightOperand = rightOperand;
+  public void setParameters(List<VarOrConstant> parameters) {
+    this.parameters = parameters;
   }
 
 
@@ -99,26 +89,24 @@ import javax.validation.Valid;
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BinaryExpression binaryExpression = (BinaryExpression) o;
-    return Objects.equals(this.operator, binaryExpression.operator) &&
-        Objects.equals(this.leftOperand, binaryExpression.leftOperand) &&
-        Objects.equals(this.rightOperand, binaryExpression.rightOperand);
+    FilterExpression filterExpression = (FilterExpression) o;
+    return Objects.equals(this.operator, filterExpression.operator) &&
+        Objects.equals(this.parameters, filterExpression.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, leftOperand, rightOperand);
+    return Objects.hash(operator, parameters);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BinaryExpression {\n");
+    sb.append("class FilterExpression {\n");
     
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
-    sb.append("    leftOperand: ").append(toIndentedString(leftOperand)).append("\n");
-    sb.append("    rightOperand: ").append(toIndentedString(rightOperand)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

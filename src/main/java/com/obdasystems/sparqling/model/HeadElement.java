@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.obdasystems.sparqling.model.Function;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import javax.validation.constraints.*;
@@ -23,12 +24,12 @@ import javax.validation.Valid;
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-12-01T16:52:13.648Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
   private Integer id = null;
 
   @JsonProperty("graphElementId")
-  private Integer graphElementId = null;
+  private String graphElementId = null;
 
   @JsonProperty("var")
   private String var = null;
@@ -38,6 +39,9 @@ import javax.validation.Valid;
 
   @JsonProperty("hidden")
   private Boolean hidden = null;
+
+  @JsonProperty("function")
+  private Function function = null;
 
   public HeadElement id(Integer id) {
     this.id = id;
@@ -58,7 +62,7 @@ import javax.validation.Valid;
     this.id = id;
   }
 
-  public HeadElement graphElementId(Integer graphElementId) {
+  public HeadElement graphElementId(String graphElementId) {
     this.graphElementId = graphElementId;
     return this;
   }
@@ -69,11 +73,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("graphElementId")
   @Schema(description = "")
-  public Integer getGraphElementId() {
+  public String getGraphElementId() {
     return graphElementId;
   }
 
-  public void setGraphElementId(Integer graphElementId) {
+  public void setGraphElementId(String graphElementId) {
     this.graphElementId = graphElementId;
   }
 
@@ -134,6 +138,26 @@ import javax.validation.Valid;
     this.hidden = hidden;
   }
 
+  public HeadElement function(Function function) {
+    this.function = function;
+    return this;
+  }
+
+  /**
+   * Get function
+   * @return function
+   **/
+  @JsonProperty("function")
+  @Schema(description = "")
+  @Valid
+  public Function getFunction() {
+    return function;
+  }
+
+  public void setFunction(Function function) {
+    this.function = function;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -148,12 +172,13 @@ import javax.validation.Valid;
         Objects.equals(this.graphElementId, headElement.graphElementId) &&
         Objects.equals(this.var, headElement.var) &&
         Objects.equals(this.alias, headElement.alias) &&
-        Objects.equals(this.hidden, headElement.hidden);
+        Objects.equals(this.hidden, headElement.hidden) &&
+        Objects.equals(this.function, headElement.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphElementId, var, alias, hidden);
+    return Objects.hash(id, graphElementId, var, alias, hidden, function);
   }
 
 
@@ -167,6 +192,7 @@ import javax.validation.Valid;
     sb.append("    var: ").append(toIndentedString(var)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
+    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();
   }
