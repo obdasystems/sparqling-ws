@@ -1,0 +1,19 @@
+Prefix(:=<http://sparqling4/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(sqg:=<http://sparqling4/>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+Ontology(<http://sparqling4/>
+
+Declaration(Class(sqg:C1))
+Declaration(Class(sqg:C2))
+Declaration(Class(sqg:C3))
+Declaration(DataProperty(sqg:a))
+DataPropertyDomain(sqg:a sqg:C2)
+EquivalentClasses(sqg:C1 ObjectUnionOf(sqg:C2 sqg:C3))
+EquivalentClasses(sqg:C2 DataSomeValuesFrom(sqg:a rdfs:Literal))
+DisjointClasses(sqg:C2 sqg:C3)
+)
