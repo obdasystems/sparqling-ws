@@ -28,10 +28,34 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
     private SimpleDirectedGraph<OWLObjectPropertyExpression, DefaultEdge> GR = null;
     private SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge> GCA = null;
 
+    //tiene traccia di tutti gli assiomi nella chiusura che indichino che una classe C è il dominio di un attributo a_1
+    private Map<OWLDataProperty, Set<OWLClass>> dataPropertyDomainAxiom;
+    private Map<OWLObjectPropertyExpression, Set<OWLClass>> objectPropertyDomainAxiom;
+    private Map<OWLObjectPropertyExpression, Set<OWLClass>> objectPropertyRangeAxiom;
+
     public SimpleOwlOntologyDeductiveClosureProcesor(OWLOntology ontology) {
         inputOntology = ontology;
         ontologyManager = OWLManager.createOWLOntologyManager();
         dataFactory = ontologyManager.getOWLDataFactory();
+    }
+
+    private void printGraph(SimpleDirectedGraph graph) {
+        graph.edgeSet().forEach(edge->{
+            DefaultEdge defEdge = (DefaultEdge)edge;
+            System.out.println(graph.getEdgeSource(defEdge) + " ===> " + graph.getEdgeTarget(defEdge));
+        });
+    }
+
+    public Map<OWLDataProperty, Set<OWLClass>> getDataPropertyDomainAxiom() {
+        return dataPropertyDomainAxiom;
+    }
+
+    public Map<OWLObjectPropertyExpression, Set<OWLClass>> getObjectPropertyDomainAxiom() {
+        return objectPropertyDomainAxiom;
+    }
+
+    public Map<OWLObjectPropertyExpression, Set<OWLClass>> getObjectPropertyRangeAxiom() {
+        return objectPropertyRangeAxiom;
     }
 
     public Set<OWLAxiom> computeSimpleDeductiveClosure() {
@@ -274,6 +298,10 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
             }
         });
 
+        System.out.println("##### PRE #####");
+        printGraph(GC);
+        System.out.println();
+
         //we proceed until we exhaust our options
         int initialTotalIAs;
         int finalTotalIAs;
@@ -303,6 +331,9 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
 
         } while (initialTotalIAs != finalTotalIAs);
 
+        System.out.println("##### POST #####");
+        printGraph(GC);
+
         //checkForTBoxInconsistentcies
         //addEventualInconsistency();
 
@@ -312,9 +343,59 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
         //And finally, we must extract all assertions from the five graphs
         Set<OWLAxiom> simpleDeductiveClosure = extractAllAssertionsFromGraphs(GC, GR, GCA);
 
+        //TODO ora costruisci insieme dataPropertyDomainAxiom (e futuri su ObjectProperties che però sono complicati visto che devi capire ogni volta
+        // se ruolo R è importante per una classe C perchè C è dominio o range di R)
+        buildPropertiesDomainRangeAxiomSet(simpleDeductiveClosure);
+
         t = System.currentTimeMillis() - t;
         logger.debug("SimpleOwlOntologyDeductiveClosure completed (" + t + " ms).");
         return simpleDeductiveClosure;
+    }
+
+    private void buildPropertiesDomainRangeAxiomSet(Set<OWLAxiom> simpleDeductiveClosure) {
+        this.dataPropertyDomainAxiom = new HashMap<>();
+        this.objectPropertyDomainAxiom = new HashMap<>();
+        this.objectPropertyRangeAxiom = new HashMap<>();
+        simpleDeductiveClosure.stream().
+                filter(owlAxiom -> owlAxiom instanceof OWLSubClassOfAxiom).
+                forEach(ax->{
+                    OWLClassExpression sup = ((OWLSubClassOfAxiom) ax).getSuperClass();
+                    if(sup instanceof OWLClass) {
+                        OWLClassExpression sub = ((OWLSubClassOfAxiom) ax).getSubClass();
+                        if(sub instanceof OWLDataSomeValuesFrom) {
+                            OWLDataPropertyExpression currProp = ((OWLDataSomeValuesFrom) sub).getProperty();
+                            Set<OWLClass> currSet = this.dataPropertyDomainAxiom.get(currProp);
+                            if(currSet == null) {
+                                currSet = new HashSet<>();
+                                this.dataPropertyDomainAxiom.put(currProp.asOWLDataProperty(), currSet);
+                            }
+                            currSet.add((OWLClass) sup);
+                        }
+                        else {
+                            if(sub instanceof OWLObjectSomeValuesFrom) {
+                                OWLObjectPropertyExpression currExpr = ((OWLObjectSomeValuesFrom) sub).getProperty();
+                                if(currExpr instanceof OWLObjectProperty) {
+                                    Set<OWLClass> currSet = this.objectPropertyDomainAxiom.get(currExpr);
+                                    if(currSet == null) {
+                                        currSet = new HashSet<>();
+                                        this.objectPropertyDomainAxiom.put(currExpr.getNamedProperty(), currSet);
+                                    }
+                                    currSet.add((OWLClass) sup);
+                                }
+                                else {
+                                    if(currExpr instanceof OWLObjectInverseOf) {
+                                        Set<OWLClass> currSet = this.objectPropertyRangeAxiom.get(currExpr);
+                                        if(currSet == null) {
+                                            currSet = new HashSet<>();
+                                            this.objectPropertyRangeAxiom.put(currExpr.getNamedProperty(), currSet);
+                                        }
+                                        currSet.add((OWLClass) sup);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
     private Set<OWLAxiom> extractAllAssertionsFromGraphs(SimpleDirectedGraph<OWLClassExpression, DefaultEdge> GC,

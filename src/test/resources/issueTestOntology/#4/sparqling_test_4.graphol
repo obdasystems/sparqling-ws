@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphol version="3">
+  <project name="testSparqling_#4" version="">
+    <ontology prefix="sqg" addLabelFromUserInput="0" addLabelFromSimpleName="0" lang="en" iri="http://sparqling4/">
+      <imports/>
+      <prefixes>
+        <prefix>
+          <value>owl</value>
+          <namespace>http://www.w3.org/2002/07/owl#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdf</value>
+          <namespace>http://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdfs</value>
+          <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        </prefix>
+        <prefix>
+          <value>sqg</value>
+          <namespace>http://sparqling4/</namespace>
+        </prefix>
+        <prefix>
+          <value>xml</value>
+          <namespace>http://www.w3.org/XML/1998/namespace</namespace>
+        </prefix>
+        <prefix>
+          <value>xsd</value>
+          <namespace>http://www.w3.org/2001/XMLSchema#</namespace>
+        </prefix>
+      </prefixes>
+      <datatypes>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</datatype>
+        <datatype>http://www.w3.org/2000/01/rdf-schema#Literal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NCName</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NMTOKEN</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#Name</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#anyURI</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#base64Binary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#boolean</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#byte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTime</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTimeStamp</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#decimal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#double</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#float</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#hexBinary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#int</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#integer</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#language</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#long</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#negativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonNegativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonPositiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#normalizedString</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#positiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#short</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#token</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedByte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedInt</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedLong</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedShort</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#rational</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#real</datatype>
+      </datatypes>
+      <languages>
+        <language>de</language>
+        <language>en</language>
+        <language>es</language>
+        <language>fr</language>
+        <language>it</language>
+      </languages>
+      <facets>
+        <facet>http://www.w3.org/2001/XMLSchema#langRange</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#length</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#pattern</facet>
+      </facets>
+      <annotationProperties>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#comment</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#label</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#deprecated</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#incompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#priorVersion</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#versionInfo</annotationProperty>
+      </annotationProperties>
+      <iris>
+        <iri>
+          <value>http://sparqling4/</value>
+        </iri>
+        <iri>
+          <value>http://sparqling4/C1</value>
+        </iri>
+        <iri>
+          <value>http://sparqling4/C2</value>
+        </iri>
+        <iri>
+          <value>http://sparqling4/C3</value>
+        </iri>
+        <iri>
+          <value>http://sparqling4/a</value>
+        </iri>
+      </iris>
+    </ontology>
+    <diagrams>
+      <diagram width="5000" height="5000" name="1">
+        <node color="#fcfcfc" id="n0" type="concept">
+          <geometry width="110" y="50" height="50" x="100"/>
+          <iri>http://sparqling4/C1</iri>
+          <label width="45" customSize="0" y="50" height="23" size="12" x="100"/>
+        </node>
+        <node color="#fcfcfc" id="n1" type="concept">
+          <geometry width="110" y="270" height="50" x="260"/>
+          <iri>http://sparqling4/C2</iri>
+          <label width="45" customSize="0" y="270" height="23" size="12" x="260"/>
+        </node>
+        <node color="#fcfcfc" id="n2" type="concept">
+          <geometry width="110" y="270" height="50" x="-80"/>
+          <iri>http://sparqling4/C3</iri>
+          <label width="45" customSize="0" y="270" height="23" size="12" x="-80"/>
+        </node>
+        <node color="#000000" id="n3" type="disjoint-union">
+          <geometry width="50" y="150" height="30" x="100"/>
+        </node>
+        <node color="#fcfcfc" id="n4" type="attribute">
+          <geometry width="20" y="270" height="20" x="520"/>
+          <iri>http://sparqling4/a</iri>
+          <label width="37" customSize="0" y="248" height="23" size="12" x="520"/>
+        </node>
+        <node color="#fcfcfc" id="n5" type="domain-restriction">
+          <geometry width="20" y="270" height="20" x="440"/>
+          <label width="39" customSize="0" y="248" height="23" size="12" x="440">exists</label>
+        </node>
+        <node color="#fcfcfc" id="n8" type="domain-restriction">
+          <geometry width="20" y="270" height="20" x="-270"/>
+          <label width="39" customSize="0" y="248" height="23" size="12" x="-270">exists</label>
+        </node>
+        <node color="#fcfcfc" id="n9" type="attribute">
+          <geometry width="20" y="270" height="20" x="-350"/>
+          <iri>http://sparqling4/a</iri>
+          <label width="37" customSize="0" y="248" height="23" size="12" x="-350"/>
+        </node>
+        <edge id="e0" source="n3" target="n0" type="equivalence">
+          <point y="150" x="100"/>
+          <point y="50" x="100"/>
+        </edge>
+        <edge id="e1" source="n2" target="n3" type="input">
+          <point y="270" x="-80"/>
+          <point y="150" x="100"/>
+        </edge>
+        <edge id="e2" source="n1" target="n3" type="input">
+          <point y="270" x="260"/>
+          <point y="150" x="100"/>
+        </edge>
+        <edge id="e3" source="n4" target="n5" type="input">
+          <point y="270" x="520"/>
+          <point y="270" x="440"/>
+        </edge>
+        <edge id="e7" source="n1" target="n5" type="equivalence">
+          <point y="270" x="260"/>
+          <point y="270" x="440"/>
+        </edge>
+        <edge id="e8" source="n9" target="n8" type="input">
+          <point y="270" x="-350"/>
+          <point y="270" x="-270"/>
+        </edge>
+        <edge id="e9" source="n8" target="n2" type="equivalence">
+          <point y="270" x="-270"/>
+          <point y="270" x="-80"/>
+        </edge>
+      </diagram>
+    </diagrams>
+  </project>
+</graphol>

@@ -183,14 +183,45 @@ public class OntologyProximityManager {
             Set<OWLObjectProperty> tRoles = classRolesMap.get(t);
             Set<OWLDataProperty> tAttrs = classAttributesMap.get(t);
             classDescendantsMap.get(t).forEach(desc->{
-                classRolesMap.get(desc).addAll(tRoles);
-                classAttributesMap.get(desc).addAll(tAttrs);
+                Set<OWLClass> descDisj = classDisjointMap.get(desc);
+                Set<OWLObjectProperty> descRole = classRolesMap.get(desc);
+                Set<OWLDataProperty> descAttr = classAttributesMap.get(desc);
+
+                tAttrs.forEach(tAttr->{
+                    Set<OWLClass> tAttrDomSet = dataPropDomainMap.get(tAttr);
+                    if(!intersect(tAttrDomSet, descDisj)) {
+                        descAttr.add(tAttr);
+                    }
+                });
+
+                tRoles.forEach(tRole->{
+                    boolean goOn = true;
+                    Set<OWLClass> tRoleDomSet = objPropDomainMap.get(tRole);
+                    if(tRoleDomSet.contains(t)) {
+                        if(!intersect(tRoleDomSet, descDisj)) {
+                            descRole.add(tRole);
+                            goOn = false;
+                        }
+                    }
+                    if(goOn) {
+                        Set<OWLClass> tRoleRanSet = objPropRangeMap.get(tRole);
+                        if (tRoleRanSet.contains(t)) {
+                            if(!intersect(tRoleRanSet, descDisj)) {
+                                descRole.add(tRole);
+                            }
+                        }
+                    }
+                });
             });
         });
     }
 
+    private boolean intersect(Set first, Set second) {
+        return first.stream().anyMatch(second::contains);
+    }
+
     private void closePropertiesDomainRangeMaps() {
-        objPropDomainMap.forEach((prop, set)->{
+        /*objPropDomainMap.forEach((prop, set)->{
             Set<OWLClass> toAdd = new HashSet<>();
             set.forEach(domCl->{
                 toAdd.addAll(classDescendantsMap.get(domCl));
@@ -210,7 +241,7 @@ public class OntologyProximityManager {
                 toAdd.addAll(classDescendantsMap.get(domCl));
             });
             set.addAll(toAdd);
-        });
+        });*/
     }
 
     private Set<OWLClass> getClassesWithNoFather() {
