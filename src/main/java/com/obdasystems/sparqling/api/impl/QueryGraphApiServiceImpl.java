@@ -17,8 +17,13 @@ import javax.validation.constraints.*;
     Logger logger = LoggerFactory.getLogger(QueryGraphApiServiceImpl.class);
     @Override
     public Response addHeadTerm(QueryGraph body, String graphElementId, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.addHeadTerm(body, graphElementId)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response addOptionalGraphElementId(QueryGraph body, String graphElementId, String optionalId,  String classIRI, SecurityContext securityContext) throws NotFoundException {
@@ -52,8 +57,13 @@ import javax.validation.constraints.*;
     }
     @Override
     public Response deleteHeadTerm(QueryGraph body, String headTerm, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.deleteHeadTerm(body, headTerm)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response distinctQueryGraph(QueryGraph body,  @NotNull Boolean distinct, SecurityContext securityContext) throws NotFoundException {

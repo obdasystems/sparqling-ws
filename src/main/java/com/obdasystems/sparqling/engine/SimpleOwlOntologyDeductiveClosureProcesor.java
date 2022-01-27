@@ -298,9 +298,9 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
             }
         });
 
-        System.out.println("##### PRE #####");
+        /*System.out.println("##### PRE #####");
         printGraph(GC);
-        System.out.println();
+        System.out.println();*/
 
         //we proceed until we exhaust our options
         int initialTotalIAs;
@@ -331,8 +331,8 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
 
         } while (initialTotalIAs != finalTotalIAs);
 
-        System.out.println("##### POST #####");
-        printGraph(GC);
+        /*System.out.println("##### POST #####");
+        printGraph(GC);*/
 
         //checkForTBoxInconsistentcies
         //addEventualInconsistency();

@@ -23,6 +23,7 @@ import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
+import org.apache.jena.sparql.expr.ExprVar;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -148,8 +149,8 @@ public class QueryGraphHandler {
         body.setSparql(q.serialize());
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
-        gef.findElementById(graphElementId, body.getGraph());
-        gef.getFound().addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        GraphElement ge = gef.findElementById(graphElementId, body.getGraph());
+        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
         return body;
     }
 
@@ -189,7 +190,7 @@ public class QueryGraphHandler {
         body.setSparql(q.serialize());
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
-        gef.findElementById(graphElementId, body.getGraph());
+        GraphElement found = gef.findElementById(graphElementId, body.getGraph());
         GraphElement ge = new GraphElement();
         ge.setId("x" + System.currentTimeMillis());
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(predicate, pdf));
@@ -197,7 +198,7 @@ public class QueryGraphHandler {
         ge1.setId(var.substring(1));
         ge1.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(target, pdf));
         ge.addChildrenItem(ge1);
-        gef.getFound().addChildrenItem(ge);
+        found.addChildrenItem(ge);
         return body;
     }
 
@@ -223,11 +224,11 @@ public class QueryGraphHandler {
         body.setSparql(q.serialize());
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
-        gef.findElementById(graphElementId, body.getGraph());
+        GraphElement found = gef.findElementById(graphElementId, body.getGraph());
         GraphElement ge = new GraphElement();
         ge.setId(var.substring(1));
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
-        gef.getFound().addChildrenItem(ge);
+        found.addChildrenItem(ge);
         HeadElement headItem = new HeadElement();
         headItem.setId(body.getHead().size());
         headItem.setVar(var);
@@ -238,10 +239,8 @@ public class QueryGraphHandler {
 
     public QueryGraph putQueryGraphJoin(QueryGraph body, String graphElementId1, String graphElementId2) {
         GraphElementFinder gef = new GraphElementFinder();
-        gef.findElementById(graphElementId1, body.getGraph());
-        GraphElement ge1 = gef.getFound();
-        gef.findElementById(graphElementId2, body.getGraph());
-        GraphElement ge2 = gef.getFound();
+        GraphElement ge1 = gef.findElementById(graphElementId1, body.getGraph());
+        GraphElement ge2 = gef.findElementById(graphElementId2, body.getGraph());
         // Check if nodes refer to same entities
         RuntimeException diffEntities = new RuntimeException("The two nodes refer to different entities");
         if(ge1.getEntities().size() != ge2.getEntities().size()) {
@@ -279,8 +278,7 @@ public class QueryGraphHandler {
             return new QueryGraph();
         }
         GraphElementFinder gef = new GraphElementFinder();
-        gef.findChildrenIds(graphElementId, body.getGraph());
-        Set<String> varToBeDeleted = gef.getChildrenIds();
+        Set<String> varToBeDeleted = gef.findChildrenIds(graphElementId, body.getGraph());
         varToBeDeleted.add(graphElementId);
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
@@ -294,7 +292,78 @@ public class QueryGraphHandler {
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
         gef.deleteObjectPropertiesWithNoChild(body.getGraph());
-        body.setHead(body.getHead().stream().filter(headElement -> !varToBeDeleted.contains(headElement.getGraphElementId())).collect(Collectors.toList()));
+        body.setHead(body.getHead().stream().filter(
+                headElement -> !varToBeDeleted.contains(headElement.getGraphElementId()))
+                .collect(Collectors.toList()));
+        return body;
+    }
+
+    public QueryGraph addHeadTerm(QueryGraph body, String graphElementId) {
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId, body.getGraph());
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        AggregationHandler aggHandler = new AggregationHandler(q);
+        SelectHandler sh = new SelectHandler(aggHandler);
+        String var = varPrefix + graphElementId;
+        sh.addVar(AbstractQueryBuilder.makeVar(var));
+        body.setSparql(q.serialize());
+        //Modify graph
+        HeadElement he = new HeadElement();
+        he.setId(body.getHead().size());
+        he.setGraphElementId(graphElementId);
+        he.setVar(var);
+        body.addHeadItem(he);
+        return body;
+    }
+
+    public QueryGraph deleteHeadTerm(QueryGraph body, String id) {
+        //Modify graph
+        Iterator<HeadElement> it = body.getHead().iterator();
+        HeadElement he = null;
+        while (it.hasNext()) {
+            he = it.next();
+            if (he.getId().toString().equals(id)) {
+                it.remove();
+                break;
+            }
+        }
+        if (he == null) throw new RuntimeException("Cannot find head element id " + id);
+        String var = he.getVar();
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.getProject().remove(AbstractQueryBuilder.makeVar(var));
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph renameHeadTerm(QueryGraph body, String id) {
+        //Get renaming head
+        HeadElement renamedHe = null;
+        int index = 0;
+        for(HeadElement he : body.getHead()) {
+            if(he.getId().toString().equals(id)) {
+                renamedHe =  he;
+                break;
+            }
+            index++;
+        }
+        if (renamedHe == null) throw new RuntimeException("Cannot find head element id " + id);
+        if (renamedHe.getAlias() == null) throw new RuntimeException("Alias not defined for element id " + id);
+        //Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        Var oldVar = AbstractQueryBuilder.makeVar(renamedHe.getVar());
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
+        q.getProject().remove(oldVar);
+        q.getProject().getVars().add(index, newVar);
+        q.getProject().getExprs().put(
+                newVar,
+                new ExprVar(oldVar)
+        );
+        body.setSparql(q.serialize());
         return body;
     }
 }
