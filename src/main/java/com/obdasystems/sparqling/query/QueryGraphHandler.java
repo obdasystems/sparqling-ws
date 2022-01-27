@@ -294,7 +294,7 @@ public class QueryGraphHandler {
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
         gef.deleteObjectPropertiesWithNoChild(body.getGraph());
-        body.setHead(body.getHead().stream().filter(headElement -> !headElement.getVar().equals(varPrefix + graphElementId)).collect(Collectors.toList()));
+        body.setHead(body.getHead().stream().filter(headElement -> !varToBeDeleted.contains(headElement.getGraphElementId())).collect(Collectors.toList()));
         return body;
     }
 }
