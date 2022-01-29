@@ -16,6 +16,7 @@ public class GraphElementFinder {
     }
 
     public GraphElement findElementById(String id, GraphElement e) {
+        found = null;
         _findElementById(id, e);
         return getFound();
     }
