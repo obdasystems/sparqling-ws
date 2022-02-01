@@ -636,26 +636,29 @@ public class OntologyProximityManager {
 
         Set<OWLClass> classes = new HashSet<>();
         classes.addAll(getClassDescendants(cl));
-        classes.addAll(getClassAncestors(cl));
+        Set<OWLClass> ancestors = getClassAncestors(cl);
+        classes.addAll(ancestors);
         classes.addAll(getClassNonDisjointSiblings(cl));
         ret.setClasses(classes.stream().map(i -> i.getIRI().toString()).collect(Collectors.toList()));
 
         for(OWLObjectProperty i : getClassRoles(cl)) {
             Branch b = new Branch();
             b.setObjectPropertyIRI(i.getIRI().toString());
-            if(getObjPropDomain(i).contains(cl)) {
+            Set<OWLClass> domain = getObjPropDomain(i);
+            Set<OWLClass> range = getObjPropRange(i);
+            if(domain.contains(cl) || domain.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
                 if(getObjPropRange(i).contains(cl)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:getObjPropRange(i)) {
+                for(OWLClass c:range) {
                     b.addRelatedClassesItem(c.getIRI().toString());
                 }
                 b.setDirect(true);
-            } else if(getObjPropRange(i).contains(cl)) {
-                if(getObjPropDomain(i).contains(cl)) {
+            } else if(range.contains(cl) || range.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
+                if(domain.contains(cl)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:getObjPropDomain(i)) {
+                for(OWLClass c:domain) {
                     b.addRelatedClassesItem(c.getIRI().toString());
                 }
                 b.setDirect(false);
