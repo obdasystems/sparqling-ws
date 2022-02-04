@@ -120,7 +120,7 @@ public class QueryGraphHandler {
         // Modify Graph
         QueryGraph qg = new QueryGraph();
         HeadElement headElement = new HeadElement();
-        headElement.setId(0);
+        headElement.setId(var);
         headElement.setVar(var);
         headElement.setGraphElementId(var.substring(1));
         qg.addHeadItem(headElement);
@@ -231,7 +231,7 @@ public class QueryGraphHandler {
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
         found.addChildrenItem(ge);
         HeadElement headItem = new HeadElement();
-        headItem.setId(body.getHead().size());
+        headItem.setId(var);
         headItem.setVar(var);
         headItem.setGraphElementId(var.substring(1));
         body.addHeadItem(headItem);
@@ -312,7 +312,7 @@ public class QueryGraphHandler {
         body.setSparql(q.serialize());
         //Modify graph
         HeadElement he = new HeadElement();
-        he.setId(body.getHead().size());
+        he.setId(var);
         he.setGraphElementId(graphElementId);
         he.setVar(var);
         body.addHeadItem(he);
@@ -325,20 +325,16 @@ public class QueryGraphHandler {
         HeadElement he = null;
         while (it.hasNext()) {
             he = it.next();
-            if (he.getId().toString().equals(id)) {
+            if (he.getId().equals(id)) {
                 it.remove();
                 break;
             }
         }
         if (he == null) throw new RuntimeException("Cannot find head element id " + id);
-        String var = he.getVar();
-        if (he.getAlias() != null) {
-            var = he.getAlias();
-        }
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
-        q.getProject().remove(AbstractQueryBuilder.makeVar(var));
+        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
         body.setSparql(q.serialize());
         return body;
     }
@@ -348,8 +344,9 @@ public class QueryGraphHandler {
         HeadElement renamedHe = null;
         int index = 0;
         for(HeadElement he : body.getHead()) {
-            if(he.getId().toString().equals(id)) {
+            if(he.getId().equals(id)) {
                 renamedHe =  he;
+                renamedHe.setId(varPrefix + he.getAlias());
                 break;
             }
             index++;
@@ -359,13 +356,12 @@ public class QueryGraphHandler {
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
-        Var oldVar = AbstractQueryBuilder.makeVar(renamedHe.getVar());
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
-        q.getProject().remove(oldVar);
+        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
             newVar,
-            new ExprVar(oldVar)
+            new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
         );
         body.setSparql(q.serialize());
         return body;

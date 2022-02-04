@@ -84,6 +84,6 @@ import javax.validation.constraints.*;
             @FormDataParam("file") FormDataContentDisposition fileDetail
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.standaloneOntologyUploadPost(file,securityContext);
+        return delegate.standaloneOntologyUploadPost(fileInputStream, fileDetail,securityContext);
     }
 }

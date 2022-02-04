@@ -89,7 +89,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.addHeadTerm(qg, "Author0");
-        qg = qgb.deleteHeadTerm(qg, "1");
+        qg = qgb.deleteHeadTerm(qg, "?Author0");
         assertNull(qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null));
     }
 
@@ -102,7 +102,7 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
-        qg = qgb.renameHeadTerm(qg, "1");
+        qg = qgb.renameHeadTerm(qg, "?Author0");
         assertEquals(
                 "AUTORE",
                 qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null).getAlias());
@@ -117,8 +117,8 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
-        qg = qgb.renameHeadTerm(qg, "1");
-        qg = qgb.deleteHeadTerm(qg, "1");
+        qg = qgb.renameHeadTerm(qg, "?Author0");
+        qg = qgb.deleteHeadTerm(qg, "?AUTORE");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
@@ -133,9 +133,9 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
-        qg = qgb.renameHeadTerm(qg, "1");
+        qg = qgb.renameHeadTerm(qg, "?Author0");
         qg.getHead().get(1).setAlias("AUTORONE");
-        qg = qgb.renameHeadTerm(qg, "1");
+        qg = qgb.renameHeadTerm(qg, "?AUTORE");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
