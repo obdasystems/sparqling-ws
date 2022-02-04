@@ -116,14 +116,9 @@ public class QueryGraphHandler {
         String var = guessNewVarFromIRI(iri, null);
         SelectBuilder sb = new SelectBuilder();
         sb.addPrefixes(prefixes);
-        sb.addVar(var).addWhere(var, "a", iri.toQuotedString());
+        sb.addVar("*").addWhere(var, "a", iri.toQuotedString());
         // Modify Graph
         QueryGraph qg = new QueryGraph();
-        HeadElement headElement = new HeadElement();
-        headElement.setId(var);
-        headElement.setVar(var);
-        headElement.setGraphElementId(var.substring(1));
-        qg.addHeadItem(headElement);
         qg.setSparql(sb.build().serialize());
         GraphElement root = new GraphElement();
         root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
@@ -335,6 +330,9 @@ public class QueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         q.getProject().remove(AbstractQueryBuilder.makeVar(id));
+        if(q.getProject().isEmpty()) {
+            q.setQueryResultStar(true);
+        }
         body.setSparql(q.serialize());
         return body;
     }

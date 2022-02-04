@@ -100,6 +100,7 @@ public class TestQueryGraphHandler {
         qgb.putQueryGraphObjectProperty(
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
+        qg = qgb.addHeadTerm(qg, "Book0");
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
         qg = qgb.renameHeadTerm(qg, "?Author0");
@@ -115,6 +116,7 @@ public class TestQueryGraphHandler {
         qgb.putQueryGraphObjectProperty(
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
+        qg = qgb.addHeadTerm(qg, "Book0");
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
         qg = qgb.renameHeadTerm(qg, "?Author0");
@@ -131,6 +133,7 @@ public class TestQueryGraphHandler {
         qgb.putQueryGraphObjectProperty(
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
+        qg = qgb.addHeadTerm(qg, "Book0");
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
         qg = qgb.renameHeadTerm(qg, "?Author0");
@@ -139,6 +142,22 @@ public class TestQueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
+    }
+
+    @Test
+    public void testDeleteLastHeadElement() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.deleteHeadTerm(qg, "?name0");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.isQueryResultStar());
     }
 
     @Test
