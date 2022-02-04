@@ -2,6 +2,7 @@ package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.QueryGraph;
+import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
@@ -12,7 +13,7 @@ import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class TestQueryGraphHandler {
 
@@ -62,7 +63,12 @@ public class TestQueryGraphHandler {
         qg = qgb.deleteQueryGraphElement(
                 qg, "Author0"
         );
-        System.out.println(qg);
+        GraphElementFinder gef = new GraphElementFinder();
+        QueryGraph finalQg = qg;
+        RuntimeException exc = assertThrows(RuntimeException.class, () -> {
+            gef.findElementById("Author0", finalQg.getGraph());
+        });
+        assertTrue(exc.getMessage().equals("Graph element not found!"));
     }
     @Test
     public void testAddHeadElement() {
@@ -72,7 +78,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.addHeadTerm(qg, "Author0");
-        System.out.println(qg);
+        assertNotNull(qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null));
     }
 
     @Test
@@ -84,7 +90,7 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.addHeadTerm(qg, "Author0");
         qg = qgb.deleteHeadTerm(qg, "1");
-        System.out.println(qg);
+        assertNull(qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null));
     }
 
     @Test
@@ -97,7 +103,42 @@ public class TestQueryGraphHandler {
         qg = qgb.addHeadTerm(qg, "Author0");
         qg.getHead().get(1).setAlias("AUTORE");
         qg = qgb.renameHeadTerm(qg, "1");
-        System.out.println(qg);
+        assertEquals(
+                "AUTORE",
+                qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null).getAlias());
+    }
+
+    @Test
+    public void testRenameAndDeleteHeadElement() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.addHeadTerm(qg, "Author0");
+        qg.getHead().get(1).setAlias("AUTORE");
+        qg = qgb.renameHeadTerm(qg, "1");
+        qg = qgb.deleteHeadTerm(qg, "1");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
+    }
+
+    @Test
+    public void testRenameAndRenameHeadElement() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.addHeadTerm(qg, "Author0");
+        qg.getHead().get(1).setAlias("AUTORE");
+        qg = qgb.renameHeadTerm(qg, "1");
+        qg.getHead().get(1).setAlias("AUTORONE");
+        qg = qgb.renameHeadTerm(qg, "1");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
     }
 
     @Test
