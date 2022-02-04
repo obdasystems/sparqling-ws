@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.obdasystems.sparqling.model.VarOrConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -26,14 +27,78 @@ import javax.validation.Valid;
 /**
  * Function
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class Function  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class Function  implements Serializable  {
+  /**
+   * Gets or Sets name
+   */
+  public enum NameEnum {
+    PLUS("+"),
+    
+    MINUS("-"),
+    
+    STAR("*"),
+    
+    SLASH("/"),
+    
+    SUBSTR("SUBSTR"),
+    
+    UCASE("UCASE"),
+    
+    LCASE("LCASE"),
+    
+    CONTAINS("CONTAINS"),
+    
+    CONCAT("CONCAT"),
+    
+    REGEX("REGEX"),
+    
+    ROUND("ROUND"),
+    
+    CEIL("CEIL"),
+    
+    FLOOR("FLOOR"),
+    
+    YEAR("YEAR"),
+    
+    MONTH("MONTH"),
+    
+    DAY("DAY"),
+    
+    HOURS("HOURS"),
+    
+    MINUTES("MINUTES"),
+    
+    SECONDS("SECONDS");
+
+    private String value;
+
+    NameEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NameEnum fromValue(String text) {
+      for (NameEnum b : NameEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("name")
-  private String name = null;
+  private NameEnum name = null;
 
   @JsonProperty("parameters")
   private List<VarOrConstant> parameters = null;
 
-  public Function name(String name) {
+  public Function name(NameEnum name) {
     this.name = name;
     return this;
   }
@@ -44,11 +109,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("name")
   @Schema(description = "")
-  public String getName() {
+  public NameEnum getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(NameEnum name) {
     this.name = name;
   }
 

@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.obdasystems.sparqling.model.VarOrConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -26,14 +27,56 @@ import javax.validation.Valid;
 /**
  * FilterExpression
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class FilterExpression  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class FilterExpression  implements Serializable  {
+  /**
+   * Gets or Sets operator
+   */
+  public enum OperatorEnum {
+    EQUAL("="),
+    
+    NOT_EQUAL("!="),
+    
+    LESS_THAN("<"),
+    
+    GREATER_THAN(">"),
+    
+    LESS_THAN_OR_EQUAL_TO("<="),
+    
+    GREATER_THAN_OR_EQUAL_TO(">="),
+    
+    IN("IN"),
+    
+    NOT_IN("NOT IN");
+
+    private String value;
+
+    OperatorEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OperatorEnum fromValue(String text) {
+      for (OperatorEnum b : OperatorEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("operator")
-  private String operator = null;
+  private OperatorEnum operator = null;
 
   @JsonProperty("parameters")
   private List<VarOrConstant> parameters = null;
 
-  public FilterExpression operator(String operator) {
+  public FilterExpression operator(OperatorEnum operator) {
     this.operator = operator;
     return this;
   }
@@ -44,11 +87,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("operator")
   @Schema(description = "")
-  public String getOperator() {
+  public OperatorEnum getOperator() {
     return operator;
   }
 
-  public void setOperator(String operator) {
+  public void setOperator(OperatorEnum operator) {
     this.operator = operator;
   }
 

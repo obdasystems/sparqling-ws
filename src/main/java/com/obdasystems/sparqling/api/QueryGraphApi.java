@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class QueryGraphApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class QueryGraphApi  {
    private final QueryGraphApiService delegate;
 
    public QueryGraphApi(@Context ServletConfig servletContext) {
@@ -77,19 +77,19 @@ import javax.validation.constraints.*;
         return delegate.addHeadTerm(body,graphElementId,securityContext);
     }
     @PUT
-    @Path("/node/optional/{optionalId}/{graphElementId}/add")
+    @Path("/node/optional/{optionalId}/add/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Add the graphElementId to the optionalId OPTIONAL.", description = "Create a new OPTIONAL in the query and add the triple pattern(s) identified by the GraphElementId. If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the bgp to the new OPTIONAL. If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be added to the OPTIONAL. If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved to the OPTIONAL.", tags={ "QueryGraph" })
+    @Operation(summary = "Add the graphElementId to the optionalId optional.", description = "Add the triple pattern(s) identified by the `graphElementId` to the optional `optionalId` - If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the bgp to the optional. - If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be added to the optional. - If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved to the optional.  For translating this in SPARQL remove all optionals and translate them again.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "GraphElement not found") })
     public Response addOptionalGraphElementId(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("graphElementId") String graphElementId
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("optionalId") String optionalId
-,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the OPTIONAL.") @QueryParam("classIRI") String classIRI
+,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be added to the optional",required=true) @PathParam("graphElementId") String graphElementId
+,@Parameter(in = ParameterIn.PATH, description = "The optional where to perform the adding",required=true) @PathParam("optionalId") String optionalId
+,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the optional.") @QueryParam("classIRI") String classIRI
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.addOptionalGraphElementId(body,graphElementId,optionalId,classIRI,securityContext);
@@ -124,7 +124,7 @@ import javax.validation.constraints.*;
     public Response aggregationHavingHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
 ,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("direction") String direction
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be involved in the having filter",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.aggregationHavingHeadTerm(body,direction,headTerm,securityContext);
@@ -133,18 +133,17 @@ import javax.validation.constraints.*;
     @Path("/head/aggregation/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Set the aggregation function to the head term.", description = "The aggregation function is defined in the group by field of the query graph in the request body.", tags={ "QueryGraph" })
+    @Operation(summary = "Set the aggregation function to the head term.", description = "The aggregation function is defined in the group by field of the query graph in the request body. Remember to set the alias of the head based on function name and variable.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response aggregationHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("direction") String direction
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be involved in the aggregation function",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.aggregationHeadTerm(body,direction,headTerm,securityContext);
+        return delegate.aggregationHeadTerm(body,headTerm,securityContext);
     }
     @PUT
     @Path("/node/delete/{graphElementId}")
@@ -157,7 +156,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "404", description = "GraphElement not found") })
     public Response deleteGraphElementId(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("graphElementId") String graphElementId
+,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be deleted",required=true) @PathParam("graphElementId") String graphElementId
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.deleteGraphElementId(body,graphElementId,securityContext);
@@ -166,14 +165,14 @@ import javax.validation.constraints.*;
     @Path("/head/delete/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Delete the head term from the query graph.", description = "", tags={ "QueryGraph" })
+    @Operation(summary = "Delete the head term from the query graph.", description = "The path param should be the id of the HeadElement.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response deleteHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be deleted",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.deleteHeadTerm(body,headTerm,securityContext);
@@ -198,14 +197,14 @@ import javax.validation.constraints.*;
     @Path("/head/function/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Set a function to the head term from the query graph.", description = "The function is defined in the head term of the query graph in the request body.", tags={ "QueryGraph" })
+    @Operation(summary = "Set a function to the head term from the query graph.", description = "The function is defined in the head term of the query graph in the request body. Remember to set the alias of the head based on function name and variable.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response functionHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be involved inthe function",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.functionHeadTerm(body,headTerm,securityContext);
@@ -227,22 +226,6 @@ import javax.validation.constraints.*;
         return delegate.getQueryGraph(clickedClassIRI,securityContext);
     }
     @PUT
-    @Path("/head/hide/{headTerm}")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Hide the head term from the query graph.", description = "", tags={ "QueryGraph" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
-        
-        @ApiResponse(responseCode = "404", description = "Head term not found") })
-    public Response hideHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
-
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.hideHeadTerm(body,headTerm,securityContext);
-    }
-    @PUT
     @Path("/limit")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
@@ -262,15 +245,15 @@ import javax.validation.constraints.*;
     @Path("/node/optional/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Add the graphElementId to a new OPTIONAL.", description = "Create a new OPTIONAL in the query and add the triple pattern(s) identified by the GraphElementId. If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the bgp to the new OPTIONAL. If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be added to the OPTIONAL. If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved to the OPTIONAL.", tags={ "QueryGraph" })
+    @Operation(summary = "Add the `graphElementId` to a new optional.", description = "Create a new optional in the query and add the triple pattern(s) identified by the GraphElementId. - If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the bgp to the new optional. - If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be added to the new optional. - If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved to the new optional.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "GraphElement not found") })
     public Response newOptionalGraphElementId(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be added to the OPTIONAL",required=true) @PathParam("graphElementId") String graphElementId
-,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the OPTIONAL.") @QueryParam("classIRI") String classIRI
+,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be added to the optional",required=true) @PathParam("graphElementId") String graphElementId
+,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the optional.") @QueryParam("classIRI") String classIRI
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.newOptionalGraphElementId(body,graphElementId,classIRI,securityContext);
@@ -295,7 +278,7 @@ import javax.validation.constraints.*;
     @Path("/head/orderBy/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Order by the head from the query graph.", description = "", tags={ "QueryGraph" })
+    @Operation(summary = "Order by the head from the query graph.", description = "The OrderBy object is passed in the request body in the Query Graph.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -303,7 +286,7 @@ import javax.validation.constraints.*;
     public Response orderByHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
 ,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("direction") String direction
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be ordered",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.orderByHeadTerm(body,direction,headTerm,securityContext);
@@ -352,7 +335,7 @@ import javax.validation.constraints.*;
     @Path("/node/join/{graphElementId1}/{graphElementId2}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Join two GraphNodeElement in one. graph through a data property.", description = "Starting from a query graph which has two nodes representing the same class, it returns the query graph in which the two nodes have been joined into a single one. The children of the selected nodes will be grouped in `graphElementId1` and each time we add a children through the previous routes they will be added to this node.", tags={ "QueryGraph" })
+    @Operation(summary = "Join two GraphNodeElement in one.", description = "Starting from a query graph which has two nodes representing the same class(es), it returns the query graph in which the two nodes have been joined into a single one. The children of the selected nodes will be grouped in `graphElementId1` and each time we add a children through the previous routes they will be added to this node.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -390,19 +373,19 @@ import javax.validation.constraints.*;
         return delegate.putQueryGraphObjectProperty(body,sourceClassIRI,predicateIRI,targetClassIRI,isPredicateDirect,graphElementId,securityContext);
     }
     @PUT
-    @Path("/node/optional/{optionalId}/{graphElementId}/remove")
+    @Path("/node/optional/{optionalId}/remove/{graphElementId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Remove the graphElementId from the optionalId OPTIONAL and move it back to the bgp.", description = "Create a new OPTIONAL in the query and add the triple pattern(s) identified by the GraphElementId. If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the bgp to the new OPTIONAL. If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be added to the OPTIONAL. If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved to the OPTIONAL.", tags={ "QueryGraph" })
+    @Operation(summary = "Remove the graphElementId from the optionalId optional and move it back to the bgp.", description = "Remove the triple pattern(s) identified by the `graphElementId` from the optional `optionalId` - If it is a class the query parameter should be used and the triple pattern `?graphElementId rdf:type <classIRI>` will be moved from the optional to the bgp. - If it is a data property the tp `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2` will be moved from the optional to the bgp. - If it is a object property the tps `?graphElementIdVar1 <graphElementIdDataPropertyIRI> ?graphElementIdVar2. ?graphElementIdVar2 rdf:type <classIRI>` will be moved from the optional to the bgp.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "GraphElement not found") })
     public Response removeOptionalGraphElementId(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("graphElementId") String graphElementId
-,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be delete",required=true) @PathParam("optionalId") String optionalId
-,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the OPTIONAL.") @QueryParam("classIRI") String classIRI
+,@Parameter(in = ParameterIn.PATH, description = "The GraphElement that should be removed from the optional",required=true) @PathParam("graphElementId") String graphElementId
+,@Parameter(in = ParameterIn.PATH, description = "The optional where to perform the removing",required=true) @PathParam("optionalId") String optionalId
+,@Parameter(in = ParameterIn.QUERY, description = "The IRI of the class that will be inserted in the optional.") @QueryParam("classIRI") String classIRI
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.removeOptionalGraphElementId(body,graphElementId,optionalId,classIRI,securityContext);
@@ -411,14 +394,14 @@ import javax.validation.constraints.*;
     @Path("/head/rename/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Rename the head term from the query graph using alias.", description = "", tags={ "QueryGraph" })
+    @Operation(summary = "Rename the head term from the query graph using alias.", description = "Put the alias in the HeadElement passed via request body.", tags={ "QueryGraph" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response renameHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be delete",required=true) @PathParam("headTerm") String headTerm
+,@Parameter(in = ParameterIn.PATH, description = "The head term that should be renamed",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.renameHeadTerm(body,headTerm,securityContext);

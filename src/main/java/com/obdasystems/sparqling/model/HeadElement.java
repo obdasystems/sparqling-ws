@@ -24,9 +24,9 @@ import javax.validation.Valid;
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
-  private Integer id = null;
+  private String id = null;
 
   @JsonProperty("graphElementId")
   private String graphElementId = null;
@@ -37,13 +37,10 @@ import javax.validation.Valid;
   @JsonProperty("alias")
   private String alias = null;
 
-  @JsonProperty("hidden")
-  private Boolean hidden = null;
-
   @JsonProperty("function")
   private Function function = null;
 
-  public HeadElement id(Integer id) {
+  public HeadElement id(String id) {
     this.id = id;
     return this;
   }
@@ -54,11 +51,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("id")
   @Schema(description = "")
-  public Integer getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -119,25 +116,6 @@ import javax.validation.Valid;
     this.alias = alias;
   }
 
-  public HeadElement hidden(Boolean hidden) {
-    this.hidden = hidden;
-    return this;
-  }
-
-  /**
-   * Get hidden
-   * @return hidden
-   **/
-  @JsonProperty("hidden")
-  @Schema(description = "")
-  public Boolean isHidden() {
-    return hidden;
-  }
-
-  public void setHidden(Boolean hidden) {
-    this.hidden = hidden;
-  }
-
   public HeadElement function(Function function) {
     this.function = function;
     return this;
@@ -172,13 +150,12 @@ import javax.validation.Valid;
         Objects.equals(this.graphElementId, headElement.graphElementId) &&
         Objects.equals(this.var, headElement.var) &&
         Objects.equals(this.alias, headElement.alias) &&
-        Objects.equals(this.hidden, headElement.hidden) &&
         Objects.equals(this.function, headElement.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphElementId, var, alias, hidden, function);
+    return Objects.hash(id, graphElementId, var, alias, function);
   }
 
 
@@ -191,7 +168,6 @@ import javax.validation.Valid;
     sb.append("    graphElementId: ").append(toIndentedString(graphElementId)).append("\n");
     sb.append("    var: ").append(toIndentedString(var)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
-    sb.append("    hidden: ").append(toIndentedString(hidden)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

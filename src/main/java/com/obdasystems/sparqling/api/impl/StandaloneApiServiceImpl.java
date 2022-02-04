@@ -17,7 +17,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class StandaloneApiServiceImpl extends StandaloneApiService {
     @Override
     public Response standaloneOntologyGrapholGet(SecurityContext securityContext) throws NotFoundException {
         String graphol = SWSOntologyManager.getOntologyManager().getGraphol();

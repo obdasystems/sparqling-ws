@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import javax.validation.constraints.*;
@@ -23,17 +24,81 @@ import javax.validation.Valid;
 /**
  * VarOrConstant
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class VarOrConstant  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class VarOrConstant  implements Serializable  {
+  /**
+   * Gets or Sets type
+   */
+  public enum TypeEnum {
+    VAR("var"),
+    
+    CONSTANT("constant"),
+    
+    IRI("iri");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("type")
-  private String type = null;
+  private TypeEnum type = null;
 
   @JsonProperty("value")
   private String value = null;
 
-  @JsonProperty("constantType")
-  private String constantType = null;
+  /**
+   * Gets or Sets constantType
+   */
+  public enum ConstantTypeEnum {
+    STRING("xsd:string"),
+    
+    DECIMAL("xsd:decimal"),
+    
+    DATETIME("xsd:dateTime");
 
-  public VarOrConstant type(String type) {
+    private String value;
+
+    ConstantTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ConstantTypeEnum fromValue(String text) {
+      for (ConstantTypeEnum b : ConstantTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("constantType")
+  private ConstantTypeEnum constantType = null;
+
+  public VarOrConstant type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -44,11 +109,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("type")
   @Schema(description = "")
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
@@ -71,7 +136,7 @@ import javax.validation.Valid;
     this.value = value;
   }
 
-  public VarOrConstant constantType(String constantType) {
+  public VarOrConstant constantType(ConstantTypeEnum constantType) {
     this.constantType = constantType;
     return this;
   }
@@ -82,11 +147,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("constantType")
   @Schema(description = "")
-  public String getConstantType() {
+  public ConstantTypeEnum getConstantType() {
     return constantType;
   }
 
-  public void setConstantType(String constantType) {
+  public void setConstantType(ConstantTypeEnum constantType) {
     this.constantType = constantType;
   }
 

@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class StandaloneApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class StandaloneApi  {
    private final StandaloneApiService delegate;
 
    public StandaloneApi(@Context ServletConfig servletContext) {
@@ -64,7 +64,7 @@ import javax.validation.constraints.*;
     @Path("/graphol")
     
     @Produces({ "application/xml" })
-    @Operation(summary = "Return the graphol file as a string to be parsed by GRAPHOLscape.", description = "", tags={ "Standalone" })
+    @Operation(summary = "Return the graphol file as a string to be parsed by Grapholscape.", description = "", tags={ "Standalone" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/xml", schema = @Schema(implementation = String.class))),
         
@@ -84,6 +84,6 @@ import javax.validation.constraints.*;
             @FormDataParam("file") FormDataContentDisposition fileDetail
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.standaloneOntologyUploadPost(fileInputStream,fileDetail,securityContext);
+        return delegate.standaloneOntologyUploadPost(file,securityContext);
     }
 }

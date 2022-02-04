@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * GraphElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-01-14T16:22:04.631Z[GMT]")public class GraphElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class GraphElement  implements Serializable  {
   @JsonProperty("id")
   private String id = null;
 
@@ -73,11 +73,11 @@ import javax.validation.Valid;
   }
 
   /**
-   * Get variables
+   * This element could refer to one variable (if it&#x27;s a class) or to two variables (if it&#x27;s a property)
    * @return variables
    **/
   @JsonProperty("variables")
-  @Schema(description = "")
+  @Schema(description = "This element could refer to one variable (if it's a class) or to two variables (if it's a property)")
   public List<String> getVariables() {
     return variables;
   }
