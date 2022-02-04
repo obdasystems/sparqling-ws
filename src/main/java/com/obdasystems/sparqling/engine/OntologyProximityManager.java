@@ -221,6 +221,7 @@ public class OntologyProximityManager {
     }
 
     private void closePropertiesDomainRangeMaps() {
+        // https://github.com/obdasystems/sparqling-ws/issues/4
         /*objPropDomainMap.forEach((prop, set)->{
             Set<OWLClass> toAdd = new HashSet<>();
             set.forEach(domCl->{
