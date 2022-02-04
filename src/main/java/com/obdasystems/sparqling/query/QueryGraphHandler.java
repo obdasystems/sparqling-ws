@@ -23,6 +23,7 @@ import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
+import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprVar;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
@@ -331,6 +332,9 @@ public class QueryGraphHandler {
         }
         if (he == null) throw new RuntimeException("Cannot find head element id " + id);
         String var = he.getVar();
+        if (he.getAlias() != null) {
+            var = he.getAlias();
+        }
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
@@ -360,8 +364,8 @@ public class QueryGraphHandler {
         q.getProject().remove(oldVar);
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
-                newVar,
-                new ExprVar(oldVar)
+            newVar,
+            new ExprVar(oldVar)
         );
         body.setSparql(q.serialize());
         return body;
