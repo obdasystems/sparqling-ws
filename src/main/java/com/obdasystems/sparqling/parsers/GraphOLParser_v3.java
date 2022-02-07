@@ -1,6 +1,5 @@
 package com.obdasystems.sparqling.parsers;
 
-import com.google.common.base.Optional;
 import com.obdasystems.sparqling.parsers.graphol.GraphOLEdgePoint;
 import com.obdasystems.sparqling.parsers.graphol.GraphOLNodeGeometry;
 import com.obdasystems.sparqling.parsers.graphol.GraphOLNodeLabel;
