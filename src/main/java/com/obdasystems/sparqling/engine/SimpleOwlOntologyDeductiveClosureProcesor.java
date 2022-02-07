@@ -73,7 +73,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
         initGraphVertex();
         initQualifiedConceptAttributeDomainTrivialIAs();
 
-        inputOntology.getTBoxAxioms(Imports.INCLUDED).forEach(axiom -> {
+        inputOntology.getLogicalAxioms(Imports.INCLUDED).forEach(axiom -> {
             if (axiom instanceof OWLSubClassOfAxiom) {
                 OWLSubClassOfAxiom castAxiom = (OWLSubClassOfAxiom) axiom;
                 OWLClassExpression sub = castAxiom.getSubClass();
