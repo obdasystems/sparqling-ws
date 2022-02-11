@@ -284,6 +284,9 @@ public class QueryGraphHandler {
         for(String var:varToBeDeleted) {
             q.getProject().remove(AbstractQueryBuilder.makeVar(var));
         }
+        if(q.getProject().isEmpty()) {
+            q.setQueryResultStar(true);
+        }
         body.setSparql(q.serialize());
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
