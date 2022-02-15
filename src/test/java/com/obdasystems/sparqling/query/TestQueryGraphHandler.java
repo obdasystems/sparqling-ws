@@ -1,17 +1,25 @@
 package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
+import com.obdasystems.sparqling.model.Filter;
+import com.obdasystems.sparqling.model.FilterExpression;
 import com.obdasystems.sparqling.model.QueryGraph;
+import com.obdasystems.sparqling.model.VarOrConstant;
+import com.obdasystems.sparqling.query.visitors.FilterCheck;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
+import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.lang.SPARQLParser;
+import org.apache.jena.sparql.syntax.ElementVisitor;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -161,13 +169,35 @@ public class TestQueryGraphHandler {
     }
 
     @Test
-    public void sandbox() {
+    public void newFilter() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.EQUAL);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?Book0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("http://www.obdasystems.com/books/book-1");
+        v2.setType(VarOrConstant.TypeEnum.IRI);
+        params.add(v2);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
-        Query q = parser.parse(new Query(), "select (?x as ?pippo) { ?x a <IRI> }");
-        q.getProject().forEachVarExpr((var, expr) -> {
-            if(var.getVarName().equals("")) {
-                System.out.println();
-            }
-        });
+        Query q = parser.parse(new Query(), qg.getSparql());
+        FilterCheck visitor = new FilterCheck();
+        q.getQueryPattern().visit(visitor);
+        assertTrue(visitor.isFound());
     }
 }

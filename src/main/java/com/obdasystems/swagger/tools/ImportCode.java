@@ -1,9 +1,11 @@
 package com.obdasystems.swagger.tools;
 
 import org.apache.commons.io.FileUtils;
+import sun.awt.HKSCS;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +22,11 @@ public class ImportCode {
         String gen = generatedDir + "/src/gen/java/com/obdasystems/sparqling";
         String genApi = gen + "/api";
         String genModel = gen + "/model";
+
+        Set<String> filesNotToCopy = new HashSet<>();
+        filesNotToCopy.add("StandaloneApiServiceImpl.java");
+        filesNotToCopy.add("OntologyGraphApiServiceImpl.java");
+        filesNotToCopy.add("QueryGraphBgpApiServiceImpl.java");
 
 
         Set<File> api = listFilesUsingJavaIO(mainApi);
@@ -40,8 +47,10 @@ public class ImportCode {
         Set<File> impl = listFilesUsingJavaIO(mainImpl);
         File implDir = new File(base + "/api/impl");
         for(File file:impl) {
-            FileUtils.copyFileToDirectory(file, implDir);
-            file.delete();
+            if(!filesNotToCopy.contains(file.getName())) {
+                FileUtils.copyFileToDirectory(file, implDir);
+                file.delete();
+            }
         }
 
         Set<File> model = listFilesUsingJavaIO(genModel);
