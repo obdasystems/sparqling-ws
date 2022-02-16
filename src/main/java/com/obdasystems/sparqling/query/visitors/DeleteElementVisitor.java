@@ -62,8 +62,10 @@ public class DeleteElementVisitor implements ElementVisitor {
     }
 
     @Override
-    public void visit(ElementGroup el) {
-
+    public void visit(ElementGroup elementGroup) {
+        for(Element el:elementGroup.getElements()) {
+            el.visit(this);
+        }
     }
 
     @Override

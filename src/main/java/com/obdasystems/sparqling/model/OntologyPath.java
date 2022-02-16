@@ -25,7 +25,7 @@ import javax.validation.Valid;
 /**
  * OntologyPath
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class OntologyPath  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class OntologyPath  implements Serializable  {
   @JsonProperty("entities")
   private List<String> entities = null;
 

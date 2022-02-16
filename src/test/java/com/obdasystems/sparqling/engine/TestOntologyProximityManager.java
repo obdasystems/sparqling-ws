@@ -1,5 +1,6 @@
 package com.obdasystems.sparqling.engine;
 
+import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.model.parameters.Imports;
@@ -12,12 +13,20 @@ import java.io.IOException;
 public class TestOntologyProximityManager {
 
     static String owlFilePath = "src/test/resources/issue_9/sub_roles.owl";
+    static String grapholFilePath = "src/test/resources/istat/ISTAT-SIR_v1.1.37.graphol";
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
         //TODO CONTROLLA Set relativi a domain e range delle propertis
         long t = System.currentTimeMillis();
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));
+        OWLOntology ontology;
+        if(grapholFilePath!=null) {
+            GraphOLParser_v3 parser = new GraphOLParser_v3();
+            ontology = parser.parseOWLOntology(grapholFilePath, manager);
+        }
+        else {
+            ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));
+        }
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
         proximityManager.init();
         t = System.currentTimeMillis() - t;

@@ -1,12 +1,10 @@
 package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
-import com.obdasystems.sparqling.model.Entity;
-import com.obdasystems.sparqling.model.GraphElement;
-import com.obdasystems.sparqling.model.HeadElement;
-import com.obdasystems.sparqling.model.QueryGraph;
+import com.obdasystems.sparqling.model.*;
 import com.obdasystems.sparqling.query.visitors.DeleteElementVisitor;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
+import org.apache.jena.arq.querybuilder.ExprFactory;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
 import org.apache.jena.arq.querybuilder.handlers.SelectHandler;
@@ -24,6 +22,7 @@ import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
 import org.apache.jena.sparql.expr.Expr;
+import org.apache.jena.sparql.expr.ExprList;
 import org.apache.jena.sparql.expr.ExprVar;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
@@ -284,6 +283,9 @@ public class QueryGraphHandler {
         for(String var:varToBeDeleted) {
             q.getProject().remove(AbstractQueryBuilder.makeVar(var));
         }
+        if(q.getProject().isEmpty()) {
+            q.setQueryResultStar(true);
+        }
         body.setSparql(q.serialize());
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
@@ -363,5 +365,83 @@ public class QueryGraphHandler {
         );
         body.setSparql(q.serialize());
         return body;
+    }
+
+    public QueryGraph newFilter(QueryGraph body, Integer filterId) {
+        Filter f = body.getFilters().get(filterId);
+        // Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        WhereHandler wh = new WhereHandler(q);
+        PrefixMapping p = q.getPrefixMapping();
+        ExprFactory ef = new ExprFactory(p);
+        Expr filterExpr;
+        switch (f.getExpression().getOperator()) {
+            case EQUAL:
+                filterExpr = ef.eq(
+                    getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                    getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case GREATER_THAN:
+                filterExpr = ef.gt(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case LESS_THAN:
+                filterExpr = ef.lt(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case GREATER_THAN_OR_EQUAL_TO:
+                filterExpr = ef.ge(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case LESS_THAN_OR_EQUAL_TO:
+                filterExpr = ef.le(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case NOT_EQUAL:
+                filterExpr = ef.ne(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                break;
+            case IN:
+                ExprList list = new ExprList();
+                for (VarOrConstant v:f.getExpression().getParameters()) {
+                    list.add(new ExprVar(getVarOrConstant(v,p)));
+                }
+                filterExpr = ef.in(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        list);
+                break;
+            case NOT_IN:
+                ExprList not_list = new ExprList();
+                for (VarOrConstant v:f.getExpression().getParameters()) {
+                    not_list.add(new ExprVar(getVarOrConstant(v,p)));
+                }
+                filterExpr = ef.notin(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        not_list);
+                break;
+            default:
+                throw new RuntimeException("Cannot recognize operator of filter. Found " + f.getExpression().getOperator());
+        }
+        wh.addFilter(filterExpr);
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    private Node getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
+        switch (varOrConstant.getType()) {
+            case VAR: return AbstractQueryBuilder.makeVar(varOrConstant.getValue());
+            case IRI: return AbstractQueryBuilder.makeNode("<" + varOrConstant.getValue() + ">", p);
+            case CONSTANT:
+                String constant = "'" + varOrConstant.getValue() + "'^^"+varOrConstant.getConstantType();
+                return AbstractQueryBuilder.makeNode(constant, p);
+            default:
+                throw new RuntimeException("Cannot recognize type of var or constant. Found " + varOrConstant.getType());
+        }
     }
 }

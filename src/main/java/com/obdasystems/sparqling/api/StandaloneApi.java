@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-04T11:47:40.527Z[GMT]")public class StandaloneApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class StandaloneApi  {
    private final StandaloneApiService delegate;
 
    public StandaloneApi(@Context ServletConfig servletContext) {
@@ -84,6 +84,6 @@ import javax.validation.constraints.*;
             @FormDataParam("file") FormDataContentDisposition fileDetail
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.standaloneOntologyUploadPost(fileInputStream, fileDetail,securityContext);
+        return delegate.standaloneOntologyUploadPost(fileInputStream,fileDetail,securityContext);
     }
 }
