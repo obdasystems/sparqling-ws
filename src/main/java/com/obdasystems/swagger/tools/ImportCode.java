@@ -1,7 +1,6 @@
 package com.obdasystems.swagger.tools;
 
 import org.apache.commons.io.FileUtils;
-import sun.awt.HKSCS;
 
 import java.io.File;
 import java.io.IOException;
