@@ -305,6 +305,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
         //we proceed until we exhaust our options
         int initialTotalIAs;
         int finalTotalIAs;
+        int round=0;
         do {
             //to verify if any new assertion has been added, we confront
             //the number of edges of all graphs (i.e. all the IAs) BEFORE
@@ -328,6 +329,8 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
             finalTotalIAs = GC.edgeSet().size() +
                     GR.edgeSet().size() +
                     GCA.edgeSet().size();
+
+            logger.debug("iteration nr. " + round + "finalTotalIAs="+finalTotalIAs);
 
         } while (initialTotalIAs != finalTotalIAs);
 
