@@ -15,8 +15,9 @@ import java.util.stream.Collectors;
 
 public class TestOntologyProximityManager {
 
-    static String owlFilePath = "src/test/resources/issue_9/sub_roles.owl";
-    static String grapholFilePath = "src/test/resources/istat/ISTAT-SIR_v1.1.37.graphol";
+    static String owlFilePath = "src/test/resources/istat/ISTAT-SIR_v1.1.37.owl";
+    static String grapholFilePath =  "src/test/resources/istat/ISTAT-SIR_v1.1.37.graphol";
+    //static String grapholFilePath =   null;//"src/test/resources/books/books_ontology.graphol";
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
         //TODO CONTROLLA Set relativi a domain e range delle propertis
@@ -33,7 +34,6 @@ public class TestOntologyProximityManager {
             ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));
         }
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
-        proximityManager.init();
         t = System.currentTimeMillis() - t;
 
         String[] pathSplit = owlFilePath.split("/");
