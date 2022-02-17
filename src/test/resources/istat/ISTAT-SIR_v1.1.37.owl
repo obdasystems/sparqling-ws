@@ -15,7 +15,7 @@ Prefix(swrlb:=<http://www.w3.org/2003/11/swrlb#>)
 
 Ontology(<http://www.datiopen.istat.it/Ontologie/SIR>
 
-<http://www.datiopen.istat.it/Ontologie/SIR#1.1.37>
+<http://www.datiopen.istat.it/Ontologie/SIR#1.1.37_OWL>
 Declaration(Class(rbi:Apertura_cittadinanza_per_cambio_cittadinanza))
 Declaration(Class(rbi:Apertura_cittadinanza_per_individui_nuovi))
 Declaration(Class(rbi:Apolide))
