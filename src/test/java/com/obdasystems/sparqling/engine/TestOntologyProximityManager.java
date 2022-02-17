@@ -9,6 +9,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 public class TestOntologyProximityManager {
 
@@ -22,7 +25,9 @@ public class TestOntologyProximityManager {
         OWLOntology ontology;
         if(grapholFilePath!=null) {
             GraphOLParser_v3 parser = new GraphOLParser_v3();
-            ontology = parser.parseOWLOntology(grapholFilePath, manager);
+            ontology = parser.parseOWLOntology(
+                    Files.readAllLines(Paths.get(grapholFilePath)).stream().collect(Collectors.joining()),
+                    manager);
         }
         else {
             ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));
