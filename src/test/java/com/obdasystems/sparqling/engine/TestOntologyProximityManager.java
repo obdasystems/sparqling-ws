@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 public class TestOntologyProximityManager {
 
-    static String owlFilePath = "src/test/resources/istat/ISTAT-SIR_v1.1.37.owl";
-    static String grapholFilePath =  "src/test/resources/istat/ISTAT-SIR_v1.1.37.graphol";
+    static String owlFilePath = "src/test/resources/istat/istat_1.1.38/ISTAT-SIR_v1.1.38.owl";
+    static String grapholFilePath =  "src/test/resources/istat/istat_1.1.38/ISTAT-SIR_v1.1.38.graphol";
     //static String grapholFilePath =   null;//"src/test/resources/books/books_ontology.graphol";
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
