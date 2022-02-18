@@ -34,6 +34,9 @@ public class OntologyProximityManager {
     private Map<OWLDataProperty, Set<OWLDataProperty>> dataPropChildrenMap;
     private Map<OWLDataProperty, Set<OWLDataProperty>> dataPropAncestorsMap;
 
+    private SimpleOwlOntologyDeductiveClosureProcesor dedProc;
+    private Set<OWLAxiom> simpleDedClos;
+
     public OntologyProximityManager(OWLOntology ontology) {
         this.ontology = ontology;
         //this.classChildrenMap = new HashMap<>();
@@ -52,6 +55,10 @@ public class OntologyProximityManager {
         this.dataPropChildrenMap = new HashMap<>();
         this.dataPropAncestorsMap = new HashMap<>();
         init();
+    }
+
+    public Set<OWLAxiom> getSimpleDeductiveClosure() {
+        return simpleDedClos.stream().collect(Collectors.toSet());
     }
 
     //GETTERS
@@ -117,8 +124,8 @@ public class OntologyProximityManager {
         ontology.getTBoxAxioms(Imports.INCLUDED).forEach(axiom -> {
             processAxiom(axiom, true);
         });
-        SimpleOwlOntologyDeductiveClosureProcesor dedProc = new SimpleOwlOntologyDeductiveClosureProcesor(ontology);
-        Set<OWLAxiom> simpleDedClos = dedProc.computeSimpleDeductiveClosure();
+        dedProc = new SimpleOwlOntologyDeductiveClosureProcesor(ontology);
+        simpleDedClos = dedProc.computeSimpleDeductiveClosure();
         simpleDedClos.forEach(axiom -> {
             processAxiom(axiom, false);
         });

@@ -330,7 +330,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                     GR.edgeSet().size() +
                     GCA.edgeSet().size();
 
-            logger.debug("iteration nr. " + round + "finalTotalIAs="+finalTotalIAs);
+            logger.debug("iteration nr. " + round++ + " --> finalTotalIAs="+finalTotalIAs);
 
         } while (initialTotalIAs != finalTotalIAs);
 
