@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class TestOntologyProximityManager {
 
     static String owlFilePath = "src/test/resources/istat/istat_1.1.38/ISTAT-SIR_v1.1.38.owl";
-    static String grapholFilePath =  "src/test/resources/istat/istat_1.1.38/ISTAT-SIR_v1.1.38.graphol";
+    static String grapholFilePath =  "src/test/resources/books/books_ontology.graphol";
     //static String grapholFilePath =   null;//"src/test/resources/books/books_ontology.graphol";
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
@@ -29,6 +29,10 @@ public class TestOntologyProximityManager {
             ontology = parser.parseOWLOntology(
                     Files.readAllLines(Paths.get(grapholFilePath)).stream().collect(Collectors.joining()),
                     manager);
+
+            ontology.getLogicalAxioms().forEach(ax->{
+                System.out.println(ax);
+            });
         }
         else {
             ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));

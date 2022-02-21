@@ -346,40 +346,6 @@ public class GraphOLUtilities_v3 {
     }
 
     //INCLUSIONS
-    private static OWLLogicalAxiom getInclusionAxiom(GraphOLOntologyInclusionEdge edge, GraphOLDiagram diagram, OWLDataFactory df) {
-        String srcNodeId = edge.getSourceNodeId();
-        String tgtNodeId = edge.getTargetNodeId();
-        GraphOLNode srcNode = diagram.getNodeById(srcNodeId);
-        if (srcNode instanceof GraphOLClassExpressionStartingNodeI) {
-            OWLClassExpression subExpr = GraphOLUtilities_v3.getClassExpression(srcNode, diagram, df);
-            GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-            OWLClassExpression superExpr = GraphOLUtilities_v3.getClassExpression(tgtNode, diagram, df);
-            return df.getOWLSubClassOfAxiom(subExpr, superExpr, edge.getAnnotations());
-        } else {
-            if (srcNode instanceof GraphOLInclusionObjectPropertyExpressionStartingNodeI) {
-                GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-                if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
-                    OWLObjectPropertyExpression subExpr = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
-                    OWLObjectPropertyExpression superExpr = GraphOLUtilities_v3.getObjectPropertyExpression(tgtNode, diagram, df);
-                    return df.getOWLSubObjectPropertyOfAxiom(subExpr, superExpr, edge.getAnnotations());
-                } else {
-                    if (srcNode instanceof GraphOLRoleChainNode) {
-                        return GraphOLUtilities_v3.getChainInclusionAxiom(edge, (GraphOLRoleChainNode) srcNode, tgtNode, diagram, df);
-                    }
-                }
-            } else {
-                if (srcNode instanceof GraphOLDataPropertyExpressionStartingNodeI) {
-                    OWLDataPropertyExpression subExpr = GraphOLUtilities_v3.getDataPropertyExpression(srcNode, diagram, df);
-                    GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-                    OWLDataPropertyExpression superExpr = GraphOLUtilities_v3.getDataPropertyExpression(tgtNode, diagram, df);
-                    return df.getOWLSubDataPropertyOfAxiom(subExpr, superExpr, edge.getAnnotations());
-                }
-            }
-        }
-        logger.error("Parsing of logical axiom not possile by edge with id=" + edge.getEdgeId() + " instance of class " + edge.getClass());
-        throw new RuntimeException("Parsing of logical axiom not possile by edge with id=" + edge.getEdgeId() + " instance of class " + edge.getClass());
-    }
-
     private static boolean isDisambiguatedToDataRangeExpression(String tgtNodeId, GraphOLDiagram diagram) {
         GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
 
@@ -477,7 +443,7 @@ public class GraphOLUtilities_v3 {
             //TODO END added for #153
 
             OWLClassExpression superExpr = GraphOLUtilities_v3.getClassExpression(tgtNode, diagram, df);
-            result.add(df.getOWLSubClassOfAxiom(subExpr, superExpr, edge.getAnnotations()));
+            boolean domRanAxiomAdded = false;
             if (subExpr instanceof OWLObjectSomeValuesFrom) {
                 OWLObjectSomeValuesFrom osvf = (OWLObjectSomeValuesFrom) subExpr;
                 if (osvf.getFiller().isOWLThing()) {
@@ -487,17 +453,25 @@ public class GraphOLUtilities_v3 {
                     } else {
                         result.add(df.getOWLObjectPropertyDomainAxiom(objExp, superExpr, edge.getAnnotations()));
                     }
+                    domRanAxiomAdded = true;
                 }
             } else {
                 if (subExpr instanceof OWLDataSomeValuesFrom) {
                     OWLDataSomeValuesFrom dsvf = (OWLDataSomeValuesFrom) subExpr;
                     if (dsvf.getFiller().isTopDatatype()) {
                         result.add(df.getOWLDataPropertyDomainAxiom(dsvf.getProperty(), superExpr, edge.getAnnotations()));
+                        domRanAxiomAdded = true;
+                    }
+                    else {
+                        System.out.println(subExpr);
                     }
                 }
             }
-            return result;
+            if(!domRanAxiomAdded) {
+                result.add(df.getOWLSubClassOfAxiom(subExpr, superExpr, edge.getAnnotations()));
+            }
 
+            return result;
         } else {
             if (srcNode instanceof GraphOLInclusionObjectPropertyExpressionStartingNodeI) {
                 GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
@@ -560,34 +534,6 @@ public class GraphOLUtilities_v3 {
     }
 
 
-    //EQUIVALENCE
-    private static OWLLogicalAxiom getEquivalenceAxiom(GraphOLOntologyEquivalenceEdge edge, GraphOLDiagram diagram, OWLDataFactory df) {
-        String srcNodeId = edge.getSourceNodeId();
-        String tgtNodeId = edge.getTargetNodeId();
-        GraphOLNode srcNode = diagram.getNodeById(srcNodeId);
-        if (srcNode instanceof GraphOLClassExpressionStartingNodeI) {
-            OWLClassExpression subExpr = GraphOLUtilities_v3.getClassExpression(srcNode, diagram, df);
-            GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-            OWLClassExpression superExpr = GraphOLUtilities_v3.getClassExpression(tgtNode, diagram, df);
-            return df.getOWLEquivalentClassesAxiom(subExpr, superExpr, edge.getAnnotations());
-        } else {
-            if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
-                OWLObjectPropertyExpression subExpr = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
-                GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-                OWLObjectPropertyExpression superExpr = GraphOLUtilities_v3.getObjectPropertyExpression(tgtNode, diagram, df);
-                return df.getOWLEquivalentObjectPropertiesAxiom(subExpr, superExpr, edge.getAnnotations());
-            } else {
-                if (srcNode instanceof GraphOLDataPropertyExpressionStartingNodeI) {
-                    OWLDataPropertyExpression subExpr = GraphOLUtilities_v3.getDataPropertyExpression(srcNode, diagram, df);
-                    GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
-                    OWLDataPropertyExpression superExpr = GraphOLUtilities_v3.getDataPropertyExpression(tgtNode, diagram, df);
-                    return df.getOWLEquivalentDataPropertiesAxiom(subExpr, superExpr, edge.getAnnotations());
-                }
-            }
-        }
-        logger.error("Parsing of logical axiom not possile by edge with id=" + edge.getEdgeId() + " instance of class " + edge.getClass());
-        throw new RuntimeException("Parsing of logical axiom not possile by edge with id=" + edge.getEdgeId() + " instance of class " + edge.getClass());
-    }
 
     //EQUIVALENCE + subclasses +domain + range
     private static List<OWLLogicalAxiom> getEquivalenceAxiomPlusSubDomainRangeAxioms(GraphOLOntologyEquivalenceEdge edge, GraphOLDiagram diagram, OWLDataFactory df) {
@@ -599,8 +545,8 @@ public class GraphOLUtilities_v3 {
             OWLClassExpression subExpr = GraphOLUtilities_v3.getClassExpression(srcNode, diagram, df);
             GraphOLNode tgtNode = diagram.getNodeById(tgtNodeId);
             OWLClassExpression superExpr = GraphOLUtilities_v3.getClassExpression(tgtNode, diagram, df);
-            result.add(df.getOWLEquivalentClassesAxiom(subExpr, superExpr, edge.getAnnotations()));
-            result.add(df.getOWLSubClassOfAxiom(subExpr, superExpr, edge.getAnnotations()));
+
+            boolean subDomRanAxiomAdded = false;
             //aggiungo domain(range) per sub
             if (subExpr instanceof OWLObjectSomeValuesFrom) {
                 OWLObjectSomeValuesFrom osvf = (OWLObjectSomeValuesFrom) subExpr;
@@ -611,16 +557,22 @@ public class GraphOLUtilities_v3 {
                     } else {
                         result.add(df.getOWLObjectPropertyDomainAxiom(objExp, superExpr, edge.getAnnotations()));
                     }
+                    subDomRanAxiomAdded = true;
                 }
             } else {
                 if (subExpr instanceof OWLDataSomeValuesFrom) {
                     OWLDataSomeValuesFrom dsvf = (OWLDataSomeValuesFrom) subExpr;
                     if (dsvf.getFiller().isTopDatatype()) {
                         result.add(df.getOWLDataPropertyDomainAxiom(dsvf.getProperty(), superExpr, edge.getAnnotations()));
+                        subDomRanAxiomAdded = true;
                     }
                 }
             }
-            result.add(df.getOWLSubClassOfAxiom(superExpr, subExpr, edge.getAnnotations()));
+            if(!subDomRanAxiomAdded) {
+                result.add(df.getOWLSubClassOfAxiom(subExpr, superExpr, edge.getAnnotations()));
+            }
+
+            boolean superDomRanAxiomAdded = false;
             //aggiungo domain(range) per super
             if (superExpr instanceof OWLObjectSomeValuesFrom) {
                 OWLObjectSomeValuesFrom osvf = (OWLObjectSomeValuesFrom) superExpr;
@@ -631,15 +583,21 @@ public class GraphOLUtilities_v3 {
                     } else {
                         result.add(df.getOWLObjectPropertyDomainAxiom(objExp, subExpr, edge.getAnnotations()));
                     }
+                    superDomRanAxiomAdded = true;
                 }
             } else {
                 if (superExpr instanceof OWLDataSomeValuesFrom) {
                     OWLDataSomeValuesFrom dsvf = (OWLDataSomeValuesFrom) superExpr;
                     if (dsvf.getFiller().isTopDatatype()) {
                         result.add(df.getOWLDataPropertyDomainAxiom(dsvf.getProperty(), subExpr, edge.getAnnotations()));
+                        superDomRanAxiomAdded = true;
                     }
                 }
             }
+            if(!superDomRanAxiomAdded) {
+                result.add(df.getOWLSubClassOfAxiom(superExpr, subExpr, edge.getAnnotations()));
+            }
+            //INUTILE result.add(df.getOWLEquivalentClassesAxiom(subExpr, superExpr, edge.getAnnotations()));
             return result;
         } else {
             if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
