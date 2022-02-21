@@ -43,7 +43,12 @@ import javax.validation.constraints.*;
     }
     @Override
     public Response removeFilter(QueryGraph body, Integer filterId, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.removeFilter(body, filterId)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
 }

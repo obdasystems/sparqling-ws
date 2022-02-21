@@ -24,6 +24,8 @@ import org.apache.jena.sparql.engine.Rename;
 import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprList;
 import org.apache.jena.sparql.expr.ExprVar;
+import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.expr.nodevalue.NodeValueNode;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -71,7 +73,7 @@ public class QueryGraphHandler {
         while (found[0]) {
             ret = varName + count[0];
             String finalRet = ret;
-            ElementWalker.walk(
+            ElementWalker_New.walk(
                     q.getQueryPattern(),
                     new ElementVisitorBase() {
                         @Override
@@ -100,6 +102,22 @@ public class QueryGraphHandler {
             );
         }
         return ret;
+    }
+
+    private static Expr getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
+        switch (varOrConstant.getType()) {
+            case VAR: return new ExprVar(AbstractQueryBuilder.makeVar(varOrConstant.getValue()));
+            case IRI: return NodeValue.makeNode(
+                    AbstractQueryBuilder.makeNode("<" + varOrConstant.getValue() + ">", p)
+            );
+            case CONSTANT:
+                String constant = "'" + varOrConstant.getValue() + "'^^"+varOrConstant.getConstantType();
+                return NodeValue.makeNode(
+                        AbstractQueryBuilder.makeNode(constant, p)
+                );
+            default:
+                throw new RuntimeException("Cannot recognize type of var or constant. Found " + varOrConstant.getType());
+        }
     }
 
     /********************
@@ -410,7 +428,7 @@ public class QueryGraphHandler {
             case IN:
                 ExprList list = new ExprList();
                 for (VarOrConstant v:f.getExpression().getParameters()) {
-                    list.add(new ExprVar(getVarOrConstant(v,p)));
+                    list.add(getVarOrConstant(v,p));
                 }
                 filterExpr = ef.in(
                         getVarOrConstant(f.getExpression().getParameters().get(0), p),
@@ -419,7 +437,7 @@ public class QueryGraphHandler {
             case NOT_IN:
                 ExprList not_list = new ExprList();
                 for (VarOrConstant v:f.getExpression().getParameters()) {
-                    not_list.add(new ExprVar(getVarOrConstant(v,p)));
+                    not_list.add(getVarOrConstant(v,p));
                 }
                 filterExpr = ef.notin(
                         getVarOrConstant(f.getExpression().getParameters().get(0), p),
@@ -433,15 +451,36 @@ public class QueryGraphHandler {
         return body;
     }
 
-    private Node getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
-        switch (varOrConstant.getType()) {
-            case VAR: return AbstractQueryBuilder.makeVar(varOrConstant.getValue());
-            case IRI: return AbstractQueryBuilder.makeNode("<" + varOrConstant.getValue() + ">", p);
-            case CONSTANT:
-                String constant = "'" + varOrConstant.getValue() + "'^^"+varOrConstant.getConstantType();
-                return AbstractQueryBuilder.makeNode(constant, p);
-            default:
-                throw new RuntimeException("Cannot recognize type of var or constant. Found " + varOrConstant.getType());
-        }
+
+    public QueryGraph removeFilter(QueryGraph body, Integer filterId) {
+        // Modify Graph
+        body.getFilters().remove(filterId);
+        // Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        final int[] index = {-1};
+        final boolean[] removed = {false};
+        q.getQueryPattern().visit(new ElementVisitorBase() {
+            @Override
+            public void visit(ElementFilter el) {
+                index[0]++;
+            }
+
+            @Override
+            public void visit(ElementGroup elementGroup) {
+                Iterator<Element> it = elementGroup.getElements().iterator();
+                while(it.hasNext()) {
+                    Element el = it.next();
+                    el.visit(this);
+                    if(index[0] == filterId) {
+                        it.remove();
+                        removed[0] = true;
+                    }
+                }
+            }
+        });
+        if (!removed[0]) throw new RuntimeException("Cannot find FILTER " + filterId);
+        body.setSparql(q.serialize());
+        return body;
     }
 }
