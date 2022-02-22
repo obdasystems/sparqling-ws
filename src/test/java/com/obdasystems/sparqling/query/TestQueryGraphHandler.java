@@ -9,7 +9,6 @@ import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
-import org.apache.jena.sparql.expr.FunctionLabel;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.junit.BeforeClass;
@@ -17,7 +16,6 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -341,7 +339,7 @@ public class TestQueryGraphHandler {
         f2.setExpression(fe2);
         qg.addFiltersItem(f2);
         qg = qgb.newFilter(qg, 1);
-        qg = qgb.removeFilter(qg, 0);
+        qg = qgb.removeFilter(qg, 0, true);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         System.out.println(q);

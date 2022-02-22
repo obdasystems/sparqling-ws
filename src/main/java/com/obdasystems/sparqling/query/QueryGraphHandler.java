@@ -25,7 +25,6 @@ import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprList;
 import org.apache.jena.sparql.expr.ExprVar;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.expr.nodevalue.NodeValueNode;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -452,9 +451,9 @@ public class QueryGraphHandler {
     }
 
 
-    public QueryGraph removeFilter(QueryGraph body, Integer filterId) {
+    public QueryGraph removeFilter(QueryGraph body, Integer filterId, boolean modifyGraph) {
         // Modify Graph
-        body.getFilters().remove(filterId);
+        if (modifyGraph) body.getFilters().remove(filterId);
         // Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
@@ -480,6 +479,29 @@ public class QueryGraphHandler {
             }
         });
         if (!removed[0]) throw new RuntimeException("Cannot find FILTER " + filterId);
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph removeFilters(QueryGraph body) {
+        // Modify Graph
+        body.getFilters().clear();
+        // Modify SPARQL
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.getQueryPattern().visit(new ElementVisitorBase() {
+            @Override
+            public void visit(ElementGroup elementGroup) {
+                Iterator<Element> it = elementGroup.getElements().iterator();
+                while(it.hasNext()) {
+                    Element el = it.next();
+
+                    if(el instanceof ElementFilter) {
+                        it.remove();
+                    }
+                }
+            }
+        });
         body.setSparql(q.serialize());
         return body;
     }
