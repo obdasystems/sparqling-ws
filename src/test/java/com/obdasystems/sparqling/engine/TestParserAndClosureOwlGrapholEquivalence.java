@@ -4,13 +4,12 @@ import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.FunctionalSyntaxDocumentFormat;
 import org.semanticweb.owlapi.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,7 +24,9 @@ public class TestParserAndClosureOwlGrapholEquivalence {
     public static void main(String[] args) {
         try {
             Path basePath = Paths.get("src/test/resources/istat");
+            //Path basePath = Paths.get("src/test/resources/books");
             File reportFile = new File(basePath + "/test_report.txt");
+
             PrintWriter writer = new PrintWriter(reportFile);
             GraphOLParser_v3 parser = new GraphOLParser_v3();
             Configuration config = new Configuration();
@@ -47,13 +48,17 @@ public class TestParserAndClosureOwlGrapholEquivalence {
                         writer.println("Loaded!!");
                         logger.info("Loaded!!");
 
+                        OWLOntologyManager man = grapholOntology.getOWLOntologyManager();
+                        man.saveOntology(grapholOntology, new FunctionalSyntaxDocumentFormat() ,new FileOutputStream(new File(subFolder.toString()+"\\generated_files\\translated_graphol.owl")));
+
                         writer.println("Loading " + owlFile.get(0).toString());
                         logger.info("Loading " + owlFile.get(0).toString());
-                        OWLOntologyManager man = grapholOntology.getOWLOntologyManager();
                         OWLOntology owlOntology = man.loadOntologyFromOntologyDocument(new File(owlFile.get(0).toString()));
                         Reasoner owlHermit = new Reasoner(config, owlOntology);
                         writer.println("Loaded!!");
                         logger.info("Loaded!!");
+
+
 
 
                         writer.println("###### List of axioms in the OWL ontology that are NOT implied by the graphol one");
@@ -74,7 +79,6 @@ public class TestParserAndClosureOwlGrapholEquivalence {
                         }
 
                         writer.println();writer.println();writer.println();
-
                         logger.info("Computing closure of OWL ontology");
                         writer.println("Computing closure of OWL ontology");
                         OntologyProximityManager owlProximityManager = new OntologyProximityManager(owlOntology);
@@ -82,6 +86,8 @@ public class TestParserAndClosureOwlGrapholEquivalence {
                         logger.info("Closure of OWL ontology has size: "+owlClosure.size());
                         writer.println("Closure of OWL ontology has size: "+owlClosure.size());
                         OWLOntology owlClosedOntology = man.createOntology(owlClosure);
+                        man.saveOntology(owlClosedOntology, new FunctionalSyntaxDocumentFormat() ,new FileOutputStream(new File(subFolder.toString()+"\\generated_files\\expanded_owl.owl")));
+
                         Reasoner owlClosedHermit = new Reasoner(config, owlClosedOntology);
                         logger.info("Closure of OWL ontology computed");
                         writer.println("Closure of OWL ontology computed");
@@ -95,6 +101,7 @@ public class TestParserAndClosureOwlGrapholEquivalence {
                         logger.info("Closure of Graphol ontology has size: "+grapholClosure.size());
                         writer.println("Closure of Graphol ontology has size: "+grapholClosure.size());
                         OWLOntology grapholClosedOntology = man.createOntology(grapholClosure);
+                        man.saveOntology(grapholClosedOntology, new FunctionalSyntaxDocumentFormat() ,new FileOutputStream(new File(subFolder.toString()+"\\generated_files\\expanded_graphol.owl")));
                         Reasoner grapholClosedHermit = new Reasoner(config, grapholClosedOntology);
                         logger.info("Closure of Graphol ontology computed");
                         writer.println("Closure of Graphol ontology computed");

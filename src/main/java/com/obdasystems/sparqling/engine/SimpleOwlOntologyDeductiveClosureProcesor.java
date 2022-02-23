@@ -55,6 +55,13 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
         return objectPropertyRangeAxiom;
     }
 
+    private boolean isUnionOrIntersection(OWLClassExpression exp) {
+        if(exp instanceof OWLObjectUnionOf || exp instanceof OWLObjectIntersectionOf) {
+            return true;
+        }
+        return false;
+    }
+
     public Set<OWLAxiom> computeSimpleDeductiveClosure() {
         logger.debug("TBoxGraphDeductiveClosure started... ");
         long t = System.currentTimeMillis();
@@ -65,7 +72,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
         GR = new SimpleDirectedGraph<OWLObjectPropertyExpression, DefaultEdge>(DefaultEdge.class);
         GCA = new SimpleDirectedGraph<OWLDataPropertyExpression, DefaultEdge>(DefaultEdge.class);
         initGraphVertex();
-        initQualifiedConceptAttributeDomainTrivialIAs();
+        //initQualifiedConceptAttributeDomainTrivialIAs();
         inputOntology.getLogicalAxioms(Imports.INCLUDED).forEach(axiom -> {
             if (axiom instanceof OWLSubClassOfAxiom) {
                 OWLSubClassOfAxiom castAxiom = (OWLSubClassOfAxiom) axiom;
@@ -82,9 +89,11 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                     if (sup instanceof OWLObjectIntersectionOf) {
                         processConceptInclusionWithIntersectionOnTheRight(sub, (OWLObjectIntersectionOf) sup);
                     } else {
-                        GC.addVertex(sub);
-                        GC.addVertex(sup);
-                        GC.addEdge(sub, sup);
+                        if(!(isUnionOrIntersection(sub) || isUnionOrIntersection(sup))) {
+                            GC.addVertex(sub);
+                            GC.addVertex(sup);
+                            GC.addEdge(sub, sup);
+                        }
                     }
                 }
             } else {
@@ -125,10 +134,12 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                                                 processConceptInclusionWithUnionOnTheLeft((OWLObjectUnionOf) second, first);
                                             }
                                         } else {
-                                            GC.addVertex(first);
-                                            GC.addVertex(second);
-                                            GC.addEdge(first, second);
-                                            GC.addEdge(second, first);
+                                            if(!(isUnionOrIntersection(first) || isUnionOrIntersection(second))) {
+                                                GC.addVertex(first);
+                                                GC.addVertex(second);
+                                                GC.addEdge(first, second);
+                                                GC.addEdge(second, first);
+                                            }
                                         }
                                     }
                                 }
@@ -149,14 +160,16 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                                                     if (second instanceof OWLObjectUnionOf) {
                                                         processConceptDisjointnessWithUnionOnTheLeft((OWLObjectUnionOf) second, first);
                                                     } else {
-                                                        OWLObjectComplementOf negFirst = dataFactory.getOWLObjectComplementOf(first);
-                                                        OWLObjectComplementOf negSecond = dataFactory.getOWLObjectComplementOf(second);
-                                                        GC.addVertex(first);
-                                                        GC.addVertex(second);
-                                                        GC.addVertex(negFirst);
-                                                        GC.addVertex(negSecond);
-                                                        GC.addEdge(first, negSecond);
-                                                        GC.addEdge(second, negFirst);
+                                                        if(!(isUnionOrIntersection(first) || isUnionOrIntersection(second))) {
+                                                            OWLObjectComplementOf negFirst = dataFactory.getOWLObjectComplementOf(first);
+                                                            OWLObjectComplementOf negSecond = dataFactory.getOWLObjectComplementOf(second);
+                                                            GC.addVertex(first);
+                                                            GC.addVertex(second);
+                                                            GC.addVertex(negFirst);
+                                                            GC.addVertex(negSecond);
+                                                            GC.addEdge(first, negSecond);
+                                                            GC.addEdge(second, negFirst);
+                                                        }
                                                     }
                                                 }
                                             }
