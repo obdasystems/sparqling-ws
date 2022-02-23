@@ -5,14 +5,12 @@ import com.obdasystems.sparqling.model.Filter;
 import com.obdasystems.sparqling.model.FilterExpression;
 import com.obdasystems.sparqling.model.QueryGraph;
 import com.obdasystems.sparqling.model.VarOrConstant;
-import com.obdasystems.sparqling.query.visitors.FilterCheck;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
-import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.lang.SPARQLParser;
-import org.apache.jena.sparql.syntax.ElementVisitor;
+import org.apache.jena.sparql.syntax.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -180,7 +178,7 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         Filter f = new Filter();
         FilterExpression fe = new FilterExpression();
-        fe.setOperator(FilterExpression.OperatorEnum.EQUAL);
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_IN);
         List<VarOrConstant> params = new LinkedList<>();
         VarOrConstant v1 = new VarOrConstant();
         v1.setValue("?Book0");
@@ -189,15 +187,178 @@ public class TestQueryGraphHandler {
         VarOrConstant v2 = new VarOrConstant();
         v2.setValue("http://www.obdasystems.com/books/book-1");
         v2.setType(VarOrConstant.TypeEnum.IRI);
+        VarOrConstant v3 = new VarOrConstant();
+        v3.setValue("1");
+        v3.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v3.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        VarOrConstant v4 = new VarOrConstant();
+        v4.setValue("11-11-2020");
+        v4.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v4.setConstantType(VarOrConstant.ConstantTypeEnum.DATETIME);
         params.add(v2);
+        params.add(v3);
+        params.add(v4);
         fe.setParameters(params);
         f.setExpression(fe);
         qg.addFiltersItem(f);
         qg = qgb.newFilter(qg, 0);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
-        FilterCheck visitor = new FilterCheck();
-        q.getQueryPattern().visit(visitor);
-        assertTrue(visitor.isFound());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        if(el.getExpr().getFunction().getFunctionSymbol().getSymbol().equals("notin")
+                            && el.getExpr().getVarsMentioned().contains(
+                                    AbstractQueryBuilder.makeVar("?Book0")))
+                            passed[0] = true;
+                    }
+                });
+        assertTrue(passed[0]);
+    }
+
+    @Test
+    public void twoFilters() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_IN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?Book0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("http://www.obdasystems.com/books/book-1");
+        v2.setType(VarOrConstant.TypeEnum.IRI);
+        VarOrConstant v3 = new VarOrConstant();
+        v3.setValue("1");
+        v3.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v3.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        VarOrConstant v4 = new VarOrConstant();
+        v4.setValue("11-11-2020");
+        v4.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v4.setConstantType(VarOrConstant.ConstantTypeEnum.DATETIME);
+        params.add(v2);
+        params.add(v3);
+        params.add(v4);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+
+        Filter f2 = new Filter();
+        FilterExpression fe2 = new FilterExpression();
+        fe2.setOperator(FilterExpression.OperatorEnum.NOT_EQUAL);
+        List<VarOrConstant> params2 = new LinkedList<>();
+        VarOrConstant v12 = new VarOrConstant();
+        v12.setValue("?Author0");
+        v12.setType(VarOrConstant.TypeEnum.VAR);
+        VarOrConstant v22 = new VarOrConstant();
+        v22.setValue("http://www.obdasystems.com/books/book-1");
+        v22.setType(VarOrConstant.TypeEnum.IRI);
+        params2.add(v12);
+        params2.add(v22);
+        fe2.setParameters(params2);
+        f2.setExpression(fe2);
+        qg.addFiltersItem(f2);
+        qg = qgb.newFilter(qg, 1);
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final int[] filters = {0};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        filters[0]++;
+                    }
+                });
+        assertTrue(filters[0] == 2);
+    }
+
+    @Test
+    public void removeFilter() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_IN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?Book0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("http://www.obdasystems.com/books/book-1");
+        v2.setType(VarOrConstant.TypeEnum.IRI);
+        VarOrConstant v3 = new VarOrConstant();
+        v3.setValue("1");
+        v3.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v3.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        VarOrConstant v4 = new VarOrConstant();
+        v4.setValue("11-11-2020");
+        v4.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v4.setConstantType(VarOrConstant.ConstantTypeEnum.DATETIME);
+        params.add(v2);
+        params.add(v3);
+        params.add(v4);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+
+        Filter f2 = new Filter();
+        FilterExpression fe2 = new FilterExpression();
+        fe2.setOperator(FilterExpression.OperatorEnum.NOT_EQUAL);
+        List<VarOrConstant> params2 = new LinkedList<>();
+        VarOrConstant v12 = new VarOrConstant();
+        v12.setValue("?Author0");
+        v12.setType(VarOrConstant.TypeEnum.VAR);
+        VarOrConstant v22 = new VarOrConstant();
+        v22.setValue("http://www.obdasystems.com/books/book-1");
+        v22.setType(VarOrConstant.TypeEnum.IRI);
+        params2.add(v12);
+        params2.add(v22);
+        fe2.setParameters(params2);
+        f2.setExpression(fe2);
+        qg.addFiltersItem(f2);
+        qg = qgb.newFilter(qg, 1);
+        qg = qgb.removeFilter(qg, 0, true);
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        System.out.println(q);
+        final int[] filters = {0};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        filters[0]++;
+                    }
+                });
+        assertTrue(filters[0] == 1);
+    }
+
+    @Test
+    public void sandbox() {
+        String sparql = "SELECT ?x { ?x <op> ?y. filter(?y not in (2, <iri2>)) }";
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), sparql);
     }
 }
