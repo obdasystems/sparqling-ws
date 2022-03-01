@@ -36,7 +36,7 @@ public class TestQueryGraphHandler {
         writtenByIRI = "http://www.obdasystems.com/books/writtenBy";
         authorIRI = "http://www.obdasystems.com/books/Author";
         nameIRI = "http://www.obdasystems.com/books/name";
-        SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_ontology.graphol"));
+        SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_1.0.0/books_ontology.graphol"));
     }
     @Test
     public void getQueryGraph() {
