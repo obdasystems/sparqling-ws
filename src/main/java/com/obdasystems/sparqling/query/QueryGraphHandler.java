@@ -21,10 +21,7 @@ import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
-import org.apache.jena.sparql.expr.Expr;
-import org.apache.jena.sparql.expr.ExprList;
-import org.apache.jena.sparql.expr.ExprVar;
-import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.expr.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -97,7 +94,8 @@ public class QueryGraphHandler {
                             }
                             found[0] = false;
                         }
-                    }
+                    },
+                    new ExprVisitorBase() {}
             );
         }
         return ret;
