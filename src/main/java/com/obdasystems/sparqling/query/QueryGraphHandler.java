@@ -296,7 +296,7 @@ public class QueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted);
-        ElementWalker_New.walk(q.getQueryPattern(), deleteQueryGraphElementVisitor);
+        q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
         for(String var:varToBeDeleted) {
             q.getProject().remove(AbstractQueryBuilder.makeVar(var));
         }
