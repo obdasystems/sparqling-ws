@@ -265,14 +265,16 @@ public class QueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         Op renamed = Rename.renameVar(Algebra.compile(q), AbstractQueryBuilder.makeVar(graphElementId2), AbstractQueryBuilder.makeVar(graphElementId1));
-        body.setSparql(OpAsQuery.asQuery(renamed).serialize());
+        Query newQ = OpAsQuery.asQuery(renamed);
+        newQ.setPrefixMapping(q.getPrefixMapping());
+        body.setSparql(newQ.serialize());
         // Modify graph
         if(ge1.getChildren() != null && ge2.getChildren() != null)
             ge1.getChildren().addAll(ge2.getChildren());
         if(ge1.getChildren() == null && ge2.getChildren() != null)
             ge1.setChildren(ge2.getChildren());
         ge2.setId(graphElementId1);
-        ge2.setChildren(null);
+        new GraphElementCycleRemover().removeCycles(body.getGraph());
         for(HeadElement h:body.getHead()) {
             if(h.getVar().equals(graphElementId2)) {
                 h.setVar(varPrefix + graphElementId1);
