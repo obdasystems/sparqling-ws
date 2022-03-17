@@ -342,7 +342,6 @@ public class TestQueryGraphHandler {
         qg = qgb.removeFilter(qg, 0, true);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
-        System.out.println(q);
         final int[] filters = {0};
         ElementWalker.walk(
                 q.getQueryPattern(),
@@ -353,6 +352,20 @@ public class TestQueryGraphHandler {
                     }
                 });
         assertTrue(filters[0] == 1);
+    }
+
+    @Test
+    public void joinWithCycle() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, bookIRI, false, "Author0"
+        );
+        qg = qgb.putQueryGraphJoin(qg,"Book1", "Book0");
+        qg.toString();
     }
 
     @Test
