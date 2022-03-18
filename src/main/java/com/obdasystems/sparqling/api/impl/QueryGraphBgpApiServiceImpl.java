@@ -39,6 +39,17 @@ public class QueryGraphBgpApiServiceImpl extends QueryGraphBgpApiService {
     }
 
     @Override
+    public Response deleteGraphElementIdClass(QueryGraph body, String classIRI, String graphElementId, SecurityContext securityContext) throws NotFoundException {
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.deleteQueryGraphElementClass(body, graphElementId, classIRI)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
+    }
+
+    @Override
     public Response getQueryGraph( @NotNull String clickedClassIRI, SecurityContext securityContext) throws NotFoundException {
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();

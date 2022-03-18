@@ -23,7 +23,7 @@ import javax.validation.Valid;
 /**
  * OrderByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class OrderByElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-18T08:15:14.674Z[GMT]")public class OrderByElement  implements Serializable  {
   @JsonProperty("headElementId")
   private Integer headElementId = null;
 

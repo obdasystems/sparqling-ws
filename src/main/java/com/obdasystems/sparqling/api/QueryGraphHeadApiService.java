@@ -16,7 +16,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public abstract class QueryGraphHeadApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-18T08:15:14.674Z[GMT]")public abstract class QueryGraphHeadApiService {
     public abstract Response addHeadTerm(QueryGraph body,String graphElementId,SecurityContext securityContext) throws NotFoundException;
     public abstract Response aggregationHavingHeadTerm(QueryGraph body, @NotNull String direction,String headTerm,SecurityContext securityContext) throws NotFoundException;
     public abstract Response aggregationHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;

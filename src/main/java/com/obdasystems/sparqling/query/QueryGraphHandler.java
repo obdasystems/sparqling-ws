@@ -204,6 +204,9 @@ public class QueryGraphHandler {
         GraphElement ge = new GraphElement();
         ge.setId("x" + System.currentTimeMillis());
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(predicate, pdf));
+        if (!isPredicateDirect) {
+            ge.getEntities().get(0).setType(Entity.TypeEnum.INVERSEOBJECTPROPERTY);
+        }
         GraphElement ge1 = new GraphElement();
         ge1.setId(var.substring(1));
         ge1.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(target, pdf));
@@ -310,6 +313,22 @@ public class QueryGraphHandler {
         body.setHead(body.getHead().stream().filter(
                 headElement -> !varToBeDeleted.contains(headElement.getGraphElementId()))
                 .collect(Collectors.toList()));
+        return body;
+    }
+
+    public QueryGraph deleteQueryGraphElementClass(QueryGraph body, String graphElementId, String classIRI) {
+        GraphElementFinder gef = new GraphElementFinder();
+        GraphElement ge = gef.findElementById(graphElementId, body.getGraph());
+        Iterator<Entity> it = ge.getEntities().iterator();
+        boolean found  = false;
+        while (it.hasNext()) {
+            Entity e = it.next();
+            if (e.getIri().equals(classIRI)) {
+                it.remove();
+                found = true;
+            }
+        }
+        if (!found) throw new RuntimeException("Cannot find class " + classIRI + " in GraphElement " + graphElementId);
         return body;
     }
 
