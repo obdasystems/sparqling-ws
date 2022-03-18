@@ -24,6 +24,7 @@ public class ImportCode {
 
         Set<String> filesNotToCopy = new HashSet<>();
         filesNotToCopy.add("StandaloneApiServiceImpl.java");
+        filesNotToCopy.add("StandaloneApi.java");
         filesNotToCopy.add("OntologyGraphApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphBgpApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphFilterApiServiceImpl.java");
