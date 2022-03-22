@@ -18,7 +18,10 @@ public class GraphElementFinder {
     public GraphElement findElementById(String id, GraphElement e) {
         found = null;
         _findElementById(id, e);
-        return getFound();
+        if (found == null) {
+            throw new RuntimeException("Graph element "+ id + " not found!");
+        }
+        return found;
     }
 
     private void _findElementById(String id, GraphElement e) {
@@ -36,13 +39,6 @@ public class GraphElementFinder {
         for(GraphElement child:e.getChildren()) {
             _findElementById(id, child);
         }
-    }
-
-    private GraphElement getFound() {
-        if (found == null) {
-            throw new RuntimeException("Graph element not found!");
-        }
-        return found;
     }
 
     public void deleteElementById(String id, GraphElement e) {
