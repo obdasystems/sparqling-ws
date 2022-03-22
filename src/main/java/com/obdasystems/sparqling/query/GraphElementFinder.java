@@ -80,13 +80,14 @@ public class GraphElementFinder {
         if(e.getId().equals(id)) {
             found = e;
         }
+        if(found != null) {
+            childrenIds.add(e.getId());
+        }
         if(e.getChildren() == null || e.getChildren().size() == 0) {
+            found = null;
             return;
         }
         for(GraphElement child:e.getChildren()) {
-            if(found != null) {
-                childrenIds.add(child.getId());
-            }
             _findChildrenIds(id, child);
         }
         found = null;

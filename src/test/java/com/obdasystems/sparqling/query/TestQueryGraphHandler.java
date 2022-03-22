@@ -369,6 +369,23 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testFindChildrenIds() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GraphElementFinder gef = new GraphElementFinder();
+        assertEquals(gef.findChildrenIds("name0", qg.getGraph()).size(), 1);
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT ?x { ?x <op> ?y. filter(?y not in (2, <iri2>)) }";
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
