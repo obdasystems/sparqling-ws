@@ -31,6 +31,7 @@ public class GraphElementCycleRemover {
                     it.remove();
                     GraphElement newChild = new GraphElement();
                     newChild.setId(child.getId());
+                    newChild.setEntities(child.getEntities());
                     toAdd.add(newChild);
                 }
             }
