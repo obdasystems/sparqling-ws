@@ -28,10 +28,7 @@ import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class QueryGraphHandler {
@@ -272,10 +269,17 @@ public class QueryGraphHandler {
         newQ.setPrefixMapping(q.getPrefixMapping());
         body.setSparql(newQ.serialize());
         // Modify graph
-        if(ge1.getChildren() != null && ge2.getChildren() != null)
-            ge1.getChildren().addAll(ge2.getChildren());
+        if(ge1.getChildren() != null && ge2.getChildren() != null) {
+            List<GraphElement> allChildren = new LinkedList<>();
+            allChildren.addAll(ge1.getChildren());
+            allChildren.addAll(ge2.getChildren());
+            ge1.setChildren(allChildren);
+            ge2.setChildren(allChildren);
+        }
         if(ge1.getChildren() == null && ge2.getChildren() != null)
             ge1.setChildren(ge2.getChildren());
+        if(ge1.getChildren() != null && ge2.getChildren() == null)
+            ge2.setChildren(ge1.getChildren());
         ge2.setId(graphElementId1);
         new GraphElementCycleRemover().removeCycles(body.getGraph());
         for(HeadElement h:body.getHead()) {
