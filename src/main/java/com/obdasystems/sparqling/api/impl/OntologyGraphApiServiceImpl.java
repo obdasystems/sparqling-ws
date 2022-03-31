@@ -1,29 +1,22 @@
 package com.obdasystems.sparqling.api.impl;
 
-import com.obdasystems.sparqling.api.*;
+import com.obdasystems.sparqling.api.ApiResponseMessage;
+import com.obdasystems.sparqling.api.NotFoundException;
+import com.obdasystems.sparqling.api.OntologyGraphApiService;
 import com.obdasystems.sparqling.engine.OntologyProximityManager;
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
-import com.obdasystems.sparqling.model.*;
 
-import com.obdasystems.sparqling.model.Highlights;
-import com.obdasystems.sparqling.model.Paths;
-
-import java.util.Map;
-import java.util.List;
-import com.obdasystems.sparqling.api.NotFoundException;
-
-import java.io.InputStream;
-
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import javax.validation.constraints.*;
+import java.util.List;
+
 public class OntologyGraphApiServiceImpl extends OntologyGraphApiService {
     @Override
     public Response highligths( @NotNull String clickedClassIRI,  List<String> params, SecurityContext securityContext) throws NotFoundException {
         try {
             OntologyProximityManager opm = SWSOntologyManager.getOntologyManager().getOntologyProximityManager();
+            if(opm == null) throw new RuntimeException("Cannot find ontology, please upload a new ontology.");
             return Response.ok().entity(opm.getHighlights(clickedClassIRI)).build();
         } catch (Exception e) {
             e.printStackTrace();

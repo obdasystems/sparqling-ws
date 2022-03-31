@@ -26,7 +26,7 @@ import javax.validation.Valid;
 /**
  * Highlights
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-18T08:15:14.674Z[GMT]")public class Highlights  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-31T16:20:47.492Z[GMT]")public class Highlights  implements Serializable  {
   @JsonProperty("classes")
   private List<String> classes = null;
 

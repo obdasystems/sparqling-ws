@@ -33,8 +33,10 @@ public class ImportCode {
         api.addAll(listFilesUsingJavaIO(genApi));
         File apiDir = new File(base + "/api");
         for(File file:api) {
-            FileUtils.copyFileToDirectory(file, apiDir);
-            file.delete();
+            if(!filesNotToCopy.contains(file.getName())) {
+                FileUtils.copyFileToDirectory(file, apiDir);
+                file.delete();
+            }
         }
 
         Set<File> factories = listFilesUsingJavaIO(mainFactories);

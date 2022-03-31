@@ -63,7 +63,9 @@ public class OntologyProximityManager {
 
     //GETTERS
     public Set<OWLClass> getClassDescendants(OWLClass cl) {
-        return classDescendantsMap.get(cl);
+        Set<OWLClass> ret = classDescendantsMap.get(cl);
+        if (ret == null) throw new RuntimeException("Cannot find class " + cl.getIRI().toQuotedString());
+        return ret;
     }
 
     public Set<OWLClass> getClassFathers(OWLClass cl) {

@@ -1,24 +1,17 @@
 package com.obdasystems.sparqling.api.impl;
 
-import com.obdasystems.sparqling.api.*;
-import com.obdasystems.sparqling.model.*;
-
-import com.obdasystems.sparqling.model.QueryGraph;
-
-import java.util.Map;
-import java.util.List;
+import com.obdasystems.sparqling.api.ApiResponseMessage;
 import com.obdasystems.sparqling.api.NotFoundException;
-
-import java.io.InputStream;
-
+import com.obdasystems.sparqling.api.QueryGraphBgpApiService;
+import com.obdasystems.sparqling.model.QueryGraph;
 import com.obdasystems.sparqling.query.QueryGraphHandler;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import javax.validation.constraints.*;
+
 public class QueryGraphBgpApiServiceImpl extends QueryGraphBgpApiService {
     Logger logger = LoggerFactory.getLogger(QueryGraphBgpApiServiceImpl.class);
 

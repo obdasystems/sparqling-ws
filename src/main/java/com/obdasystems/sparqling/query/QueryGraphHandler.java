@@ -298,6 +298,9 @@ public class QueryGraphHandler {
         }
         GraphElementFinder gef = new GraphElementFinder();
         Set<String> varToBeDeleted = gef.findChildrenIds(graphElementId, body.getGraph());
+        if (varToBeDeleted.size() == 0) {
+            throw new RuntimeException("Cannot find graph element" + graphElementId);
+        }
         varToBeDeleted.add(graphElementId);
         //Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
@@ -323,6 +326,9 @@ public class QueryGraphHandler {
     public QueryGraph deleteQueryGraphElementClass(QueryGraph body, String graphElementId, String classIRI) {
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement ge = gef.findElementById(graphElementId, body.getGraph());
+        if (ge == null) {
+            throw new RuntimeException("Cannot find graph element" + graphElementId);
+        }
         Iterator<Entity> it = ge.getEntities().iterator();
         boolean found  = false;
         while (it.hasNext()) {
@@ -465,6 +471,12 @@ public class QueryGraphHandler {
                         getVarOrConstant(f.getExpression().getParameters().get(0), p),
                         not_list);
                 break;
+            case REGEX:
+                filterExpr = ef.regex(
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        f.getExpression().getParameters().get(1).getValue(),
+                        f.getExpression().getParameters().get(2).getValue());
+                break;
             default:
                 throw new RuntimeException("Cannot recognize operator of filter. Found " + f.getExpression().getOperator());
         }
@@ -476,7 +488,7 @@ public class QueryGraphHandler {
 
     public QueryGraph removeFilter(QueryGraph body, Integer filterId, boolean modifyGraph) {
         // Modify Graph
-        if (modifyGraph) body.getFilters().remove(filterId);
+        if (modifyGraph) body.getFilters().remove((int)filterId);
         // Modify SPARQL
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
@@ -515,14 +527,7 @@ public class QueryGraphHandler {
         q.getQueryPattern().visit(new ElementVisitorBase() {
             @Override
             public void visit(ElementGroup elementGroup) {
-                Iterator<Element> it = elementGroup.getElements().iterator();
-                while(it.hasNext()) {
-                    Element el = it.next();
-
-                    if(el instanceof ElementFilter) {
-                        it.remove();
-                    }
-                }
+                elementGroup.getElements().removeIf(el -> el instanceof ElementFilter);
             }
         });
         body.setSparql(q.serialize());

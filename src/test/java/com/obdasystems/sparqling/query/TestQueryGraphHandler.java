@@ -287,6 +287,50 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testRegex() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.REGEX);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?Book0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("Pippo");
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        VarOrConstant v3 = new VarOrConstant();
+        v3.setValue("i");
+        v3.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v3.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        params.add(v2);
+        params.add(v3);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        assertEquals("regex", el.getExpr().getFunction().getFunctionSymbol().getSymbol());
+                    }
+                });
+    }
+
+    @Test
     public void removeFilter() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph(bookIRI);
