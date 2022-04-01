@@ -58,8 +58,13 @@ import javax.validation.constraints.*;
     }
     @Override
     public Response orderByHeadTerm(QueryGraph body,  @NotNull String direction, String headTerm, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.orderBy(body, headTerm)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
     }
     @Override
     public Response renameHeadTerm(QueryGraph body, String headTerm, SecurityContext securityContext) throws NotFoundException {

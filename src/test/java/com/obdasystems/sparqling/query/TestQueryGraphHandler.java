@@ -1,12 +1,10 @@
 package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
-import com.obdasystems.sparqling.model.Filter;
-import com.obdasystems.sparqling.model.FilterExpression;
-import com.obdasystems.sparqling.model.QueryGraph;
-import com.obdasystems.sparqling.model.VarOrConstant;
+import com.obdasystems.sparqling.model.*;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
+import org.apache.jena.ext.com.google.common.graph.ElementOrder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.lang.SPARQLParser;
@@ -427,6 +425,28 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         GraphElementFinder gef = new GraphElementFinder();
         assertEquals(gef.findChildrenIds("name0", qg.getGraph()).size(), 1);
+    }
+
+    @Test
+    public void testOrderBy() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        OrderByElement ob = new OrderByElement();
+        ob.setAscending(true);
+        ob.setHeadElementId(0);
+        qg.orderBy(ob);
+        qg = qgb.orderBy(qg, "?name0");
+        qg = qgb.orderBy(qg, "?name0");
+        System.out.println(qg);
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(1,q.getOrderBy().size());
     }
 
     @Test

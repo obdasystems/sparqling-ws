@@ -36,6 +36,7 @@ public class QueryGraphHandler {
     private final Map<String, String> prefixes;
     private final PrefixDocumentFormat pdf;
     public static String varPrefix = "?";
+    private final SPARQLParser parser;
 
     public QueryGraphHandler() {
         ontology = SWSOntologyManager.getOntologyManager().getOwlOntology();
@@ -46,6 +47,7 @@ public class QueryGraphHandler {
         } else {
             prefixes = new HashMap<>();
         }
+        parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
     }
 
     private static String guessNewVarFromIRI(IRI iri, Query q) {
@@ -144,7 +146,6 @@ public class QueryGraphHandler {
             throw new RuntimeException("Iri " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
@@ -171,7 +172,6 @@ public class QueryGraphHandler {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
         }
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
@@ -218,7 +218,6 @@ public class QueryGraphHandler {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
         }
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         AggregationHandler aggHandler = new AggregationHandler(q);
         SelectHandler sh = new SelectHandler(aggHandler);
@@ -262,7 +261,6 @@ public class QueryGraphHandler {
             }
         }
         // Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         Op renamed = Rename.renameVar(Algebra.compile(q), AbstractQueryBuilder.makeVar(graphElementId2), AbstractQueryBuilder.makeVar(graphElementId1));
         Query newQ = OpAsQuery.asQuery(renamed);
@@ -303,7 +301,6 @@ public class QueryGraphHandler {
         }
         varToBeDeleted.add(graphElementId);
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted);
         q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
@@ -346,7 +343,6 @@ public class QueryGraphHandler {
         GraphElementFinder gef = new GraphElementFinder();
         gef.findElementById(graphElementId, body.getGraph());
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         AggregationHandler aggHandler = new AggregationHandler(q);
         SelectHandler sh = new SelectHandler(aggHandler);
@@ -375,7 +371,6 @@ public class QueryGraphHandler {
         }
         if (he == null) throw new RuntimeException("Cannot find head element id " + id);
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         q.getProject().remove(AbstractQueryBuilder.makeVar(id));
         if(q.getProject().isEmpty()) {
@@ -400,7 +395,6 @@ public class QueryGraphHandler {
         if (renamedHe == null) throw new RuntimeException("Cannot find head element id " + id);
         if (renamedHe.getAlias() == null) throw new RuntimeException("Alias not defined for element id " + id);
         //Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
         q.getProject().remove(AbstractQueryBuilder.makeVar(id));
@@ -413,10 +407,20 @@ public class QueryGraphHandler {
         return body;
     }
 
+    public QueryGraph orderBy(QueryGraph body, String headTerm) {
+        // Modify SPARQL
+        OrderByElement ob = body.getOrderBy();
+        Query q = parser.parse(new Query(), body.getSparql());
+        Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
+        if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
+        q.addOrderBy(orderVar, ob.isAscending() ? 1 : -1);
+        body.setSparql(q.serialize());
+        return body;
+    }
+
     public QueryGraph newFilter(QueryGraph body, Integer filterId) {
         Filter f = body.getFilters().get(filterId);
         // Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
@@ -490,7 +494,6 @@ public class QueryGraphHandler {
         // Modify Graph
         if (modifyGraph) body.getFilters().remove((int)filterId);
         // Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         final int[] index = {-1};
         final boolean[] removed = {false};
@@ -522,7 +525,6 @@ public class QueryGraphHandler {
         // Modify Graph
         body.getFilters().clear();
         // Modify SPARQL
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), body.getSparql());
         q.getQueryPattern().visit(new ElementVisitorBase() {
             @Override
