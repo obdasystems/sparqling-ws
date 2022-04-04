@@ -22,6 +22,7 @@ import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.Rename;
 import org.apache.jena.sparql.expr.*;
+import org.apache.jena.sparql.expr.aggregate.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
@@ -338,86 +339,6 @@ public class QueryGraphHandler {
         if (!found) throw new RuntimeException("Cannot find class " + classIRI + " in GraphElement " + graphElementId);
         return body;
     }
-
-    public QueryGraph addHeadTerm(QueryGraph body, String graphElementId) {
-        GraphElementFinder gef = new GraphElementFinder();
-        gef.findElementById(graphElementId, body.getGraph());
-        //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
-        AggregationHandler aggHandler = new AggregationHandler(q);
-        SelectHandler sh = new SelectHandler(aggHandler);
-        String var = varPrefix + graphElementId;
-        sh.addVar(AbstractQueryBuilder.makeVar(var));
-        body.setSparql(q.serialize());
-        //Modify graph
-        HeadElement he = new HeadElement();
-        he.setId(var);
-        he.setGraphElementId(graphElementId);
-        he.setVar(var);
-        body.addHeadItem(he);
-        return body;
-    }
-
-    public QueryGraph deleteHeadTerm(QueryGraph body, String id) {
-        //Modify graph
-        Iterator<HeadElement> it = body.getHead().iterator();
-        HeadElement he = null;
-        while (it.hasNext()) {
-            he = it.next();
-            if (he.getId().equals(id)) {
-                it.remove();
-                break;
-            }
-        }
-        if (he == null) throw new RuntimeException("Cannot find head element id " + id);
-        //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
-        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
-        if(q.getProject().isEmpty()) {
-            q.setQueryResultStar(true);
-        }
-        body.setSparql(q.serialize());
-        return body;
-    }
-
-    public QueryGraph renameHeadTerm(QueryGraph body, String id) {
-        //Get renaming head
-        HeadElement renamedHe = null;
-        int index = 0;
-        for(HeadElement he : body.getHead()) {
-            if(he.getId().equals(id)) {
-                renamedHe =  he;
-                renamedHe.setId(varPrefix + he.getAlias());
-                break;
-            }
-            index++;
-        }
-        if (renamedHe == null) throw new RuntimeException("Cannot find head element id " + id);
-        if (renamedHe.getAlias() == null) throw new RuntimeException("Alias not defined for element id " + id);
-        //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
-        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
-        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
-        q.getProject().getVars().add(index, newVar);
-        q.getProject().getExprs().put(
-            newVar,
-            new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
-        );
-        body.setSparql(q.serialize());
-        return body;
-    }
-
-    public QueryGraph orderBy(QueryGraph body, String headTerm) {
-        // Modify SPARQL
-        OrderByElement ob = body.getOrderBy();
-        Query q = parser.parse(new Query(), body.getSparql());
-        Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
-        if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
-        q.addOrderBy(orderVar, ob.isAscending() ? 1 : -1);
-        body.setSparql(q.serialize());
-        return body;
-    }
-
     public QueryGraph newFilter(QueryGraph body, Integer filterId) {
         Filter f = body.getFilters().get(filterId);
         // Modify SPARQL
@@ -429,8 +350,8 @@ public class QueryGraphHandler {
         switch (f.getExpression().getOperator()) {
             case EQUAL:
                 filterExpr = ef.eq(
-                    getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                    getVarOrConstant(f.getExpression().getParameters().get(1), p));
+                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
+                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
                 break;
             case GREATER_THAN:
                 filterExpr = ef.gt(
@@ -532,6 +453,225 @@ public class QueryGraphHandler {
                 elementGroup.getElements().removeIf(el -> el instanceof ElementFilter);
             }
         });
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph addHeadTerm(QueryGraph body, String graphElementId) {
+        GraphElementFinder gef = new GraphElementFinder();
+        gef.findElementById(graphElementId, body.getGraph());
+        //Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        AggregationHandler aggHandler = new AggregationHandler(q);
+        SelectHandler sh = new SelectHandler(aggHandler);
+        String var = varPrefix + graphElementId;
+        sh.addVar(AbstractQueryBuilder.makeVar(var));
+        body.setSparql(q.serialize());
+        //Modify graph
+        HeadElement he = new HeadElement();
+        he.setId(var);
+        he.setGraphElementId(graphElementId);
+        he.setVar(var);
+        body.addHeadItem(he);
+        return body;
+    }
+
+    public QueryGraph deleteHeadTerm(QueryGraph body, String id) {
+        //Modify graph
+        Iterator<HeadElement> it = body.getHead().iterator();
+        HeadElement he = null;
+        while (it.hasNext()) {
+            he = it.next();
+            if (he.getId().equals(id)) {
+                it.remove();
+                break;
+            }
+        }
+        if (he == null) throw new RuntimeException("Cannot find head element id " + id);
+        //Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
+        if(q.getProject().isEmpty()) {
+            q.setQueryResultStar(true);
+        }
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph renameHeadTerm(QueryGraph body, String id) {
+        //Get renaming head
+        HeadElement renamedHe = null;
+        int index = 0;
+        for(HeadElement he : body.getHead()) {
+            if(he.getId().equals(id)) {
+                renamedHe =  he;
+                renamedHe.setId(varPrefix + he.getAlias());
+                break;
+            }
+            index++;
+        }
+        if (renamedHe == null) throw new RuntimeException("Cannot find head element id " + id);
+        if (renamedHe.getAlias() == null) throw new RuntimeException("Alias not defined for element id " + id);
+        //Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
+        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
+        q.getProject().getVars().add(index, newVar);
+        q.getProject().getExprs().put(
+            newVar,
+            new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
+        );
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph orderBy(QueryGraph body, String headTerm) {
+        // Modify SPARQL
+        OrderByElement ob = body.getOrderBy();
+        Query q = parser.parse(new Query(), body.getSparql());
+        Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
+        if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
+        q.addOrderBy(orderVar, ob.isAscending() ? 1 : -1);
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph functionHeadTerm(QueryGraph body, String headTerm) {
+        //Get function from head
+        HeadElement he = null;
+        int index = 0;
+        for(HeadElement hei : body.getHead()) {
+            if(hei.getId().equals(headTerm)) {
+                he =  hei;
+                break;
+            }
+            index++;
+        }
+        if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
+        if (he.getFunction() == null) throw new RuntimeException("Cannot find function for head element " + headTerm);
+        // Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        PrefixMapping p = q.getPrefixMapping();
+        ExprFactory ef = new ExprFactory(p);
+        Function f = he.getFunction();
+        Expr expr;
+        switch (f.getName()) {
+            case PLUS:
+                expr = ef.add(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case MINUS:
+                expr = ef.subtract(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STAR:
+                expr = ef.multiply(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case SLASH:
+                expr = ef.divide(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case SUBSTR:
+                expr = ef.substr(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case UCASE:
+                expr = ef.ucase(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case LCASE:
+                expr = ef.lcase(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case CONTAINS:
+                expr = ef.contains(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case CONCAT:
+                expr = ef.concat(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case ROUND:
+                expr = ef.round(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case CEIL:
+                expr = ef.ceil(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case FLOOR:
+                expr = ef.floor(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case YEAR:
+                expr = ef.year(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case MONTH:
+                expr = ef.month(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case DAY:
+                expr = ef.day(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case HOURS:
+                expr = ef.hours(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case MINUTES:
+                expr = ef.minutes(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case SECONDS:
+                expr = ef.seconds(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            default: throw new RuntimeException("Cannot find function name.");
+        }
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
+
+        q.getProject().remove(AbstractQueryBuilder.makeVar(headTerm));
+        q.getProject().getVars().add(index, newVar);
+        q.getProject().getExprs().put(
+                newVar,
+                expr
+        );
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph aggregationHeadTerm(QueryGraph body, String headTerm) {
+        //Get function from head
+        if (body.getGroupBy() == null) throw new RuntimeException("Cannot find aggregate/group by function for head element " + headTerm);
+        GroupByElement gb = body.getGroupBy();
+        HeadElement he = null;
+        for(HeadElement hei : body.getHead()) {
+            if(hei.getId().equals(headTerm)) {
+                he =  hei;
+                break;
+            }
+        }
+        if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
+        // Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        AggregationHandler ah = new AggregationHandler(q);
+        Aggregator agg;
+        Var var = AbstractQueryBuilder.makeVar(headTerm);
+        ExprVar expVar = new ExprVar(var);
+        ExprAggregator exprAgg;
+        switch (gb.getAggregateFunction()) {
+            case COUNT:
+                agg = new AggCountVar(expVar);
+                exprAgg = new ExprAggregator(var,agg);
+                break;
+            case SUM:
+                agg = new AggSum(expVar);
+                exprAgg = new ExprAggregator(var,agg);
+                break;
+            case MIN:
+                agg = new AggMin(expVar);
+                exprAgg = new ExprAggregator(var,agg);
+                break;
+            case MAX:
+                agg = new AggMax(expVar);
+                exprAgg = new ExprAggregator(var,agg);
+                break;
+            case AVARAGE:
+                agg = new AggAvg(expVar);
+                exprAgg = new ExprAggregator(var,agg);
+                break;
+            default: throw new RuntimeException("Cannot find aggregate function");
+        }
+        q.getProject().remove(var);
+        q.getGroupBy().clear();
+        q.getGroupBy().addAll(q.getProject());
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));
+        SelectHandler sh = new SelectHandler(ah);
+        sh.addVar(exprAgg, newVar);
         body.setSparql(q.serialize());
         return body;
     }

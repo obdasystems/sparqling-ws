@@ -7,6 +7,9 @@ import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.ext.com.google.common.graph.ElementOrder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
+import org.apache.jena.sparql.expr.E_StrSubstring;
+import org.apache.jena.sparql.expr.Expr;
+import org.apache.jena.sparql.expr.ExprAggregator;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.junit.BeforeClass;
@@ -72,7 +75,7 @@ public class TestQueryGraphHandler {
         RuntimeException exc = assertThrows(RuntimeException.class, () -> {
             gef.findElementById("Author0", finalQg.getGraph());
         });
-        assertTrue(exc.getMessage().equals("Graph element not found!"));
+        assertEquals("Graph element Author0 not found!", exc.getMessage());
     }
     @Test
     public void testAddHeadElement() {
@@ -450,9 +453,69 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testHeadFunction() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        HeadElement he = qg.getHead().get(0);
+        Function f = new Function();
+        f.setName(Function.NameEnum.SUBSTR);
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?name0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("pippo");
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        f.addParametersItem(v1);
+        f.addParametersItem(v2);
+        he.setFunction(f);
+        qg = qgb.functionHeadTerm(qg, "?name0");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.getProject().getExprs().values().iterator().next() instanceof E_StrSubstring);
+    }
+
+    @Test
+    public void testAggregateGroupBy() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        qg.setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?name0");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Expr e = q.getProject().getExprs().values().iterator().next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        assertEquals(1, q.getGroupBy().size());
+    }
+
+    @Test
     public void sandbox() {
-        String sparql = "SELECT ?x { ?x <op> ?y. filter(?y not in (2, <iri2>)) }";
+        String sparql = "SELECT (sum(?y) as ?sum) " +
+                "{ " +
+                "?x <op> ?y." +
+                "?x <op> ?z." +
+                "?x <op> ?z1." +
+                "?x <op> ?z2." +
+                "}" +
+                "GROUP BY ?z ?z1 ?z2";
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), sparql);
+        System.out.println(q);
     }
 }

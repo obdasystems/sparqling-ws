@@ -15,6 +15,7 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,48 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-31T16:20:47.492Z[GMT]")public class GroupByElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-04T12:54:05.320Z[GMT]")public class GroupByElement  implements Serializable  {
   @JsonProperty("headElementIds")
   private List<Integer> headElementIds = null;
 
+  /**
+   * Gets or Sets aggregateFunction
+   */
+  public enum AggregateFunctionEnum {
+    COUNT("count"),
+    
+    SUM("sum"),
+    
+    MIN("min"),
+    
+    MAX("max"),
+    
+    AVARAGE("avarage");
+
+    private String value;
+
+    AggregateFunctionEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AggregateFunctionEnum fromValue(String text) {
+      for (AggregateFunctionEnum b : AggregateFunctionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("aggregateFunction")
-  private String aggregateFunction = null;
+  private AggregateFunctionEnum aggregateFunction = null;
 
   public GroupByElement headElementIds(List<Integer> headElementIds) {
     this.headElementIds = headElementIds;
@@ -59,7 +96,7 @@ import javax.validation.Valid;
     this.headElementIds = headElementIds;
   }
 
-  public GroupByElement aggregateFunction(String aggregateFunction) {
+  public GroupByElement aggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
     return this;
   }
@@ -70,11 +107,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("aggregateFunction")
   @Schema(description = "")
-  public String getAggregateFunction() {
+  public AggregateFunctionEnum getAggregateFunction() {
     return aggregateFunction;
   }
 
-  public void setAggregateFunction(String aggregateFunction) {
+  public void setAggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
   }
 
