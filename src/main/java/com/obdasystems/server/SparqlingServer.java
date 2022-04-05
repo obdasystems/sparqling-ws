@@ -54,14 +54,14 @@ public class SparqlingServer {
         HandlerList handlers = new HandlerList();
 //		MAIN HANDLER FOR REST
         ServletContextHandler ctx = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        ctx.setContextPath("/");
+        ctx.setContextPath("/sparqling/1.0.0/");
         FilterHolder cors = ctx.addFilter(CrossOriginFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
         cors.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
         cors.setInitParameter(CrossOriginFilter.ALLOWED_HEADERS_PARAM,
                 "origin, access-control-allow-origin, content-type, accept, authorization, x-requested-with");
         cors.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET, POST, PUT, DELETE, OPTIONS, HEAD");
         cors.setInitParameter(CrossOriginFilter.ALLOW_CREDENTIALS_PARAM, "true");
-        ServletHolder serHol = ctx.addServlet(ServletContainer.class, "/sparqling/1.0.0/*");
+        ServletHolder serHol = ctx.addServlet(ServletContainer.class, "/*");
         serHol.setInitOrder(1);
         serHol.setInitParameter("jersey.config.server.provider.packages", "io.swagger.v3.jaxrs2.integration.resources, com.obdasystems.sparqling.api");
         serHol.setInitParameter("jersey.config.server.provider.classnames", "org.glassfish.jersey.media.multipart.MultiPartFeature");
@@ -111,8 +111,8 @@ public class SparqlingServer {
         JFrame frame = new JFrame("Sparqling");
         List<Image> icons = new LinkedList<>();
         for (int i = 16; i <= 64; i *= 2) {
-            Image icon = new ImageIcon(SparqlingServer.class.getResource("/icons/icon_" + i + "@1x.png")).getImage();
-            icons.add(icon);
+            //Image icon = new ImageIcon(SparqlingServer.class.getResource("/icons/icon_" + i + "@1x.png")).getImage();
+            //icons.add(icon);
         }
         frame.setIconImages(icons);
         Container contentPane = frame.getContentPane();
