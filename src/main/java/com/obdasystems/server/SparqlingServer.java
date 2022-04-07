@@ -19,6 +19,7 @@ import java.util.List;
 import javax.servlet.DispatcherType;
 import javax.swing.*;
 
+import com.obdasystems.swing.ConsoleAppender;
 import com.obdasystems.swing.TextAreaOutputStream;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
@@ -41,6 +42,7 @@ public class SparqlingServer {
     private static PrintStream stderr = System.err;
     final static Logger logger = LoggerFactory.getLogger(SparqlingServer.class);
     static int port = 7979;
+    public static ConsoleAppender ca;
 
     public static void main(String[] args) throws Exception {
         SwingUtilities.invokeLater(() -> createAndShowGUI());
@@ -122,8 +124,6 @@ public class SparqlingServer {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
-                    System.setOut(stdout);
-                    System.setErr(stderr);
                     server.stop();
                     System.out.println("****** SERVER STOPPED ******");
                 } catch (Exception e1) {
@@ -131,21 +131,6 @@ public class SparqlingServer {
                 }
             }
         });
-
-        System.out.println("\n" +
-                "                                                      ___                            \n" +
-                "                                                     (   )  .-.                      \n" +
-                "    .--.       .-..     .---.   ___ .-.      .--.     | |  ( __)  ___ .-.     .--.   \n" +
-                "  /  _  \\     /    \\   / .-, \\ (   )   \\    /    \\    | |  (''\") (   )   \\   /    \\  \n" +
-                " . .' `. ;   ' .-,  ; (__) ; |  | ' .-. ;  |  .-. '   | |   | |   |  .-. .  ;  ,-. ' \n" +
-                " | '   | |   | |  . |   .'`  |  |  / (___) | |  | |   | |   | |   | |  | |  | |  | | \n" +
-                " _\\_`.(___)  | |  | |  / .'| |  | |        | |  | |   | |   | |   | |  | |  | |  | | \n" +
-                "(   ). '.    | |  | | | /  | |  | |        | |  | |   | |   | |   | |  | |  | |  | | \n" +
-                " | |  `\\ |   | |  ' | ; |  ; |  | |        | '  | |   | |   | |   | |  | |  | '  | | \n" +
-                " ; '._,' '   | `-'  ' ' `-'  |  | |        ' `-'  |   | |   | |   | |  | |  '  `-' | \n" +
-                "  '.___.'    | \\__.'  `.__.'_. (___)        `._ / |  (___) (___) (___)(___)  `.__. | \n" +
-                "             | |                                | |                          ( `-' ; \n" +
-                "            (___)                              (___)                          `.__.  \n");
     }
 
     private static void addComponentsToPane(Container pane) {
@@ -155,13 +140,26 @@ public class SparqlingServer {
         GridBagConstraints c = new GridBagConstraints();
 
         JTextPane ta = new JTextPane();
-        TextAreaOutputStream taos = new TextAreaOutputStream(ta, 1000);
-        PrintStream ps = new PrintStream(taos);
-        System.setOut(ps);
-        System.setErr(ps);
+        ta.setEditable(false);
+        ca = new ConsoleAppender(ta, 1000);
+        ca.append("\n" +
+                        "                                                      ___                            \n" +
+                        "                                                     (   )  .-.                      \n" +
+                        "    .--.       .-..     .---.   ___ .-.      .--.     | |  ( __)  ___ .-.     .--.   \n" +
+                        "  /  _  \\     /    \\   / .-, \\ (   )   \\    /    \\    | |  (''\") (   )   \\   /    \\  \n" +
+                        " . .' `. ;   ' .-,  ; (__) ; |  | ' .-. ;  |  .-. '   | |   | |   |  .-. .  ;  ,-. ' \n" +
+                        " | '   | |   | |  . |   .'`  |  |  / (___) | |  | |   | |   | |   | |  | |  | |  | | \n" +
+                        " _\\_`.(___)  | |  | |  / .'| |  | |        | |  | |   | |   | |   | |  | |  | |  | | \n" +
+                        "(   ). '.    | |  | | | /  | |  | |        | |  | |   | |   | |   | |  | |  | |  | | \n" +
+                        " | |  `\\ |   | |  ' | ; |  ; |  | |        | '  | |   | |   | |   | |  | |  | '  | | \n" +
+                        " ; '._,' '   | `-'  ' ' `-'  |  | |        ' `-'  |   | |   | |   | |  | |  '  `-' | \n" +
+                        "  '.___.'    | \\__.'  `.__.'_. (___)        `._ / |  (___) (___) (___)(___)  `.__. | \n" +
+                        "             | |                                | |                          ( `-' ; \n" +
+                        "            (___)                              (___)                          `.__.  \n",
+                false);
 
         button = new JButton("Clear");
-        button.addActionListener(a -> taos.clear());
+        button.addActionListener(a -> ca.clear());
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;

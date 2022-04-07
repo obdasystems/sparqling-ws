@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds" >
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="com.obdasystems.swing.SparqlingAppender">
         <encoder>
             <pattern>
                 %d{HH:mm:ss} %-5level %logger{36} - %msg  [%thread] %n
             </pattern>
+            <header></header>
         </encoder>
     </appender>
 
@@ -14,6 +15,6 @@
     </logger>
 
     <root level="error">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STERR" />
     </root>
 </configuration>
