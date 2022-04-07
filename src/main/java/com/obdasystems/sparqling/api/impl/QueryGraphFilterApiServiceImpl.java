@@ -14,9 +14,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class QueryGraphFilterApiServiceImpl extends QueryGraphFilterApiService {
-    Logger logger = LoggerFactory.getLogger(QueryGraphFilterApiServiceImpl.class);
+    final Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Response editFilter(QueryGraph body, Integer filterId, SecurityContext securityContext) throws NotFoundException {
+        logger.info("Modifying filter {}", filterId);
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
             QueryGraph res = qgb.removeFilter(body, filterId, false);
@@ -29,6 +30,7 @@ import javax.ws.rs.core.SecurityContext;
     }
     @Override
     public Response newFilter(QueryGraph body, Integer filterId, SecurityContext securityContext) throws NotFoundException {
+        logger.info("Adding filter {}", filterId);
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
             return Response.ok().entity(qgb.newFilter(body, filterId)).build();
@@ -39,6 +41,7 @@ import javax.ws.rs.core.SecurityContext;
     }
     @Override
     public Response removeAllFilters(QueryGraph body, SecurityContext securityContext) throws NotFoundException {
+        logger.info("Removing all filters");
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
             return Response.ok().entity(qgb.removeFilters(body)).build();
@@ -49,6 +52,7 @@ import javax.ws.rs.core.SecurityContext;
     }
     @Override
     public Response removeFilter(QueryGraph body, Integer filterId, SecurityContext securityContext) throws NotFoundException {
+        logger.info("Removing filter {}", filterId);
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
             return Response.ok().entity(qgb.removeFilter(body, filterId, true)).build();
