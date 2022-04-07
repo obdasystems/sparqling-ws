@@ -137,7 +137,7 @@ public class SparqlingServer {
             }
         });
 
-        logger.info("\n" +
+        System.out.println("\n" +
                 "                                                      ___                            \n" +
                 "                                                     (   )  .-.                      \n" +
                 "    .--.       .-..     .---.   ___ .-.      .--.     | |  ( __)  ___ .-.     .--.   \n" +
