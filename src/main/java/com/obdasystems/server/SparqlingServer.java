@@ -168,7 +168,7 @@ public class SparqlingServer {
         System.setErr(ps);
 
         button = new JButton("Clear");
-        button.addActionListener(a -> ta.setText(""));
+        button.addActionListener(a -> taos.clear());
         c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
