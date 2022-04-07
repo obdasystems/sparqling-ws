@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.text.*;
 
 public class TextAreaOutputStream
         extends OutputStream
@@ -17,11 +18,11 @@ public class TextAreaOutputStream
     private byte[]                          oneByte;                                                    // array for write(int val);
     private Appender                        appender;                                                   // most recent action
 
-    public TextAreaOutputStream(JTextArea txtara) {
+    public TextAreaOutputStream(JTextPane txtara) {
         this(txtara,1000);
     }
 
-    public TextAreaOutputStream(JTextArea txtara, int maxlin) {
+    public TextAreaOutputStream(JTextPane txtara, int maxlin) {
         if(maxlin<1) { throw new IllegalArgumentException("TextAreaOutputStream maximum lines must be positive (value="+maxlin+")"); }
         oneByte=new byte[1];
         appender=new Appender(txtara,maxlin);
@@ -63,7 +64,7 @@ public class TextAreaOutputStream
     static class Appender
             implements Runnable
     {
-        private final JTextArea             textArea;
+        private final JTextPane             textArea;
         private final int                   maxLines;                                                   // maximum lines allowed in text area
         private final LinkedList<Integer>   lengths;                                                    // length of lines within text area
         private final List<String>          values;                                                     // values waiting to be appended
@@ -72,7 +73,7 @@ public class TextAreaOutputStream
         private boolean                     clear;
         private boolean                     queue;
 
-        Appender(JTextArea txtara, int maxlin) {
+        Appender(JTextPane txtara, int maxlin) {
             textArea =txtara;
             maxLines =maxlin;
             lengths  =new LinkedList<Integer>();
@@ -99,14 +100,35 @@ public class TextAreaOutputStream
         // MUST BE THE ONLY METHOD THAT TOUCHES textArea!
         public synchronized void run() {
             if(clear) { textArea.setText(""); }
+            StyleContext sc = StyleContext.getDefaultStyleContext();
+            Document doc = textArea.getDocument();
+            int len = doc.getLength();
+            textArea.setCaretPosition(len);
             for(String val: values) {
                 curLength+=val.length();
                 if(val.endsWith(EOL1) || val.endsWith(EOL2)) {
-                    if(lengths.size()>=maxLines) { textArea.replaceRange("",0,lengths.removeFirst()); }
+                    if(lengths.size()>=maxLines) {
+                        int start = 0;
+                        int end = lengths.removeFirst();
+                        try {
+                            doc.remove(start, end - start);
+                            doc.insertString(start, "", null);
+                        } catch (BadLocationException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     lengths.addLast(curLength);
                     curLength=0;
                 }
-                textArea.append(val);
+                String low = val.toLowerCase();
+                Color color = low.contains("error") || low.contains("exception") || low.contains("throwable") ? Color.RED : Color.BLACK;
+                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, color);
+                aset = sc.addAttribute(aset, StyleConstants.FontFamily, "monospaced");
+                aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
+
+                textArea.setCharacterAttributes(aset, false);
+                textArea.replaceSelection(val);
+
             }
             values.clear();
             clear =false;

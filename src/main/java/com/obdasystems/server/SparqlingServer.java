@@ -17,12 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.DispatcherType;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import com.obdasystems.swing.TextAreaOutputStream;
 import org.eclipse.jetty.server.Server;
@@ -159,9 +154,7 @@ public class SparqlingServer {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        JTextArea ta = new JTextArea();
-        ta.setFont(new Font("monospaced", Font.PLAIN, 12));
-        ta.setEditable(false);
+        JTextPane ta = new JTextPane();
         TextAreaOutputStream taos = new TextAreaOutputStream(ta, 1000);
         PrintStream ps = new PrintStream(taos);
         System.setOut(ps);

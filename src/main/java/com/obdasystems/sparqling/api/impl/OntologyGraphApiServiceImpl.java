@@ -24,7 +24,7 @@ public class OntologyGraphApiServiceImpl extends OntologyGraphApiService {
             if(opm == null) throw new RuntimeException("Cannot find ontology, please upload a new ontology.");
             return Response.ok().entity(opm.getHighlights(clickedClassIRI)).build();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
     }
