@@ -465,7 +465,11 @@ public class QueryGraphHandler {
         AggregationHandler aggHandler = new AggregationHandler(q);
         SelectHandler sh = new SelectHandler(aggHandler);
         String var = varPrefix + graphElementId;
-        sh.addVar(AbstractQueryBuilder.makeVar(var));
+        Var jVar = AbstractQueryBuilder.makeVar(var);
+        sh.addVar(jVar);
+        if(!q.getGroupBy().isEmpty()) {
+            q.getGroupBy().add(jVar);
+        }
         body.setSparql(q.serialize());
         //Modify graph
         HeadElement he = new HeadElement();
@@ -490,7 +494,11 @@ public class QueryGraphHandler {
         if (he == null) throw new RuntimeException("Cannot find head element id " + id);
         //Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
-        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
+        Var jVar = AbstractQueryBuilder.makeVar(id);
+        q.getProject().remove(jVar);
+        if(!q.getGroupBy().isEmpty()) {
+            q.getGroupBy().remove(jVar);
+        }
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
@@ -515,7 +523,8 @@ public class QueryGraphHandler {
         //Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
-        q.getProject().remove(AbstractQueryBuilder.makeVar(id));
+        Var jVar = AbstractQueryBuilder.makeVar(id);
+        q.getProject().remove(jVar);
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
             newVar,
