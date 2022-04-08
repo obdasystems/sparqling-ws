@@ -526,12 +526,13 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph orderBy(QueryGraph body, String headTerm) {
+        int ordering = body.getHead().stream().filter(i -> i.getId().equals(headTerm)).findFirst().
+                orElseThrow(() -> new RuntimeException("Cannot find head term " + headTerm)).getOrdering();
         // Modify SPARQL
-        OrderByElement ob = body.getOrderBy();
         Query q = parser.parse(new Query(), body.getSparql());
         Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
         if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
-        q.addOrderBy(orderVar, ob.isAscending() ? 1 : -1);
+        q.addOrderBy(orderVar, ordering);
         body.setSparql(q.serialize());
         return body;
     }

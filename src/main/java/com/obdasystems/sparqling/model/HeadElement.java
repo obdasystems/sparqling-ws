@@ -24,7 +24,7 @@ import javax.validation.Valid;
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-31T16:20:47.492Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
   private String id = null;
 
@@ -36,6 +36,9 @@ import javax.validation.Valid;
 
   @JsonProperty("alias")
   private String alias = null;
+
+  @JsonProperty("ordering")
+  private Integer ordering = null;
 
   @JsonProperty("function")
   private Function function = null;
@@ -116,6 +119,25 @@ import javax.validation.Valid;
     this.alias = alias;
   }
 
+  public HeadElement ordering(Integer ordering) {
+    this.ordering = ordering;
+    return this;
+  }
+
+  /**
+   * 1 is ascending -1 descending 0 not defined
+   * @return ordering
+   **/
+  @JsonProperty("ordering")
+  @Schema(description = "1 is ascending -1 descending 0 not defined")
+  public Integer getOrdering() {
+    return ordering;
+  }
+
+  public void setOrdering(Integer ordering) {
+    this.ordering = ordering;
+  }
+
   public HeadElement function(Function function) {
     this.function = function;
     return this;
@@ -150,12 +172,13 @@ import javax.validation.Valid;
         Objects.equals(this.graphElementId, headElement.graphElementId) &&
         Objects.equals(this.var, headElement.var) &&
         Objects.equals(this.alias, headElement.alias) &&
+        Objects.equals(this.ordering, headElement.ordering) &&
         Objects.equals(this.function, headElement.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphElementId, var, alias, function);
+    return Objects.hash(id, graphElementId, var, alias, ordering, function);
   }
 
 
@@ -168,6 +191,7 @@ import javax.validation.Valid;
     sb.append("    graphElementId: ").append(toIndentedString(graphElementId)).append("\n");
     sb.append("    var: ").append(toIndentedString(var)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
+    sb.append("    ordering: ").append(toIndentedString(ordering)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();

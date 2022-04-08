@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-03-31T16:20:47.492Z[GMT]")public class QueryGraphHeadApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class QueryGraphHeadApi  {
    private final QueryGraphHeadApiService delegate;
 
    public QueryGraphHeadApi(@Context ServletConfig servletContext) {
@@ -77,27 +77,10 @@ import javax.validation.constraints.*;
         return delegate.addHeadTerm(body,graphElementId,securityContext);
     }
     @PUT
-    @Path("/aggregation/having/{headTerm}")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Set the having filter of the aggregation function to the head term.", description = "The having aggregation function is defined in the groupBy field of the query graph in the request body.", tags={ "QueryGraphHead" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
-        
-        @ApiResponse(responseCode = "404", description = "Head term not found") })
-    public Response aggregationHavingHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
-
-,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("direction") String direction
-,@Parameter(in = ParameterIn.PATH, description = "The head term that should be involved in the having filter",required=true) @PathParam("headTerm") String headTerm
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.aggregationHavingHeadTerm(body,direction,headTerm,securityContext);
-    }
-    @PUT
     @Path("/aggregation/{headTerm}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Operation(summary = "Set the aggregation function to the head term.", description = "The aggregation function is defined in the group by field of the query graph in the request body. Remember to set the alias of the head based on function name and variable.", tags={ "QueryGraphHead" })
+    @Operation(summary = "Set the aggregation function to the head term.", description = "The aggregation function is defined in the group by field of the query graph in the request body along with the HAVING clause. Remember to set the alias of the head based on function name and variable.", tags={ "QueryGraphHead" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
         
@@ -152,11 +135,10 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response orderByHeadTerm(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("direction") String direction
 ,@Parameter(in = ParameterIn.PATH, description = "The head term that should be ordered",required=true) @PathParam("headTerm") String headTerm
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.orderByHeadTerm(body,direction,headTerm,securityContext);
+        return delegate.orderByHeadTerm(body,headTerm,securityContext);
     }
     @PUT
     @Path("/rename/{headTerm}")
@@ -173,5 +155,20 @@ import javax.validation.constraints.*;
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.renameHeadTerm(body,headTerm,securityContext);
+    }
+    @PUT
+    @Path("/reorderHeadTerms")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Reorder the head elements accrding to Query GRaph object.", description = "", tags={ "QueryGraphHead" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
+        
+        @ApiResponse(responseCode = "404", description = "Head term not found") })
+    public Response reorderHeadTerms(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.reorderHeadTerms(body,securityContext);
     }
 }

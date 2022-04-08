@@ -26,9 +26,9 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-04T12:54:05.320Z[GMT]")public class GroupByElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class GroupByElement  implements Serializable  {
   @JsonProperty("headElementIds")
-  private List<Integer> headElementIds = null;
+  private List<String> headElementIds = null;
 
   /**
    * Gets or Sets aggregateFunction
@@ -69,14 +69,14 @@ import javax.validation.Valid;
   @JsonProperty("aggregateFunction")
   private AggregateFunctionEnum aggregateFunction = null;
 
-  public GroupByElement headElementIds(List<Integer> headElementIds) {
+  public GroupByElement headElementIds(List<String> headElementIds) {
     this.headElementIds = headElementIds;
     return this;
   }
 
-  public GroupByElement addHeadElementIdsItem(Integer headElementIdsItem) {
+  public GroupByElement addHeadElementIdsItem(String headElementIdsItem) {
     if (this.headElementIds == null) {
-      this.headElementIds = new ArrayList<Integer>();
+      this.headElementIds = new ArrayList<String>();
     }
     this.headElementIds.add(headElementIdsItem);
     return this;
@@ -88,11 +88,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("headElementIds")
   @Schema(description = "")
-  public List<Integer> getHeadElementIds() {
+  public List<String> getHeadElementIds() {
     return headElementIds;
   }
 
-  public void setHeadElementIds(List<Integer> headElementIds) {
+  public void setHeadElementIds(List<String> headElementIds) {
     this.headElementIds = headElementIds;
   }
 

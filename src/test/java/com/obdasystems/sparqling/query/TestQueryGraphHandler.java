@@ -440,11 +440,9 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        OrderByElement ob = new OrderByElement();
-        ob.setAscending(true);
-        ob.setHeadElementId(0);
-        qg.orderBy(ob);
+        qg.getHead().get(0).setOrdering(1);
         qg = qgb.orderBy(qg, "?name0");
+        qg.getHead().get(0).setOrdering(0);
         qg = qgb.orderBy(qg, "?name0");
         System.out.println(qg);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
