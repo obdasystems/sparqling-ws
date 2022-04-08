@@ -4,7 +4,6 @@ import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.*;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
-import org.apache.jena.ext.com.google.common.graph.ElementOrder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.expr.E_StrSubstring;
@@ -19,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
 
@@ -500,6 +500,34 @@ public class TestQueryGraphHandler {
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
         assertEquals(1, q.getGroupBy().size());
+    }
+
+    @Test
+    public void testReorderHead() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        List<HeadElement> newHead = new LinkedList<>();
+        List<HeadElement> oldHead = qg.getHead();
+        for(int i=oldHead.size()-1;i>=0;i--){
+            newHead.add(oldHead.get(i));
+        }
+        qg.setHead(newHead);
+        qg = qgb.reorderHeadTerm(qg);
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        AtomicInteger index = new AtomicInteger();
+        q.getProject().forEachVar(i -> {
+            assertEquals(i.getVarName(),newHead.get(index.getAndIncrement()).getId().substring(1));
+        });
     }
 
     @Test

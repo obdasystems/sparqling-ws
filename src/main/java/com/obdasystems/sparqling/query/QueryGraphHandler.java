@@ -20,6 +20,7 @@ import org.apache.jena.sparql.algebra.OpAsQuery;
 import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
+import org.apache.jena.sparql.core.VarExprList;
 import org.apache.jena.sparql.engine.Rename;
 import org.apache.jena.sparql.expr.*;
 import org.apache.jena.sparql.expr.aggregate.*;
@@ -682,6 +683,22 @@ public class QueryGraphHandler {
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
+        body.setSparql(q.serialize());
+        return body;
+    }
+
+    public QueryGraph reorderHeadTerm(QueryGraph body) {
+        Query q = parser.parse(new Query(), body.getSparql());
+        VarExprList oldHead = q.getProject();
+        VarExprList newHead = new VarExprList();
+        for(HeadElement he:body.getHead()) {
+            newHead.add(oldHead.getVars().stream()
+                    .filter(i -> i.getVarName().equals(he.getId().substring(1))).findAny()
+                    .orElseThrow(() -> new RuntimeException("Cannot find head element " + he.getId())));
+        }
+        newHead.getExprs().putAll(oldHead.getExprs());
+        q.getProject().clear();
+        q.getProject().addAll(newHead);
         body.setSparql(q.serialize());
         return body;
     }
