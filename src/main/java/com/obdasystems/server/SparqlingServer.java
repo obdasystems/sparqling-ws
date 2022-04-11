@@ -142,7 +142,7 @@ public class SparqlingServer {
         JTextPane ta = new JTextPane();
         ta.setEditable(false);
         ca = new ConsoleAppender(ta, 1000);
-        ca.append("\n" +
+        ca.appendTitle("\n" +
                         "                                                      ___                            \n" +
                         "                                                     (   )  .-.                      \n" +
                         "    .--.       .-..     .---.   ___ .-.      .--.     | |  ( __)  ___ .-.     .--.   \n" +
@@ -155,8 +155,7 @@ public class SparqlingServer {
                         " ; '._,' '   | `-'  ' ' `-'  |  | |        ' `-'  |   | |   | |   | |  | |  '  `-' | \n" +
                         "  '.___.'    | \\__.'  `.__.'_. (___)        `._ / |  (___) (___) (___)(___)  `.__. | \n" +
                         "             | |                                | |                          ( `-' ; \n" +
-                        "            (___)                              (___)                          `.__.  \n",
-                false);
+                        "            (___)                              (___)                          `.__.  \n");
 
         button = new JButton("Clear");
         button.addActionListener(a -> ca.clear());

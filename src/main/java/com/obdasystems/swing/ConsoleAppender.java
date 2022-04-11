@@ -39,6 +39,14 @@ public class ConsoleAppender implements Runnable {
         }
     }
 
+    public synchronized void appendTitle(String val) {
+        values.add(val);
+        if (queue) {
+            queue = false;
+            EventQueue.invokeLater(this);
+        }
+    }
+
     public synchronized void clear() {
         clear = true;
         curLength = 0;
@@ -77,7 +85,9 @@ public class ConsoleAppender implements Runnable {
                 lengths.addLast(curLength);
                 curLength = 0;
             }
-            Color color = errors.get(index) ? Color.RED : Color.BLACK;
+            Color color;
+            if (errors.isEmpty()) color = new Color(91, 134, 229);
+            else color = errors.get(index) ? Color.RED : Color.BLACK;
             AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, color);
             aset = sc.addAttribute(aset, StyleConstants.FontFamily, "monospaced");
             aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
