@@ -4,7 +4,6 @@ import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.*;
 import com.obdasystems.sparqling.query.visitors.DeleteElementVisitor;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
-import org.apache.jena.arq.querybuilder.ExprFactory;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
 import org.apache.jena.arq.querybuilder.handlers.SelectHandler;
@@ -17,7 +16,6 @@ import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.sparql.algebra.Algebra;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.OpAsQuery;
-import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.core.VarExprList;
@@ -52,72 +50,6 @@ public class QueryGraphHandler {
         parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
     }
 
-    private static String guessNewVarFromIRI(IRI iri, Query q) {
-        String res = iri.getFragment();
-        if(res.isEmpty()) {
-            res = "x" + System.currentTimeMillis();
-        } else {
-            res = getNewCountedVarFromQuery(res, q);
-        }
-        return varPrefix + res;
-    }
-
-    public static String getNewCountedVarFromQuery(String varName, Query q) {
-        final int[] count = {0};
-        String ret = varName + count[0];
-        if (q == null) return ret;
-        final boolean[] found = {true};
-        while (found[0]) {
-            ret = varName + count[0];
-            String finalRet = ret;
-            ElementWalker_New.walk(
-                    q.getQueryPattern(),
-                    new ElementVisitorBase() {
-                        @Override
-                        public void visit(ElementPathBlock el) {
-                            Iterator<TriplePath> it = el.patternElts();
-                            while (it.hasNext()) {
-                                TriplePath triple = it.next();
-                                if (triple.getSubject().isVariable()) {
-                                    if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
-                                    }
-                                }
-                                if (triple.getObject().isVariable()) {
-                                    if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
-                                    }
-                                }
-                            }
-                            found[0] = false;
-                        }
-                    },
-                    new ExprVisitorBase() {}
-            );
-        }
-        return ret;
-    }
-
-    private static Expr getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
-        switch (varOrConstant.getType()) {
-            case VAR: return new ExprVar(AbstractQueryBuilder.makeVar(varOrConstant.getValue()));
-            case IRI: return NodeValue.makeNode(
-                    AbstractQueryBuilder.makeNode("<" + varOrConstant.getValue() + ">", p)
-            );
-            case CONSTANT:
-                String constant = "'" + varOrConstant.getValue() + "'^^"+varOrConstant.getConstantType();
-                return NodeValue.makeNode(
-                        AbstractQueryBuilder.makeNode(constant, p)
-                );
-            default:
-                throw new RuntimeException("Cannot recognize type of var or constant. Found " + varOrConstant.getType());
-        }
-    }
-
     /********************
      ROUTES METHODS IMPL
      ********************/
@@ -128,7 +60,7 @@ public class QueryGraphHandler {
             throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
         // Modify SPARQL
-        String var = guessNewVarFromIRI(iri, null);
+        String var = QueryUtils.guessNewVarFromIRI(iri, null);
         SelectBuilder sb = new SelectBuilder();
         sb.addPrefixes(prefixes);
         sb.addVar("*").addWhere(var, "a", iri.toQuotedString());
@@ -177,7 +109,7 @@ public class QueryGraphHandler {
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        String var = guessNewVarFromIRI(target, q);
+        String var = QueryUtils.guessNewVarFromIRI(target, q);
         if(isPredicateDirect) {
             wh.addWhere(new TriplePath(new Triple(
                     AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
@@ -225,7 +157,7 @@ public class QueryGraphHandler {
         SelectHandler sh = new SelectHandler(aggHandler);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        String var = guessNewVarFromIRI(iri, q);
+        String var = QueryUtils.guessNewVarFromIRI(iri, q);
         sh.addVar(AbstractQueryBuilder.makeVar(var));
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
@@ -345,68 +277,7 @@ public class QueryGraphHandler {
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
-        PrefixMapping p = q.getPrefixMapping();
-        ExprFactory ef = new ExprFactory(p);
-        Expr filterExpr;
-        switch (f.getExpression().getOperator()) {
-            case EQUAL:
-                filterExpr = ef.eq(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case GREATER_THAN:
-                filterExpr = ef.gt(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case LESS_THAN:
-                filterExpr = ef.lt(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case GREATER_THAN_OR_EQUAL_TO:
-                filterExpr = ef.ge(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case LESS_THAN_OR_EQUAL_TO:
-                filterExpr = ef.le(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case NOT_EQUAL:
-                filterExpr = ef.ne(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        getVarOrConstant(f.getExpression().getParameters().get(1), p));
-                break;
-            case IN:
-                ExprList list = new ExprList();
-                for (VarOrConstant v:f.getExpression().getParameters()) {
-                    list.add(getVarOrConstant(v,p));
-                }
-                filterExpr = ef.in(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        list);
-                break;
-            case NOT_IN:
-                ExprList not_list = new ExprList();
-                for (VarOrConstant v:f.getExpression().getParameters()) {
-                    not_list.add(getVarOrConstant(v,p));
-                }
-                filterExpr = ef.notin(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        not_list);
-                break;
-            case REGEX:
-                filterExpr = ef.regex(
-                        getVarOrConstant(f.getExpression().getParameters().get(0), p),
-                        f.getExpression().getParameters().get(1).getValue(),
-                        f.getExpression().getParameters().get(2).getValue());
-                break;
-            default:
-                throw new RuntimeException("Cannot recognize operator of filter. Found " + f.getExpression().getOperator());
-        }
-        wh.addFilter(filterExpr);
+        wh.addFilter(QueryUtils.getExprForFilter(f, q.getPrefixMapping(), null));
         body.setSparql(q.serialize());
         return body;
     }
@@ -563,66 +434,8 @@ public class QueryGraphHandler {
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         PrefixMapping p = q.getPrefixMapping();
-        ExprFactory ef = new ExprFactory(p);
         Function f = he.getFunction();
-        Expr expr;
-        switch (f.getName()) {
-            case PLUS:
-                expr = ef.add(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case MINUS:
-                expr = ef.subtract(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case STAR:
-                expr = ef.multiply(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case SLASH:
-                expr = ef.divide(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case SUBSTR:
-                expr = ef.substr(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case UCASE:
-                expr = ef.ucase(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case LCASE:
-                expr = ef.lcase(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case CONTAINS:
-                expr = ef.contains(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case CONCAT:
-                expr = ef.concat(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
-                break;
-            case ROUND:
-                expr = ef.round(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case CEIL:
-                expr = ef.ceil(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case FLOOR:
-                expr = ef.floor(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case YEAR:
-                expr = ef.year(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case MONTH:
-                expr = ef.month(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case DAY:
-                expr = ef.day(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case HOURS:
-                expr = ef.hours(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case MINUTES:
-                expr = ef.minutes(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            case SECONDS:
-                expr = ef.seconds(getVarOrConstant(f.getParameters().get(0), p));
-                break;
-            default: throw new RuntimeException("Cannot find function name.");
-        }
+        Expr expr = QueryUtils.getExprForFunction(f, p);
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
 
         q.getProject().remove(AbstractQueryBuilder.makeVar(headTerm));
@@ -680,6 +493,10 @@ public class QueryGraphHandler {
         q.getProject().remove(var);
         q.getGroupBy().clear();
         q.getGroupBy().addAll(q.getProject());
+        if (body.getHaving() != null) {
+            Expr having = QueryUtils.getExprForFilter(body.getHaving(), q.getPrefixMapping(), exprAgg);
+            q.addHavingCondition(having);
+        }
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);

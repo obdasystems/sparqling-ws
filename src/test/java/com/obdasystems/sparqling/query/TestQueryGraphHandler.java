@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
@@ -55,7 +56,7 @@ public class TestQueryGraphHandler {
     public void testGuessNewVar() {
         SelectBuilder sb = new SelectBuilder();
         sb.addVar("*").addWhere("?Book0", "a", "<"+bookIRI+">");
-        assertEquals(QueryGraphHandler.getNewCountedVarFromQuery("Book", sb.build()), "Book1");
+        assertEquals(QueryUtils.getNewCountedVarFromQuery("Book", sb.build()), "Book1");
     }
     @Test
     public void testDeleteGraphElement() {
@@ -72,9 +73,7 @@ public class TestQueryGraphHandler {
         );
         GraphElementFinder gef = new GraphElementFinder();
         QueryGraph finalQg = qg;
-        RuntimeException exc = assertThrows(RuntimeException.class, () -> {
-            gef.findElementById("Author0", finalQg.getGraph());
-        });
+        RuntimeException exc = assertThrows(RuntimeException.class, () -> gef.findElementById("Author0", finalQg.getGraph()));
         assertEquals("Graph element Author0 not found!", exc.getMessage());
     }
     @Test
@@ -113,7 +112,7 @@ public class TestQueryGraphHandler {
         qg = qgb.renameHeadTerm(qg, "?Author0");
         assertEquals(
                 "AUTORE",
-                qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null).getAlias());
+                Objects.requireNonNull(qg.getHead().stream().filter(headElement -> headElement.getGraphElementId().equals("Author0")).findAny().orElse(null)).getAlias());
     }
 
     @Test
@@ -276,15 +275,13 @@ public class TestQueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         final int[] filters = {0};
-        ElementWalker.walk(
-                q.getQueryPattern(),
-                new ElementVisitorBase() {
-                    @Override
-                    public void visit(ElementFilter el) {
-                        filters[0]++;
-                    }
-                });
-        assertTrue(filters[0] == 2);
+        ElementWalker.walk(q.getQueryPattern(), new ElementVisitorBase() {
+            @Override
+            public void visit(ElementFilter el) {
+                filters[0]++;
+            }
+        });
+        assertEquals(2, filters[0]);
     }
 
     @Test
@@ -396,7 +393,7 @@ public class TestQueryGraphHandler {
                         filters[0]++;
                     }
                 });
-        assertTrue(filters[0] == 1);
+        assertEquals(1, filters[0]);
     }
 
     @Test
@@ -410,7 +407,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, bookIRI, false, "Author0"
         );
         qg = qgb.putQueryGraphJoin(qg,"Book1", "Book0");
-        qg.toString();
+        assertFalse(qg.getSparql().contains("?Book0"));
     }
 
     @Test
@@ -444,7 +441,6 @@ public class TestQueryGraphHandler {
         qg = qgb.orderBy(qg, "?name0");
         qg.getHead().get(0).setOrdering(0);
         qg = qgb.orderBy(qg, "?name0");
-        System.out.println(qg);
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertEquals(1,q.getOrderBy().size());
@@ -493,6 +489,22 @@ public class TestQueryGraphHandler {
         GroupByElement gb = new GroupByElement();
         gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
         qg.setGroupBy(gb);
+        Filter having = new Filter();
+        FilterExpression havingExpr = new FilterExpression();
+        havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        v1.setValue("?name0");
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        v2.setValue("12");
+        params.add(v1);
+        params.add(v2);
+        havingExpr.setParameters(params);
+        having.setExpression(havingExpr);
+        qg.setHaving(having);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
@@ -500,6 +512,7 @@ public class TestQueryGraphHandler {
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
         assertEquals(1, q.getGroupBy().size());
+        assertEquals(1, q.getHavingExprs().size());
     }
 
     @Test

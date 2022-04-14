@@ -17,8 +17,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -26,10 +24,7 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class GroupByElement  implements Serializable  {
-  @JsonProperty("headElementIds")
-  private List<String> headElementIds = null;
-
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-14T09:21:10.405Z[GMT]")public class GroupByElement  implements Serializable  {
   /**
    * Gets or Sets aggregateFunction
    */
@@ -69,33 +64,6 @@ import javax.validation.Valid;
   @JsonProperty("aggregateFunction")
   private AggregateFunctionEnum aggregateFunction = null;
 
-  public GroupByElement headElementIds(List<String> headElementIds) {
-    this.headElementIds = headElementIds;
-    return this;
-  }
-
-  public GroupByElement addHeadElementIdsItem(String headElementIdsItem) {
-    if (this.headElementIds == null) {
-      this.headElementIds = new ArrayList<String>();
-    }
-    this.headElementIds.add(headElementIdsItem);
-    return this;
-  }
-
-  /**
-   * Get headElementIds
-   * @return headElementIds
-   **/
-  @JsonProperty("headElementIds")
-  @Schema(description = "")
-  public List<String> getHeadElementIds() {
-    return headElementIds;
-  }
-
-  public void setHeadElementIds(List<String> headElementIds) {
-    this.headElementIds = headElementIds;
-  }
-
   public GroupByElement aggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
     return this;
@@ -125,13 +93,12 @@ import javax.validation.Valid;
       return false;
     }
     GroupByElement groupByElement = (GroupByElement) o;
-    return Objects.equals(this.headElementIds, groupByElement.headElementIds) &&
-        Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
+    return Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headElementIds, aggregateFunction);
+    return Objects.hash(aggregateFunction);
   }
 
 
@@ -140,7 +107,6 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupByElement {\n");
     
-    sb.append("    headElementIds: ").append(toIndentedString(headElementIds)).append("\n");
     sb.append("    aggregateFunction: ").append(toIndentedString(aggregateFunction)).append("\n");
     sb.append("}");
     return sb.toString();
