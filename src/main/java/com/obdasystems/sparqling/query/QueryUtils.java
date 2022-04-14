@@ -157,16 +157,16 @@ public class QueryUtils {
         ExprFactory ef = new ExprFactory(p);
         Expr expr;
         switch (f.getName()) {
-            case PLUS:
+            case ADD:
                 expr = ef.add(QueryUtils.getVarOrConstant(f.getParameters().get(0), p), QueryUtils.getVarOrConstant(f.getParameters().get(1), p));
                 break;
-            case MINUS:
+            case SUBCTRACT:
                 expr = ef.subtract(QueryUtils.getVarOrConstant(f.getParameters().get(0), p), QueryUtils.getVarOrConstant(f.getParameters().get(1), p));
                 break;
-            case STAR:
+            case MULTIPLY:
                 expr = ef.multiply(QueryUtils.getVarOrConstant(f.getParameters().get(0), p), QueryUtils.getVarOrConstant(f.getParameters().get(1), p));
                 break;
-            case SLASH:
+            case DIVIDE:
                 expr = ef.divide(QueryUtils.getVarOrConstant(f.getParameters().get(0), p), QueryUtils.getVarOrConstant(f.getParameters().get(1), p));
                 break;
             case SUBSTR:

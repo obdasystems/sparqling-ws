@@ -472,6 +472,7 @@ public class TestQueryGraphHandler {
         qg = qgb.functionHeadTerm(qg, "?name0");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
+        System.out.println(q);
         assertTrue(q.getProject().getExprs().values().iterator().next() instanceof E_StrSubstring);
     }
 
