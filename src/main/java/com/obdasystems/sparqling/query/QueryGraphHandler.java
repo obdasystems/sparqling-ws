@@ -431,14 +431,13 @@ public class QueryGraphHandler {
         }
         if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
         if (he.getFunction() == null) throw new RuntimeException("Cannot find function for head element " + headTerm);
+        Function f = he.getFunction();
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
+        he.setAlias(newVar.getVarName());
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         PrefixMapping p = q.getPrefixMapping();
-        Function f = he.getFunction();
         Expr expr = QueryUtils.getExprForFunction(f, p);
-        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
-
-        he.setAlias(newVar.getVarName());
         q.getProject().remove(AbstractQueryBuilder.makeVar(headTerm));
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
