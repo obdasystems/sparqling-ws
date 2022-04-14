@@ -438,6 +438,7 @@ public class QueryGraphHandler {
         Expr expr = QueryUtils.getExprForFunction(f, p);
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
 
+        he.setAlias(newVar.getVarName());
         q.getProject().remove(AbstractQueryBuilder.makeVar(headTerm));
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
