@@ -29,7 +29,7 @@ public class TestPolymorphProperties {
         assertEquals(iri + "B1", res.getObjectProperties().get(0).getRelatedClasses().get(0));
     }
 
-    @Ignore
+    @Test
     public void testA2() {
         Highlights res = SWSOntologyManager.getOntologyManager().getOntologyProximityManager().getHighlights(iri + "A2");
         assertEquals(iri + "B2", res.getObjectProperties().get(0).getRelatedClasses().get(0));

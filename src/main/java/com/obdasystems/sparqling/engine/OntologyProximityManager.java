@@ -309,6 +309,9 @@ public class OntologyProximityManager {
         if (expr instanceof OWLObjectSomeValuesFrom) {
             return true;
         }
+        if (expr instanceof OWLObjectAllValuesFrom) {
+            return true;
+        }
         if (expr instanceof OWLDataSomeValuesFrom) {
             return true;
         }
