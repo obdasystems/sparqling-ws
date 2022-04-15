@@ -28,6 +28,7 @@ public class ImportCode {
         filesNotToCopy.add("OntologyGraphApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphBgpApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphFilterApiServiceImpl.java");
+        filesNotToCopy.add("QueryGraphHeadApiServiceImpl.java");
 
         Set<File> api = listFilesUsingJavaIO(mainApi);
         api.addAll(listFilesUsingJavaIO(genApi));
