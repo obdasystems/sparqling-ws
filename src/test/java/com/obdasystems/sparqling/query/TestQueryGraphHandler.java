@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -490,7 +491,7 @@ public class TestQueryGraphHandler {
         GroupByElement gb = new GroupByElement();
         gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
         gb.distinct(true);
-        qg.setGroupBy(gb);
+        qg.getHead().get(0).setGroupBy(gb);
         Filter having = new Filter();
         FilterExpression havingExpr = new FilterExpression();
         havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
@@ -508,15 +509,66 @@ public class TestQueryGraphHandler {
         having.setExpression(havingExpr);
         List<Filter> havings = new LinkedList<>();
         havings.add(having);
-        qg.setHaving(havings);
+        qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
-        System.out.println(q);
         Expr e = q.getProject().getExprs().values().iterator().next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
         assertEquals(1, q.getGroupBy().size());
+        assertEquals(1, q.getHavingExprs().size());
+    }
+
+    @Test
+    public void testAggregate2GroupBy() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.distinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        Filter having = new Filter();
+        FilterExpression havingExpr = new FilterExpression();
+        havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        v1.setValue("?name0");
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        v2.setValue("12");
+        params.add(v1);
+        params.add(v2);
+        havingExpr.setParameters(params);
+        having.setExpression(havingExpr);
+        List<Filter> havings = new LinkedList<>();
+        havings.add(having);
+        qg.getHead().get(0).setHaving(havings);
+        qg = qgb.aggregationHeadTerm(qg, "?name0");
+        GroupByElement gb2 = new GroupByElement();
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.MAX);
+        gb2.distinct(true);
+        qg.getHead().get(1).setGroupBy(gb2);
+        qg = qgb.aggregationHeadTerm(qg, "?name1");
+        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        Expr e1 = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertTrue(e1 instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        assertEquals("MAX", ((ExprAggregator)e1).getAggregator().getName());
+        assertEquals(0, q.getGroupBy().size());
         assertEquals(1, q.getHavingExprs().size());
     }
 
@@ -543,9 +595,7 @@ public class TestQueryGraphHandler {
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         AtomicInteger index = new AtomicInteger();
-        q.getProject().forEachVar(i -> {
-            assertEquals(i.getVarName(),newHead.get(index.getAndIncrement()).getId().substring(1));
-        });
+        q.getProject().forEachVar(i -> assertEquals(i.getVarName(),newHead.get(index.getAndIncrement()).getId().substring(1)));
     }
 
     @Test

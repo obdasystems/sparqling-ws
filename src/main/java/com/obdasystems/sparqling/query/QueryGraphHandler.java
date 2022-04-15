@@ -458,8 +458,6 @@ public class QueryGraphHandler {
 
     public QueryGraph aggregationHeadTerm(QueryGraph body, String headTerm) {
         //Get function from head
-        if (body.getGroupBy() == null) throw new RuntimeException("Cannot find aggregate/group by function for head element " + headTerm);
-        GroupByElement gb = body.getGroupBy();
         HeadElement he = null;
         for(HeadElement hei : body.getHead()) {
             if(hei.getId().equals(headTerm)) {
@@ -468,6 +466,8 @@ public class QueryGraphHandler {
             }
         }
         if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
+        if (he.getGroupBy() == null) throw new RuntimeException("Cannot find aggregate/group by function for head element " + headTerm);
+        GroupByElement gb = he.getGroupBy();
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         AggregationHandler ah = new AggregationHandler(q);
@@ -519,9 +519,19 @@ public class QueryGraphHandler {
             default: throw new RuntimeException("Cannot find aggregate function");
         }
         q.getProject().remove(var);
-        q.getGroupBy().addAll(q.getProject());
-        if (body.getHaving() != null) {
-            List<Filter> havingGraph = body.getHaving();
+        if(!q.getGroupBy().isEmpty()) {
+            q.getGroupBy().remove(var);
+        }
+        VarExprList gbVars = new VarExprList();
+        for(Var v:q.getProject().getVars()) {
+            Expr e = q.getProject().getExprs().get(v);
+            if(!(e instanceof ExprAggregator)) {
+                gbVars.add(v,e);
+            }
+        }
+        q.getGroupBy().addAll(gbVars);
+        if (he.getHaving() != null) {
+            List<Filter> havingGraph = he.getHaving();
             Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);
             q.addHavingCondition(having);
         }

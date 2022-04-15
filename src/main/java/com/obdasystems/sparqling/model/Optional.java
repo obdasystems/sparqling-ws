@@ -25,7 +25,7 @@ import javax.validation.Valid;
 /**
  * Optional
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class Optional  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class Optional  implements Serializable  {
   @JsonProperty("id")
   private Integer id = null;
 

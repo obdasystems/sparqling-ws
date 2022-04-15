@@ -25,7 +25,7 @@ import javax.validation.Valid;
 /**
  * Branch
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class Branch  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class Branch  implements Serializable  {
   @JsonProperty("objectPropertyIRI")
   private String objectPropertyIRI = null;
 

@@ -24,7 +24,7 @@ import javax.validation.Valid;
 /**
  * OntologyUploadBody
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class OntologyUploadBody  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class OntologyUploadBody  implements Serializable  {
   @JsonProperty("file")
   private File file = null;
 
