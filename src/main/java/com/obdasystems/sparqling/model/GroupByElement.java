@@ -24,7 +24,10 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-14T09:21:10.405Z[GMT]")public class GroupByElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class GroupByElement  implements Serializable  {
+  @JsonProperty("distinct")
+  private Boolean distinct = null;
+
   /**
    * Gets or Sets aggregateFunction
    */
@@ -64,6 +67,25 @@ import javax.validation.Valid;
   @JsonProperty("aggregateFunction")
   private AggregateFunctionEnum aggregateFunction = null;
 
+  public GroupByElement distinct(Boolean distinct) {
+    this.distinct = distinct;
+    return this;
+  }
+
+  /**
+   * Get distinct
+   * @return distinct
+   **/
+  @JsonProperty("distinct")
+  @Schema(description = "")
+  public Boolean isDistinct() {
+    return distinct;
+  }
+
+  public void setDistinct(Boolean distinct) {
+    this.distinct = distinct;
+  }
+
   public GroupByElement aggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
     return this;
@@ -93,12 +115,13 @@ import javax.validation.Valid;
       return false;
     }
     GroupByElement groupByElement = (GroupByElement) o;
-    return Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
+    return Objects.equals(this.distinct, groupByElement.distinct) &&
+        Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(aggregateFunction);
+    return Objects.hash(distinct, aggregateFunction);
   }
 
 
@@ -107,6 +130,7 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupByElement {\n");
     
+    sb.append("    distinct: ").append(toIndentedString(distinct)).append("\n");
     sb.append("    aggregateFunction: ").append(toIndentedString(aggregateFunction)).append("\n");
     sb.append("}");
     return sb.toString();

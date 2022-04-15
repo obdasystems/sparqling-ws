@@ -491,10 +491,10 @@ public class QueryGraphHandler {
             default: throw new RuntimeException("Cannot find aggregate function");
         }
         q.getProject().remove(var);
-        q.getGroupBy().clear();
         q.getGroupBy().addAll(q.getProject());
         if (body.getHaving() != null) {
-            Expr having = QueryUtils.getExprForFilter(body.getHaving(), q.getPrefixMapping(), exprAgg);
+            List<Filter> havingGraph = body.getHaving();
+            Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);
             q.addHavingCondition(having);
         }
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));

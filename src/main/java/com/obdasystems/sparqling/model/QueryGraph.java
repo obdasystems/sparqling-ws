@@ -30,7 +30,7 @@ import javax.validation.Valid;
 /**
  * QueryGraph
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class QueryGraph  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraph  implements Serializable  {
   @JsonProperty("distinct")
   private Boolean distinct = null;
 
@@ -53,7 +53,7 @@ import javax.validation.Valid;
   private GroupByElement groupBy = null;
 
   @JsonProperty("having")
-  private Filter having = null;
+  private List<Filter> having = null;
 
   @JsonProperty("limit")
   private Integer limit = null;
@@ -226,8 +226,16 @@ import javax.validation.Valid;
     this.groupBy = groupBy;
   }
 
-  public QueryGraph having(Filter having) {
+  public QueryGraph having(List<Filter> having) {
     this.having = having;
+    return this;
+  }
+
+  public QueryGraph addHavingItem(Filter havingItem) {
+    if (this.having == null) {
+      this.having = new ArrayList<Filter>();
+    }
+    this.having.add(havingItem);
     return this;
   }
 
@@ -238,11 +246,11 @@ import javax.validation.Valid;
   @JsonProperty("having")
   @Schema(description = "")
   @Valid
-  public Filter getHaving() {
+  public List<Filter> getHaving() {
     return having;
   }
 
-  public void setHaving(Filter having) {
+  public void setHaving(List<Filter> having) {
     this.having = having;
   }
 

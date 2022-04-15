@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class QueryGraphExtraApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraphExtraApi  {
    private final QueryGraphExtraApiService delegate;
 
    public QueryGraphExtraApi(@Context ServletConfig servletContext) {
@@ -60,6 +60,22 @@ import javax.validation.constraints.*;
       this.delegate = delegate;
    }
 
+    @PUT
+    @Path("/countStar")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Remove query head and replace it with `count(*)`.", description = "", tags={ "QueryGraphExtra" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
+        
+        @ApiResponse(responseCode = "404", description = "Head term not found") })
+    public Response countStarQueryGraph(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("distinct") Boolean distinct
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.countStarQueryGraph(body,distinct,securityContext);
+    }
     @PUT
     @Path("/distinct")
     @Consumes({ "application/json" })

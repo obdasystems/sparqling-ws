@@ -16,7 +16,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public abstract class QueryGraphOptionalApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public abstract class QueryGraphOptionalApiService {
     public abstract Response newOptionalGraphElementId(QueryGraph body,String graphElementId, String classIRI,SecurityContext securityContext) throws NotFoundException;
     public abstract Response removeAllOptional(QueryGraph body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response removeOptionalGraphElementId(QueryGraph body,String graphElementId, String classIRI,SecurityContext securityContext) throws NotFoundException;

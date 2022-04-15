@@ -505,10 +505,13 @@ public class TestQueryGraphHandler {
         params.add(v2);
         havingExpr.setParameters(params);
         having.setExpression(havingExpr);
-        qg.setHaving(having);
+        List<Filter> havings = new LinkedList<>();
+        havings.add(having);
+        qg.setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
         SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
+        System.out.println(q);
         Expr e = q.getProject().getExprs().values().iterator().next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
@@ -546,7 +549,7 @@ public class TestQueryGraphHandler {
 
     @Test
     public void sandbox() {
-        String sparql = "SELECT (sum(?y) as ?sum) " +
+        String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +
                 "?x <op> ?y." +
                 "?x <op> ?z." +

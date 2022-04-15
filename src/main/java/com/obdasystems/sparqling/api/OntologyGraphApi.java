@@ -37,7 +37,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class OntologyGraphApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class OntologyGraphApi  {
    private final OntologyGraphApiService delegate;
 
    public OntologyGraphApi(@Context ServletConfig servletContext) {

@@ -16,7 +16,12 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public class QueryGraphExtraApiServiceImpl extends QueryGraphExtraApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraphExtraApiServiceImpl extends QueryGraphExtraApiService {
+    @Override
+    public Response countStarQueryGraph(QueryGraph body,  @NotNull Boolean distinct, SecurityContext securityContext) throws NotFoundException {
+        // do some magic!
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+    }
     @Override
     public Response distinctQueryGraph(QueryGraph body,  @NotNull Boolean distinct, SecurityContext securityContext) throws NotFoundException {
         // do some magic!

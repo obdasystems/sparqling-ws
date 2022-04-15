@@ -16,7 +16,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-08T10:35:15.892Z[GMT]")public abstract class QueryGraphFilterApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public abstract class QueryGraphFilterApiService {
     public abstract Response editFilter(QueryGraph body,Integer filterId,SecurityContext securityContext) throws NotFoundException;
     public abstract Response newFilter(QueryGraph body,Integer filterId,SecurityContext securityContext) throws NotFoundException;
     public abstract Response removeAllFilters(QueryGraph body,SecurityContext securityContext) throws NotFoundException;
