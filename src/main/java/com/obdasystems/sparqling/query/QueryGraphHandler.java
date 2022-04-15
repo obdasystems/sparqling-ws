@@ -371,6 +371,14 @@ public class QueryGraphHandler {
         if(!q.getGroupBy().isEmpty()) {
             q.getGroupBy().remove(jVar);
         }
+        if(!q.getHavingExprs().isEmpty()) {
+            Iterator<Expr> itH = q.getHavingExprs().iterator();
+            while(itH.hasNext()) {
+                if (itH.next().getVarsMentioned().contains(jVar)) {
+                    it.remove();
+                }
+            }
+        }
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
