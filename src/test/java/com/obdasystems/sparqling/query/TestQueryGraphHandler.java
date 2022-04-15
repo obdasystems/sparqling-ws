@@ -489,6 +489,7 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         GroupByElement gb = new GroupByElement();
         gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.distinct(true);
         qg.setGroupBy(gb);
         Filter having = new Filter();
         FilterExpression havingExpr = new FilterExpression();
