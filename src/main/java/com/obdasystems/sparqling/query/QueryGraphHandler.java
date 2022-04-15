@@ -469,23 +469,43 @@ public class QueryGraphHandler {
         ExprAggregator exprAgg;
         switch (gb.getAggregateFunction()) {
             case COUNT:
-                agg = new AggCountVar(expVar);
+                if (gb.isDistinct()) {
+                    agg = new AggCountVarDistinct(expVar);
+                } else {
+                    agg = new AggCountVar(expVar);
+                }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
             case SUM:
-                agg = new AggSum(expVar);
+                if (gb.isDistinct()) {
+                    agg = new AggSumDistinct(expVar);
+                } else {
+                    agg = new AggSum(expVar);
+                }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
             case MIN:
-                agg = new AggMin(expVar);
+                if (gb.isDistinct()) {
+                    agg = new AggMinDistinct(expVar);
+                } else {
+                    agg = new AggMin(expVar);
+                }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
             case MAX:
-                agg = new AggMax(expVar);
+                if (gb.isDistinct()) {
+                    agg = new AggMaxDistinct(expVar);
+                } else {
+                    agg = new AggMax(expVar);
+                }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
             case AVARAGE:
-                agg = new AggAvg(expVar);
+                if (gb.isDistinct()) {
+                    agg = new AggAvgDistinct(expVar);
+                } else {
+                    agg = new AggAvg(expVar);
+                }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
             default: throw new RuntimeException("Cannot find aggregate function");
