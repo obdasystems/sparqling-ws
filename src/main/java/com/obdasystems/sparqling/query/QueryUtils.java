@@ -6,11 +6,13 @@ import com.obdasystems.sparqling.model.VarOrConstant;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.ExprFactory;
 import org.apache.jena.query.Query;
+import org.apache.jena.query.Syntax;
 import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.sparql.algebra.walker.ElementWalker_New;
 import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.expr.*;
+import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.semanticweb.owlapi.model.IRI;
@@ -20,6 +22,12 @@ import java.util.Iterator;
 import static com.obdasystems.sparqling.query.QueryGraphHandler.varPrefix;
 
 public class QueryUtils {
+    static SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+
+    static void validate(String sparql) {
+        parser.parse(new Query(), sparql);
+    }
+
     static String guessNewVarFromIRI(IRI iri, Query q) {
         String res = iri.getFragment();
         if(res.isEmpty()) {

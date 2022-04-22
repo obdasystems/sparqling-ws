@@ -31,6 +31,7 @@ public class TestQueryGraphHandler {
     private static String writtenByIRI;
     private static String authorIRI;
     private static String nameIRI;
+    private static SPARQLParser parser;
 
     @BeforeClass
     public static void init() throws FileNotFoundException {
@@ -39,6 +40,7 @@ public class TestQueryGraphHandler {
         writtenByIRI = "http://www.obdasystems.com/books/writtenBy";
         authorIRI = "http://www.obdasystems.com/books/Author";
         nameIRI = "http://www.obdasystems.com/books/name";
+        parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_1.0.0/books_ontology.graphol"));
     }
     @Test
@@ -117,6 +119,23 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testRenameHeadElementDuplicate() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.addHeadTerm(qg, "Book0");
+        qg = qgb.addHeadTerm(qg, "Author0");
+        qg.getHead().get(1).setAlias("AUTORE");
+        qg = qgb.renameHeadTerm(qg, "?Author0");
+        qg.getHead().get(0).setAlias("AUTORE");
+        QueryGraph finalQg = qg;
+        RuntimeException exc = assertThrows(RuntimeException.class, () -> qgb.renameHeadTerm(finalQg, "?Book0"));
+        assertEquals("Duplicate variable in result projection '?AUTORE'", exc.getMessage());
+    }
+
+    @Test
     public void testRenameAndDeleteHeadElement() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph(bookIRI);
@@ -128,7 +147,6 @@ public class TestQueryGraphHandler {
         qg.getHead().get(1).setAlias("AUTORE");
         qg = qgb.renameHeadTerm(qg, "?Author0");
         qg = qgb.deleteHeadTerm(qg, "?AUTORE");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
     }
@@ -146,7 +164,6 @@ public class TestQueryGraphHandler {
         qg = qgb.renameHeadTerm(qg, "?Author0");
         qg.getHead().get(1).setAlias("AUTORONE");
         qg = qgb.renameHeadTerm(qg, "?AUTORE");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertFalse(q.getProject().contains(AbstractQueryBuilder.makeVar("?AUTORE")));
     }
@@ -162,7 +179,6 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg = qgb.deleteHeadTerm(qg, "?name0");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertTrue(q.isQueryResultStar());
     }
@@ -203,7 +219,6 @@ public class TestQueryGraphHandler {
         f.setExpression(fe);
         qg.addFiltersItem(f);
         qg = qgb.newFilter(qg, 0);
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] passed = {false};
         ElementWalker.walk(
@@ -273,7 +288,6 @@ public class TestQueryGraphHandler {
         f2.setExpression(fe2);
         qg.addFiltersItem(f2);
         qg = qgb.newFilter(qg, 1);
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         final int[] filters = {0};
         ElementWalker.walk(q.getQueryPattern(), new ElementVisitorBase() {
@@ -317,7 +331,6 @@ public class TestQueryGraphHandler {
         f.setExpression(fe);
         qg.addFiltersItem(f);
         qg = qgb.newFilter(qg, 0);
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         ElementWalker.walk(
                 q.getQueryPattern(),
@@ -383,7 +396,6 @@ public class TestQueryGraphHandler {
         qg.addFiltersItem(f2);
         qg = qgb.newFilter(qg, 1);
         qg = qgb.removeFilter(qg, 0, true);
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         final int[] filters = {0};
         ElementWalker.walk(
@@ -442,7 +454,6 @@ public class TestQueryGraphHandler {
         qg = qgb.orderBy(qg, "?name0");
         qg.getHead().get(0).setOrdering(0);
         qg = qgb.orderBy(qg, "?name0");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertEquals(1,q.getOrderBy().size());
     }
@@ -471,7 +482,6 @@ public class TestQueryGraphHandler {
         f.addParametersItem(v2);
         he.setFunction(f);
         qg = qgb.functionHeadTerm(qg, "?name0");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         System.out.println(q);
         assertTrue(q.getProject().getExprs().values().iterator().next() instanceof E_StrSubstring);
@@ -511,7 +521,6 @@ public class TestQueryGraphHandler {
         havings.add(having);
         qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         Expr e = q.getProject().getExprs().values().iterator().next();
         assertTrue(e instanceof ExprAggregator);
@@ -559,7 +568,6 @@ public class TestQueryGraphHandler {
         gb2.distinct(true);
         qg.getHead().get(1).setGroupBy(gb2);
         qg = qgb.aggregationHeadTerm(qg, "?name1");
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         Iterator<Expr> it = q.getProject().getExprs().values().iterator();
         Expr e = it.next();
@@ -592,7 +600,6 @@ public class TestQueryGraphHandler {
         }
         qg.setHead(newHead);
         qg = qgb.reorderHeadTerm(qg);
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), qg.getSparql());
         AtomicInteger index = new AtomicInteger();
         q.getProject().forEachVar(i -> assertEquals(i.getVarName(),newHead.get(index.getAndIncrement()).getId().substring(1)));
@@ -608,7 +615,6 @@ public class TestQueryGraphHandler {
                 "?x <op> ?z2." +
                 "}" +
                 "GROUP BY ?z ?z1 ?z2";
-        SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         Query q = parser.parse(new Query(), sparql);
         System.out.println(q);
     }

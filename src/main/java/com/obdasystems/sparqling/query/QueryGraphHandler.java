@@ -31,6 +31,8 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.obdasystems.sparqling.query.QueryUtils.validate;
+
 public class QueryGraphHandler {
     private final OWLOntology ontology;
     private final Map<String, String> prefixes;
@@ -88,7 +90,9 @@ public class QueryGraphHandler {
                 (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
                 AbstractQueryBuilder.makeNode(iri.toQuotedString(), p)
         )));
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement ge = gef.findElementById(graphElementId, body.getGraph());
@@ -128,7 +132,9 @@ public class QueryGraphHandler {
                 (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
                 AbstractQueryBuilder.makeNode(target.toQuotedString(), p)
         )));
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement found = gef.findElementById(graphElementId, body.getGraph());
@@ -164,7 +170,9 @@ public class QueryGraphHandler {
                 (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
                 AbstractQueryBuilder.makeNode(var, p)
         )));
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement found = gef.findElementById(graphElementId, body.getGraph());
@@ -244,7 +252,9 @@ public class QueryGraphHandler {
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         // Modify graph
         gef.deleteElementById(graphElementId, body.getGraph());
         gef.deleteObjectPropertiesWithNoChild(body.getGraph());
@@ -278,7 +288,9 @@ public class QueryGraphHandler {
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         wh.addFilter(QueryUtils.getExprForFilter(f, q.getPrefixMapping(), null));
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -310,7 +322,9 @@ public class QueryGraphHandler {
             }
         });
         if (!removed[0]) throw new RuntimeException("Cannot find FILTER " + filterId);
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -325,7 +339,9 @@ public class QueryGraphHandler {
                 elementGroup.getElements().removeIf(el -> el instanceof ElementFilter);
             }
         });
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -342,7 +358,9 @@ public class QueryGraphHandler {
         if(!q.getGroupBy().isEmpty()) {
             q.getGroupBy().add(jVar);
         }
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         //Modify graph
         HeadElement he = new HeadElement();
         he.setId(var);
@@ -382,7 +400,9 @@ public class QueryGraphHandler {
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -410,7 +430,9 @@ public class QueryGraphHandler {
             newVar,
             new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
         );
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -422,7 +444,9 @@ public class QueryGraphHandler {
         Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
         if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
         q.addOrderBy(orderVar, ordering);
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -453,7 +477,9 @@ public class QueryGraphHandler {
                 newVar,
                 expr
         );
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -541,7 +567,9 @@ public class QueryGraphHandler {
         he.setAlias(newVar.getVarName());
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 
@@ -557,7 +585,9 @@ public class QueryGraphHandler {
         newHead.getExprs().putAll(oldHead.getExprs());
         q.getProject().clear();
         q.getProject().addAll(newHead);
-        body.setSparql(q.serialize());
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
 }
