@@ -40,7 +40,6 @@ public class SparqlingServer {
     private static Server server;
     private static PrintStream stdout = System.out;
     private static PrintStream stderr = System.err;
-    final static Logger logger = LoggerFactory.getLogger(SparqlingServer.class);
     static int port = 7979;
     public static ConsoleAppender ca;
 
@@ -80,8 +79,6 @@ public class SparqlingServer {
 
 
         server.setHandler(handlers);
-
-        logger.info("STARTING SPARQLING SERVER ON PORT: " + port);
         server.start();
 
         if (args.length >= 1)
