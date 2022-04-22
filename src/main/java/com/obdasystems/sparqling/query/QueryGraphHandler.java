@@ -441,6 +441,7 @@ public class QueryGraphHandler {
         if (he.getFunction() == null) throw new RuntimeException("Cannot find function for head element " + headTerm);
         Function f = he.getFunction();
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
+        he.setId(newVar.getVarName());
         he.setAlias(newVar.getVarName());
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
@@ -536,6 +537,8 @@ public class QueryGraphHandler {
             q.addHavingCondition(having);
         }
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));
+        he.setId(newVar.getVarName());
+        he.setAlias(newVar.getVarName());
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
         body.setSparql(q.serialize());
