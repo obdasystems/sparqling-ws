@@ -1,5 +1,6 @@
 package com.obdasystems.sparqling.query;
 
+import com.google.common.collect.Sets;
 import com.obdasystems.sparqling.model.Filter;
 import com.obdasystems.sparqling.model.Function;
 import com.obdasystems.sparqling.model.VarOrConstant;
@@ -18,6 +19,8 @@ import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.semanticweb.owlapi.model.IRI;
 
 import java.util.Iterator;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.obdasystems.sparqling.query.QueryGraphHandler.varPrefix;
 
@@ -222,5 +225,45 @@ public class QueryUtils {
             default: throw new RuntimeException("Cannot find function name.");
         }
         return expr;
+    }
+
+    public static void removeAggregations(Query q, Set<String> varToBeDeleted) {
+        Iterator<Var> it = q.getProject().getExprs().keySet().iterator();
+        //Remove aggregation functions in head
+        while (it.hasNext()) {
+            Var var = it.next();
+            Expr expr = q.getProject().getExpr(var);
+            if (expr instanceof ExprAggregator) {
+                ExprAggregator agg = (ExprAggregator) expr;
+                if (!Sets.intersection(
+                        agg.getAggregator().getExprList().getVarsMentioned().stream().map(v -> v.getName()).collect(Collectors.toSet()),
+                        varToBeDeleted)
+                        .isEmpty()) {
+                    it.remove();
+                    q.getProject().remove(var);
+                }
+            }
+        }
+        //Remove group by if no more aggregations
+        boolean foundAggr = false;
+        for (Var k:q.getProject().getExprs().keySet()) {
+            if (q.getProject().getExpr(k) instanceof ExprAggregator) {
+               foundAggr = true;
+               break;
+            }
+        }
+        if (!foundAggr) q.getGroupBy().clear();
+        //Remove having
+        q.getHavingExprs().removeIf(expr -> {
+              String serializedExpr = expr.toString();
+              for (String v:varToBeDeleted) {
+                if (serializedExpr.contains(v)) return true;
+              }
+              return false;
+        });
+        //Remove vars from group by
+        for(String var:varToBeDeleted) {
+            q.getGroupBy().remove(AbstractQueryBuilder.makeVar(var));
+        }
     }
 }

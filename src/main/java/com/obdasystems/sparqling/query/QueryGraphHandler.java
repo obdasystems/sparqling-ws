@@ -252,6 +252,7 @@ public class QueryGraphHandler {
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
+        QueryUtils.removeAggregations(q, varToBeDeleted);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
