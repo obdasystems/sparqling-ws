@@ -262,6 +262,17 @@ public class QueryGraphHandler {
         body.setHead(body.getHead().stream().filter(
                 headElement -> !varToBeDeleted.contains(headElement.getGraphElementId()))
                 .collect(Collectors.toList()));
+        body.getFilters().removeIf(filter -> {
+            List<String> filterVars = filter.getExpression().getParameters().stream()
+                    .filter(params -> params.getType().equals(VarOrConstant.TypeEnum.VAR))
+                    .map(params -> params.getValue().substring(1)).collect(Collectors.toList());
+            for (String v:filterVars) {
+                if(varToBeDeleted.contains(v)) {
+                    return true;
+                }
+            }
+            return false;
+        });
         return body;
     }
 
