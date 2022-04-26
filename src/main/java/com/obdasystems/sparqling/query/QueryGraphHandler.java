@@ -8,6 +8,7 @@ import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
 import org.apache.jena.arq.querybuilder.handlers.SelectHandler;
 import org.apache.jena.arq.querybuilder.handlers.WhereHandler;
+import org.apache.jena.ext.com.google.common.collect.Sets;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
@@ -253,6 +254,7 @@ public class QueryGraphHandler {
             q.setQueryResultStar(true);
         }
         QueryUtils.removeAggregations(q, varToBeDeleted);
+        QueryUtils.removeOrderBy(q, varToBeDeleted);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -262,17 +264,19 @@ public class QueryGraphHandler {
         body.setHead(body.getHead().stream().filter(
                 headElement -> !varToBeDeleted.contains(headElement.getGraphElementId()))
                 .collect(Collectors.toList()));
-        body.getFilters().removeIf(filter -> {
-            List<String> filterVars = filter.getExpression().getParameters().stream()
-                    .filter(params -> params.getType().equals(VarOrConstant.TypeEnum.VAR))
-                    .map(params -> params.getValue().substring(1)).collect(Collectors.toList());
-            for (String v:filterVars) {
-                if(varToBeDeleted.contains(v)) {
-                    return true;
+        if (body.getFilters() != null) {
+            body.getFilters().removeIf(filter -> {
+                List<String> filterVars = filter.getExpression().getParameters().stream()
+                        .filter(params -> params.getType().equals(VarOrConstant.TypeEnum.VAR))
+                        .map(params -> params.getValue().substring(1)).collect(Collectors.toList());
+                for (String v : filterVars) {
+                    if (varToBeDeleted.contains(v)) {
+                        return true;
+                    }
                 }
-            }
-            return false;
-        });
+                return false;
+            });
+        }
         return body;
     }
 
@@ -412,6 +416,9 @@ public class QueryGraphHandler {
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
+        Set<String> toRemove = new HashSet<>();
+        toRemove.add(id);
+        QueryUtils.removeOrderBy(q, toRemove);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);

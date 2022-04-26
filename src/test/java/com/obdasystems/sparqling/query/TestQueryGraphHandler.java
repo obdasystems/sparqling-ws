@@ -687,6 +687,44 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testIssue17Body() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg.getHead().get(0).setOrdering(1);
+        qg = qgb.orderBy(qg, "?name0");
+        qg.getHead().get(0).setOrdering(0);
+        qg = qgb.orderBy(qg, "?name0");
+        qg = qgb.deleteQueryGraphElement(qg, "name0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.getOrderBy() == null);
+    }
+
+    @Test
+    public void testIssue17Head() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg.getHead().get(0).setOrdering(1);
+        qg = qgb.orderBy(qg, "?name0");
+        qg.getHead().get(0).setOrdering(0);
+        qg = qgb.orderBy(qg, "?name0");
+        qg = qgb.deleteHeadTerm(qg, "name0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.getOrderBy() == null);
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +

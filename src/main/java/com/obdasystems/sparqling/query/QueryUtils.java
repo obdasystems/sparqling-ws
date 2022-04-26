@@ -266,4 +266,13 @@ public class QueryUtils {
             q.getGroupBy().remove(AbstractQueryBuilder.makeVar(var));
         }
     }
+
+    public static void removeOrderBy(Query q, Set<String> varToBeDeleted) {
+        if (q.getOrderBy() != null) {
+            q.getOrderBy().removeIf(sortCondition -> !org.apache.jena.ext.com.google.common.collect.Sets.intersection(
+                    sortCondition.getExpression().getVarsMentioned().stream().map(v -> v.getName()).collect(Collectors.toSet()),
+                    varToBeDeleted)
+                    .isEmpty());
+        }
+    }
 }
