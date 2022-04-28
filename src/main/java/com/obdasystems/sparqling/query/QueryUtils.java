@@ -135,18 +135,32 @@ public class QueryUtils {
                         getVarOrConstant(f.getExpression().getParameters().get(1), p));
                 break;
             case IN:
+                if (f.getExpression().getParameters().size() <= 2) {
+                    throw new RuntimeException("IN function must have at least 2 parameters");
+                }
                 ExprList list = new ExprList();
+                boolean first = true;
                 for (VarOrConstant v:f.getExpression().getParameters()) {
-                    list.add(getVarOrConstant(v,p));
+                    if (!first) {
+                        list.add(getVarOrConstant(v, p));
+                    }
+                    first = false;
                 }
                 filterExpr = ef.in(
                         firstArg,
                         list);
                 break;
             case NOT_IN:
+                if (f.getExpression().getParameters().size() <= 2) {
+                    throw new RuntimeException("IN function must have at least 2 parameters");
+                }
                 ExprList not_list = new ExprList();
+                first = true;
                 for (VarOrConstant v:f.getExpression().getParameters()) {
-                    not_list.add(getVarOrConstant(v,p));
+                    if (!first) {
+                        not_list.add(getVarOrConstant(v, p));
+                    }
+                    first = false;
                 }
                 filterExpr = ef.notin(
                         firstArg,
