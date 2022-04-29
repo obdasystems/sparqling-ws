@@ -23,7 +23,8 @@ public class StandaloneApiServiceImpl extends StandaloneApiService {
         } else {
             String message = "Graphol not present";
             logger.error(message);
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, message)).build();
+            String xmlString = "<apiResponseMessage><type>error</type><message>Graphol not present</message></apiResponseMessage>";
+            return Response.ok().entity(xmlString).build();
         }
     }
     @Override
