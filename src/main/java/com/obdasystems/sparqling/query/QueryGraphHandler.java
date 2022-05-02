@@ -164,12 +164,16 @@ public class QueryGraphHandler {
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         String var = QueryUtils.guessNewVarFromIRI(iri, q);
-        sh.addVar(AbstractQueryBuilder.makeVar(var));
+        Var newVar = AbstractQueryBuilder.makeVar(var);
+        sh.addVar(newVar);
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
                 AbstractQueryBuilder.makeNode(var, p)
         )));
+        if (!q.getAggregators().isEmpty()) {
+            q.getGroupBy().add(newVar);
+        }
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -249,11 +253,11 @@ public class QueryGraphHandler {
         for(String var:varToBeDeleted) {
             q.getProject().remove(AbstractQueryBuilder.makeVar(var));
         }
+        QueryUtils.removeAggregations(q, varToBeDeleted);
+        QueryUtils.removeOrderBy(q, varToBeDeleted);
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
-        QueryUtils.removeAggregations(q, varToBeDeleted);
-        QueryUtils.removeOrderBy(q, varToBeDeleted);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -414,6 +418,8 @@ public class QueryGraphHandler {
         }
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
+            q.getGroupBy().clear();
+            q.getHavingExprs().clear();
         }
         Set<String> toRemove = new HashSet<>();
         toRemove.add(id);

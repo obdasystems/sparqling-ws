@@ -773,6 +773,114 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testIssue19_3() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.distinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        Filter having = new Filter();
+        FilterExpression havingExpr = new FilterExpression();
+        havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        v1.setValue("?name0");
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        v2.setValue("12");
+        params.add(v1);
+        params.add(v2);
+        havingExpr.setParameters(params);
+        having.setExpression(havingExpr);
+        List<Filter> havings = new LinkedList<>();
+        havings.add(having);
+        qg.getHead().get(0).setHaving(havings);
+        qg = qgb.aggregationHeadTerm(qg, "?name0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+    }
+
+    @Test
+    public void testIssue19_1() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.distinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        Filter having = new Filter();
+        FilterExpression havingExpr = new FilterExpression();
+        havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        v1.setValue("?name0");
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        v2.setValue("12");
+        params.add(v1);
+        params.add(v2);
+        havingExpr.setParameters(params);
+        having.setExpression(havingExpr);
+        List<Filter> havings = new LinkedList<>();
+        havings.add(having);
+        qg.getHead().get(0).setHaving(havings);
+        qg = qgb.aggregationHeadTerm(qg, "?name0");
+        qg = qgb.deleteHeadTerm(qg, "count_name0");
+    }
+
+    @Test
+    public void testIssue19_2() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.distinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        Filter having = new Filter();
+        FilterExpression havingExpr = new FilterExpression();
+        havingExpr.setOperator(FilterExpression.OperatorEnum.GREATER_THAN);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        v1.setValue("?name0");
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.DECIMAL);
+        v2.setValue("12");
+        params.add(v1);
+        params.add(v2);
+        havingExpr.setParameters(params);
+        having.setExpression(havingExpr);
+        List<Filter> havings = new LinkedList<>();
+        havings.add(having);
+        qg.getHead().get(0).setHaving(havings);
+        qg = qgb.aggregationHeadTerm(qg, "?name0");
+        qg = qgb.deleteQueryGraphElement(qg, "name0");
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +
