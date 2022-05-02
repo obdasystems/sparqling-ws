@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraphExtraApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-05-02T11:18:38.146Z[GMT]")public class QueryGraphExtraApi  {
    private final QueryGraphExtraApiService delegate;
 
    public QueryGraphExtraApi(@Context ServletConfig servletContext) {
@@ -119,7 +119,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "404", description = "Head term not found") })
     public Response offsetQueryGraph(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
 
-,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("offset") Boolean offset
+,@Parameter(in = ParameterIn.QUERY, description = "",required=true) @QueryParam("offset") Integer offset
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.offsetQueryGraph(body,offset,securityContext);

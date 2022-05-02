@@ -733,6 +733,46 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testCountStar() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.countStar(qg, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+    }
+
+    @Test
+    public void testExtras() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.setDistinct(qg, true);
+        int l = 100000000;
+        int o = 200000;
+        qg = qgb.setLimit(qg, l);
+        qg = qgb.setOffset(qg, o);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.isDistinct());
+        assertTrue(q.getLimit() == l);
+        assertTrue(q.getOffset() == o);
+        assertTrue(q.isDistinct());
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +

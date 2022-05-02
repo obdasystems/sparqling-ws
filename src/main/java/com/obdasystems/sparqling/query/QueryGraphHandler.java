@@ -8,7 +8,6 @@ import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
 import org.apache.jena.arq.querybuilder.handlers.SelectHandler;
 import org.apache.jena.arq.querybuilder.handlers.WhereHandler;
-import org.apache.jena.ext.com.google.common.collect.Sets;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
@@ -604,6 +603,51 @@ public class QueryGraphHandler {
         newHead.getExprs().putAll(oldHead.getExprs());
         q.getProject().clear();
         q.getProject().addAll(newHead);
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return body;
+    }
+
+    public QueryGraph countStar(QueryGraph body, Boolean distinct) {
+        body.getHead().clear();
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.getProject().clear();
+        AggregationHandler ah = new AggregationHandler(q);
+        Aggregator agg;
+            if(distinct) agg = new AggCountDistinct();
+            else agg = new AggCount();
+        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + "COUNT_STAR");
+        ExprAggregator exprAgg = new ExprAggregator(newVar, agg);
+        SelectHandler sh = new SelectHandler(ah);
+        sh.addVar(exprAgg, newVar);
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return body;
+    }
+
+    public QueryGraph setDistinct(QueryGraph body, Boolean distinct) {
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.setDistinct(distinct);
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return body;
+    }
+
+    public QueryGraph setLimit(QueryGraph body, Integer limit) {
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.setLimit(limit);
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return body;
+    }
+
+    public QueryGraph setOffset(QueryGraph body, Integer offset) {
+        Query q = parser.parse(new Query(), body.getSparql());
+        q.setOffset(offset);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
