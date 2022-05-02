@@ -13,6 +13,7 @@ import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.semanticweb.owlapi.model.IRI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,6 +61,13 @@ public class TestQueryGraphHandler {
         SelectBuilder sb = new SelectBuilder();
         sb.addVar("*").addWhere("?Book0", "a", "<"+bookIRI+">");
         assertEquals(QueryUtils.getNewCountedVarFromQuery("Book", sb.build()), "Book1");
+    }
+    @Test
+    public void testGuessNewLongVar() {
+        SelectBuilder sb = new SelectBuilder();
+        IRI iri = IRI.create("http://www.example.com/ClassLoooooooooooooooooooooooooooooooooooooooooooong");
+        sb.addVar("*").addWhere("?x", "a", iri);
+        assertEquals(29, QueryUtils.guessNewVarFromIRI(iri, sb.build()).length());
     }
     @Test
     public void testDeleteGraphElement() {

@@ -26,6 +26,7 @@ import static com.obdasystems.sparqling.query.QueryGraphHandler.varPrefix;
 
 public class QueryUtils {
     static SPARQLParser parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+    private static int VAR_MAX_LENGTH = 30;
 
     static void validate(String sparql) {
         parser.parse(new Query(), sparql);
@@ -36,6 +37,7 @@ public class QueryUtils {
         if(res.isEmpty()) {
             res = "x" + System.currentTimeMillis();
         } else {
+            if (res.length() > VAR_MAX_LENGTH - 2) res = res.substring(0, VAR_MAX_LENGTH - 3);
             res = getNewCountedVarFromQuery(res, q);
         }
         return varPrefix + res;
