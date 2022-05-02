@@ -29,6 +29,7 @@ public class ImportCode {
         filesNotToCopy.add("QueryGraphBgpApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphFilterApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphHeadApiServiceImpl.java");
+        filesNotToCopy.add("QueryGraphExtraApiServiceImpl.java");
 
         Set<File> api = listFilesUsingJavaIO(mainApi);
         api.addAll(listFilesUsingJavaIO(genApi));
