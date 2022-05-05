@@ -11,6 +11,7 @@ import org.apache.jena.arq.querybuilder.handlers.WhereHandler;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
+import org.apache.jena.query.SortCondition;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.shared.PrefixMapping;
 import org.apache.jena.sparql.algebra.Algebra;
@@ -466,8 +467,20 @@ public class QueryGraphHandler {
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
-        if(q.getOrderBy() != null && !q.getOrderBy().isEmpty()) q.getOrderBy().clear();
-        q.addOrderBy(orderVar, ordering);
+        //remove precedent order for that var
+        if (q.getOrderBy() != null) {
+            Iterator<SortCondition> it = q.getOrderBy().iterator();
+            while (it.hasNext()) {
+                SortCondition sc = it.next();
+                if (sc.getExpression().getVarsMentioned().contains(orderVar)) {
+                    it.remove();
+                }
+            }
+        }
+
+        if (ordering != 0) {
+            q.addOrderBy(orderVar, ordering);
+        }
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);

@@ -460,9 +460,14 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg.getHead().get(0).setOrdering(1);
         qg = qgb.orderBy(qg, "?name0");
+        qg = qgb.addHeadTerm(qg, "Book0");
+        qg.getHead().get(1).setOrdering(-1);
+        qg = qgb.orderBy(qg, "?Book0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(2,q.getOrderBy().size());
         qg.getHead().get(0).setOrdering(0);
         qg = qgb.orderBy(qg, "?name0");
-        Query q = parser.parse(new Query(), qg.getSparql());
+        q = parser.parse(new Query(), qg.getSparql());
         assertEquals(1,q.getOrderBy().size());
     }
 
