@@ -76,17 +76,18 @@ public class GraphElementFinder {
         if(e.getId().equals(id)) {
             found = e;
         }
+
         if(found != null) {
             childrenIds.add(e.getId());
         }
-        if(e.getChildren() == null || e.getChildren().size() == 0) {
+        if(e.getChildren() != null) {
+            for(GraphElement child:e.getChildren()) {
+                _findChildrenIds(id, child);
+            }
+        }
+        if(e.getId().equals(id)) {
             found = null;
-            return;
         }
-        for(GraphElement child:e.getChildren()) {
-            _findChildrenIds(id, child);
-        }
-        found = null;
     }
 
     public Set<String> findChildrenIds(String id, GraphElement graph) {

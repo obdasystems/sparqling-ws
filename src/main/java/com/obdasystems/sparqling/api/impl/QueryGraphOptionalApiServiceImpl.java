@@ -12,11 +12,15 @@ import com.obdasystems.sparqling.api.NotFoundException;
 import java.io.InputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraphOptionalApiServiceImpl extends QueryGraphOptionalApiService {
+    final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Override
     public Response newOptionalGraphElementId(QueryGraph body, String graphElementId,  String classIRI, SecurityContext securityContext) throws NotFoundException {
         // do some magic!

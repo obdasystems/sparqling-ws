@@ -6,6 +6,7 @@ import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
+import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.expr.E_StrSubstring;
 import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprAggregator;
@@ -17,10 +18,7 @@ import org.semanticweb.owlapi.model.IRI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
@@ -86,6 +84,22 @@ public class TestQueryGraphHandler {
         QueryGraph finalQg = qg;
         RuntimeException exc = assertThrows(RuntimeException.class, () -> gef.findElementById("Author0", finalQg.getGraph()));
         assertEquals("Graph element Author0 not found!", exc.getMessage());
+        Query q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while(it.hasNext()) {
+                            TriplePath tp = it.next();
+                            if(tp.getSubject().isVariable() && tp.getSubject().getName().equals("Author0")
+                                    || tp.getObject().isVariable() && tp.getObject().getName().equals("Author0")) {
+                                throw new RuntimeException("Test delete graph element failed.");
+                            }
+                        }
+                    }
+                });
     }
     @Test
     public void testAddHeadElement() {
@@ -445,7 +459,8 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         GraphElementFinder gef = new GraphElementFinder();
-        assertEquals(gef.findChildrenIds("name0", qg.getGraph()).size(), 1);
+        assertEquals(1, gef.findChildrenIds("name0", qg.getGraph()).size());
+        assertEquals(5, gef.findChildrenIds("Author0", qg.getGraph()).size());
     }
 
     @Test
@@ -883,6 +898,47 @@ public class TestQueryGraphHandler {
         qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
         qg = qgb.deleteQueryGraphElement(qg, "name0");
+    }
+
+    @Test
+    public void testIssue21() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.deleteQueryGraphElement(qg, "Author0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.isQueryResultStar());
+    }
+
+    @Test
+    public void testDeleteSubClass() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.deleteQueryGraphElementClass(qg, "Book0", bookIRI);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while(it.hasNext()) {
+                            TriplePath e = it.next();
+                            if (e.getObject().isURI() && e.getObject().getURI().equals(bookIRI)) {
+                                throw new RuntimeException("Delete sub class test failed!");
+                            }
+                        }
+                    }
+                });
     }
 
     @Test

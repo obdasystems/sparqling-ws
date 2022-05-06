@@ -300,6 +300,15 @@ public class QueryGraphHandler {
             }
         }
         if (!found) throw new RuntimeException("Cannot find class " + classIRI + " in GraphElement " + graphElementId);
+        // Modify SPARQL
+        Query q = parser.parse(new Query(), body.getSparql());
+        Set<String> varToBeDeleted = new HashSet<>();
+        varToBeDeleted.add(graphElementId);
+        DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted, classIRI);
+        q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
         return body;
     }
     public QueryGraph newFilter(QueryGraph body, Integer filterId) {
