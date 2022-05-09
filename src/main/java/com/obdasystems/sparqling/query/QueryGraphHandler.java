@@ -4,6 +4,8 @@ import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.*;
 import com.obdasystems.sparqling.model.Optional;
 import com.obdasystems.sparqling.query.visitors.DeleteElementVisitor;
+import com.obdasystems.sparqling.query.visitors.DeleteElementVisitorByTriple;
+import com.obdasystems.sparqling.query.visitors.DeleteElementVisitorOptional;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.arq.querybuilder.handlers.AggregationHandler;
@@ -715,34 +717,95 @@ public class QueryGraphHandler {
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         Entity.TypeEnum type = el.getEntities().get(0).getType();
+        Optional op = new Optional();
+        op.setId(0);
+        List<String> list = new LinkedList<>();
+        list.add(graphElementId);
+        op.setGraphIds(list);
+        body.addOptionalsItem(op);
         Query q = parser.parse(new Query(), body.getSparql());
+        WhereHandler wh = new WhereHandler(q);
+        PrefixMapping p = q.getPrefixMapping();
+        Triple triple;
         if (type.equals(Entity.TypeEnum.CLASS)) {
-
+            IRI clazz = IRI.create(classIRI);
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            IRI predicate = IRI.create("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+            Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+            Node obj = (Node)AbstractQueryBuilder.makeNodeOrPath(clazz.toQuotedString(), p);
+            triple = new Triple(sub, pred, obj);
+            wh.addOptional(new TriplePath(triple));
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor = new DeleteElementVisitorByTriple(triple);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
         } else if (type.equals(Entity.TypeEnum.OBJECTPROPERTY)) {
+            IRI clazz = IRI.create(classIRI);
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            IRI predicate = IRI.create("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+            Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+            Node obj = (Node)AbstractQueryBuilder.makeNodeOrPath(clazz.toQuotedString(), p);
+            triple = new Triple(sub, pred, obj);
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor = new DeleteElementVisitorByTriple(triple);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
+            Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            IRI predicate2 = IRI.create(el.getEntities().get(0).getIri());
+            Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate2.toQuotedString(), p);
+            Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Triple triple2 = new Triple(sub2, pred2, obj2);
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor2 = new DeleteElementVisitorByTriple(triple2);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor2);
+            WhereHandler wh2 = new WhereHandler();
+            wh2.addWhere(new TriplePath(triple));
+            wh2.addWhere(new TriplePath(triple2));
+            wh.addOptional(wh2);
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
-
+            IRI clazz = IRI.create(classIRI);
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            IRI predicate = IRI.create("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+            Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+            Node obj = (Node)AbstractQueryBuilder.makeNodeOrPath(clazz.toQuotedString(), p);
+            triple = new Triple(sub, pred, obj);
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor = new DeleteElementVisitorByTriple(triple);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
+            Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            IRI predicate2 = IRI.create(el.getEntities().get(0).getIri());
+            Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate2.toQuotedString(), p);
+            Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            Triple triple2 = new Triple(sub2, pred2, obj2);
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor2 = new DeleteElementVisitorByTriple(triple2);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor2);
+            WhereHandler wh2 = new WhereHandler();
+            wh2.addWhere(new TriplePath(triple));
+            wh2.addWhere(new TriplePath(triple2));
+            wh.addOptional(wh2);
         } else {
-            Optional op = new Optional();
-            op.setId(0);
-            List<String> list = new LinkedList<>();
-            list.add(graphElementId);
-            op.setGraphIds(list);
-            body.addOptionalsItem(op);
-            WhereHandler wh = new WhereHandler(q);
-            PrefixMapping p = q.getPrefixMapping();
             Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             IRI predicate = IRI.create(el.getEntities().get(0).getIri());
             Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
             Node obj = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
-            wh.addOptional(new TriplePath(new Triple(sub, pred, obj)));
+            triple = new Triple(sub, pred, obj);
+            wh.addOptional(new TriplePath(triple));
+            DeleteElementVisitorByTriple deleteQueryGraphElementVisitor = new DeleteElementVisitorByTriple(triple);
+            q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
+        }
+
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return body;
+    }
+
+    public QueryGraph removeAllOptionals(QueryGraph body) {
+        body.getOptionals().clear();
+        Query q = parser.parse(new Query(), body.getSparql());
+        DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional();
+        q.getQueryPattern().visit(visitor);
+        WhereHandler wh = new WhereHandler(q);
+        for (TriplePath tp:visitor.getTriplePaths()) {
+            wh.addWhere(tp);
         }
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
-        return deleteQueryGraphElement(body, graphElementId);
-    }
-
-    public QueryGraph removeAllOptionals(QueryGraph body) {
         return body;
     }
 

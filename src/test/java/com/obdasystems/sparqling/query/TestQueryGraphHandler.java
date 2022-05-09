@@ -961,7 +961,8 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, "name0", null);
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
+        qg = qgb.removeAllOptionals(qg);
         System.out.println(qg);
     }
 
