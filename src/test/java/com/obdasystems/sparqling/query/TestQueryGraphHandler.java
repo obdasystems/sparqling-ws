@@ -952,6 +952,20 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testNewOptional() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, "name0", null);
+        System.out.println(qg);
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +

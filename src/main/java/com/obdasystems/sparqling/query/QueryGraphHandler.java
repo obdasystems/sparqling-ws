@@ -2,6 +2,7 @@ package com.obdasystems.sparqling.query;
 
 import com.obdasystems.sparqling.engine.SWSOntologyManager;
 import com.obdasystems.sparqling.model.*;
+import com.obdasystems.sparqling.model.Optional;
 import com.obdasystems.sparqling.query.visitors.DeleteElementVisitor;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.SelectBuilder;
@@ -73,6 +74,7 @@ public class QueryGraphHandler {
         GraphElement root = new GraphElement();
         root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
         root.setId(var.substring(1));
+        root.addVariablesItem(var);
         qg.setGraph(root);
         return qg;
     }
@@ -115,19 +117,18 @@ public class QueryGraphHandler {
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         String var = QueryUtils.guessNewVarFromIRI(target, q);
+        String var2 = varPrefix + graphElementId;
+        Node sub;
+        Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+        Node obj;
         if(isPredicateDirect) {
-            wh.addWhere(new TriplePath(new Triple(
-                    AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
-                    (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
-                    AbstractQueryBuilder.makeNode(var, p)
-            )));
+            sub = AbstractQueryBuilder.makeNode(var2, p);
+            obj = AbstractQueryBuilder.makeNode(var, p);
         } else {
-            wh.addWhere(new TriplePath(new Triple(
-                    AbstractQueryBuilder.makeNode(var, p),
-                    (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p),
-                    AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p)
-            )));
+            sub = AbstractQueryBuilder.makeNode(var, p);
+            obj = AbstractQueryBuilder.makeNode(var2, p);
         }
+        wh.addWhere(new TriplePath(new Triple(sub,pred,obj)));
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(var, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath("a", p),
@@ -142,12 +143,15 @@ public class QueryGraphHandler {
         GraphElement ge = new GraphElement();
         ge.setId("x" + System.currentTimeMillis());
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(predicate, pdf));
+        ge.addVariablesItem(var2);
+        ge.addVariablesItem(var);
         if (!isPredicateDirect) {
             ge.getEntities().get(0).setType(Entity.TypeEnum.INVERSEOBJECTPROPERTY);
         }
         GraphElement ge1 = new GraphElement();
         ge1.setId(var.substring(1));
         ge1.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(target, pdf));
+        ge1.addVariablesItem(var);
         ge.addChildrenItem(ge1);
         found.addChildrenItem(ge);
         return body;
@@ -165,10 +169,13 @@ public class QueryGraphHandler {
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         String var = QueryUtils.guessNewVarFromIRI(iri, q);
+        String var2 = varPrefix + graphElementId;
         Var newVar = AbstractQueryBuilder.makeVar(var);
-        sh.addVar(newVar);
+        // count star handling => do not add elements to the head
+        if (body.getHead().size() != 1 || body.getHead().get(0).getGraphElementId() == null)
+            sh.addVar(newVar);
         wh.addWhere(new TriplePath(new Triple(
-                AbstractQueryBuilder.makeNode(varPrefix + graphElementId, p),
+                AbstractQueryBuilder.makeNode(var2, p),
                 (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
                 AbstractQueryBuilder.makeNode(var, p)
         )));
@@ -184,12 +191,15 @@ public class QueryGraphHandler {
         GraphElement ge = new GraphElement();
         ge.setId(var.substring(1));
         ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        ge.addVariablesItem(var2);
+        ge.addVariablesItem(var);
         found.addChildrenItem(ge);
         HeadElement headItem = new HeadElement();
         headItem.setId(var);
         headItem.setVar(var);
         headItem.setGraphElementId(var.substring(1));
-        body.addHeadItem(headItem);
+        if (body.getHead().size() != 1 || body.getHead().get(0).getGraphElementId() == null)
+            body.addHeadItem(headItem);
         return body;
     }
 
@@ -698,6 +708,45 @@ public class QueryGraphHandler {
         validate(sparql);
         body.setSparql(sparql);
         body.setOffset(offset);
+        return body;
+    }
+
+    public QueryGraph newOptional(QueryGraph body, String graphElementId, String classIRI) {
+        GraphElementFinder gef = new GraphElementFinder();
+        GraphElement el = gef.findElementById(graphElementId, body.getGraph());
+        Entity.TypeEnum type = el.getEntities().get(0).getType();
+        Query q = parser.parse(new Query(), body.getSparql());
+        if (type.equals(Entity.TypeEnum.CLASS)) {
+
+        } else if (type.equals(Entity.TypeEnum.OBJECTPROPERTY)) {
+        } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
+
+        } else {
+            Optional op = new Optional();
+            op.setId(0);
+            List<String> list = new LinkedList<>();
+            list.add(graphElementId);
+            op.setGraphIds(list);
+            body.addOptionalsItem(op);
+            WhereHandler wh = new WhereHandler(q);
+            PrefixMapping p = q.getPrefixMapping();
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            IRI predicate = IRI.create(el.getEntities().get(0).getIri());
+            Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+            Node obj = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            wh.addOptional(new TriplePath(new Triple(sub, pred, obj)));
+        }
+        String sparql = q.serialize();
+        validate(sparql);
+        body.setSparql(sparql);
+        return deleteQueryGraphElement(body, graphElementId);
+    }
+
+    public QueryGraph removeAllOptionals(QueryGraph body) {
+        return body;
+    }
+
+    public QueryGraph removeOptional(QueryGraph body, String graphElementId, String classIRI) {
         return body;
     }
 }
