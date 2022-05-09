@@ -661,6 +661,7 @@ public class QueryGraphHandler {
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
+        body.setDistinct(distinct);
         return body;
     }
 
