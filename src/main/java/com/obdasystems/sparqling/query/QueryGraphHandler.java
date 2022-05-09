@@ -639,13 +639,18 @@ public class QueryGraphHandler {
 
     public QueryGraph countStar(QueryGraph body, Boolean distinct) {
         body.getHead().clear();
+        String var = varPrefix + "COUNT_STAR";
+        HeadElement he = new HeadElement();
+        he.setId(var);
+        he.setAlias(var);
+        body.addHeadItem(he);
         Query q = parser.parse(new Query(), body.getSparql());
         q.getProject().clear();
         AggregationHandler ah = new AggregationHandler(q);
         Aggregator agg;
             if(distinct) agg = new AggCountDistinct();
             else agg = new AggCount();
-        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + "COUNT_STAR");
+        Var newVar = AbstractQueryBuilder.makeVar(var);
         ExprAggregator exprAgg = new ExprAggregator(newVar, agg);
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
@@ -656,6 +661,7 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph setDistinct(QueryGraph body, Boolean distinct) {
+        body.setDistinct(distinct);
         Query q = parser.parse(new Query(), body.getSparql());
         q.setDistinct(distinct);
         String sparql = q.serialize();
@@ -665,8 +671,13 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph setLimit(QueryGraph body, Integer limit) {
+        body.setLimit(limit);
         Query q = parser.parse(new Query(), body.getSparql());
-        q.setLimit(limit);
+        if (limit < 0) {
+            q.setLimit(Query.NOLIMIT);
+        } else {
+            q.setLimit(limit);
+        }
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -674,8 +685,13 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph setOffset(QueryGraph body, Integer offset) {
+        body.setOffset(offset);
         Query q = parser.parse(new Query(), body.getSparql());
-        q.setOffset(offset);
+        if (offset < 0) {
+            q.setOffset(Query.NOLIMIT);
+        } else {
+            q.setOffset(offset);
+        }
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);

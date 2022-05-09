@@ -768,6 +768,10 @@ public class TestQueryGraphHandler {
         Expr e = it.next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        qg = qgb.deleteHeadTerm(qg, "?COUNT_STAR");
+        q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.isQueryResultStar());
+        System.out.println(q);
     }
 
     @Test
@@ -789,7 +793,14 @@ public class TestQueryGraphHandler {
         assertTrue(q.isDistinct());
         assertTrue(q.getLimit() == l);
         assertTrue(q.getOffset() == o);
-        assertTrue(q.isDistinct());
+
+        qg = qgb.setDistinct(qg, false);
+        qg = qgb.setLimit(qg, -1);
+        qg = qgb.setOffset(qg, -1);
+        q = parser.parse(new Query(), qg.getSparql());
+        assertFalse(q.isDistinct());
+        assertFalse(q.hasLimit());
+        assertFalse(q.hasOffset());
     }
 
     @Test
@@ -952,6 +963,7 @@ public class TestQueryGraphHandler {
                 "}" +
                 "GROUP BY ?z ?z1 ?z2";
         Query q = parser.parse(new Query(), sparql);
+        q.setLimit(Query.NOLIMIT);
         System.out.println(q);
     }
 }
