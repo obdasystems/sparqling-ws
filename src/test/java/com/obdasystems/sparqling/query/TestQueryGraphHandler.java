@@ -771,7 +771,6 @@ public class TestQueryGraphHandler {
         qg = qgb.deleteHeadTerm(qg, "?COUNT_STAR");
         q = parser.parse(new Query(), qg.getSparql());
         assertTrue(q.isQueryResultStar());
-        System.out.println(q);
     }
 
     @Test
