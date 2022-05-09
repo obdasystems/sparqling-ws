@@ -667,6 +667,7 @@ public class QueryGraphHandler {
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
+        body.setDistinct(distinct);
         return body;
     }
 
@@ -681,6 +682,7 @@ public class QueryGraphHandler {
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
+        body.setLimit(limit);
         return body;
     }
 
@@ -695,6 +697,7 @@ public class QueryGraphHandler {
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
+        body.setOffset(offset);
         return body;
     }
 }
