@@ -718,7 +718,9 @@ public class QueryGraphHandler {
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         Entity.TypeEnum type = el.getEntities().get(0).getType();
         Optional op = new Optional();
-        op.setId(0);
+        Integer opId = 0;
+        if (body.getOptionals() != null) opId = body.getOptionals().size();
+        op.setId(opId);
         List<String> list = new LinkedList<>();
         list.add(graphElementId);
         op.setGraphIds(list);
@@ -757,6 +759,7 @@ public class QueryGraphHandler {
             wh2.addWhere(new TriplePath(triple));
             wh2.addWhere(new TriplePath(triple2));
             wh.addOptional(wh2);
+            list.add(el.getVariables().get(1).substring(1));
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
             IRI clazz = IRI.create(classIRI);
             Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
@@ -777,6 +780,7 @@ public class QueryGraphHandler {
             wh2.addWhere(new TriplePath(triple));
             wh2.addWhere(new TriplePath(triple2));
             wh.addOptional(wh2);
+            list.add(el.getVariables().get(0).substring(1));
         } else {
             Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             IRI predicate = IRI.create(el.getEntities().get(0).getIri());
@@ -810,6 +814,6 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph removeOptional(QueryGraph body, String graphElementId, String classIRI) {
-        return body;
+       throw new RuntimeException("Method not implemented yet");
     }
 }

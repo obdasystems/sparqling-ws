@@ -962,8 +962,45 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] found = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        found[0] = true;
+                    }
+                });
+        assertTrue(found[0]);
         qg = qgb.removeAllOptionals(qg);
+        q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        throw new RuntimeException("Delete optional failed");
+                    }
+                });
+    }
+
+    @Test
+    public void testTwoOptionals() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
+        qg = qgb.newOptional(qg, "name0", null);
+        qg = qgb.removeAllOptionals(qg);
+        Query q = parser.parse(new Query(), qg.getSparql());
         System.out.println(qg);
+
     }
 
     @Test
