@@ -174,7 +174,8 @@ public class QueryGraphHandler {
         String var2 = varPrefix + graphElementId;
         Var newVar = AbstractQueryBuilder.makeVar(var);
         // count star handling => do not add elements to the head
-        if (body.getHead().size() != 1 || body.getHead().get(0).getGraphElementId() == null)
+        boolean isCountStarActive = body.getHead().size() == 1 && body.getHead().get(0).getGraphElementId() == null;
+        if (!isCountStarActive)
             sh.addVar(newVar);
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(var2, p),
@@ -200,7 +201,7 @@ public class QueryGraphHandler {
         headItem.setId(var);
         headItem.setVar(var);
         headItem.setGraphElementId(var.substring(1));
-        if (body.getHead().size() != 1 || body.getHead().get(0).getGraphElementId() == null)
+        if (!isCountStarActive)
             body.addHeadItem(headItem);
         return body;
     }
