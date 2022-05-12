@@ -488,19 +488,28 @@ public class QueryGraphHandler {
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
+        Expr expr = q.getProject().getExpr(orderVar);
         //remove precedent order for that var
         if (q.getOrderBy() != null) {
             Iterator<SortCondition> it = q.getOrderBy().iterator();
             while (it.hasNext()) {
                 SortCondition sc = it.next();
-                if (sc.getExpression().getVarsMentioned().contains(orderVar)) {
+                if (expr != null) {
+                    if (expr.equals(sc.getExpression())) {
+                        it.remove();
+                    }
+                } else if (sc.getExpression().getVarsMentioned().contains(orderVar)) {
                     it.remove();
                 }
             }
         }
 
         if (ordering != 0) {
-            q.addOrderBy(orderVar, ordering);
+            if (expr != null) {
+                q.addOrderBy(expr, ordering);
+            } else {
+                q.addOrderBy(orderVar, ordering);
+            }
         }
         String sparql = q.serialize();
         validate(sparql);
@@ -522,8 +531,9 @@ public class QueryGraphHandler {
         if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
         if (he.getFunction() == null) throw new RuntimeException("Cannot find function for head element " + headTerm);
         Function f = he.getFunction();
-        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + f.getName() + "_" + headTerm.substring(1));
-        he.setId(newVar.getVarName());
+        String var = varPrefix + f.getName() + "_" + headTerm.substring(1);
+        Var newVar = AbstractQueryBuilder.makeVar(var);
+        he.setId(var);
         he.setAlias(newVar.getVarName());
         // Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());

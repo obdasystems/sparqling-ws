@@ -487,6 +487,37 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testOrderByFunction() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Function f = new Function();
+        f.setName(Function.NameEnum.SUBSTR);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant p1 = new VarOrConstant();
+        p1.setType(VarOrConstant.TypeEnum.VAR);
+        p1.setValue("?name0");
+        VarOrConstant p2 = new VarOrConstant();
+        p2.setValue("apapapap");
+        p2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        p2.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        params.add(p1);
+        params.add(p2);
+        f.setParameters(params);
+        qg.getHead().get(0).setFunction(f);
+        qg = qgb.functionHeadTerm(qg, "?name0");
+        qg.getHead().get(0).setOrdering(1);
+        qg = qgb.orderBy(qg, "?SUBSTR_name0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertTrue(q.getOrderBy().get(0).getExpression() instanceof E_StrSubstring);
+    }
+
+    @Test
     public void testHeadFunction() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph(bookIRI);
