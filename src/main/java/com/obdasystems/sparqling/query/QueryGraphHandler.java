@@ -631,8 +631,9 @@ public class QueryGraphHandler {
             Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);
             q.addHavingCondition(having);
         }
-        Var newVar = AbstractQueryBuilder.makeVar(varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1));
-        he.setId(newVar.getVarName());
+        String varName = varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1);
+        Var newVar = AbstractQueryBuilder.makeVar(varName);
+        he.setId(varName);
         he.setAlias(newVar.getVarName());
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
