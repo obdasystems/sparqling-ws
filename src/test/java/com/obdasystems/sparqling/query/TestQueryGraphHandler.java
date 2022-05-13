@@ -1017,6 +1017,106 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testNewOptionalInverseOP() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(authorIRI);
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, bookIRI, false, "Author0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), bookIRI);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] found = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        found[0] = true;
+                    }
+                });
+        assertTrue(found[0]);
+        qg = qgb.removeAllOptionals(qg);
+        q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        throw new RuntimeException("Delete optional failed");
+                    }
+                });
+    }
+
+    @Test
+    public void testNewOptionalData() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, "name0", authorIRI);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] found = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        found[0] = true;
+                    }
+                });
+        assertTrue(found[0]);
+        qg = qgb.removeAllOptionals(qg);
+        q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        throw new RuntimeException("Delete optional failed");
+                    }
+                });
+    }
+
+    @Test
+    public void testNewOptionalClass() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, "Book0", bookIRI);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] found = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        found[0] = true;
+                    }
+                });
+        assertTrue(found[0]);
+        qg = qgb.removeAllOptionals(qg);
+        q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        throw new RuntimeException("Delete optional failed");
+                    }
+                });
+    }
+
+    @Test
     public void testTwoOptionals() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph(bookIRI);

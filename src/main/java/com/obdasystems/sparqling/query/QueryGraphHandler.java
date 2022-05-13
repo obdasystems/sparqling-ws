@@ -768,7 +768,7 @@ public class QueryGraphHandler {
             wh.addOptional(wh2);
             list.add(el.getVariables().get(1).substring(1));
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
-            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Node pred = RDF.Nodes.type;
             Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
             Triple triple = new Triple(sub, pred, obj);
