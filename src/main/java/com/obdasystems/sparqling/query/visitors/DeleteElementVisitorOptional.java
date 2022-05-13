@@ -10,10 +10,19 @@ import java.util.List;
 import java.util.Set;
 
 public class DeleteElementVisitorOptional extends ElementVisitorBase {
+    private String graphElementId;
+    private String classIRI;
     List<TriplePath> triplePaths;
     public DeleteElementVisitorOptional() {
         triplePaths = new LinkedList<>();
     }
+
+    public DeleteElementVisitorOptional(String graphElementId, String classIRI) {
+        this();
+        this.graphElementId = graphElementId;
+        this.classIRI = classIRI;
+    }
+
     @Override
     public void visit(ElementGroup elementGroup) {
         Iterator<Element> it = elementGroup.getElements().iterator();

@@ -1,11 +1,12 @@
 package com.obdasystems.sparqling.query;
 
 import com.google.common.collect.Sets;
-import com.obdasystems.sparqling.model.Filter;
-import com.obdasystems.sparqling.model.Function;
-import com.obdasystems.sparqling.model.VarOrConstant;
+import com.obdasystems.sparqling.model.*;
+import com.obdasystems.sparqling.query.visitors.DeleteElementVisitorByTriple;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.ExprFactory;
+import org.apache.jena.graph.Node;
+import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.shared.PrefixMapping;
@@ -16,9 +17,12 @@ import org.apache.jena.sparql.expr.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
+import org.apache.jena.vocabulary.RDF;
 import org.semanticweb.owlapi.model.IRI;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -290,5 +294,49 @@ public class QueryUtils {
                     varToBeDeleted)
                     .isEmpty());
         }
+    }
+
+    public static List<Triple> getOptionalTriplesToMove(GraphElement el, String classIRI, PrefixMapping p, List<String> list) {
+        Entity.TypeEnum type = el.getEntities().get(0).getType();
+        List<Triple> res = new LinkedList<>();
+        if (type.equals(Entity.TypeEnum.CLASS)) {
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            Node pred = RDF.Nodes.type;
+            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
+            Triple triple = new Triple(sub, pred, obj);
+            res.add(triple);
+        } else if (type.equals(Entity.TypeEnum.OBJECTPROPERTY)) {
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Node pred = RDF.Nodes.type;
+            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
+            Triple triple = new Triple(sub, pred, obj);
+            Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(IRI.create(el.getEntities().get(0).getIri()).toQuotedString(), p);
+            Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Triple triple2 = new Triple(sub2, pred2, obj2);
+            res.add(triple);
+            res.add(triple2);
+            list.add(el.getVariables().get(1).substring(1));
+        } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Node pred = RDF.Nodes.type;
+            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
+            Triple triple = new Triple(sub, pred, obj);
+            Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(IRI.create(el.getEntities().get(0).getIri()).toQuotedString(), p);
+            Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            Triple triple2 = new Triple(sub2, pred2, obj2);
+            res.add(triple);
+            res.add(triple2);
+            list.add(el.getVariables().get(0).substring(1));
+        } else {
+            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+            IRI predicate = IRI.create(el.getEntities().get(0).getIri());
+            Node pred = (Node)AbstractQueryBuilder.makeNodeOrPath(predicate.toQuotedString(), p);
+            Node obj = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
+            Triple triple = new Triple(sub, pred, obj);
+            res.add(triple);
+        }
+        return res;
     }
 }
