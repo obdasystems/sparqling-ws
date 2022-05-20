@@ -31,6 +31,7 @@ public class TestQueryGraphHandler {
     private static String authorIRI;
     private static String nameIRI;
     private static SPARQLParser parser;
+    private static String titleIRI;
 
     @BeforeClass
     public static void init() throws FileNotFoundException {
@@ -39,6 +40,7 @@ public class TestQueryGraphHandler {
         writtenByIRI = "http://www.obdasystems.com/books/writtenBy";
         authorIRI = "http://www.obdasystems.com/books/Author";
         nameIRI = "http://www.obdasystems.com/books/name";
+        titleIRI = "http://www.obdasystems.com/books/title";
         parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_1.0.0/books_ontology.graphol"));
     }
@@ -1126,11 +1128,23 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        //qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
         qg = qgb.newOptional(qg, "name0", null);
-        qg = qgb.removeAllOptionals(qg);
+        qg = qgb.newOptional(qg, "title0", null);
+        qg = qgb.removeOptional(qg, "name0", null);
         Query q = parser.parse(new Query(), qg.getSparql());
-        System.out.println(qg);
+        final int[] count = {0};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        count[0]++;
+                    }
+                });
+        System.out.println(q);
+        assertEquals(1, count[0]);
 
     }
 

@@ -1,26 +1,28 @@
 package com.obdasystems.sparqling.query.visitors;
 
+import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.core.TriplePath;
-import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.syntax.*;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DeleteElementVisitorOptional extends ElementVisitorBase {
+    private List<TriplePath> triplesToMove;
     private String graphElementId;
     private String classIRI;
     List<TriplePath> triplePaths;
+    private boolean toRemove;
+
+    public DeleteElementVisitorOptional(List<Triple> triplesToMove) {
+        this();
+        this.triplesToMove = triplesToMove.stream().map(t -> new TriplePath(t)).collect(Collectors.toList());
+    }
+    
     public DeleteElementVisitorOptional() {
         triplePaths = new LinkedList<>();
-    }
-
-    public DeleteElementVisitorOptional(String graphElementId, String classIRI) {
-        this();
-        this.graphElementId = graphElementId;
-        this.classIRI = classIRI;
     }
 
     @Override
@@ -30,7 +32,14 @@ public class DeleteElementVisitorOptional extends ElementVisitorBase {
             Element el = it.next();
             el.visit(this);
             if(el instanceof ElementOptional) {
-                it.remove();
+                if (triplesToMove != null) {
+                    if (toRemove) {
+                        it.remove();
+                        toRemove = false;
+                    }
+                } else {
+                    it.remove();
+                }
             }
         }
     }
@@ -45,7 +54,15 @@ public class DeleteElementVisitorOptional extends ElementVisitorBase {
                     ElementPathBlock epb = (ElementPathBlock) e;
                     Iterator<TriplePath> it = epb.patternElts();
                     while(it.hasNext()) {
-                        triplePaths.add(it.next());
+                        TriplePath tp = it.next();
+                        if (triplesToMove != null) {
+                            if(triplesToMove.contains(tp)) {
+                                toRemove = true;
+                                triplePaths.add(tp);
+                            }
+                        } else {
+                            triplePaths.add(tp);
+                        }
                     }
                 }
             }

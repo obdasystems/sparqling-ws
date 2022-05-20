@@ -773,7 +773,12 @@ public class QueryGraphHandler {
     public QueryGraph removeOptional(QueryGraph body, String graphElementId, String classIRI) {
         body.getOptionals().removeIf(o -> o.getGraphIds().contains(graphElementId));
         Query q = parser.parse(new Query(), body.getSparql());
-        DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(graphElementId, classIRI);
+        GraphElementFinder gef = new GraphElementFinder();
+        GraphElement el = gef.findElementById(graphElementId, body.getGraph());
+        PrefixMapping p = q.getPrefixMapping();
+        List<String> list = new LinkedList<>();
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, classIRI, p, list);
+        DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(triplesToMove);
         q.getQueryPattern().visit(visitor);
         WhereHandler wh = new WhereHandler(q);
         for (TriplePath tp:visitor.getTriplePaths()) {
