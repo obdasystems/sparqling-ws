@@ -512,7 +512,7 @@ public class TestQueryGraphHandler {
         qg.getHead().get(0).setFunction(f);
         qg = qgb.functionHeadTerm(qg, "?name0");
         qg.getHead().get(0).setOrdering(1);
-        qg = qgb.orderBy(qg, "?SUBSTR_name0");
+        qg = qgb.orderBy(qg, "?SUBSTR0");
         Query q = parser.parse(new Query(), qg.getSparql());
         assertTrue(q.getOrderBy().get(0).getExpression() instanceof E_StrSubstring);
     }

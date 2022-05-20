@@ -87,6 +87,19 @@ public class QueryUtils {
         return ret;
     }
 
+    public static String getVarFromFunction(String funcName, QueryGraph qg) {
+        int count = 0;
+        Iterator<HeadElement> it = qg.getHead().iterator();
+        while(it.hasNext()) {
+            HeadElement v = it.next();
+            if (v.getId().equals(funcName)) {
+                it = qg.getHead().iterator();
+                count++;
+            }
+        }
+        return varPrefix + funcName + count;
+    }
+
     static Expr getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
         switch (varOrConstant.getType()) {
             case VAR: return new ExprVar(AbstractQueryBuilder.makeVar(varOrConstant.getValue()));

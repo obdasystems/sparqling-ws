@@ -36,6 +36,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.obdasystems.sparqling.query.QueryUtils.getVarFromFunction;
 import static com.obdasystems.sparqling.query.QueryUtils.validate;
 
 public class QueryGraphHandler {
@@ -533,7 +534,7 @@ public class QueryGraphHandler {
         if (he == null) throw new RuntimeException("Cannot find head element " + headTerm);
         if (he.getFunction() == null) throw new RuntimeException("Cannot find function for head element " + headTerm);
         Function f = he.getFunction();
-        String var = varPrefix + f.getName() + "_" + headTerm.substring(1);
+        String var = getVarFromFunction(f.getName().toString(), body);
         Var newVar = AbstractQueryBuilder.makeVar(var);
         he.setId(var);
         he.setAlias(newVar.getVarName());
@@ -632,7 +633,7 @@ public class QueryGraphHandler {
             Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);
             q.addHavingCondition(having);
         }
-        String varName = varPrefix + gb.getAggregateFunction() + "_" + headTerm.substring(1);
+        String varName = getVarFromFunction(gb.getAggregateFunction().toString(), body);
         Var newVar = AbstractQueryBuilder.makeVar(varName);
         he.setId(varName);
         he.setAlias(newVar.getVarName());
@@ -770,7 +771,7 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph removeOptional(QueryGraph body, String graphElementId, String classIRI) {
-       body.getOptionals().removeIf(o -> o.getGraphIds().contains(graphElementId));
+        body.getOptionals().removeIf(o -> o.getGraphIds().contains(graphElementId));
         Query q = parser.parse(new Query(), body.getSparql());
         DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(graphElementId, classIRI);
         q.getQueryPattern().visit(visitor);
