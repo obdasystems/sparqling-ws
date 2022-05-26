@@ -319,29 +319,34 @@ public class QueryUtils {
             Triple triple = new Triple(sub, pred, obj);
             res.add(triple);
         } else if (type.equals(Entity.TypeEnum.OBJECTPROPERTY)) {
-            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
-            Node pred = RDF.Nodes.type;
-            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
-            Triple triple = new Triple(sub, pred, obj);
             Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(IRI.create(el.getEntities().get(0).getIri()).toQuotedString(), p);
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
-            res.add(triple);
             res.add(triple2);
             list.add(el.getVariables().get(1).substring(1));
+            Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
+            for (String id : ids) {
+                if (!id.equals(el.getId())) {
+                    GraphElement child = new GraphElementFinder().findElementById(id, el);
+                    res.addAll(getOptionalTriplesToMove(child, classIRI, p, list));
+                }
+            }
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
-            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
-            Node pred = RDF.Nodes.type;
-            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
-            Triple triple = new Triple(sub, pred, obj);
             Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(IRI.create(el.getEntities().get(0).getIri()).toQuotedString(), p);
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
-            res.add(triple);
             res.add(triple2);
             list.add(el.getVariables().get(0).substring(1));
+            Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
+            for (String id : ids) {
+                if (!id.equals(el.getId())) {
+                    GraphElement child = new GraphElementFinder().findElementById(id, el);
+                    res.addAll(getOptionalTriplesToMove(child, classIRI, p, list));
+                }
+            }
+
         } else {
             Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             IRI predicate = IRI.create(el.getEntities().get(0).getIri());

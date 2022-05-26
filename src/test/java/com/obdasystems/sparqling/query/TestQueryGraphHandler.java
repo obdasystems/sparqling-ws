@@ -1026,6 +1026,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, bookIRI, false, "Author0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
         qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), bookIRI);
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] found = {false};
@@ -1037,6 +1038,7 @@ public class TestQueryGraphHandler {
                         found[0] = true;
                     }
                 });
+        System.out.println(qg);
         assertTrue(found[0]);
         qg = qgb.removeAllOptionals(qg);
         q = parser.parse(new Query(), qg.getSparql());
@@ -1143,7 +1145,6 @@ public class TestQueryGraphHandler {
                         count[0]++;
                     }
                 });
-        System.out.println(q);
         assertEquals(1, count[0]);
 
     }
