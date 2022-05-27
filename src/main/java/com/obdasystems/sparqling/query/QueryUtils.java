@@ -354,6 +354,7 @@ public class QueryUtils {
             Node obj = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Triple triple = new Triple(sub, pred, obj);
             res.add(triple);
+            list.add(el.getVariables().get(1).substring(1));
         }
         return res;
     }
