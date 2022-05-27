@@ -15,6 +15,8 @@ import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.expr.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
+import org.apache.jena.sparql.syntax.ElementGroup;
+import org.apache.jena.sparql.syntax.ElementOptional;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.vocabulary.RDF;
@@ -33,7 +35,13 @@ public class QueryUtils {
     private static int VAR_MAX_LENGTH = 30;
 
     static void validate(String sparql) {
-        parser.parse(new Query(), sparql);
+        Query q = parser.parse(new Query(), sparql);
+        if (q.getQueryPattern() instanceof ElementGroup) {
+            ElementGroup eg = ((ElementGroup)q.getQueryPattern());
+            if(eg.size() == 1 && eg.getLast() instanceof ElementOptional) {
+                throw new RuntimeException("The query cannot be only OPTIONAL.");
+            }
+        }
     }
 
     static String guessNewVarFromIRI(IRI iri, Query q) {

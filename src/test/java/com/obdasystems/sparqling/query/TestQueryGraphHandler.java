@@ -1197,6 +1197,13 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testIssue23OnlyOptional() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        assertThrows(RuntimeException.class, () -> qgb.newOptional(qg, "Book0", bookIRI));
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +
