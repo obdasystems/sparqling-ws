@@ -1150,6 +1150,30 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testIssue24() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.newOptional(qg, "name0", authorIRI);
+        qg = qgb.deleteQueryGraphElement(qg, "name0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementOptional el) {
+                        throw new RuntimeException("Delete optional failed");
+                    }
+                });
+        assertEquals(0, qg.getOptionals().size());
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
                 "{ " +

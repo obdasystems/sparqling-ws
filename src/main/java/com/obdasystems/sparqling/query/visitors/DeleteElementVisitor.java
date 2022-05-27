@@ -50,6 +50,12 @@ public class DeleteElementVisitor extends ElementVisitorBase {
                 it.remove();
                 shouldDeleteExpr = false;
             }
+            if (el instanceof ElementOptional && ((ElementOptional)el).getOptionalElement() instanceof ElementGroup) {
+                ElementGroup eg = (ElementGroup) ((ElementOptional) el).getOptionalElement();
+                if (eg.isEmpty() || eg.getLast() instanceof ElementPathBlock && ((ElementPathBlock)eg.getLast()).isEmpty()) {
+                    it.remove();
+                }
+            }
         }
     }
 
@@ -60,6 +66,15 @@ public class DeleteElementVisitor extends ElementVisitorBase {
                 shouldDeleteExpr = true;
                 break;
             }
+        }
+    }
+
+    @Override
+    public void visit(ElementOptional el) {
+        super.visit(el);
+        if (el.getOptionalElement() instanceof ElementGroup) {
+            ElementGroup eg = (ElementGroup) el.getOptionalElement();
+            this.visit(eg);
         }
     }
 }

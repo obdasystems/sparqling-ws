@@ -296,6 +296,12 @@ public class QueryGraphHandler {
                 return false;
             });
         }
+        if (body.getOptionals() != null) {
+            for (Optional o:body.getOptionals()) {
+                o.getGraphIds().removeIf(id -> varToBeDeleted.contains(id));
+            }
+            body.getOptionals().removeIf(optional -> optional.getGraphIds().isEmpty());
+        }
         return body;
     }
 
