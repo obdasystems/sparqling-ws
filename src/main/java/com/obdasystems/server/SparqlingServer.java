@@ -152,7 +152,9 @@ public class SparqlingServer {
                         " ; '._,' '   | `-'  ' ' `-'  |  | |        ' `-'  |   | |   | |   | |  | |  '  `-' | \n" +
                         "  '.___.'    | \\__.'  `.__.'_. (___)        `._ / |  (___) (___) (___)(___)  `.__. | \n" +
                         "             | |                                | |                          ( `-' ; \n" +
-                        "            (___)                              (___)                          `.__.  \n");
+                        "            (___)                              (___)                          `.__.  \n" +
+                        "\n" +
+                        "Powered by OBDASystems https://obdasystems.com\n");
 
         button = new JButton("Clear");
         button.addActionListener(a -> ca.clear());

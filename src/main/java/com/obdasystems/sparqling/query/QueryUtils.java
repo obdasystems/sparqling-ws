@@ -317,15 +317,17 @@ public class QueryUtils {
         }
     }
 
-    public static List<Triple> getOptionalTriplesToMove(GraphElement el, String classIRI, PrefixMapping p, List<String> list) {
+    public static List<Triple> getOptionalTriplesToMove(GraphElement el, PrefixMapping p, List<String> list) {
         Entity.TypeEnum type = el.getEntities().get(0).getType();
         List<Triple> res = new LinkedList<>();
         if (type.equals(Entity.TypeEnum.CLASS)) {
-            Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
-            Node pred = RDF.Nodes.type;
-            Node obj = AbstractQueryBuilder.makeNode(IRI.create(classIRI).toQuotedString(), p);
-            Triple triple = new Triple(sub, pred, obj);
-            res.add(triple);
+            for (Entity entity:el.getEntities()) {
+                Node sub = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
+                Node pred = RDF.Nodes.type;
+                Node obj = AbstractQueryBuilder.makeNode(IRI.create(entity.getIri()).toQuotedString(), p);
+                Triple triple = new Triple(sub, pred, obj);
+                res.add(triple);
+            }
         } else if (type.equals(Entity.TypeEnum.OBJECTPROPERTY)) {
             Node sub2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Node pred2 = (Node)AbstractQueryBuilder.makeNodeOrPath(IRI.create(el.getEntities().get(0).getIri()).toQuotedString(), p);
@@ -337,7 +339,7 @@ public class QueryUtils {
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
                     GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, classIRI, p, list));
+                    res.addAll(getOptionalTriplesToMove(child, p, list));
                 }
             }
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
@@ -351,7 +353,7 @@ public class QueryUtils {
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
                     GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, classIRI, p, list));
+                    res.addAll(getOptionalTriplesToMove(child, p, list));
                 }
             }
 

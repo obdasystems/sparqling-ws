@@ -88,6 +88,9 @@ public class QueryGraphHandler {
         if(!ontology.containsClassInSignature(iri)) {
             throw new RuntimeException("Iri " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
+        if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
+            throw new RuntimeException("Cannot add a class to an optional node");
+        }
         //Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
@@ -115,6 +118,9 @@ public class QueryGraphHandler {
         IRI predicate = IRI.create(predicateIRI);
         if(!ontology.containsObjectPropertyInSignature(predicate)) {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
+            throw new RuntimeException("Cannot add an object property to an optional node");
         }
         //Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
@@ -165,6 +171,9 @@ public class QueryGraphHandler {
         IRI iri = IRI.create(predicateIRI);
         if(!ontology.containsDataPropertyInSignature(iri)) {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+        }
+        if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
+            throw new RuntimeException("Cannot add a data property to an optional node");
         }
         //Modify SPARQL
         Query q = parser.parse(new Query(), body.getSparql());
@@ -733,7 +742,7 @@ public class QueryGraphHandler {
         return body;
     }
 
-    public QueryGraph newOptional(QueryGraph body, String graphElementId, String classIRI) {
+    public QueryGraph newOptional(QueryGraph body, String graphElementId) {
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         Optional op = new Optional();
@@ -747,7 +756,7 @@ public class QueryGraphHandler {
         Query q = parser.parse(new Query(), body.getSparql());
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, classIRI, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
         WhereHandler wh2 = new WhereHandler();
         for (Triple triple : triplesToMove) {
             wh2.addWhere(new TriplePath(triple));
@@ -776,14 +785,14 @@ public class QueryGraphHandler {
         return body;
     }
 
-    public QueryGraph removeOptional(QueryGraph body, String graphElementId, String classIRI) {
+    public QueryGraph removeOptional(QueryGraph body, String graphElementId) {
         body.getOptionals().removeIf(o -> o.getGraphIds().contains(graphElementId));
         Query q = parser.parse(new Query(), body.getSparql());
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         PrefixMapping p = q.getPrefixMapping();
         List<String> list = new LinkedList<>();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, classIRI, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
         DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(triplesToMove);
         q.getQueryPattern().visit(visitor);
         WhereHandler wh = new WhereHandler(q);

@@ -21,7 +21,7 @@ import javax.ws.rs.core.SecurityContext;
         logger.info("New optional for {}", graphElementId);
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
-            QueryGraph res = qgb.newOptional(body, graphElementId, classIRI);
+            QueryGraph res = qgb.newOptional(body, graphElementId);
             return Response.ok().entity(res).build();
         } catch (Exception e) {
             logger.error("Error!", e);
@@ -45,7 +45,7 @@ import javax.ws.rs.core.SecurityContext;
         logger.info("Remove optional for {}", graphElementId);
         try {
             QueryGraphHandler qgb = new QueryGraphHandler();
-            QueryGraph res = qgb.removeOptional(body, graphElementId, classIRI);
+            QueryGraph res = qgb.removeOptional(body, graphElementId);
             return Response.ok().entity(res).build();
         } catch (Exception e) {
             logger.error("Error!", e);

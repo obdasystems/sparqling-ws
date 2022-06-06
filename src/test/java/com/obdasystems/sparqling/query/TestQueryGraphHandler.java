@@ -994,7 +994,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId());
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] found = {false};
         ElementWalker.walk(
@@ -1027,7 +1027,7 @@ public class TestQueryGraphHandler {
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
-        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), bookIRI);
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId());
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] found = {false};
         ElementWalker.walk(
@@ -1062,7 +1062,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, "name0", authorIRI);
+        qg = qgb.newOptional(qg, "name0");
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] found = {false};
         ElementWalker.walk(
@@ -1096,7 +1096,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, "Book0", bookIRI);
+        qg = qgb.newOptional(qg, "Book0");
         Query q = parser.parse(new Query(), qg.getSparql());
         final boolean[] found = {false};
         ElementWalker.walk(
@@ -1132,9 +1132,9 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
         qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
         //qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId(), authorIRI);
-        qg = qgb.newOptional(qg, "name0", null);
-        qg = qgb.newOptional(qg, "title0", null);
-        qg = qgb.removeOptional(qg, "name0", null);
+        qg = qgb.newOptional(qg, "name0");
+        qg = qgb.newOptional(qg, "title0");
+        qg = qgb.removeOptional(qg, "name0");
         Query q = parser.parse(new Query(), qg.getSparql());
         final int[] count = {0};
         ElementWalker.walk(
@@ -1159,7 +1159,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, "name0", authorIRI);
+        qg = qgb.newOptional(qg, "name0");
         qg = qgb.deleteQueryGraphElement(qg, "name0");
         Query q = parser.parse(new Query(), qg.getSparql());
         ElementWalker.walk(
@@ -1183,7 +1183,7 @@ public class TestQueryGraphHandler {
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
         qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        qg = qgb.newOptional(qg, "name0", authorIRI);
+        qg = qgb.newOptional(qg, "name0");
         qg = qgb.deleteQueryGraphElement(qg, "Author0");
         Query q = parser.parse(new Query(), qg.getSparql());
         ElementWalker.walk(
@@ -1200,7 +1200,7 @@ public class TestQueryGraphHandler {
     public void testIssue23OnlyOptional() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         QueryGraph qg = qgb.getQueryGraph(bookIRI);
-        assertThrows(RuntimeException.class, () -> qgb.newOptional(qg, "Book0", bookIRI));
+        assertThrows(RuntimeException.class, () -> qgb.newOptional(qg, "Book0"));
     }
 
     @Test
