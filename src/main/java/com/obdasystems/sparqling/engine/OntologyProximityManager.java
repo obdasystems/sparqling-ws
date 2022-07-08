@@ -63,7 +63,9 @@ public class OntologyProximityManager {
 
     //GETTERS
     public Set<OWLClass> getClassDescendants(OWLClass cl) {
-        return classDescendantsMap.get(cl);
+        Set<OWLClass> ret = classDescendantsMap.get(cl);
+        if (ret == null) throw new RuntimeException("Cannot find class " + cl.getIRI().toQuotedString());
+        return ret;
     }
 
     public Set<OWLClass> getClassFathers(OWLClass cl) {
@@ -307,6 +309,9 @@ public class OntologyProximityManager {
         if (expr instanceof OWLObjectSomeValuesFrom) {
             return true;
         }
+        if (expr instanceof OWLObjectAllValuesFrom) {
+            return true;
+        }
         if (expr instanceof OWLDataSomeValuesFrom) {
             return true;
         }
@@ -472,8 +477,21 @@ public class OntologyProximityManager {
             classDescendantsMap.get(sup).add(sub);
         } else {
             if (sup instanceof OWLObjectSomeValuesFrom) {
-                OWLObjectProperty prop = ((OWLObjectSomeValuesFrom) sup).getProperty().getNamedProperty();
-                classRolesMap.get(sub).add(prop);
+                OWLObjectPropertyExpression p = ((OWLObjectSomeValuesFrom) sup).getProperty();
+                classRolesMap.get(sub).add(p.getNamedProperty());
+                if (p instanceof OWLObjectProperty) {
+                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
+                } else if (p instanceof OWLObjectInverseOf) {
+                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
+                }
+            } else if (sup instanceof OWLObjectAllValuesFrom) {
+                OWLObjectPropertyExpression p = ((OWLObjectAllValuesFrom) sup).getProperty();
+                classRolesMap.get(sub).add(p.getNamedProperty());
+                if (p instanceof OWLObjectProperty) {
+                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
+                } else if (p instanceof OWLObjectInverseOf) {
+                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
+                }
             } else {
                 if (sup instanceof OWLDataSomeValuesFrom) {
                     OWLDataProperty prop = (OWLDataProperty) ((OWLDataSomeValuesFrom) sup).getProperty();

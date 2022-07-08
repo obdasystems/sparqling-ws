@@ -24,16 +24,21 @@ public class ImportCode {
 
         Set<String> filesNotToCopy = new HashSet<>();
         filesNotToCopy.add("StandaloneApiServiceImpl.java");
+        filesNotToCopy.add("StandaloneApi.java");
         filesNotToCopy.add("OntologyGraphApiServiceImpl.java");
         filesNotToCopy.add("QueryGraphBgpApiServiceImpl.java");
-
+        filesNotToCopy.add("QueryGraphFilterApiServiceImpl.java");
+        filesNotToCopy.add("QueryGraphHeadApiServiceImpl.java");
+        filesNotToCopy.add("QueryGraphExtraApiServiceImpl.java");
 
         Set<File> api = listFilesUsingJavaIO(mainApi);
         api.addAll(listFilesUsingJavaIO(genApi));
         File apiDir = new File(base + "/api");
         for(File file:api) {
-            FileUtils.copyFileToDirectory(file, apiDir);
-            file.delete();
+            if(!filesNotToCopy.contains(file.getName())) {
+                FileUtils.copyFileToDirectory(file, apiDir);
+                file.delete();
+            }
         }
 
         Set<File> factories = listFilesUsingJavaIO(mainFactories);

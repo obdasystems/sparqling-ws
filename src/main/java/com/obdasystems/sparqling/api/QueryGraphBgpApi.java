@@ -36,7 +36,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class QueryGraphBgpApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public class QueryGraphBgpApi  {
    private final QueryGraphBgpApiService delegate;
 
    public QueryGraphBgpApi(@Context ServletConfig servletContext) {
@@ -93,6 +93,23 @@ import javax.validation.constraints.*;
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.deleteGraphElementId(body,graphElementId,securityContext);
+    }
+    @PUT
+    @Path("/node/delete/{graphElementId}/class")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Delete from GraphElement only the class", description = "", tags={ "QueryGraphBGP" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(mediaType = "application/json", schema = @Schema(implementation = QueryGraph.class))),
+        
+        @ApiResponse(responseCode = "404", description = "GraphElement not found") })
+    public Response deleteGraphElementIdClass(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) QueryGraph body
+
+,@Parameter(in = ParameterIn.QUERY, description = "The class that should be deleted",required=true) @QueryParam("classIRI") String classIRI
+,@Parameter(in = ParameterIn.PATH, description = "",required=true) @PathParam("graphElementId") String graphElementId
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.deleteGraphElementIdClass(body,classIRI,graphElementId,securityContext);
     }
     @GET
     @Path("/node")

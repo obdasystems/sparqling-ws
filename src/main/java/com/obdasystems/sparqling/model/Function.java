@@ -27,18 +27,18 @@ import javax.validation.Valid;
 /**
  * Function
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class Function  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class Function  implements Serializable  {
   /**
    * Gets or Sets name
    */
   public enum NameEnum {
-    PLUS("+"),
+    ADD("ADD"),
     
-    MINUS("-"),
+    SUBCTRACT("SUBCTRACT"),
     
-    STAR("*"),
+    MULTIPLY("MULTIPLY"),
     
-    SLASH("/"),
+    DIVIDE("DIVIDE"),
     
     SUBSTR("SUBSTR"),
     
@@ -49,8 +49,6 @@ import javax.validation.Valid;
     CONTAINS("CONTAINS"),
     
     CONCAT("CONCAT"),
-    
-    REGEX("REGEX"),
     
     ROUND("ROUND"),
     

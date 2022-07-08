@@ -15,8 +15,12 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.obdasystems.sparqling.model.Filter;
 import com.obdasystems.sparqling.model.Function;
+import com.obdasystems.sparqling.model.GroupByElement;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -24,7 +28,7 @@ import javax.validation.Valid;
 /**
  * HeadElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class HeadElement  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class HeadElement  implements Serializable  {
   @JsonProperty("id")
   private String id = null;
 
@@ -37,8 +41,17 @@ import javax.validation.Valid;
   @JsonProperty("alias")
   private String alias = null;
 
+  @JsonProperty("ordering")
+  private Integer ordering = null;
+
   @JsonProperty("function")
   private Function function = null;
+
+  @JsonProperty("groupBy")
+  private GroupByElement groupBy = null;
+
+  @JsonProperty("having")
+  private List<Filter> having = null;
 
   public HeadElement id(String id) {
     this.id = id;
@@ -116,6 +129,25 @@ import javax.validation.Valid;
     this.alias = alias;
   }
 
+  public HeadElement ordering(Integer ordering) {
+    this.ordering = ordering;
+    return this;
+  }
+
+  /**
+   * 1 is ascending -1 descending 0 not defined
+   * @return ordering
+   **/
+  @JsonProperty("ordering")
+  @Schema(description = "1 is ascending -1 descending 0 not defined")
+  public Integer getOrdering() {
+    return ordering;
+  }
+
+  public void setOrdering(Integer ordering) {
+    this.ordering = ordering;
+  }
+
   public HeadElement function(Function function) {
     this.function = function;
     return this;
@@ -136,6 +168,54 @@ import javax.validation.Valid;
     this.function = function;
   }
 
+  public HeadElement groupBy(GroupByElement groupBy) {
+    this.groupBy = groupBy;
+    return this;
+  }
+
+  /**
+   * Get groupBy
+   * @return groupBy
+   **/
+  @JsonProperty("groupBy")
+  @Schema(description = "")
+  @Valid
+  public GroupByElement getGroupBy() {
+    return groupBy;
+  }
+
+  public void setGroupBy(GroupByElement groupBy) {
+    this.groupBy = groupBy;
+  }
+
+  public HeadElement having(List<Filter> having) {
+    this.having = having;
+    return this;
+  }
+
+  public HeadElement addHavingItem(Filter havingItem) {
+    if (this.having == null) {
+      this.having = new ArrayList<Filter>();
+    }
+    this.having.add(havingItem);
+    return this;
+  }
+
+  /**
+   * Get having
+   * @return having
+   **/
+  @JsonProperty("having")
+  @Schema(description = "")
+  @Valid
+  public List<Filter> getHaving() {
+    return having;
+  }
+
+  public void setHaving(List<Filter> having) {
+    this.having = having;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -150,12 +230,15 @@ import javax.validation.Valid;
         Objects.equals(this.graphElementId, headElement.graphElementId) &&
         Objects.equals(this.var, headElement.var) &&
         Objects.equals(this.alias, headElement.alias) &&
-        Objects.equals(this.function, headElement.function);
+        Objects.equals(this.ordering, headElement.ordering) &&
+        Objects.equals(this.function, headElement.function) &&
+        Objects.equals(this.groupBy, headElement.groupBy) &&
+        Objects.equals(this.having, headElement.having);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, graphElementId, var, alias, function);
+    return Objects.hash(id, graphElementId, var, alias, ordering, function, groupBy, having);
   }
 
 
@@ -168,7 +251,10 @@ import javax.validation.Valid;
     sb.append("    graphElementId: ").append(toIndentedString(graphElementId)).append("\n");
     sb.append("    var: ").append(toIndentedString(var)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
+    sb.append("    ordering: ").append(toIndentedString(ordering)).append("\n");
     sb.append("    function: ").append(toIndentedString(function)).append("\n");
+    sb.append("    groupBy: ").append(toIndentedString(groupBy)).append("\n");
+    sb.append("    having: ").append(toIndentedString(having)).append("\n");
     sb.append("}");
     return sb.toString();
   }

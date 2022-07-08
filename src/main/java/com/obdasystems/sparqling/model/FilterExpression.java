@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * FilterExpression
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class FilterExpression  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class FilterExpression  implements Serializable  {
   /**
    * Gets or Sets operator
    */
@@ -46,7 +46,9 @@ import javax.validation.Valid;
     
     IN("IN"),
     
-    NOT_IN("NOT IN");
+    NOT_IN("NOT IN"),
+    
+    REGEX("REGEX");
 
     private String value;
 

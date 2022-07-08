@@ -15,9 +15,8 @@ package com.obdasystems.sparqling.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -25,41 +24,69 @@ import javax.validation.Valid;
 /**
  * GroupByElement
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class GroupByElement  implements Serializable  {
-  @JsonProperty("headElementIds")
-  private List<Integer> headElementIds = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class GroupByElement  implements Serializable  {
+  @JsonProperty("distinct")
+  private Boolean distinct = null;
 
-  @JsonProperty("aggregateFunction")
-  private String aggregateFunction = null;
+  /**
+   * Gets or Sets aggregateFunction
+   */
+  public enum AggregateFunctionEnum {
+    COUNT("count"),
+    
+    SUM("sum"),
+    
+    MIN("min"),
+    
+    MAX("max"),
+    
+    AVARAGE("avarage");
 
-  public GroupByElement headElementIds(List<Integer> headElementIds) {
-    this.headElementIds = headElementIds;
-    return this;
-  }
+    private String value;
 
-  public GroupByElement addHeadElementIdsItem(Integer headElementIdsItem) {
-    if (this.headElementIds == null) {
-      this.headElementIds = new ArrayList<Integer>();
+    AggregateFunctionEnum(String value) {
+      this.value = value;
     }
-    this.headElementIds.add(headElementIdsItem);
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AggregateFunctionEnum fromValue(String text) {
+      for (AggregateFunctionEnum b : AggregateFunctionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("aggregateFunction")
+  private AggregateFunctionEnum aggregateFunction = null;
+
+  public GroupByElement distinct(Boolean distinct) {
+    this.distinct = distinct;
     return this;
   }
 
   /**
-   * Get headElementIds
-   * @return headElementIds
+   * Get distinct
+   * @return distinct
    **/
-  @JsonProperty("headElementIds")
+  @JsonProperty("distinct")
   @Schema(description = "")
-  public List<Integer> getHeadElementIds() {
-    return headElementIds;
+  public Boolean isDistinct() {
+    return distinct;
   }
 
-  public void setHeadElementIds(List<Integer> headElementIds) {
-    this.headElementIds = headElementIds;
+  public void setDistinct(Boolean distinct) {
+    this.distinct = distinct;
   }
 
-  public GroupByElement aggregateFunction(String aggregateFunction) {
+  public GroupByElement aggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
     return this;
   }
@@ -70,11 +97,11 @@ import javax.validation.Valid;
    **/
   @JsonProperty("aggregateFunction")
   @Schema(description = "")
-  public String getAggregateFunction() {
+  public AggregateFunctionEnum getAggregateFunction() {
     return aggregateFunction;
   }
 
-  public void setAggregateFunction(String aggregateFunction) {
+  public void setAggregateFunction(AggregateFunctionEnum aggregateFunction) {
     this.aggregateFunction = aggregateFunction;
   }
 
@@ -88,13 +115,13 @@ import javax.validation.Valid;
       return false;
     }
     GroupByElement groupByElement = (GroupByElement) o;
-    return Objects.equals(this.headElementIds, groupByElement.headElementIds) &&
+    return Objects.equals(this.distinct, groupByElement.distinct) &&
         Objects.equals(this.aggregateFunction, groupByElement.aggregateFunction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headElementIds, aggregateFunction);
+    return Objects.hash(distinct, aggregateFunction);
   }
 
 
@@ -103,7 +130,7 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class GroupByElement {\n");
     
-    sb.append("    headElementIds: ").append(toIndentedString(headElementIds)).append("\n");
+    sb.append("    distinct: ").append(toIndentedString(distinct)).append("\n");
     sb.append("    aggregateFunction: ").append(toIndentedString(aggregateFunction)).append("\n");
     sb.append("}");
     return sb.toString();

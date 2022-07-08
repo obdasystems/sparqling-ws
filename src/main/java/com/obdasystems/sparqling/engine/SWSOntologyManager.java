@@ -124,6 +124,7 @@ public class SWSOntologyManager {
         owlOntologyManager.getOntologyStorers().clear();
         clearOntology();
         owlOntology = owlOntologyManager.loadOntologyFromOntologyDocument(upfileInputStream);
+        if (owlOntology.isEmpty()) throw new RuntimeException("OWL Ontology is empty!");
         setProximityManager();
     }
 

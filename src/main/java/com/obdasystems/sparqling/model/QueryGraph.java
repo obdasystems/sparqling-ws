@@ -17,10 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.obdasystems.sparqling.model.Filter;
 import com.obdasystems.sparqling.model.GraphElement;
-import com.obdasystems.sparqling.model.GroupByElement;
 import com.obdasystems.sparqling.model.HeadElement;
 import com.obdasystems.sparqling.model.Optional;
-import com.obdasystems.sparqling.model.OrderByElement;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ import javax.validation.Valid;
 /**
  * QueryGraph
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public class QueryGraph  implements Serializable  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T10:38:12.914Z[GMT]")public class QueryGraph  implements Serializable  {
   @JsonProperty("distinct")
   private Boolean distinct = null;
 
@@ -46,18 +44,6 @@ import javax.validation.Valid;
 
   @JsonProperty("optionals")
   private List<Optional> optionals = null;
-
-  @JsonProperty("minus")
-  private GraphElement minus = null;
-
-  @JsonProperty("orderBy")
-  private OrderByElement orderBy = null;
-
-  @JsonProperty("groupBy")
-  private GroupByElement groupBy = null;
-
-  @JsonProperty("having")
-  private List<Filter> having = null;
 
   @JsonProperty("limit")
   private Integer limit = null;
@@ -190,94 +176,6 @@ import javax.validation.Valid;
     this.optionals = optionals;
   }
 
-  public QueryGraph minus(GraphElement minus) {
-    this.minus = minus;
-    return this;
-  }
-
-  /**
-   * Get minus
-   * @return minus
-   **/
-  @JsonProperty("minus")
-  @Schema(description = "")
-  @Valid
-  public GraphElement getMinus() {
-    return minus;
-  }
-
-  public void setMinus(GraphElement minus) {
-    this.minus = minus;
-  }
-
-  public QueryGraph orderBy(OrderByElement orderBy) {
-    this.orderBy = orderBy;
-    return this;
-  }
-
-  /**
-   * Get orderBy
-   * @return orderBy
-   **/
-  @JsonProperty("orderBy")
-  @Schema(description = "")
-  @Valid
-  public OrderByElement getOrderBy() {
-    return orderBy;
-  }
-
-  public void setOrderBy(OrderByElement orderBy) {
-    this.orderBy = orderBy;
-  }
-
-  public QueryGraph groupBy(GroupByElement groupBy) {
-    this.groupBy = groupBy;
-    return this;
-  }
-
-  /**
-   * Get groupBy
-   * @return groupBy
-   **/
-  @JsonProperty("groupBy")
-  @Schema(description = "")
-  @Valid
-  public GroupByElement getGroupBy() {
-    return groupBy;
-  }
-
-  public void setGroupBy(GroupByElement groupBy) {
-    this.groupBy = groupBy;
-  }
-
-  public QueryGraph having(List<Filter> having) {
-    this.having = having;
-    return this;
-  }
-
-  public QueryGraph addHavingItem(Filter havingItem) {
-    if (this.having == null) {
-      this.having = new ArrayList<Filter>();
-    }
-    this.having.add(havingItem);
-    return this;
-  }
-
-  /**
-   * Get having
-   * @return having
-   **/
-  @JsonProperty("having")
-  @Schema(description = "")
-  @Valid
-  public List<Filter> getHaving() {
-    return having;
-  }
-
-  public void setHaving(List<Filter> having) {
-    this.having = having;
-  }
-
   public QueryGraph limit(Integer limit) {
     this.limit = limit;
     return this;
@@ -351,10 +249,6 @@ import javax.validation.Valid;
         Objects.equals(this.graph, queryGraph.graph) &&
         Objects.equals(this.filters, queryGraph.filters) &&
         Objects.equals(this.optionals, queryGraph.optionals) &&
-        Objects.equals(this.minus, queryGraph.minus) &&
-        Objects.equals(this.orderBy, queryGraph.orderBy) &&
-        Objects.equals(this.groupBy, queryGraph.groupBy) &&
-        Objects.equals(this.having, queryGraph.having) &&
         Objects.equals(this.limit, queryGraph.limit) &&
         Objects.equals(this.offset, queryGraph.offset) &&
         Objects.equals(this.sparql, queryGraph.sparql);
@@ -362,7 +256,7 @@ import javax.validation.Valid;
 
   @Override
   public int hashCode() {
-    return Objects.hash(distinct, head, graph, filters, optionals, minus, orderBy, groupBy, having, limit, offset, sparql);
+    return Objects.hash(distinct, head, graph, filters, optionals, limit, offset, sparql);
   }
 
 
@@ -376,10 +270,6 @@ import javax.validation.Valid;
     sb.append("    graph: ").append(toIndentedString(graph)).append("\n");
     sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
     sb.append("    optionals: ").append(toIndentedString(optionals)).append("\n");
-    sb.append("    minus: ").append(toIndentedString(minus)).append("\n");
-    sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
-    sb.append("    groupBy: ").append(toIndentedString(groupBy)).append("\n");
-    sb.append("    having: ").append(toIndentedString(having)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    sparql: ").append(toIndentedString(sparql)).append("\n");

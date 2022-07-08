@@ -16,12 +16,12 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-02-15T15:04:14.983Z[GMT]")public abstract class QueryGraphHeadApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2022-04-15T09:25:55.884Z[GMT]")public abstract class QueryGraphHeadApiService {
     public abstract Response addHeadTerm(QueryGraph body,String graphElementId,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response aggregationHavingHeadTerm(QueryGraph body, @NotNull String direction,String headTerm,SecurityContext securityContext) throws NotFoundException;
     public abstract Response aggregationHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;
     public abstract Response deleteHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;
     public abstract Response functionHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response orderByHeadTerm(QueryGraph body, @NotNull String direction,String headTerm,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response orderByHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;
     public abstract Response renameHeadTerm(QueryGraph body,String headTerm,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response reorderHeadTerms(QueryGraph body,SecurityContext securityContext) throws NotFoundException;
 }
