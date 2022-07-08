@@ -105,8 +105,8 @@ public class SparqlingServer {
         JFrame frame = new JFrame("Sparqling");
         List<Image> icons = new LinkedList<>();
         for (int i = 16; i <= 64; i *= 2) {
-            //Image icon = new ImageIcon(SparqlingServer.class.getResource("/icons/icon_" + i + "@1x.png")).getImage();
-            //icons.add(icon);
+            Image icon = new ImageIcon(SparqlingServer.class.getResource("/icons/icon_" + i + "@1x.png")).getImage();
+            icons.add(icon);
         }
         frame.setIconImages(icons);
         Container contentPane = frame.getContentPane();
