@@ -30,7 +30,7 @@ public class OntologyGraphApiServiceImpl extends OntologyGraphApiService {
     }
     @Override
     public Response highligthsPaths( @NotNull String lastSelectedIRI,  @NotNull String clickedIRI, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        logger.error("Method not implemented yet!");
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Method not implemented yet!")).build();
     }
 }

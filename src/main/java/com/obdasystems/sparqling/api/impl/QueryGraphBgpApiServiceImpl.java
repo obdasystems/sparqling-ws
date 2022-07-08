@@ -17,8 +17,8 @@ public class QueryGraphBgpApiServiceImpl extends QueryGraphBgpApiService {
 
     @Override
     public Response addPathToQueryGraph(QueryGraph body,  @NotNull String path, SecurityContext securityContext) throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        logger.error("Method not implemented yet!");
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Method not implemented yet!")).build();
     }
     @Override
     public Response deleteGraphElementId(QueryGraph body, String graphElementId, SecurityContext securityContext) throws NotFoundException {
