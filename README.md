@@ -29,5 +29,5 @@ https://app.swaggerhub.com/apis/OBDASystems/swagger-sparqling_ws/1.0.0
 
 ## Main dependencies
 
-https://github.com/owlcs/owlapi
-https://jena.apache.org/documentation/extras/querybuilder/index.html
+- https://github.com/owlcs/owlapi
+- https://jena.apache.org/documentation/extras/querybuilder/index.html
