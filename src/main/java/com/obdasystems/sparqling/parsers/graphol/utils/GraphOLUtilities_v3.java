@@ -951,22 +951,28 @@ public class GraphOLUtilities_v3 {
                                                         GraphOLNode srcNode = diagram.getNodeById(srcNodeId);
                                                         if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
                                                             OWLObjectPropertyExpression objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
+                                                            OWLObjectPropertyExpression objPropExpInv;
+                                                            if(objPropExp instanceof OWLObjectProperty) {
+                                                                objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                            }
+                                                            else{
+                                                                objPropExpInv = objPropExp.getNamedProperty();
+                                                            }
                                                             OWLClassExpression clExp = df.getOWLThing();
                                                             if (hasMaxCard) {
                                                                 if (min == max) {
-                                                                    return df.getOWLObjectExactCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    return df.getOWLObjectExactCardinality(min, objPropExpInv, clExp);
                                                                 } else {
-                                                                    OWLObjectMinCardinality minExpr = df.getOWLObjectMinCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
-                                                                    OWLObjectMaxCardinality maxExpr = df.getOWLObjectMaxCardinality(max, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    OWLObjectMinCardinality minExpr = df.getOWLObjectMinCardinality(min, objPropExpInv, clExp);
+                                                                    OWLObjectMaxCardinality maxExpr = df.getOWLObjectMaxCardinality(max, objPropExpInv, clExp);
                                                                     return df.getOWLObjectIntersectionOf(minExpr, maxExpr);
                                                                 }
                                                             } else {
-                                                                return df.getOWLObjectMinCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                return df.getOWLObjectMinCardinality(min, objPropExpInv, clExp);
                                                             }
                                                         } else {
                                                             logger.error("Found cardinality restriction inverse node " + startNode.getNodeId() + " connected to a data property node ");
                                                             throw new RuntimeException("Found cardinality restriction inverse node " + startNode.getNodeId() + " connected to a data property node ");
-
                                                         }
                                                     } else {
                                                         GraphOLConstructorInputEdge firstOpEdge = incomingEdges.get(0);
@@ -986,16 +992,23 @@ public class GraphOLUtilities_v3 {
                                                                 clExp = GraphOLUtilities_v3.getClassExpression(secondSrcNode, diagram, df);
                                                                 objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(firstSrcNode, diagram, df);
                                                             }
+                                                            OWLObjectPropertyExpression objPropExpInv;
+                                                            if(objPropExp instanceof OWLObjectProperty) {
+                                                                objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                            }
+                                                            else{
+                                                                objPropExpInv = objPropExp.getNamedProperty();
+                                                            }
                                                             if (hasMaxCard) {
                                                                 if (min == max) {
-                                                                    return df.getOWLObjectExactCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    return df.getOWLObjectExactCardinality(min, objPropExpInv, clExp);
                                                                 } else {
-                                                                    OWLObjectMinCardinality minExpr = df.getOWLObjectMinCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
-                                                                    OWLObjectMaxCardinality maxExpr = df.getOWLObjectMaxCardinality(max, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    OWLObjectMinCardinality minExpr = df.getOWLObjectMinCardinality(min, objPropExpInv, clExp);
+                                                                    OWLObjectMaxCardinality maxExpr = df.getOWLObjectMaxCardinality(max, objPropExpInv, clExp);
                                                                     return df.getOWLObjectIntersectionOf(minExpr, maxExpr);
                                                                 }
                                                             } else {
-                                                                return df.getOWLObjectMinCardinality(min, df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                return df.getOWLObjectMinCardinality(min, objPropExpInv, clExp);
                                                             }
                                                         } else {
                                                             logger.error("Found cardinality restriction inverse node " + startNode.getNodeId() + " connected to a data property node ");
@@ -1016,7 +1029,14 @@ public class GraphOLUtilities_v3 {
                                                             if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
                                                                 OWLClassExpression clExp = df.getOWLThing();
                                                                 OWLObjectPropertyExpression objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
-                                                                return df.getOWLObjectSomeValuesFrom(df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                OWLObjectPropertyExpression objPropExpInv;
+                                                                if(objPropExp instanceof OWLObjectProperty) {
+                                                                    objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                                }
+                                                                else{
+                                                                    objPropExpInv = objPropExp.getNamedProperty();
+                                                                }
+                                                                return df.getOWLObjectSomeValuesFrom(objPropExpInv, clExp);
                                                             } else {
                                                                 logger.error("Found existential inverse node " + startNode.getNodeId() + " connected to a data property node ");
                                                                 throw new RuntimeException("Found existential inverse node " + startNode.getNodeId() + " connected to a data property node ");
@@ -1039,7 +1059,14 @@ public class GraphOLUtilities_v3 {
                                                                     clExp = GraphOLUtilities_v3.getClassExpression(secondSrcNode, diagram, df);
                                                                     objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(firstSrcNode, diagram, df);
                                                                 }
-                                                                return df.getOWLObjectSomeValuesFrom(df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                OWLObjectPropertyExpression objPropExpInv;
+                                                                if(objPropExp instanceof OWLObjectProperty) {
+                                                                    objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                                }
+                                                                else{
+                                                                    objPropExpInv = objPropExp.getNamedProperty();
+                                                                }
+                                                                return df.getOWLObjectSomeValuesFrom(objPropExpInv, clExp);
                                                             } else {
                                                                 logger.error("Found existential inverse node " + startNode.getNodeId() + " connected to a data property node ");
                                                                 throw new RuntimeException("Found existential inverse node " + startNode.getNodeId() + " connected to a data property node ");
@@ -1059,7 +1086,14 @@ public class GraphOLUtilities_v3 {
                                                                 if (srcNode instanceof GraphOLObjectPropertyExpressionStartingNodeI) {
                                                                     OWLObjectPropertyExpression objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
                                                                     OWLClassExpression clExp = df.getOWLThing();
-                                                                    return df.getOWLObjectAllValuesFrom(df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    OWLObjectPropertyExpression objPropExpInv;
+                                                                    if(objPropExp instanceof OWLObjectProperty) {
+                                                                        objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                                    }
+                                                                    else{
+                                                                        objPropExpInv = objPropExp.getNamedProperty();
+                                                                    }
+                                                                    return df.getOWLObjectAllValuesFrom(objPropExpInv, clExp);
                                                                 } else {
                                                                     logger.error("Found forAll inverse node " + startNode.getNodeId() + " connected to a data property node ");
                                                                     throw new RuntimeException("Found forAll inverse node " + startNode.getNodeId() + " connected to a data property node ");
@@ -1081,7 +1115,14 @@ public class GraphOLUtilities_v3 {
                                                                         clExp = GraphOLUtilities_v3.getClassExpression(secondSrcNode, diagram, df);
                                                                         objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(firstSrcNode, diagram, df);
                                                                     }
-                                                                    return df.getOWLObjectAllValuesFrom(df.getOWLObjectInverseOf(objPropExp), clExp);
+                                                                    OWLObjectPropertyExpression objPropExpInv;
+                                                                    if(objPropExp instanceof OWLObjectProperty) {
+                                                                        objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                                    }
+                                                                    else{
+                                                                        objPropExpInv = objPropExp.getNamedProperty();
+                                                                    }
+                                                                    return df.getOWLObjectAllValuesFrom(objPropExpInv, clExp);
                                                                 } else {
                                                                     logger.error("Found forAll inverse node " + startNode.getNodeId() + " connected to a data property node ");
                                                                     throw new RuntimeException("Found forAll inverse node " + startNode.getNodeId() + " connected to a data property node ");
@@ -1097,7 +1138,14 @@ public class GraphOLUtilities_v3 {
                                                             String srcNodeId = opEdge.getSourceNodeId();
                                                             GraphOLNode srcNode = diagram.getNodeById(srcNodeId);
                                                             OWLObjectPropertyExpression objPropExp = GraphOLUtilities_v3.getObjectPropertyExpression(srcNode, diagram, df);
-                                                            return df.getOWLObjectHasSelf(df.getOWLObjectInverseOf(objPropExp));
+                                                            OWLObjectPropertyExpression objPropExpInv;
+                                                            if(objPropExp instanceof OWLObjectProperty) {
+                                                                objPropExpInv = df.getOWLObjectInverseOf((OWLObjectProperty)objPropExp);
+                                                            }
+                                                            else{
+                                                                objPropExpInv = objPropExp.getNamedProperty();
+                                                            }
+                                                            return df.getOWLObjectHasSelf(objPropExpInv);
                                                         } else {
                                                             if (startNode instanceof GraphOLUnionNode) {
                                                                 Set<OWLClassExpression> operands = new HashSet<OWLClassExpression>();
@@ -1249,7 +1297,7 @@ public class GraphOLUtilities_v3 {
                                             IRI facetIRI = IRI.create(facetNode.getConstrainingFacet());
                                             OWLFacet facet = OWLFacet.getFacet(facetIRI);
                                             OWLLiteral literal = df.getOWLLiteral(restrValue, valueDatatype);
-                                            //TODO ORA FAI COSI PERCH� eddy non mette tipo di dato dopo constrainingValue, quando eddy sara pi� preciso, allora associa
+                                            //TODO ORA FAI COSI PERCHè eddy non mette tipo di dato dopo constrainingValue, quando eddy sara più preciso, allora associa
                                             //tipo di dato riportato da eddy
 											/*switch (facet) {
 											case FRACTION_DIGITS:
@@ -1306,3 +1354,4 @@ public class GraphOLUtilities_v3 {
         }
     }
 }
+

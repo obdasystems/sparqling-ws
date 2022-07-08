@@ -50,8 +50,8 @@ public class QueryGraphHandler {
         ontology = SWSOntologyManager.getOntologyManager().getOwlOntology();
         if(ontology == null) throw new RuntimeException("Please load an ontology before start building queries.");
         pdf = (PrefixDocumentFormat) ontology.getOWLOntologyManager().getOntologyFormat(ontology);
-        if (pdf != null && pdf.isPrefixOWLOntologyFormat()) {
-            prefixes = pdf.asPrefixOWLOntologyFormat().getPrefixName2PrefixMap();
+        if (pdf != null && pdf.isPrefixOWLDocumentFormat()) {
+            prefixes = pdf.asPrefixOWLDocumentFormat().getPrefixName2PrefixMap();
         } else {
             prefixes = new HashMap<>();
         }
