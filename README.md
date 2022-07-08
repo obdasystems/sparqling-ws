@@ -5,7 +5,7 @@ This server was developed to support the point and click SPARQL query builder [S
 It uses a simple owl reasoner to deduce further information about the ontology and suggest correct paths in the query graph.
 
 ## How to run it
-1. Install the dependencies via maven: `maven install`
+1. Install the dependencies via maven: `mvn install`
 2. Run the main class: `com.obdasystems.server.SparqlingServer`
 3. Now the server (Powered by Jetty) runs on port 7979
 
