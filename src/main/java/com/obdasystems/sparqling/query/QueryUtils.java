@@ -334,6 +334,13 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
+            /*
+              In recursive step the object property might not be in the list.
+              Add it if not present.
+             */
+            if (!list.contains(el.getId())) {
+                list.add(el.getId());
+            }
             list.add(el.getVariables().get(1).substring(1));
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
@@ -348,6 +355,13 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
+            /*
+              In recursive step the object property might not be in the list.
+              Add it if not present.
+             */
+            if (!list.contains(el.getId())) {
+                list.add(el.getId());
+            }
             list.add(el.getVariables().get(0).substring(1));
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
