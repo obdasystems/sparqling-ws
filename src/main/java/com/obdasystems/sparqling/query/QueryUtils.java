@@ -362,7 +362,7 @@ public class QueryUtils {
             if (!list.contains(el.getId())) {
                 list.add(el.getId());
             }
-            list.add(el.getVariables().get(0).substring(1));
+            list.add(el.getVariables().get(1).substring(1));
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
