@@ -1239,6 +1239,29 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testCountAndThenAdd() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.countStar(qg, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        q = parser.parse(new Query(), qg.getSparql());
+        it = q.getProject().getExprs().values().iterator();
+        e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);
