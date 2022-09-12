@@ -5,7 +5,7 @@
     <artifactId>sparqling-ws</artifactId>
     <packaging>jar</packaging>
     <name>sparqling-ws</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <licenses>
         <license>
             <name>MIT</name>
