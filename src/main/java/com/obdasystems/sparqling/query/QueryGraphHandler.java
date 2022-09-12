@@ -64,7 +64,9 @@ public class QueryGraphHandler {
     private Query getMainQuery(QueryGraph body) {
         Query ret = parser.parse(new Query(), body.getSparql());
         if (body.isCountStar()) {
-            return ((ElementSubQuery)ret.getQueryPattern()).getQuery();
+            Query internal = ((ElementSubQuery) ret.getQueryPattern()).getQuery();
+            internal.setPrefixMapping(ret.getPrefixMapping());
+            return internal;
         } else {
             return ret;
         }
