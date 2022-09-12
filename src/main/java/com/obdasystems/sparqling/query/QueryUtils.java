@@ -50,6 +50,7 @@ public class QueryUtils {
             res = "x" + System.currentTimeMillis();
         } else {
             if (res.length() > VAR_MAX_LENGTH - 2) res = res.substring(0, VAR_MAX_LENGTH - 3);
+            res = res.replaceAll("[^a-zA-Z0-9]", "_");
             res = getNewCountedVarFromQuery(res, q);
         }
         return varPrefix + res;

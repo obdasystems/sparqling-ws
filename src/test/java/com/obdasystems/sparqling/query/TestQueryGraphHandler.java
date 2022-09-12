@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 public class TestQueryGraphHandler {
 
     private static String bookIRI;
+    private static String ebookIRI;
     private static String audioBookIRI;
     private static String writtenByIRI;
     private static String authorIRI;
@@ -36,6 +37,7 @@ public class TestQueryGraphHandler {
     @BeforeClass
     public static void init() throws FileNotFoundException {
         bookIRI = "http://www.obdasystems.com/books/Book";
+        ebookIRI = "http://www.obdasystems.com/books/E-Book";
         audioBookIRI = "http://www.obdasystems.com/books/AudioBook";
         writtenByIRI = "http://www.obdasystems.com/books/writtenBy";
         authorIRI = "http://www.obdasystems.com/books/Author";
@@ -801,9 +803,35 @@ public class TestQueryGraphHandler {
         Expr e = it.next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
-        qg = qgb.deleteHeadTerm(qg, "?COUNT_STAR");
+        qg = qgb.countStar(qg, false);
         q = parser.parse(new Query(), qg.getSparql());
-        assertTrue(q.isQueryResultStar());
+        assertFalse(q.getQueryPattern() instanceof ElementSubQuery);
+    }
+
+    @Test
+    public void testCountStarDistinct() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.setDistinct(qg, true);
+        qg = qgb.countStar(qg, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        Query sub = ((ElementSubQuery) q.getQueryPattern()).getQuery();
+        assertTrue(sub.isDistinct());
+        assertFalse(q.isDistinct());
+        qg = qgb.countStar(qg, false);
+        q = parser.parse(new Query(), qg.getSparql());
+        assertFalse(q.getQueryPattern() instanceof ElementSubQuery);
+        assertTrue(q.isDistinct());
     }
 
     @Test
@@ -1204,17 +1232,16 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testSpecialCharsOnIRIRemainder() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        // special char "-"
+        QueryGraph qg = qgb.getQueryGraph(ebookIRI);
+    }
+
+    @Test
     public void sandbox() {
-        String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
-                "{ " +
-                "?x <op> ?y." +
-                "?x <op> ?z." +
-                "?x <op> ?z1." +
-                "?x <op> ?z2." +
-                "}" +
-                "GROUP BY ?z ?z1 ?z2";
+        String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);
-        q.setLimit(Query.NOLIMIT);
         System.out.println(q);
     }
 }
