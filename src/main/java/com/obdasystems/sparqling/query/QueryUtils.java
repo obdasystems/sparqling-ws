@@ -2,7 +2,6 @@ package com.obdasystems.sparqling.query;
 
 import com.google.common.collect.Sets;
 import com.obdasystems.sparqling.model.*;
-import com.obdasystems.sparqling.query.visitors.DeleteElementVisitorByTriple;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.ExprFactory;
 import org.apache.jena.graph.Node;
@@ -62,6 +61,7 @@ public class QueryUtils {
         if (q == null) return ret;
         final boolean[] found = {true};
         while (found[0]) {
+            found[0] = false;
             ret = varName + count[0];
             String finalRet = ret;
             ElementWalker_New.walk(
@@ -69,25 +69,27 @@ public class QueryUtils {
                     new ElementVisitorBase() {
                         @Override
                         public void visit(ElementPathBlock el) {
-                            Iterator<TriplePath> it = el.patternElts();
-                            while (it.hasNext()) {
-                                TriplePath triple = it.next();
-                                if (triple.getSubject().isVariable()) {
-                                    if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
+                            if(!found[0]){
+                                Iterator<TriplePath> it = el.patternElts();
+                                while (it.hasNext()) {
+                                    TriplePath triple = it.next();
+                                    if (triple.getSubject().isVariable()) {
+                                        if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
+                                            found[0] = true;
+                                            count[0]++;
+                                            return;
+                                        }
+                                    }
+                                    if (triple.getObject().isVariable()) {
+                                        if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
+                                            found[0] = true;
+                                            count[0]++;
+                                            return;
+                                        }
                                     }
                                 }
-                                if (triple.getObject().isVariable()) {
-                                    if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
-                                    }
-                                }
+                                found[0] = false;
                             }
-                            found[0] = false;
                         }
                     },
                     new ExprVisitorBase() {}

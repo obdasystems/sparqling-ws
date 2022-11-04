@@ -7,6 +7,7 @@ import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.core.TriplePath;
+import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.expr.E_StrSubstring;
 import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprAggregator;
@@ -1259,6 +1260,57 @@ public class TestQueryGraphHandler {
         e = it.next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+    }
+
+    @Test
+    public void filterAndAddTwice() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.EQUAL);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?name0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("Pippo");
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        params.add(v2);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while (it.hasNext()) {
+                            TriplePath triple = it.next();
+                            if (triple.getObject().isVariable()) {
+                                if (((Var) triple.getObject()).getVarName().equals("name2")) {
+                                    passed[0] = true;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                });
+        assertTrue(passed[0]);
     }
 
     @Test
