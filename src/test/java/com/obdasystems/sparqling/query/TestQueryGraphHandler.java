@@ -1314,6 +1314,21 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void joinAndOptional() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, bookIRI, false, "Author0"
+        );
+        qg = qgb.putQueryGraphJoin(qg,"Book1", "Book0");
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId());
+        assertTrue(qg.getOptionals().size() > 0);
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);

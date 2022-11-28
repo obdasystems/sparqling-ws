@@ -800,7 +800,7 @@ public class QueryGraphHandler {
         Query q = getMainQuery(body);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list, body.getGraph());
         WhereHandler wh2 = new WhereHandler();
         for (Triple triple : triplesToMove) {
             wh2.addWhere(new TriplePath(triple));
@@ -838,7 +838,7 @@ public class QueryGraphHandler {
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         PrefixMapping p = q.getPrefixMapping();
         List<String> list = new LinkedList<>();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list, body.getGraph());
         DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(triplesToMove);
         q.getQueryPattern().visit(visitor);
         WhereHandler wh = new WhereHandler(q);

@@ -320,7 +320,7 @@ public class QueryUtils {
         }
     }
 
-    public static List<Triple> getOptionalTriplesToMove(GraphElement el, PrefixMapping p, List<String> list) {
+    public static List<Triple> getOptionalTriplesToMove(GraphElement el, PrefixMapping p, List<String> list, GraphElement root) {
         Entity.TypeEnum type = el.getEntities().get(0).getType();
         List<Triple> res = new LinkedList<>();
         if (type.equals(Entity.TypeEnum.CLASS)) {
@@ -337,10 +337,6 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
-            /*
-              In recursive step the object property might not be in the list.
-              Add it if not present.
-             */
             if (!list.contains(el.getId())) {
                 list.add(el.getId());
             }
@@ -348,8 +344,8 @@ public class QueryUtils {
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
-                    GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, p, list));
+                    GraphElement child = new GraphElementFinder().findElementById(id, root);
+                    res.addAll(getOptionalTriplesToMove(child, p, list, root));
                 }
             }
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
@@ -358,10 +354,6 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
-            /*
-              In recursive step the object property might not be in the list.
-              Add it if not present.
-             */
             if (!list.contains(el.getId())) {
                 list.add(el.getId());
             }
@@ -369,8 +361,8 @@ public class QueryUtils {
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
-                    GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, p, list));
+                    GraphElement child = new GraphElementFinder().findElementById(id, root);
+                    res.addAll(getOptionalTriplesToMove(child, p, list, root));
                 }
             }
 
