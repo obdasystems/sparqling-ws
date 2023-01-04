@@ -438,7 +438,7 @@ public class QueryGraphHandler {
         String var = varPrefix + graphElementId;
         Var jVar = AbstractQueryBuilder.makeVar(var);
         sh.addVar(jVar);
-        if(!q.getGroupBy().isEmpty()) {
+        if(!q.getAggregators().isEmpty()) {
             q.getGroupBy().add(jVar);
         }
         if (body.isCountStar()) q = getCountStarQuery(q, true);
@@ -671,7 +671,14 @@ public class QueryGraphHandler {
                 gbVars.add(v,e);
             }
         }
-        q.getGroupBy().addAll(gbVars);
+        Iterator var2 = gbVars.getVars().iterator();
+        while(var2.hasNext()) {
+            Var v = (Var)var2.next();
+            Expr e = gbVars.getExpr(v);
+            if (!q.getGroupBy().contains(v)) {
+                q.getGroupBy().add(v, e);
+            }
+        }
         if (he.getHaving() != null) {
             List<Filter> havingGraph = he.getHaving();
             Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);

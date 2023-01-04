@@ -101,14 +101,16 @@ public class QueryUtils {
     public static String getVarFromFunction(String funcName, QueryGraph qg) {
         int count = 0;
         Iterator<HeadElement> it = qg.getHead().iterator();
+        String newVar = varPrefix + funcName + count;
         while(it.hasNext()) {
             HeadElement v = it.next();
-            if (v.getId().equals(funcName)) {
+            newVar = varPrefix + funcName + count;
+            if (v.getId().equals(newVar)) {
                 it = qg.getHead().iterator();
                 count++;
             }
         }
-        return varPrefix + funcName + count;
+        return newVar;
     }
 
     static Expr getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {

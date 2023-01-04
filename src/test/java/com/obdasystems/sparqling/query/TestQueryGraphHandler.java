@@ -34,6 +34,7 @@ public class TestQueryGraphHandler {
     private static String nameIRI;
     private static SPARQLParser parser;
     private static String titleIRI;
+    private static String genreIRI;
 
     @BeforeClass
     public static void init() throws FileNotFoundException {
@@ -44,6 +45,7 @@ public class TestQueryGraphHandler {
         authorIRI = "http://www.obdasystems.com/books/Author";
         nameIRI = "http://www.obdasystems.com/books/name";
         titleIRI = "http://www.obdasystems.com/books/title";
+        genreIRI = "http://www.obdasystems.com/books/genre";
         parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_1.0.0/books_ontology.graphol"));
     }
@@ -1326,6 +1328,63 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphJoin(qg,"Book1", "Book0");
         qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId());
         assertTrue(qg.getOptionals().size() > 0);
+    }
+
+    @Test
+    public void aggregateAndAddHead() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.addHeadTerm(qg, "Book0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(2, q.getProject().size());
+    }
+
+    @Test
+    public void multipleAggregateCount() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.addHeadTerm(qg, "Book0");
+        GroupByElement gb2 = new GroupByElement();
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb2.setDistinct(true);
+        qg.getHead().get(1).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?Book0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(2, q.getProject().size());
+    }
+
+    @Test
+    public void multipleAggregateAndGroupBy() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.addHeadTerm(qg, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(1).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", genreIRI, "Book0");
+        GroupByElement gb2 = new GroupByElement();
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.AVARAGE);
+        gb2.setDistinct(true);
+        qg.getHead().get(2).setGroupBy(gb2);
+        qg = qgb.aggregationHeadTerm(qg, "?genre0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        System.out.println(qg.getSparql());
+        assertEquals(3, q.getProject().size());
     }
 
     @Test
