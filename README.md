@@ -26,7 +26,7 @@ Swagger / OpenAPI v3: http://localhost:7979/sparqling/1.0.0/openapi.json
 
 You can test the API calls here:
 
-https://app.swaggerhub.com/apis/OBDASystems/swagger-sparqling_ws/1.0.1
+https://app.swaggerhub.com/apis/OBDASystems/swagger-sparqling_ws
 
 ## Main dependencies
 
