@@ -1383,8 +1383,38 @@ public class TestQueryGraphHandler {
         qg.getHead().get(2).setGroupBy(gb2);
         qg = qgb.aggregationHeadTerm(qg, "?genre0");
         Query q = parser.parse(new Query(), qg.getSparql());
-        System.out.println(qg.getSparql());
         assertEquals(3, q.getProject().size());
+    }
+
+    @Test
+    public void isBlankFilter() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        if(el.getExpr().getFunction().getFunctionSymbol().getSymbol().equals("not")
+                                && el.getExpr().getVarsMentioned().contains(
+                                AbstractQueryBuilder.makeVar("?title0")))
+                            passed[0] = true;
+                    }
+                });
+        assertTrue(passed[0]);
     }
 
     @Test

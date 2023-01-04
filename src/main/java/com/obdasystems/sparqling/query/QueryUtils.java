@@ -204,6 +204,12 @@ public class QueryUtils {
                         f.getExpression().getParameters().get(1).getValue(),
                         f.getExpression().getParameters().get(2).getValue());
                 break;
+            case ISBLANK:
+                filterExpr = ef.isBlank(firstArg);
+                break;
+            case NOT_ISBLANK:
+                filterExpr = ef.not(ef.isBlank(firstArg));
+                break;
             default:
                 throw new RuntimeException("Cannot recognize operator of filter. Found " + f.getExpression().getOperator());
         }
@@ -267,6 +273,21 @@ public class QueryUtils {
                 break;
             case SECONDS:
                 expr = ef.seconds(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case STRLEN:
+                expr = ef.strlen(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case STRBEFORE:
+                expr = ef.strbefore(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRAFTER:
+                expr = ef.strafter(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRSTARTS:
+                expr = ef.strstarts(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRENDS:
+                expr = ef.strends(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
                 break;
             default: throw new RuntimeException("Cannot find function name.");
         }
