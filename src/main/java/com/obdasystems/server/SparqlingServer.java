@@ -1,11 +1,19 @@
 package com.obdasystems.server;
 
-import java.awt.Container;
-import java.awt.Desktop;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import com.obdasystems.swing.ConsoleAppender;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.FilterHolder;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+import org.glassfish.jersey.servlet.ServletContainer;
+
+import javax.servlet.DispatcherType;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -15,25 +23,6 @@ import java.net.URISyntaxException;
 import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.servlet.DispatcherType;
-import javax.swing.*;
-
-import com.obdasystems.swing.ConsoleAppender;
-import com.obdasystems.swing.TextAreaOutputStream;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.ContextHandler;
-import org.eclipse.jetty.server.handler.DefaultHandler;
-import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
-import org.eclipse.jetty.servlet.FilterHolder;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
-import org.eclipse.jetty.webapp.WebAppContext;
-import org.glassfish.jersey.servlet.ServletContainer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class SparqlingServer {
 
