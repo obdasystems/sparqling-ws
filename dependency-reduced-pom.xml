@@ -89,16 +89,16 @@
   </dependencies>
   <properties>
     <swagger-core-version>2.0.0</swagger-core-version>
-    <jersey2-version>2.27</jersey2-version>
-    <java.version>1.7</java.version>
-    <junit-version>4.13.1</junit-version>
-    <jetty-version>9.2.9.v20150224</jetty-version>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <servlet-api-version>2.5</servlet-api-version>
     <beanvalidation-version>1.1.0.Final</beanvalidation-version>
-    <logback-version>1.1.7</logback-version>
+    <java.version>1.7</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
+    <jetty-version>9.2.9.v20150224</jetty-version>
     <jackson-version>2.9.5</jackson-version>
+    <logback-version>1.1.7</logback-version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <jersey2-version>2.27</jersey2-version>
+    <servlet-api-version>2.5</servlet-api-version>
+    <junit-version>4.13.1</junit-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

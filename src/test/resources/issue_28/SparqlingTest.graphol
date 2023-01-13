@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphol version="3">
+  <project version="http://example.com/ontology/1.0" name="SparqlingTest">
+    <ontology lang="en" addLabelFromUserInput="0" iri="http://example.com/ontology/" addLabelFromSimpleName="0">
+      <imports/>
+      <prefixes>
+        <prefix>
+          <value></value>
+          <namespace>http://example.com/ontology/</namespace>
+        </prefix>
+        <prefix>
+          <value>owl</value>
+          <namespace>http://www.w3.org/2002/07/owl#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdf</value>
+          <namespace>http://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdfs</value>
+          <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        </prefix>
+        <prefix>
+          <value>xml</value>
+          <namespace>http://www.w3.org/XML/1998/namespace</namespace>
+        </prefix>
+        <prefix>
+          <value>xsd</value>
+          <namespace>http://www.w3.org/2001/XMLSchema#</namespace>
+        </prefix>
+      </prefixes>
+      <datatypes>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</datatype>
+        <datatype>http://www.w3.org/2000/01/rdf-schema#Literal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NCName</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NMTOKEN</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#Name</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#anyURI</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#base64Binary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#boolean</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#byte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTime</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTimeStamp</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#decimal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#double</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#float</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#hexBinary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#int</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#integer</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#language</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#long</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#negativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonNegativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonPositiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#normalizedString</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#positiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#short</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#token</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedByte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedInt</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedLong</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedShort</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#rational</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#real</datatype>
+      </datatypes>
+      <languages>
+        <language>de</language>
+        <language>en</language>
+        <language>es</language>
+        <language>fr</language>
+        <language>it</language>
+      </languages>
+      <facets>
+        <facet>http://www.w3.org/2001/XMLSchema#langRange</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#length</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#pattern</facet>
+      </facets>
+      <annotationProperties>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#comment</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#label</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#deprecated</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#incompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#priorVersion</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#versionInfo</annotationProperty>
+      </annotationProperties>
+      <iris>
+        <iri>
+          <value>http://example.com/ontology/</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/A</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/B</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/C</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/a</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/b</value>
+        </iri>
+        <iri>
+          <value>http://example.com/ontology/r</value>
+        </iri>
+      </iris>
+    </ontology>
+    <diagrams>
+      <diagram name="d1" height="5000" width="5000">
+        <node type="range-restriction" id="n13" color="#000000">
+          <geometry height="20" y="260" x="260" width="20"/>
+          <label customSize="0" height="23" y="238" x="260" width="39" size="12">exists</label>
+        </node>
+        <node type="attribute" id="n14" color="#fcfcfc">
+          <geometry height="20" y="660" x="-80" width="20"/>
+          <iri>http://example.com/ontology/b</iri>
+          <label customSize="0" height="23" y="638" x="-80" width="17" size="12"/>
+        </node>
+        <node type="domain-restriction" id="n15" color="#fcfcfc">
+          <geometry height="20" y="660" x="0" width="20"/>
+          <label customSize="0" height="23" y="638" x="0" width="39" size="12">exists</label>
+        </node>
+        <node type="concept" id="n2" color="#fcfcfc">
+          <geometry height="50" y="260" x="130" width="110"/>
+          <iri>http://example.com/ontology/A</iri>
+          <label customSize="0" height="23" y="260" x="130" width="18" size="12"/>
+        </node>
+        <node type="disjoint-union" id="n3" color="#000000">
+          <geometry height="30" y="400" x="130" width="50"/>
+        </node>
+        <node type="concept" id="n4" color="#fcfcfc">
+          <geometry height="50" y="540" x="0" width="110"/>
+          <iri>http://example.com/ontology/B</iri>
+          <label customSize="0" height="23" y="540" x="0" width="18" size="12"/>
+        </node>
+        <node type="concept" id="n5" color="#fcfcfc">
+          <geometry height="50" y="540" x="240" width="110"/>
+          <iri>http://example.com/ontology/C</iri>
+          <label customSize="0" height="23" y="540" x="240" width="18" size="12"/>
+        </node>
+        <node type="role" id="n7" color="#fcfcfc">
+          <geometry height="50" y="260" x="360" width="70"/>
+          <iri>http://example.com/ontology/r</iri>
+          <label customSize="0" height="23" y="230" x="360" width="14" size="12"/>
+        </node>
+        <node type="attribute" id="n8" color="#fcfcfc">
+          <geometry height="20" y="160" x="340" width="20"/>
+          <iri>http://example.com/ontology/a</iri>
+          <label customSize="0" height="23" y="138" x="340" width="17" size="12"/>
+        </node>
+        <node type="domain-restriction" id="n9" color="#fcfcfc">
+          <geometry height="20" y="160" x="260" width="20"/>
+          <label customSize="0" height="23" y="138" x="260" width="39" size="12">exists</label>
+        </node>
+        <edge type="equivalence" source="n2" id="e1" target="n3">
+          <point y="260" x="130"/>
+          <point y="400" x="130"/>
+        </edge>
+        <edge type="inclusion" source="n13" id="e10" target="n2">
+          <point y="260" x="260"/>
+          <point y="260" x="130"/>
+        </edge>
+        <edge type="input" source="n14" id="e11" target="n15">
+          <point y="660" x="-80"/>
+          <point y="660" x="0"/>
+        </edge>
+        <edge type="inclusion" source="n15" id="e12" target="n4">
+          <point y="660" x="0"/>
+          <point y="540" x="0"/>
+        </edge>
+        <edge type="input" source="n4" id="e3" target="n3">
+          <point y="540" x="0"/>
+          <point y="400" x="130"/>
+        </edge>
+        <edge type="input" source="n5" id="e4" target="n3">
+          <point y="540" x="240"/>
+          <point y="400" x="130"/>
+        </edge>
+        <edge type="input" source="n8" id="e5" target="n9">
+          <point y="160" x="340"/>
+          <point y="160" x="260"/>
+        </edge>
+        <edge type="input" source="n7" id="e6" target="n13">
+          <point y="260" x="360"/>
+          <point y="260" x="260"/>
+        </edge>
+        <edge type="inclusion" source="n9" id="e9" target="n2">
+          <point y="160" x="260"/>
+          <point y="260" x="130"/>
+        </edge>
+      </diagram>
+    </diagrams>
+  </project>
+</graphol>
