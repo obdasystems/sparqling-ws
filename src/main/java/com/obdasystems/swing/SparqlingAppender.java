@@ -6,8 +6,6 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import com.obdasystems.server.SparqlingServer;
 
-import java.io.IOException;
-
 
 public class SparqlingAppender extends AppenderBase<ILoggingEvent> {
 
@@ -20,10 +18,7 @@ public class SparqlingAppender extends AppenderBase<ILoggingEvent> {
             return;
         }
 
-        try {
-            encoder.init(System.out);
-        } catch (IOException e) {
-        }
+        encoder.start();
         super.start();
     }
 
