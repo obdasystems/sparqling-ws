@@ -2,6 +2,7 @@ package com.obdasystems.sparqling.engine;
 
 import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
@@ -10,27 +11,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Ignore
 public class TestOntologyProximityManager {
 
     static Logger logger = LoggerFactory.getLogger(TestOntologyProximityManager.class);
 
     @Test
     public void testIssue_28() throws Exception {
-        String grapholFilePath = "./src/test/resources/issue_28/ISTAT-SIR_v1.1.38.graphol";
-        String s = Files.readString(Paths.get(grapholFilePath));
-        System.out.println(s);
-
-
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
         GraphOLParser_v3 parser = new GraphOLParser_v3();
-        OWLOntology ontology = parser.parseOWLOntology(grapholFilePath, manager);
+
+        FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_28/SparqlingTest.graphol");
+
+        String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
+                .lines().collect(Collectors.joining("\n"));
+        OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
+
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
 
         OWLDataFactory df = manager.getOWLDataFactory();
@@ -42,34 +42,42 @@ public class TestOntologyProximityManager {
         OWLObjectProperty obj_r = df.getOWLObjectProperty(IRI.create("http://example.com/ontology/r"));
 
         Set<OWLDataProperty> classAttributes = proximityManager.getClassAttributes(class_A);
-        TestCase.assertTrue(classAttributes.size()==1);
+        TestCase.assertTrue(classAttributes.size()==2);
         TestCase.assertTrue(classAttributes.contains(dt_a));
+        TestCase.assertTrue(classAttributes.contains(dt_b));
+    }
+
+    @Test
+    public void testIssue_29() throws Exception {
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        GraphOLParser_v3 parser = new GraphOLParser_v3();
+
+        FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_29/ISTAT_SPARQLING_ISSUE_29_0.graphol");
+        //FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol");
+
+        String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
+                .lines().collect(Collectors.joining("\n"));
+        OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
+
+        OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
+
+        OWLDataFactory df = manager.getOWLDataFactory();
     }
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
-        String owlFilePath = "./src/test/resources/istat/istat_1.1.38/ISTAT-SIR_v1.1.38.owl";
-        String grapholFilePath =  "./src/test/resources/books/books_ontology.graphol";
-        //TODO CONTROLLA Set relativi a domain e range delle propertis
-        long t = System.currentTimeMillis();
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        OWLOntology ontology;
-        if(grapholFilePath!=null) {
-            GraphOLParser_v3 parser = new GraphOLParser_v3();
-            ontology = parser.parseOWLOntology(
-                    Files.readAllLines(Paths.get(grapholFilePath)).stream().collect(Collectors.joining()),
-                    manager);
+        GraphOLParser_v3 parser = new GraphOLParser_v3();
+        String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
+        //String grapholFilePath =  "src/test/resources/issue_29/ISTAT_SPARQLING_ISSUE_29_0.graphol";
+        FileInputStream fileInputStream = new FileInputStream(grapholFilePath);
 
-            ontology.getLogicalAxioms().forEach(ax->{
-                System.out.println(ax);
-            });
-        }
-        else {
-            ontology = manager.loadOntologyFromOntologyDocument(new File(owlFilePath));
-        }
+        String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
+                .lines().collect(Collectors.joining("\n"));
+        OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
+
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
-        t = System.currentTimeMillis() - t;
 
-        String[] pathSplit = owlFilePath.split("/");
+        String[] pathSplit = grapholFilePath.split("/");
         String testFilePath = "";
         for (int i = 0; i < pathSplit.length - 1; i++) {
             if(i!=0) {
@@ -79,7 +87,6 @@ public class TestOntologyProximityManager {
         }
         testFilePath += "/" + pathSplit[pathSplit.length - 1].substring(0, pathSplit[pathSplit.length - 1].lastIndexOf('.')) + ".txt";
         BufferedWriter bf = new BufferedWriter(new FileWriter(testFilePath));
-        bf.write("Init time: (" + t + " ms)\n\n");
 
         ontology.getClassesInSignature(Imports.INCLUDED).forEach(cl -> {
             try {

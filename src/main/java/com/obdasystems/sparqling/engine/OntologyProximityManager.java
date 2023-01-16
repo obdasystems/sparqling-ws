@@ -338,7 +338,7 @@ public class OntologyProximityManager {
                     }
                 }
             } else {
-                //NORMAL SUBSUMPTION
+                //STANDARD SUBSUMPTION
                 if (sub instanceof OWLClass) {
                     processClassContainment(sup, (OWLClass) sub, isAsserted);
                 } else {
@@ -441,13 +441,28 @@ public class OntologyProximityManager {
     }
 
     private void processClassComplementOf(OWLObjectComplementOf sup, OWLClass sub) {
+        if(sub.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+            System.out.println();
+        }
+
+
         OWLClassExpression disjExpr =  sup.getOperand();
         if (disjExpr instanceof OWLClass) {
+
+            if(disjExpr.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                System.out.println();
+            }
+
             classDisjointMap.get(sub).add((OWLClass) disjExpr);
         } else {
             if (disjExpr instanceof OWLObjectUnionOf) {
                 ((OWLObjectUnionOf) disjExpr).getOperands().forEach(innDisj -> {
                     if (innDisj instanceof OWLClass) {
+
+                        if(innDisj.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                            System.out.println();
+                        }
+
                         classDisjointMap.get(sub).add((OWLClass) innDisj);
                     }
                 });
@@ -503,13 +518,23 @@ public class OntologyProximityManager {
 
     //CLASS DISJOINTNESS
     private void processDisjointClassesAxiom(OWLDisjointClassesAxiom axiom) {
-        List<OWLClassExpression> operandList = axiom.getClassExpressionsAsList();
+        List<OWLClassExpression> operandList = new LinkedList<>(axiom.getClassExpressions());
         for (int i = 0; i < operandList.size() - 1; i++) {
             OWLClassExpression first = operandList.get(i);
             if (first instanceof OWLClass) {
+
+                if(first.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                    System.out.println();
+                }
+
                 for (int j = i + 1; j < operandList.size(); j++) {
                     OWLClassExpression second = operandList.get(j);
                     if (second instanceof OWLClass) {
+
+                        if(second.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                            System.out.println();
+                        }
+
                         classDisjointMap.get(first.asOWLClass()).add(second.asOWLClass());
                         classDisjointMap.get(second.asOWLClass()).add(first.asOWLClass());
                     }

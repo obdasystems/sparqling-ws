@@ -513,7 +513,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
 
             if (tgt instanceof OWLObjectComplementOf) {
                 OWLObjectComplementOf nbc = (OWLObjectComplementOf) tgt;
-                OWLClassExpression op = ((OWLObjectComplementOf) tgt).getOperand();
+                OWLClassExpression op = (nbc).getOperand();
                 if (op.isOWLThing()) {
                     GC.addEdge(src, dataFactory.getOWLObjectComplementOf(src));
                 }
