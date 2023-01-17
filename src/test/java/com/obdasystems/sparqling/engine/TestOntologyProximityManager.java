@@ -75,6 +75,10 @@ public class TestOntologyProximityManager {
                 .lines().collect(Collectors.joining("\n"));
         OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
 
+
+        String owlFilePath =  "src/test/resources/issue_29/NDC_TERRITORIO_ISTAT_INFERRED.owl";
+        ontology = manager.loadOntologyFromOntologyDocument(new FileInputStream(owlFilePath));
+
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
 
         String[] pathSplit = grapholFilePath.split("/");
