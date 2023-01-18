@@ -697,7 +697,24 @@ public class OntologyProximityManager {
             b.setObjectPropertyIRI(i.getIRI().toString());
             Set<OWLClass> domain = getObjPropDomain(i);
             Set<OWLClass> range = getObjPropRange(i);
-            if(domain.contains(cl) || domain.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
+            /**
+             * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
+             * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
+            **/
+            boolean notAdd = false;
+            if(domain.contains(cl) || domain.stream().anyMatch(ancestors::contains)) {
+                for (OWLObjectPropertyDomainAxiom a : ontology.getObjectPropertyDomainAxioms(i)) {
+                    if (a.getDomain() instanceof OWLClass) {
+                        OWLClass domainClass = (OWLClass) a.getDomain();
+                        if(getClassDescendants(cl).contains(domainClass)) {
+                            notAdd = true;
+                            break;
+                        }
+                    }
+                }
+                if (notAdd) {
+                    continue;
+                }
                 if(getObjPropRange(i).contains(cl)) {
                     b.setCyclic(true);
                 }
@@ -705,7 +722,19 @@ public class OntologyProximityManager {
                     b.addRelatedClassesItem(c.getIRI().toString());
                 }
                 b.setDirect(true);
-            } else if(range.contains(cl) || range.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
+            } else if(range.contains(cl) || range.stream().anyMatch(ancestors::contains)) {
+                for (OWLObjectPropertyRangeAxiom a : ontology.getObjectPropertyRangeAxioms(i)) {
+                    if (a.getRange() instanceof OWLClass) {
+                        OWLClass rangeClass = (OWLClass) a.getRange();
+                        if(getClassDescendants(cl).contains(rangeClass)) {
+                            notAdd = true;
+                            break;
+                        }
+                    }
+                }
+                if (notAdd) {
+                    continue;
+                }
                 if(domain.contains(cl)) {
                     b.setCyclic(true);
                 }
@@ -718,6 +747,23 @@ public class OntologyProximityManager {
         }
 
         for(OWLDataProperty i : getClassAttributes(cl)) {
+            /**
+             * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
+             * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
+             **/
+            boolean notAdd = false;
+            for (OWLDataPropertyDomainAxiom a : ontology.getDataPropertyDomainAxioms(i)) {
+                if (a.getDomain() instanceof OWLClass) {
+                    OWLClass domainClass = (OWLClass) a.getDomain();
+                    if(getClassDescendants(cl).contains(domainClass)) {
+                        notAdd = true;
+                        break;
+                    }
+                }
+            }
+            if (notAdd) {
+                continue;
+            }
             ret.addDataPropertiesItem(i.getIRI().toString());
         }
         return ret;
