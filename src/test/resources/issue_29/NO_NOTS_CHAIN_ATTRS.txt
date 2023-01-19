@@ -1,0 +1,4575 @@
+
+########################## Class Thing ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+------- ATTRIBUTES -------
+########################## Class Aeroporto ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Roulotte_e_o_prefabbricati
+Aeroporto
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Agglomerato_insediativo_in_seguito_a_calamita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Agglomerato_insediativo_in_seguito_a_calamita
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Area_di_grande_valore_naturalistico_in_ambito_extraurbano ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Area_verde_parco ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Capoluogo_citta_metropolitana ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_comune
+ha_LAU
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Capoluogo_provincia ##########################
+------- DESCENDANTS -------
+Capoluogo_regione
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_comune
+ha_LAU
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Capoluogo_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Capoluogo_provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Capoluogo_provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_comune
+ha_LAU
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Caserma ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Cava_o_miniera ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Centro_di_permanenza_temporanea_per_stranieri ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Centroide_poligono ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Centroide_poligono
+------- ROLES -------
+ha_centroide_poligono
+------- ATTRIBUTES -------
+########################## Class Chiesa_abbazia_santuario_convento ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Cimitero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Citta_metropolitana ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Codice_NUTS0 ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Codice_Nuts
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Codice_NUTS3
+Codice_NUTS1
+Codice_NUTS2
+LAU
+------- ROLES -------
+broader_0_1
+ha_codifica_NUTS
+narrower_0_1
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Codice_NUTS1 ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Codice_Nuts
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Codice_NUTS3
+Codice_NUTS2
+Codice_NUTS0
+LAU
+------- ROLES -------
+broader_0_1
+broader_1_2
+narrower_0_1
+narrower_1_2
+ha_codifica_NUTS1
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Codice_NUTS2 ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Codice_Nuts
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Codice_NUTS3
+Codice_NUTS1
+Codice_NUTS0
+LAU
+------- ROLES -------
+broader_1_2
+ha_codifca_NUTS2
+narrower_2_3
+narrower_1_2
+broader_2_3
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Codice_NUTS3 ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Codice_Nuts
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Codice_NUTS1
+Codice_NUTS2
+Codice_NUTS0
+LAU
+------- ROLES -------
+ha_codifica_NUTS3
+narrower_2_3
+broader_2_3
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Codice_Nuts ##########################
+------- DESCENDANTS -------
+Codice_NUTS3
+Codice_NUTS1
+Codice_NUTS2
+Codice_NUTS0
+------- FATHERS -------
+Codice_Regolamento_TERCET
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+LAU
+------- ROLES -------
+broader_0_1
+broader_1_2
+ha_codifica_NUTS3
+ha_codifica_NUTS
+narrower_0_1
+ha_codifca_NUTS2
+narrower_2_3
+narrower_1_2
+broader_2_3
+ha_codifica_NUTS1
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Codice_Regolamento_TERCET ##########################
+------- DESCENDANTS -------
+Codice_NUTS3
+Codice_NUTS1
+Codice_NUTS2
+LAU
+Codice_NUTS0
+Codice_Nuts
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+broader_0_1
+broader_1_2
+ha_codifica_NUTS3
+narrower_0_1
+ha_codifica_NUTS
+ha_codifca_NUTS2
+narrower_2_3
+narrower_1_2
+ha_LAU
+ha_codifica_NUTS1
+broader_2_3
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Colonia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Comune ##########################
+------- DESCENDANTS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
+ha_storico_di_comune
+appartiene_attualmente_a_UTS
+ha_LAU
+istituito_dal_comune_di
+ha_comune
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Comune_dalla_fondazione_Italia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_comune
+ha_LAU
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Comune_estinto ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+Unita_amministrativa_estinta
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Unita_amministrativa_estinta
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_comune
+subisce
+ha_LAU
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Comune_sezione_di_censimento ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Comune_sezione_di_censimento
+------- ROLES -------
+ha_comune_sezione_di_censimento
+ha_comune
+------- ATTRIBUTES -------
+########################## Class Demanio_militare ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Demanio_militare
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Destinazione_produttiva ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Edificio_civile ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Impianto_sportivo ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Istituto_assistenziale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Istituto_di_ricerca_struttura_universitaria ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Sezione_di_censimento_non_classificabile
+Istituto_di_ricerca_struttura_universitaria
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class LAU ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Codice_Regolamento_TERCET
+------- ANCESTORS -------
+Codice_Regolamento_TERCET
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Codice_NUTS3
+Codice_NUTS1
+Codice_NUTS2
+Codice_NUTS0
+Codice_Nuts
+------- ROLES -------
+ha_LAU
+------- ATTRIBUTES -------
+valore_codice_regolamento_TERCET
+########################## Class Libero_consorzio ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Provincia_autonoma
+Stato
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Localita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Localita
+------- ROLES -------
+ha_tipo_localita
+appartiene_a_localita
+------- ATTRIBUTES -------
+########################## Class Monumento ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Ospedale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Piazza_monumentale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Porto ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Provincia ##########################
+------- DESCENDANTS -------
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Stato
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Provincia_autonoma ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Stato
+Provincia_autonoma
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Provincia_dalla_fondazione_Italia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Regione ##########################
+------- DESCENDANTS -------
+Regione_a_statuto_speciale
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_storico_di_regione
+ha_codifca_NUTS2
+appartiene_attualmente_a_stato
+appartiene_attualmente_a_regione
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Regione_a_statuto_speciale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Regione
+------- ANCESTORS -------
+Unita_amministrativa
+Regione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Provincia_autonoma
+Stato
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifca_NUTS2
+ha_storico_di_regione
+ha_storico_di_unita_amministrativa
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+########################## Class Ripartizione_geografica_livello2 ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+ha_codifica_NUTS1
+------- ATTRIBUTES -------
+########################## Class Roulotte_e_o_prefabbricati ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento ##########################
+------- DESCENDANTS -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Demanio_militare
+Agglomerato_insediativo_in_seguito_a_calamita
+Sezione_di_censimento_non_classificabile
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Roulotte_e_o_prefabbricati
+Aeroporto
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento_altro ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento_di_acqua ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Istituto_di_ricerca_struttura_universitaria
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Sezione_di_censimento_non_classificabile
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento_di_terra ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Sezione_di_censimento_non_classificabile
+Istituto_di_ricerca_struttura_universitaria
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento_fittizia_in_rsbl ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Sezione_di_censimento_non_classificabile ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Shape ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Shape
+------- ROLES -------
+ha_shape
+------- ATTRIBUTES -------
+########################## Class Stato ##########################
+------- DESCENDANTS -------
+Stato_estero
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Stato
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS
+ha_storico_di_stato
+appartiene_attualmente_a_stato
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Stato_estero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Stato
+------- ANCESTORS -------
+Unita_amministrativa
+Stato
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS
+ha_storico_di_stato
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Stazione_ferroviaria ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Sezione_di_censimento
+------- ANCESTORS -------
+Sezione_di_censimento
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Istituto_assistenziale
+Sezione_di_censimento
+Destinazione_produttiva
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
+ha_shape
+ha_centroide_poligono
+ha_comune_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Storico_di_comune ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Storico_unita_amministrativa
+------- ANCESTORS -------
+Storico_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- ROLES -------
+appartiene_a_unita_territoriale_sovracomunale
+ha_storico_di_comune
+ha_storico_di_unita_amministrativa
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Storico_di_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Storico_unita_amministrativa
+------- ANCESTORS -------
+Storico_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- ROLES -------
+appartiene_a_regione
+appartiene_a_stato
+ha_storico_di_regione
+ha_storico_di_unita_amministrativa
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Storico_di_stato ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Storico_unita_amministrativa
+------- ANCESTORS -------
+Storico_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- ROLES -------
+appartiene_a_stato
+ha_storico_di_stato
+ha_storico_di_unita_amministrativa
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Storico_di_unità_territoriale_sovracomunale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Storico_unita_amministrativa
+------- ANCESTORS -------
+Storico_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- ROLES -------
+appartiene_a_regione
+appartiene_a_unita_territoriale_sovracomunale
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Storico_unita_amministrativa ##########################
+------- DESCENDANTS -------
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- ROLES -------
+appartiene_a_regione
+appartiene_a_stato
+appartiene_a_unita_territoriale_sovracomunale
+ha_storico_di_regione
+ha_storico_di_stato
+ha_storico_di_comune
+ha_storico_di_unita_territoriale_sovracomunale
+unita_amministrativa_di_origine
+ha_storico_di_unita_amministrativa
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Tipo_localita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Tipo_localita
+------- ROLES -------
+ha_tipo_localita
+------- ATTRIBUTES -------
+########################## Class Tipo_sezione_di_censimento ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Tipo_sezione_di_censimento
+------- ROLES -------
+ha_tipo_sezione_di_censimento
+------- ATTRIBUTES -------
+########################## Class Tipo_variazione_unita_amministrativa ##########################
+------- DESCENDANTS -------
+Tipo_variazione_unita_amministrativa_regione_UTS
+Tipo_variazione_unita_amministrativa_comune
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Tipo_variazione_unita_amministrativa_comune ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Tipo_variazione_unita_amministrativa
+------- ANCESTORS -------
+Tipo_variazione_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Tipo_variazione_unita_amministrativa_regione_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Tipo_variazione_unita_amministrativa_regione_UTS ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Tipo_variazione_unita_amministrativa
+------- ANCESTORS -------
+Tipo_variazione_unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Tipo_variazione_unita_amministrativa_comune
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa ##########################
+------- DESCENDANTS -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
+ha_codifca_NUTS2
+appartiene_attualmente_a_UTS
+appartiene_attualmente_a_stato
+istituito_dal_comune_di
+ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+ha_comune
+ha_codifica_NUTS
+contiene_attualmente_sezione_di_censimento
+ha_storico_di_regione
+coinvolge_ulteriori_comuni
+ha_storico_di_stato
+ha_storico_di_comune
+ha_storico_di_unita_territoriale_sovracomunale
+subisce
+ha_LAU
+unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa_estinta ##########################
+------- DESCENDANTS -------
+Comune_estinto
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+unita_amministrativa_di_origine
+ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa_non_estinta ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+unita_amministrativa_di_origine
+ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+########################## Class Unita_non_amministrativa ##########################
+------- DESCENDANTS -------
+Unità_amministrativa_ex_provincia
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+Unità_amministrativa_ex_provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Unità_amministrativa_ex_provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Stato
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Unita_territoriale_sovracomunale ##########################
+------- DESCENDANTS -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Stato_estero
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+appartiene_attualmente_a_regione
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Unità_amministrativa_ex_provincia ##########################
+------- DESCENDANTS -------
+Unita_non_amministrativa
+------- FATHERS -------
+Unita_non_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Unita_non_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Unita_amministrativa
+Stato
+Provincia_autonoma
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+ha_codifica_NUTS3
+appartiene_attualmente_a_UTS
+ha_storico_di_unita_territoriale_sovracomunale
+ha_storico_di_unita_amministrativa
+------- ATTRIBUTES -------
+########################## Class Variazione ##########################
+------- DESCENDANTS -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_acquisizione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_altro_stato ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_annessione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_appartenenza ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_appartenenza_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_denominazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cessione_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_costituzione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_estinzione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_prima_validita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_variazione_sigla_automobilistica ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale ##########################
+------- DESCENDANTS -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_cessione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- FATHERS -------
+Variazione
+------- ANCESTORS -------
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_acquisizione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_acquisizione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_denominazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_unita_territoriale_superiore ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cessione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cessione_di_territorio_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione_per_annessione_da_stato_estero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione_per_prima_validita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_estinzione_per_cessione_stato_estero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_ricostituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_rinumerazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+ha_tipo_variazione_unita_amministrativa
+coinvolge_ulteriori_comuni
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+########################## Class Variazione_di_regione_o_UTS ##########################
+------- DESCENDANTS -------
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_appartenenza_regione
+------- FATHERS -------
+Variazione
+------- ANCESTORS -------
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_cessione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- ROLES -------
+coinvolge_ulteriori_UTS
+ha_tipo_variazione_unita_amministrativa
+subisce
+determina_inizio_di_storico
+------- ATTRIBUTES -------
+
+########################## ObjectProperty appartiene_a_localita ##########################
+------- DOMAIN -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Sezione_di_censimento_non_classificabile
+Istituto_di_ricerca_struttura_universitaria
+Demanio_militare
+Agglomerato_insediativo_in_seguito_a_calamita
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- RANGE -------
+Localita
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_a_regione ##########################
+------- DOMAIN -------
+Storico_unita_amministrativa
+Storico_di_unità_territoriale_sovracomunale
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_regione
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_a_stato ##########################
+------- DOMAIN -------
+Storico_unita_amministrativa
+Storico_di_regione
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_stato
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_a_unita_territoriale_sovracomunale ##########################
+------- DOMAIN -------
+Storico_unita_amministrativa
+Storico_di_comune
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_unità_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_attualmente_a_UTS ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- RANGE -------
+Citta_metropolitana
+Unita_amministrativa
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_attualmente_a_regione ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- RANGE -------
+Unita_amministrativa
+Regione_a_statuto_speciale
+Regione
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_attualmente_a_stato ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Regione
+------- RANGE -------
+Unita_amministrativa
+Stato
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty attuale_unita_amministrativa_di_origine ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- RANGE -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty broader_0_1 ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+Codice_NUTS0
+Codice_Nuts
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS1
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty broader_1_2 ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+Codice_NUTS1
+Codice_Nuts
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS2
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty broader_2_3 ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+Codice_NUTS2
+Codice_Nuts
+------- RANGE -------
+Codice_NUTS3
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty coinvolge_ulteriori_UTS ##########################
+------- DOMAIN -------
+Variazione
+Variazione_di_regione_o_UTS
+------- RANGE -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty coinvolge_ulteriori_comuni ##########################
+------- DOMAIN -------
+Variazione_comunale
+Variazione
+------- RANGE -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty contiene_attualmente_sezione_di_censimento ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- RANGE -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Agglomerato_insediativo_in_seguito_a_calamita
+Sezione_di_censimento_non_classificabile
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty determina_inizio_di_storico ##########################
+------- DOMAIN -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_LAU ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Comune
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- RANGE -------
+Codice_Regolamento_TERCET
+LAU
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_centroide_poligono ##########################
+------- DOMAIN -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Demanio_militare
+Agglomerato_insediativo_in_seguito_a_calamita
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Ospedale
+Sezione_di_censimento_altro
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- RANGE -------
+Centroide_poligono
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_codifca_NUTS2 ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Regione_a_statuto_speciale
+Regione
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS2
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_codifica_NUTS ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Stato
+Stato_estero
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS0
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_codifica_NUTS1 ##########################
+------- DOMAIN -------
+Ripartizione_geografica_livello2
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS1
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_codifica_NUTS3 ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+------- RANGE -------
+Codice_NUTS3
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_comune ##########################
+------- DOMAIN -------
+Comune_sezione_di_censimento
+------- RANGE -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_comune_sezione_di_censimento ##########################
+------- DOMAIN -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Istituto_di_ricerca_struttura_universitaria
+Demanio_militare
+Sezione_di_censimento_non_classificabile
+Agglomerato_insediativo_in_seguito_a_calamita
+Impianto_sportivo
+Sezione_di_censimento_di_acqua
+Porto
+Stazione_ferroviaria
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Roulotte_e_o_prefabbricati
+Aeroporto
+Piazza_monumentale
+------- RANGE -------
+Comune_sezione_di_censimento
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_shape ##########################
+------- DOMAIN -------
+Cimitero
+Edificio_civile
+Colonia
+Sezione_di_censimento_di_terra
+Area_verde_parco
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Sezione_di_censimento_non_classificabile
+Agglomerato_insediativo_in_seguito_a_calamita
+Istituto_di_ricerca_struttura_universitaria
+Demanio_militare
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- RANGE -------
+Shape
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_storico_di_comune ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Comune
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_storico_di_regione ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Regione_a_statuto_speciale
+Regione
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_regione
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_storico_di_stato ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Stato
+Stato_estero
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_stato
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_storico_di_unita_amministrativa ##########################
+------- DOMAIN -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Unita_territoriale_sovracomunale
+Comune
+Provincia
+Libero_consorzio
+Stato_estero
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Unita_amministrativa
+Capoluogo_citta_metropolitana
+Stato
+Provincia_autonoma
+Regione_a_statuto_speciale
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_stato
+Storico_di_regione
+Storico_di_comune
+Storico_di_unità_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_storico_di_unita_territoriale_sovracomunale ##########################
+------- DOMAIN -------
+Citta_metropolitana
+Unita_amministrativa
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+------- RANGE -------
+Storico_unita_amministrativa
+Storico_di_unità_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_tipo_localita ##########################
+------- DOMAIN -------
+Localita
+------- RANGE -------
+Tipo_localita
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_tipo_sezione_di_censimento ##########################
+------- DOMAIN -------
+Cimitero
+Edificio_civile
+Sezione_di_censimento_di_terra
+Colonia
+Area_verde_parco
+Monumento
+Centro_di_permanenza_temporanea_per_stranieri
+Cava_o_miniera
+Sezione_di_censimento_fittizia_in_rsbl
+Sezione_di_censimento
+Istituto_assistenziale
+Destinazione_produttiva
+Istituto_di_ricerca_struttura_universitaria
+Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Sezione_di_censimento_non_classificabile
+Sezione_di_censimento_di_acqua
+Impianto_sportivo
+Stazione_ferroviaria
+Porto
+Chiesa_abbazia_santuario_convento
+Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Caserma
+Sezione_di_censimento_altro
+Ospedale
+Aeroporto
+Roulotte_e_o_prefabbricati
+Piazza_monumentale
+------- RANGE -------
+Tipo_sezione_di_censimento
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty ha_tipo_variazione_unita_amministrativa ##########################
+------- DOMAIN -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- RANGE -------
+Tipo_variazione_unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty istituito_dal_comune_di ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- RANGE -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty narrower_0_1 ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+Codice_NUTS1
+Codice_Nuts
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS0
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty narrower_1_2 ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+Codice_NUTS2
+Codice_Nuts
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS1
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty narrower_2_3 ##########################
+------- DOMAIN -------
+Codice_NUTS3
+Codice_Regolamento_TERCET
+Codice_Nuts
+------- RANGE -------
+Codice_Regolamento_TERCET
+Codice_NUTS2
+Codice_Nuts
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty subisce ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune_estinto
+------- RANGE -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty unita_amministrativa_di_origine ##########################
+------- DOMAIN -------
+Storico_unita_amministrativa
+------- RANGE -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+
+########################## DataProperty valore_codice_regolamento_TERCET ##########################
+------- DOMAIN -------
+Codice_Regolamento_TERCET
+------- CHILDREN -------
+------- ANCESTORS -------

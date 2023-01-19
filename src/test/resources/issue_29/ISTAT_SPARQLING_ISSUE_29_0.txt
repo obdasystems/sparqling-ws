@@ -1,0 +1,719 @@
+
+########################## Class Thing ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+------- ATTRIBUTES -------
+########################## Class Capoluogo_citta_metropolitana ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Provincia
+Libero_consorzio
+Comune_estinto
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Capoluogo_provincia ##########################
+------- DESCENDANTS -------
+Capoluogo_regione
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Comune_estinto
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+data_inizio_appartenenza_a_UTS_attuale
+codice_istat_UA
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Capoluogo_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Capoluogo_provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Capoluogo_provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+data_inizio_appartenenza_a_UTS_attuale
+codice_istat_UA
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Citta_metropolitana ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Provincia_dalla_fondazione_Italia
+Comune
+Provincia
+Libero_consorzio
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Comune ##########################
+------- DESCENDANTS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+data_inizio_appartenenza_a_UTS_attuale
+codice_istat_UA
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Comune_dalla_fondazione_Italia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+data_inizio_appartenenza_a_UTS_attuale
+codice_istat_UA
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Comune_estinto ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+Unita_amministrativa_estinta
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Unita_amministrativa_estinta
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+codice_catastale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
+data_costituzione
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Libero_consorzio ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Provincia
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Provincia ##########################
+------- DESCENDANTS -------
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Capoluogo_citta_metropolitana
+Comune
+Capoluogo_provincia
+Libero_consorzio
+Comune_estinto
+Capoluogo_regione
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+Comune_dalla_fondazione_Italia
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Provincia_autonoma ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Provincia
+------- NON DISJOINT SIBLINGS -------
+Provincia_dalla_fondazione_Italia
+------- DISJOINT -------
+Citta_metropolitana
+Capoluogo_citta_metropolitana
+Comune
+Capoluogo_provincia
+Comune_estinto
+Libero_consorzio
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Provincia_dalla_fondazione_Italia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Provincia
+------- NON DISJOINT SIBLINGS -------
+Provincia_autonoma
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Citta_metropolitana
+Comune
+Capoluogo_provincia
+Libero_consorzio
+Comune_estinto
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Unita_non_amministrativa
+Regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_regione
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Unita_amministrativa ##########################
+------- DESCENDANTS -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Comune
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Unità_amministrativa_ex_provincia
+Regione
+Unita_amministrativa_estinta
+Capoluogo_citta_metropolitana
+Provincia_autonoma
+Capoluogo_provincia
+Comune_estinto
+Unita_non_amministrativa
+Comune_dalla_fondazione_Italia
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+codice_catastale
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Unita_amministrativa_estinta ##########################
+------- DESCENDANTS -------
+Comune_estinto
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Comune
+Unita_territoriale_sovracomunale
+Regione
+------- DISJOINT -------
+Unita_amministrativa_non_estinta
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+codice_catastale
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+tipo_costituzione
+data_estinzione_unita_amministrativa
+########################## Class Unita_amministrativa_non_estinta ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Comune
+Unita_territoriale_sovracomunale
+Regione
+------- DISJOINT -------
+Comune_estinto
+Unita_amministrativa_estinta
+------- ROLES -------
+appartiene_attualmente_a_UTS
+istituito_dal_comune_di
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+codice_catastale
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+tipo_costituzione
+########################## Class Unita_non_amministrativa ##########################
+------- DESCENDANTS -------
+Unità_amministrativa_ex_provincia
+------- FATHERS -------
+Unita_territoriale_sovracomunale
+Unità_amministrativa_ex_provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Unità_amministrativa_ex_provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Capoluogo_citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Comune
+Provincia
+Capoluogo_provincia
+Libero_consorzio
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+Regione
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Unita_territoriale_sovracomunale ##########################
+------- DESCENDANTS -------
+Citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Comune
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_UTS
+appartiene_attualmente_a_regione
+attuale_unita_amministrativa_di_origine
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+########################## Class Unità_amministrativa_ex_provincia ##########################
+------- DESCENDANTS -------
+Unita_non_amministrativa
+------- FATHERS -------
+Unita_non_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+Unita_non_amministrativa
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Citta_metropolitana
+Capoluogo_citta_metropolitana
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Comune
+Capoluogo_provincia
+Provincia
+Comune_estinto
+Libero_consorzio
+Capoluogo_regione
+Regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+appartiene_attualmente_a_UTS
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+------- ATTRIBUTES -------
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
+denominazione_unita_amministrativa_attuale
+codice_istat_UA
+data_costituzione
+data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
+
+########################## ObjectProperty appartiene_attualmente_a_UTS ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- RANGE -------
+Citta_metropolitana
+Unita_amministrativa
+Provincia_dalla_fondazione_Italia
+Provincia_autonoma
+Unita_territoriale_sovracomunale
+Provincia
+Libero_consorzio
+Unita_non_amministrativa
+Unità_amministrativa_ex_provincia
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty appartiene_attualmente_a_regione ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- RANGE -------
+Unita_amministrativa
+Regione
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty attuale_unita_amministrativa_di_origine ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- RANGE -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## ObjectProperty istituito_dal_comune_di ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- RANGE -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+
+########################## DataProperty codice_catastale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty codice_istat_UA ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty data_costituzione ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty data_estinzione_unita_amministrativa ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_amministrativa_estinta
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty data_inizio_appartenenza_a_UTS_attuale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty data_inizio_appartenenza_a_regione_attuale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty denominazione_unita_amministrativa_attuale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty sigla_automobilistica_attuale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty tipo_costituzione ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Comune
+------- CHILDREN -------
+------- ANCESTORS -------
+########################## DataProperty tipo_unita_territoriale_sovracomunale ##########################
+------- DOMAIN -------
+Unita_amministrativa
+Unita_territoriale_sovracomunale
+------- CHILDREN -------
+------- ANCESTORS -------

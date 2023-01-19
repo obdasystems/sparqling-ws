@@ -129,6 +129,9 @@ public class OntologyProximityManager {
         dedProc = new SimpleOwlOntologyDeductiveClosureProcesor(ontology);
         simpleDedClos = dedProc.computeSimpleDeductiveClosure();
         simpleDedClos.forEach(axiom -> {
+            if (axiom instanceof OWLDisjointObjectPropertiesAxiom) {
+                System.out.println(axiom);
+            }
             processAxiom(axiom, false);
         });
         computeDisjointSiblingsMap();

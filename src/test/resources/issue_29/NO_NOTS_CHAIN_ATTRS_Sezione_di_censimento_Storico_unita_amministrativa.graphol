@@ -1,0 +1,3057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphol version="3">
+  <project name="ISTAT-Territory" version="https://w3id.org/italia/onto/ITO/1.0">
+    <ontology addLabelFromUserInput="1" addLabelFromSimpleName="0" iri="https://w3id.org/italia/onto/ITO/" prefix="ito" lang="it">
+      <imports/>
+      <prefixes>
+        <prefix>
+          <value>geo</value>
+          <namespace>http://www.opengis.net/ont/geosparql#</namespace>
+        </prefix>
+        <prefix>
+          <value>ito</value>
+          <namespace>https://w3id.org/italia/onto/ITO/</namespace>
+        </prefix>
+        <prefix>
+          <value>owl</value>
+          <namespace>http://www.w3.org/2002/07/owl#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdf</value>
+          <namespace>http://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdfs</value>
+          <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        </prefix>
+        <prefix>
+          <value>skos</value>
+          <namespace>http://www.w3.org/2004/02/skos/core#</namespace>
+        </prefix>
+        <prefix>
+          <value>swrl</value>
+          <namespace>http://www.w3.org/2003/11/swrl#</namespace>
+        </prefix>
+        <prefix>
+          <value>swrlb</value>
+          <namespace>http://www.w3.org/2003/11/swrlb#</namespace>
+        </prefix>
+        <prefix>
+          <value>time</value>
+          <namespace>http://www.w3.org/2006/time#</namespace>
+        </prefix>
+        <prefix>
+          <value>xml</value>
+          <namespace>http://www.w3.org/XML/1998/namespace</namespace>
+        </prefix>
+        <prefix>
+          <value>xsd</value>
+          <namespace>http://www.w3.org/2001/XMLSchema#</namespace>
+        </prefix>
+      </prefixes>
+      <datatypes>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</datatype>
+        <datatype>http://www.w3.org/2000/01/rdf-schema#Literal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NCName</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NMTOKEN</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#Name</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#anyURI</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#base64Binary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#boolean</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#byte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTime</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTimeStamp</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#decimal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#double</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#float</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#hexBinary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#int</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#integer</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#language</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#long</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#negativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonNegativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonPositiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#normalizedString</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#positiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#short</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#token</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedByte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedInt</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedLong</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedShort</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#rational</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#real</datatype>
+      </datatypes>
+      <languages>
+        <language>de</language>
+        <language>en</language>
+        <language>es</language>
+        <language>fr</language>
+        <language>frit</language>
+        <language>it</language>
+      </languages>
+      <facets>
+        <facet>http://www.w3.org/2001/XMLSchema#langRange</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#length</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#pattern</facet>
+      </facets>
+      <annotationProperties>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#comment</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#label</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#deprecated</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#incompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#priorVersion</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#versionInfo</annotationProperty>
+      </annotationProperties>
+      <iris>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Italian Territory Ontology</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Capoluogo_citta_metropolitana</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Capoluogo_citta_metropolitana</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Capoluogo_
+citta_metropolitana</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Capoluogo_provincia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Capoluogo_provincia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Capoluogo_
+provincia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Capoluogo_provincia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Comune capoluogo della provincia in cui hanno sede i relativi organi amministrativi locali.
+Dal 2016, i comuni di Trieste, Udine, Pordenone e Gorizia mantengono le prerogative connesse alla qualificazione di “capoluogo di provincia”,  ai sensi della legge regionale 20/2016 (art. 46), recante le diposizioni per la soppressione delle province del Friuli-Venezia Giulia.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Capoluogo_regione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Capoluogo_regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Capoluogo_
+regione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Capoluogo_regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Comune capoluogo della regione in cui hanno sede i relativi organi amministrativi locali.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Citta_metropolitana</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Citta_metropolitana</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Citta_
+metropolitana</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Citta_metropolitana</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente territoriale riconosciuto dall’articolo 114 della Costituzione italiana, costituito da un aggregato di comuni limitrofi.
+Introdotte con la riforma del Titolo V della Costituzione nel 2001, le città metropolitane sono riconosciute enti territoriali di area vasta definite dall'aggregazione di comuni limitrofi, al pari delle province. Nelle regioni a statuto ordinario le città metropolitane hanno manifestato la loro efficacia per effetto della normativa contenuta nella Legge 7 aprile 2014, n. 56, mentre nelle regioni a statuto speciale la loro disciplina è rinviata alle leggi regionali.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_NUTS0</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_NUTS0</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_
+NUTS0</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_NUTS1</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_NUTS1</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_
+NUTS1</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_NUTS2</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_NUTS2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_
+NUTS2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_NUTS3</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_NUTS3</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_
+NUTS3</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_Nuts</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_Nuts</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_NUTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Codice_Regolamento_TERCET</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Codice_Regolamento_TERCET</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Codice_
+Regolamento_
+TERCET</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Comune</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Comune</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Comune</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Comune</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente pubblico territoriale rappresentativo di base, dotato di propria autonomia statuaria, normativa e amministrativa nell'ambito dei confini del proprio territorio e secondo i limiti fissati dalla Costituzione.
+I confini amministrativi vengono elaborati dall’Istat in occasione dei periodici censimenti generali della popolazione e validati dai singoli comuni in accordo con quelli confinanti. L’elenco dei comuni viene costantemente aggiornato in funzione delle variazioni che occorrono nel tempo.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Comune_dalla_fondazione_Italia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Comune_dalla_fondazione_Italia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Comune_dalla_
+fondazione_d'Italia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Comune_estinto</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Comune_estinto</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Comune_estinto</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Comune_sezione_di_censimento</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Comune_sezione_di_censimento</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Comune sezione 
+di censimento</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/LAU</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/LAU</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>LAU</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Libero_consorzio</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Libero_consorzio</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Libero_
+consorzio</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Libero_consorzio</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente territoriale di area vasta di secondo livello è, al pari delle province e delle città metropolitane, costituito da un aggregato di comuni limitrofi. 
+Per effetto della normativa contenuta nella legge 4 agosto 2015, n. 15, l’assetto amministrativo della Sicilia prevede l’esercizio dei liberi consorzi in luogo delle omonime province soppresse.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Provincia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Provincia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Provincia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Provincia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente territoriale di livello intermedio riconosciuto dall’articolo 114 della Costituzione italiana, costituito da un aggregato di comuni limitrofi, il più importante dei quali ne costituisce il capoluogo. Dal 2015, per effetto della normativa contenuta nella legge 7 aprile 2014, n. 56, le province, al pari delle città metropolitane sono riconosciute enti di area vasta di secondo livello.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Provincia_autonoma</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Provincia_autonoma</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Provincia_
+autonoma</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Provincia_autonoma</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Province di Trento e di Bolzano, il cui riconoscimento dello Statuto speciale attribuisce loro particolari forme di autonomia, compresa quella legislativa, assimilandole alle regioni. 
+Le due province, insieme alla loro regione di appartenenza, il Trentino-Alto Adige, formano un sistema di enti autonomi, fra loro collegati, unico all'interno dell'ordinamento regionale italiano.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Provincia_dalla_fondazione_Italia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Provincia_dalla_fondazione_Italia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Provincia_dalla_
+fondazione_d'Italia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Regione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Regione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente pubblico a rilevanza costituzionale (art.114), rappresentativo di una collettività stanziata su un determinato territorio, dotato di propri poteri e funzioni e di un ordinamento autonomo nei limiti prefissati dalla Costituzione e dalle leggi costituzionali. 
+Nel 1946, la Costituzione previde l’esistenza di 19 regioni, divenute 20 nel 1963 a seguito dello scorporo degli Abruzzi e Molise nelle attuali regioni dell’Abruzzo e del Molise; cinque sono dotate di uno statuto speciale di autonomia e una di queste, il Trentino-Alto Adige, è costituita dalle uniche due province autonome: Trento e Bolzano, dotate di poteri legislativi analoghi a quelli delle regioni a statuto speciale. Nel rispetto delle minoranze linguistiche, il Trentino-Alto Adige e la Valle d'Aosta sono riportati con le denominazioni bilingui di Trentino-Alto Adige/Südtirol e Valle d'Aosta/Vallée d'Aoste.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Regione_a_statuto_speciale</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Regione_a_statuto_speciale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Regione_a_
+statuto_speciale</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Regione_a_statuto_speciale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Ente pubblico a rilevanza costituzionale (art.114), rappresentativo di una collettività stanziata su un determinato territorio, dotato di propri poteri e funzioni e di un ordinamento autonomo nei limiti prefissati dalla Costituzione e dalle leggi costituzionali. Le regioni  a statuto speciale sono: la Valle d’Aosta, il Trentino-Alto Adige, il Friuli-Venezia Giulia, la Sicilia e la Sardegna. 
+Il Trentino-Alto Adige è costituita dalle uniche due province autonome: Trento e Bolzano, dotate di poteri legislativi analoghi a quelli delle regioni a statuto speciale. Nel rispetto delle minoranze linguistiche, inoltre,  al Trentino-Alto Adige e alla Valle d'Aosta sono riconosciute le denominazioni bilingui di Trentino-Alto Adige/Südtirol e Valle d'Aosta/Vallée d'Aoste.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Ripartizione_geografica_livello2</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Ripartizione_geografica_livello2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Ripartizione_
+geografica_
+livello2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Stato</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Stato</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Stato</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Stato_estero</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Stato_estero</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Stato_estero</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Tipo_variazione_
+unità_amministrativa</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_comune</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_comune</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Tipo_variazione_
+unita_amministrativa
+_comune</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_regione_UTS</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_regione_UTS</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Tipo_variazione_
+unita_amministrativa
+_regione_UTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unita_amministrativa</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_amministrativa</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unità_
+amministrativa</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_amministrativa</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Le unità territoriali di natura amministrativa previste e regolamentate dalla Costituzione, di qualsiasi livello gerarchico, a partire dalla unità amministrativa  locale che corrisponde al comune, fino ad arrivare allo Stato. Con tale termine si identificano, inoltre,  gli enti locali indicati dal Testo unico degli enti locali, nella fattispecie unioni di comuni e/o comunità montane.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unita_amministrativa_estinta</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_amministrativa_estinta</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unità_amministrativa_
+estinta</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unita_amministrativa_non_estinta</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_amministrativa_non_estinta</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unita_amministrativa
+_non_estinta</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unita_non_amministrativa</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_non_amministrativa</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unita_non_
+amministrativa</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unita_territoriale_
+sovracomunale</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Unità territoriale di livello intermedio tra il comune e la regione. Tali unità, elaborate a fini statistici, ricomprendono, a partire dal 2015, oltre le province anche le città metropolitane, i liberi consorzi e le unità non amministrative (ex province del Friuli-Venezia Giulia).</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Unità_amministrativa_ex_provincia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Unità_amministrativa_ex_provincia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Unità_
+amministrativa_
+ex_provincia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_acquisizione_per_estinzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_acquisizione_per_estinzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+acquisizione_
+per_estinzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_altro_stato</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_altro_stato</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+altro_stato</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_annessione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_annessione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+annessione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+appartenenza</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza_regione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza_regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+appartenenza_regione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_cambio
+_appartenenza
+_tipologia_regione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_denominazione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_denominazione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+cambio_denominazione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_tipologia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_tipologia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+cambio_tipologia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cessione_per_costituzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cessione_per_costituzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+cessione_per_
+costituzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+costituzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione_per_cambio_tipologia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione_per_cambio_tipologia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_regione
+_per_costituzione_
+per_cambio_tipologia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+estinzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione_per_cambio_tipologia</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione_per_cambio_tipologia</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_
+estinzione_per_
+cambio_tipologia</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_prima_validita</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_prima_validita</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS_
+regione_per_prima
+_validita</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_variazione_sigla_automobilistica</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_variazione_sigla_automobilistica</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_UTS
+_regione_per_
+variazione_sigla
+_automobilistica</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Vedi Classificazione delle variazioni amministrative e territoriali delle unità amministrative (Ua).</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+acquisizione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione_per_estinzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione_per_estinzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale
+_per_acquisizione_
+per_estinzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_denominazione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_denominazione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+cambio_denominazione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale_
+per_cambio_denominazione
+_e_UTS_appartenenza</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale_
+per_cambio_tipologia_
+unita_territoriale_
+superiore</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_unita_territoriale_superiore</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_unita_territoriale_superiore</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+cambio_unita_
+territoriale_superiore</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_
+per_cessione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione_di_territorio_per_costituzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione_di_territorio_per_costituzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale
+_per_cessione_di
+_territorio_per_
+costituzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+costituzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_annessione_da_stato_estero</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_annessione_da_stato_estero</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale_
+per_costituzione_per
+_annessione_da_
+stato_estero</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_prima_validita</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_prima_validita</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale_
+per_costituzione_per
+_prima_validità</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+estinzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione_per_cessione_stato_estero</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione_per_cessione_stato_estero</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_comunale
+_per_estinzione_per_
+cessione_stato_estero</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_ricostituzione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_ricostituzione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_per_
+ricostituzione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_rinumerazione</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_rinumerazione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_
+comunale_
+per_rinumerazione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/Variazione_di_regione_o_UTS</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/Variazione_di_regione_o_UTS</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Variazione_di_
+regione_o_UTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_UTS</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_UTS</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>appartiene_attualmente_
+a_UTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_regione</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_regione</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>appartiene_attualmente_
+a_regione</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_stato</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_stato</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>appartiene_attualmente_
+a_stato</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/attuale_unita_amministrativa_di_origine</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/attuale_unita_amministrativa_di_origine</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>attuale_unita_
+amministrativa_di_origine</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/broader_0_1</value>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/broader_0_1</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>broader_0_1</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/broader_1_2</value>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/broader_1_2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>broader_1_2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/broader_2_3</value>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/broader_2_3</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>broader_2_3</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_UTS</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_UTS</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>coinvolge_ulteriori_UTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_comuni</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_comuni</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>coinvolge_ulteriori_comuni</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_LAU</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_LAU</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_LAU</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_codifca_NUTS2</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_codifca_NUTS2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_codifca_NUTS2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_codifica_NUTS</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS1</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS1</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_codifica_NUTS1</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS3</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS3</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_codifica_NUTS3</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_comune</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_comune</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha comune</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/ha_tipo_variazione_unita_amministrativa</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/ha_tipo_variazione_unita_amministrativa</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>ha_tipo_variazione_
+unità_amministrativa</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/istituito_dal_comune_di</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/istituito_dal_comune_di</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>istituito_dal_comune_di</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/narrower_0_1</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/narrower_0_1</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>narrower_0_1</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/narrower_1_2</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/narrower_1_2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>narrower_1_2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/narrower_2_3</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/narrower_2_3</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>narrower_2_3</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/subisce</value>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/subisce</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>subisce</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/italia/onto/ITO/valore_codice_regolamento_TERCET</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/italia/onto/ITO/valore_codice_regolamento_TERCET</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>valore_codice_regolamento_TERCET</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>it</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+      </iris>
+    </ontology>
+    <diagrams>
+      <diagram height="5000" name="CodiciNUTS" width="5000">
+        <node id="n0" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1060" width="110" y="-720"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_NUTS3</iri>
+          <label size="12" customSize="0" height="38" x="1060" width="110" y="-720"/>
+        </node>
+        <node id="n1" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="350" width="20" y="-220"/>
+          <label size="12" customSize="0" height="23" x="385" width="39" y="-220">exists</label>
+        </node>
+        <node id="n10" type="concept" color="#fcfcfc">
+          <geometry height="50" x="380" width="110" y="-730"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_NUTS1</iri>
+          <label size="12" customSize="0" height="38" x="380" width="110" y="-730"/>
+        </node>
+        <node id="n11" type="role" color="#fcfcfc">
+          <geometry height="50" x="350" width="70" y="-290"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS1</iri>
+          <label size="12" customSize="0" height="23" x="450" width="111" y="-290"/>
+        </node>
+        <node id="n12" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="-10" width="20" y="-220"/>
+          <label size="12" customSize="0" height="23" x="20" width="39" y="-220">exists</label>
+        </node>
+        <node id="n13" type="range-restriction" color="#000000">
+          <geometry height="20" x="1070" width="20" y="-360"/>
+          <label size="12" customSize="0" height="23" x="1100" width="39" y="-360">exists</label>
+        </node>
+        <node id="n14" type="concept" color="#fcfcfc">
+          <geometry height="50" x="710" width="110" y="-720"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_NUTS2</iri>
+          <label size="12" customSize="0" height="38" x="710" width="110" y="-720"/>
+        </node>
+        <node id="n15" type="concept" color="#fcfcfc">
+          <geometry height="50" x="20" width="110" y="-740"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_NUTS0</iri>
+          <label size="12" customSize="0" height="38" x="20" width="110" y="-740"/>
+        </node>
+        <node id="n16" type="range-restriction" color="#000000">
+          <geometry height="20" x="-10" width="20" y="-360"/>
+          <label size="12" customSize="0" height="23" x="20" width="39" y="-360">exists</label>
+        </node>
+        <node id="n17" type="range-restriction" color="#000000">
+          <geometry height="20" x="350" width="20" y="-360"/>
+          <label size="12" customSize="0" height="23" x="380" width="39" y="-360">exists</label>
+        </node>
+        <node id="n18" type="concept" color="#fcfcfc">
+          <geometry height="50" x="680" width="110" y="-140"/>
+          <iri>https://w3id.org/italia/onto/ITO/Regione</iri>
+          <label size="12" customSize="0" height="23" x="680" width="110" y="-140"/>
+        </node>
+        <node id="n2" type="concept" color="#fcfcfc">
+          <geometry height="50" x="-10" width="110" y="-140"/>
+          <iri>https://w3id.org/italia/onto/ITO/Stato</iri>
+          <label size="12" customSize="0" height="23" x="-10" width="110" y="-140"/>
+        </node>
+        <node id="n20" type="role" color="#fcfcfc">
+          <geometry height="50" x="680" width="70" y="-290"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_codifca_NUTS2</iri>
+          <label size="12" customSize="0" height="23" x="770" width="108" y="-290"/>
+        </node>
+        <node id="n21" type="concept" color="#fcfcfc">
+          <geometry height="50" x="540" width="110" y="-940"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_Nuts</iri>
+          <label size="12" customSize="0" height="23" x="540" width="110" y="-940"/>
+        </node>
+        <node id="n22" type="disjoint-union" color="#000000">
+          <geometry height="30" x="540" width="50" y="-840"/>
+        </node>
+        <node id="n23" type="role" color="#fcfcfc">
+          <geometry height="50" x="870" width="70" y="-430"/>
+          <iri>https://w3id.org/italia/onto/ITO/narrower_2_3</iri>
+          <label size="12" customSize="0" height="23" x="870" width="79" y="-400"/>
+        </node>
+        <node id="n24" type="role" color="#fcfcfc">
+          <geometry height="50" x="870" width="70" y="-600"/>
+          <iri>https://w3id.org/italia/onto/ITO/broader_2_3</iri>
+          <label size="12" customSize="0" height="23" x="870" width="73" y="-630"/>
+        </node>
+        <node id="n25" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="780" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="785" width="39" y="-585">exists</label>
+        </node>
+        <node id="n26" type="range-restriction" color="#000000">
+          <geometry height="20" x="960" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="960" width="39" y="-622">exists</label>
+        </node>
+        <node id="n27" type="role-inverse" color="#fcfcfc">
+          <geometry height="30" x="870" width="50" y="-510"/>
+          <label size="12" customSize="0" height="23" x="870" width="23" y="-510"/>
+        </node>
+        <node id="n28" type="range-restriction" color="#000000">
+          <geometry height="20" x="600" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="600" width="39" y="-622">exists</label>
+        </node>
+        <node id="n29" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="420" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="420" width="39" y="-585">exists</label>
+        </node>
+        <node id="n3" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="680" width="20" y="-220"/>
+          <label size="12" customSize="0" height="23" x="710" width="39" y="-220">exists</label>
+        </node>
+        <node id="n30" type="role" color="#fcfcfc">
+          <geometry height="50" x="510" width="70" y="-430"/>
+          <iri>https://w3id.org/italia/onto/ITO/narrower_1_2</iri>
+          <label size="12" customSize="0" height="23" x="510" width="79" y="-395"/>
+        </node>
+        <node id="n31" type="role-inverse" color="#fcfcfc">
+          <geometry height="30" x="510" width="50" y="-510"/>
+          <label size="12" customSize="0" height="23" x="510" width="23" y="-510"/>
+        </node>
+        <node id="n32" type="role" color="#fcfcfc">
+          <geometry height="50" x="510" width="70" y="-600"/>
+          <iri>https://w3id.org/italia/onto/ITO/broader_1_2</iri>
+          <label size="12" customSize="0" height="23" x="510" width="73" y="-630"/>
+        </node>
+        <node id="n33" type="role" color="#fcfcfc">
+          <geometry height="50" x="190" width="70" y="-430"/>
+          <iri>https://w3id.org/italia/onto/ITO/narrower_0_1</iri>
+          <label size="12" customSize="0" height="23" x="195" width="79" y="-395"/>
+        </node>
+        <node id="n34" type="range-restriction" color="#000000">
+          <geometry height="20" x="270" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="270" width="39" y="-622">exists</label>
+        </node>
+        <node id="n35" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="110" width="20" y="-600"/>
+          <label size="12" customSize="0" height="23" x="110" width="39" y="-622">exists</label>
+        </node>
+        <node id="n36" type="role-inverse" color="#fcfcfc">
+          <geometry height="30" x="190" width="50" y="-510"/>
+          <label size="12" customSize="0" height="23" x="190" width="23" y="-510"/>
+        </node>
+        <node id="n37" type="role" color="#fcfcfc">
+          <geometry height="50" x="190" width="70" y="-600"/>
+          <iri>https://w3id.org/italia/onto/ITO/broader_0_1</iri>
+          <label size="12" customSize="0" height="23" x="190" width="73" y="-630"/>
+        </node>
+        <node id="n39" type="concept" color="#fcfcfc">
+          <geometry height="50" x="350" width="110" y="-140"/>
+          <iri>https://w3id.org/italia/onto/ITO/Ripartizione_geografica_livello2</iri>
+          <label size="12" customSize="0" height="53" x="350" width="110" y="-140"/>
+        </node>
+        <node id="n4" type="role" color="#fcfcfc">
+          <geometry height="50" x="1070" width="70" y="-290"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS3</iri>
+          <label size="12" customSize="0" height="23" x="1165" width="111" y="-290"/>
+        </node>
+        <node id="n40" type="concept" color="#fcfcfc">
+          <geometry height="50" x="860" width="110" y="-1110"/>
+          <iri>https://w3id.org/italia/onto/ITO/Codice_Regolamento_TERCET</iri>
+          <label size="12" customSize="0" height="53" x="860" width="110" y="-1110"/>
+        </node>
+        <node id="n41" type="disjoint-union" color="#000000">
+          <geometry height="30" x="860" width="50" y="-1000"/>
+        </node>
+        <node id="n42" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1420" width="110" y="-930"/>
+          <iri>https://w3id.org/italia/onto/ITO/LAU</iri>
+          <label size="12" customSize="0" height="23" x="1420" width="110" y="-930"/>
+        </node>
+        <node id="n43" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1420" width="110" y="-560"/>
+          <iri>https://w3id.org/italia/onto/ITO/Comune</iri>
+          <label size="12" customSize="0" height="23" x="1420" width="110" y="-560"/>
+        </node>
+        <node id="n44" type="role" color="#fcfcfc">
+          <geometry height="50" x="1420" width="70" y="-730"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_LAU</iri>
+          <label size="12" customSize="0" height="23" x="1480" width="48" y="-730"/>
+        </node>
+        <node id="n45" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1420" width="20" y="-660"/>
+          <label size="12" customSize="0" height="23" x="1450" width="39" y="-660">exists</label>
+        </node>
+        <node id="n46" type="range-restriction" color="#000000">
+          <geometry height="20" x="1420" width="20" y="-800"/>
+          <label size="12" customSize="0" height="23" x="1450" width="39" y="-800">exists</label>
+        </node>
+        <node id="n47" type="attribute" color="#fcfcfc">
+          <geometry height="20" x="1090" width="20" y="-1110"/>
+          <iri>https://w3id.org/italia/onto/ITO/valore_codice_regolamento_TERCET</iri>
+          <label size="12" customSize="0" height="23" x="1090" width="202" y="-1090"/>
+        </node>
+        <node id="n48" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1030" width="20" y="-1110"/>
+          <label size="12" customSize="0" height="23" x="1030" width="39" y="-1132">exists</label>
+        </node>
+        <node id="n49" type="range-restriction" color="#000000">
+          <geometry height="20" x="1150" width="20" y="-1110"/>
+          <label size="12" customSize="0" height="23" x="1150" width="39" y="-1132">exists</label>
+        </node>
+        <node id="n5" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1070" width="20" y="-220"/>
+          <label size="12" customSize="0" height="23" x="1100" width="39" y="-220">exists</label>
+        </node>
+        <node id="n50" type="value-domain" color="#fcfcfc">
+          <geometry height="40" x="1260" width="90" y="-1110"/>
+          <iri>http://www.w3.org/2001/XMLSchema#string</iri>
+          <label size="12" customSize="0" height="23" x="1260" width="90" y="-1110"/>
+        </node>
+        <node id="n6" type="role" color="#fcfcfc">
+          <geometry height="50" x="-10" width="70" y="-290"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_codifica_NUTS</iri>
+          <label size="12" customSize="0" height="23" x="75" width="104" y="-290"/>
+        </node>
+        <node id="n7" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1070" width="110" y="-140"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale</iri>
+          <label size="12" customSize="0" height="38" x="1070" width="110" y="-140"/>
+        </node>
+        <node id="n8" type="range-restriction" color="#000000">
+          <geometry height="20" x="680" width="20" y="-360"/>
+          <label size="12" customSize="0" height="23" x="710" width="39" y="-360">exists</label>
+        </node>
+        <edge id="e1" type="input" target="n1" source="n11">
+          <point x="350" y="-290"/>
+          <point x="350" y="-220"/>
+        </edge>
+        <edge id="e10" type="input" target="n12" source="n6">
+          <point x="-10" y="-290"/>
+          <point x="-10" y="-220"/>
+        </edge>
+        <edge id="e12" type="input" target="n8" source="n20">
+          <point x="680" y="-290"/>
+          <point x="680" y="-360"/>
+        </edge>
+        <edge id="e15" type="input" target="n17" source="n11">
+          <point x="350" y="-290"/>
+          <point x="350" y="-360"/>
+        </edge>
+        <edge id="e17" type="input" target="n22" source="n15">
+          <point x="20" y="-740"/>
+          <point x="20" y="-840"/>
+          <point x="540" y="-840"/>
+        </edge>
+        <edge id="e18" type="input" target="n22" source="n10">
+          <point x="380" y="-730"/>
+          <point x="380" y="-840"/>
+          <point x="540" y="-840"/>
+        </edge>
+        <edge id="e19" type="input" target="n22" source="n14">
+          <point x="710" y="-720"/>
+          <point x="710" y="-840"/>
+          <point x="540" y="-840"/>
+        </edge>
+        <edge id="e20" type="input" target="n22" source="n0">
+          <point x="1060" y="-720"/>
+          <point x="1060" y="-840"/>
+          <point x="540" y="-840"/>
+        </edge>
+        <edge id="e21" type="equivalence" target="n21" source="n22">
+          <point x="540" y="-840"/>
+          <point x="540" y="-940"/>
+        </edge>
+        <edge id="e22" type="inclusion" target="n15" source="n16">
+          <point x="-10" y="-360"/>
+          <point x="-10" y="-716"/>
+        </edge>
+        <edge id="e23" type="inclusion" target="n10" source="n17">
+          <point x="350" y="-360"/>
+          <point x="350" y="-706"/>
+        </edge>
+        <edge id="e24" type="inclusion" target="n14" source="n8">
+          <point x="680" y="-360"/>
+          <point x="680" y="-696"/>
+        </edge>
+        <edge id="e25" type="inclusion" target="n0" source="n13">
+          <point x="1070" y="-360"/>
+          <point x="1070" y="-696"/>
+        </edge>
+        <edge id="e26" type="input" target="n25" source="n24">
+          <point x="870" y="-600"/>
+          <point x="780" y="-600"/>
+        </edge>
+        <edge id="e27" type="input" target="n26" source="n24">
+          <point x="870" y="-600"/>
+          <point x="960" y="-600"/>
+        </edge>
+        <edge id="e28" type="equivalence" target="n25" source="n14">
+          <point x="710" y="-720"/>
+          <point x="710" y="-600"/>
+          <point x="780" y="-600"/>
+        </edge>
+        <edge id="e29" type="equivalence" target="n0" source="n26">
+          <point x="960" y="-600"/>
+          <point x="1020" y="-600"/>
+          <point x="1020" y="-696"/>
+        </edge>
+        <edge id="e3" type="equivalence" target="n2" source="n12">
+          <point x="-10" y="-220"/>
+          <point x="-10" y="-140"/>
+        </edge>
+        <edge id="e30" type="input" target="n27" source="n24">
+          <point x="870" y="-600"/>
+          <point x="870" y="-510"/>
+        </edge>
+        <edge id="e32" type="inclusion" target="n27" source="n23">
+          <point x="870" y="-430"/>
+          <point x="870" y="-510"/>
+        </edge>
+        <edge id="e33" type="input" target="n28" source="n32">
+          <point x="510" y="-600"/>
+          <point x="600" y="-600"/>
+        </edge>
+        <edge id="e34" type="input" target="n29" source="n32">
+          <point x="510" y="-600"/>
+          <point x="420" y="-600"/>
+        </edge>
+        <edge id="e35" type="inclusion" target="n31" source="n30">
+          <point x="510" y="-430"/>
+          <point x="510" y="-510"/>
+        </edge>
+        <edge id="e36" type="input" target="n31" source="n32">
+          <point x="510" y="-600"/>
+          <point x="510" y="-510"/>
+        </edge>
+        <edge id="e37" type="equivalence" target="n29" source="n10">
+          <point x="380" y="-730"/>
+          <point x="380" y="-600"/>
+          <point x="420" y="-600"/>
+        </edge>
+        <edge id="e38" type="equivalence" target="n14" source="n28">
+          <point x="600" y="-600"/>
+          <point x="660" y="-600"/>
+          <point x="660" y="-696"/>
+        </edge>
+        <edge id="e39" type="inclusion" target="n36" source="n33">
+          <point x="190" y="-430"/>
+          <point x="190" y="-510"/>
+        </edge>
+        <edge id="e4" type="equivalence" target="n3" source="n18">
+          <point x="680" y="-140"/>
+          <point x="680" y="-220"/>
+        </edge>
+        <edge id="e40" type="input" target="n34" source="n37">
+          <point x="190" y="-600"/>
+          <point x="270" y="-600"/>
+        </edge>
+        <edge id="e41" type="input" target="n35" source="n37">
+          <point x="190" y="-600"/>
+          <point x="110" y="-600"/>
+        </edge>
+        <edge id="e42" type="input" target="n36" source="n37">
+          <point x="190" y="-600"/>
+          <point x="190" y="-510"/>
+        </edge>
+        <edge id="e43" type="equivalence" target="n35" source="n15">
+          <point x="20" y="-740"/>
+          <point x="20" y="-600"/>
+          <point x="110" y="-600"/>
+        </edge>
+        <edge id="e45" type="equivalence" target="n10" source="n34">
+          <point x="270" y="-600"/>
+          <point x="330" y="-600"/>
+          <point x="330" y="-706"/>
+        </edge>
+        <edge id="e46" type="equivalence" target="n1" source="n39">
+          <point x="350" y="-140"/>
+          <point x="350" y="-220"/>
+        </edge>
+        <edge id="e48" type="input" target="n41" source="n21">
+          <point x="540" y="-940"/>
+          <point x="540" y="-1000"/>
+          <point x="860" y="-1000"/>
+        </edge>
+        <edge id="e49" type="inclusion" target="n40" source="n41">
+          <point x="860" y="-1000"/>
+          <point x="860" y="-1110"/>
+        </edge>
+        <edge id="e5" type="input" target="n3" source="n20">
+          <point x="680" y="-290"/>
+          <point x="680" y="-220"/>
+        </edge>
+        <edge id="e50" type="input" target="n41" source="n42">
+          <point x="1420" y="-930"/>
+          <point x="1420" y="-1000"/>
+          <point x="860" y="-1000"/>
+        </edge>
+        <edge id="e51" type="input" target="n45" source="n44">
+          <point x="1420" y="-730"/>
+          <point x="1420" y="-660"/>
+        </edge>
+        <edge id="e52" type="input" target="n46" source="n44">
+          <point x="1420" y="-730"/>
+          <point x="1420" y="-800"/>
+        </edge>
+        <edge id="e53" type="equivalence" target="n43" source="n45">
+          <point x="1420" y="-660"/>
+          <point x="1420" y="-560"/>
+        </edge>
+        <edge id="e54" type="inclusion" target="n42" source="n46">
+          <point x="1420" y="-800"/>
+          <point x="1420" y="-930"/>
+        </edge>
+        <edge id="e55" type="input" target="n48" source="n47">
+          <point x="1090" y="-1110"/>
+          <point x="1030" y="-1110"/>
+        </edge>
+        <edge id="e56" type="input" target="n49" source="n47">
+          <point x="1090" y="-1110"/>
+          <point x="1150" y="-1110"/>
+        </edge>
+        <edge id="e57" type="equivalence" target="n40" source="n48">
+          <point x="1030" y="-1110"/>
+          <point x="860" y="-1110"/>
+        </edge>
+        <edge id="e58" type="inclusion" target="n50" source="n49">
+          <point x="1150" y="-1110"/>
+          <point x="1260" y="-1110"/>
+        </edge>
+        <edge id="e6" type="input" target="n5" source="n4">
+          <point x="1070" y="-290"/>
+          <point x="1070" y="-220"/>
+        </edge>
+        <edge id="e7" type="input" target="n13" source="n4">
+          <point x="1070" y="-290"/>
+          <point x="1070" y="-360"/>
+        </edge>
+        <edge id="e8" type="equivalence" target="n7" source="n5">
+          <point x="1070" y="-220"/>
+          <point x="1070" y="-140"/>
+        </edge>
+        <edge id="e9" type="input" target="n16" source="n6">
+          <point x="-10" y="-290"/>
+          <point x="-10" y="-360"/>
+        </edge>
+      </diagram>
+      <diagram height="50000" name="UnitàAmministrative" width="50000">
+        <node id="n0" type="concept" color="#fcfcfc">
+          <geometry height="50" x="900" width="110" y="-10"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_amministrativa</iri>
+          <label size="12" customSize="0" height="38" x="900" width="110" y="-10"/>
+        </node>
+        <node id="n10" type="disjoint-union" color="#000000">
+          <geometry height="30" x="900" width="50" y="290"/>
+        </node>
+        <node id="n12" type="concept" color="#fcfcfc">
+          <geometry height="50" x="170" width="115" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/Regione</iri>
+          <label size="12" customSize="0" height="23" x="170" width="115" y="490"/>
+        </node>
+        <node id="n13" type="role" color="#fcfcfc">
+          <geometry height="50" x="-50" width="70" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_stato</iri>
+          <label size="12" customSize="0" height="38" x="-45" width="139" y="535"/>
+        </node>
+        <node id="n137" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="2350" width="20" y="330"/>
+          <label size="12" customSize="0" height="23" x="2350" width="39" y="308">exists</label>
+        </node>
+        <node id="n138" type="disjoint-union" color="#000000">
+          <geometry height="30" x="1740" width="50" y="890"/>
+        </node>
+        <node id="n14" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="33" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="33" width="39" y="468">exists</label>
+        </node>
+        <node id="n15" type="range-restriction" color="#000000">
+          <geometry height="20" x="-137" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="-137" width="39" y="468">exists</label>
+        </node>
+        <node id="n155" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2980" width="110" y="380"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale</iri>
+          <label size="12" customSize="0" height="38" x="2980" width="110" y="380"/>
+        </node>
+        <node id="n156" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4460" width="110" y="390"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_di_regione_o_UTS</iri>
+          <label size="12" customSize="0" height="38" x="4460" width="110" y="390"/>
+        </node>
+        <node id="n157" type="disjoint-union" color="#000000">
+          <geometry height="30" x="3770" width="50" y="300"/>
+        </node>
+        <node id="n159" type="disjoint-union" color="#000000">
+          <geometry height="30" x="4460" width="50" y="470"/>
+        </node>
+        <node id="n16" type="concept" color="#fcfcfc">
+          <geometry height="50" x="170" width="110" y="590"/>
+          <iri>https://w3id.org/italia/onto/ITO/Regione_a_statuto_speciale</iri>
+          <label size="12" customSize="0" height="38" x="170" width="110" y="590"/>
+        </node>
+        <node id="n165" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3720" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_prima_validita</iri>
+          <label size="12" customSize="0" height="53" x="3720" width="110" y="600"/>
+        </node>
+        <node id="n166" type="concept" color="#fcfcfc">
+          <geometry height="50" x="990" width="110" y="1020"/>
+          <iri>https://w3id.org/italia/onto/ITO/Provincia_dalla_fondazione_Italia</iri>
+          <label size="12" customSize="0" height="38" x="990" width="110" y="1020"/>
+        </node>
+        <node id="n167" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1980" width="110" y="980"/>
+          <iri>https://w3id.org/italia/onto/ITO/Comune_dalla_fondazione_Italia</iri>
+          <label size="12" customSize="0" height="38" x="1980" width="110" y="980"/>
+        </node>
+        <node id="n168" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3840" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_annessione</iri>
+          <label size="12" customSize="0" height="53" x="3840" width="110" y="600"/>
+        </node>
+        <node id="n170" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3960" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione</iri>
+          <label size="12" customSize="0" height="53" x="3960" width="110" y="600"/>
+        </node>
+        <node id="n171" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4080" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_costituzione_per_cambio_tipologia</iri>
+          <label size="12" customSize="0" height="68" x="4080" width="110" y="600"/>
+        </node>
+        <node id="n172" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4200" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_tipologia</iri>
+          <label size="12" customSize="0" height="53" x="4200" width="110" y="600"/>
+        </node>
+        <node id="n173" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4330" width="115" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione</iri>
+          <label size="12" customSize="0" height="53" x="4332" width="115" y="600"/>
+        </node>
+        <node id="n174" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4460" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_estinzione_per_cambio_tipologia</iri>
+          <label size="12" customSize="0" height="68" x="4460" width="110" y="600"/>
+        </node>
+        <node id="n175" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4580" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_altro_stato</iri>
+          <label size="12" customSize="0" height="53" x="4580" width="110" y="600"/>
+        </node>
+        <node id="n176" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4700" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_denominazione</iri>
+          <label size="12" customSize="0" height="68" x="4700" width="110" y="600"/>
+        </node>
+        <node id="n177" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4830" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza</iri>
+          <label size="12" customSize="0" height="53" x="4830" width="110" y="600"/>
+        </node>
+        <node id="n178" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4950" width="110" y="599"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_appartenenza_regione</iri>
+          <label size="12" customSize="0" height="68" x="4950" width="110" y="605"/>
+        </node>
+        <node id="n179" type="concept" color="#fcfcfc">
+          <geometry height="50" x="5080" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione</iri>
+          <label size="12" customSize="0" height="68" x="5080" width="110" y="600"/>
+        </node>
+        <node id="n18" type="concept" color="#fcfcfc">
+          <geometry height="50" x="900" width="110" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale</iri>
+          <label size="12" customSize="0" height="38" x="900" width="110" y="490"/>
+        </node>
+        <node id="n180" type="concept" color="#fcfcfc">
+          <geometry height="50" x="5210" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_acquisizione_per_estinzione</iri>
+          <label size="12" customSize="0" height="68" x="5210" width="110" y="600"/>
+        </node>
+        <node id="n181" type="concept" color="#fcfcfc">
+          <geometry height="50" x="5330" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_cessione_per_costituzione</iri>
+          <label size="12" customSize="0" height="68" x="5330" width="110" y="600"/>
+        </node>
+        <node id="n182" type="role" color="#fcfcfc">
+          <geometry height="50" x="3510" width="70" y="730"/>
+          <iri>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_UTS</iri>
+          <label size="12" customSize="0" height="23" x="3510" width="132" y="700"/>
+        </node>
+        <node id="n183" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="3620" width="20" y="730"/>
+          <label size="12" customSize="0" height="23" x="3650" width="39" y="730">exists</label>
+        </node>
+        <node id="n184" type="range-restriction" color="#000000">
+          <geometry height="20" x="3410" width="20" y="730"/>
+          <label size="12" customSize="0" height="23" x="3410" width="39" y="708">exists</label>
+        </node>
+        <node id="n186" type="concept" color="#fcfcfc">
+          <geometry height="50" x="610" width="110" y="910"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_non_amministrativa</iri>
+          <label size="12" customSize="0" height="38" x="610" width="110" y="910"/>
+        </node>
+        <node id="n187" type="concept" color="#fcfcfc">
+          <geometry height="50" x="610" width="110" y="1020"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unità_amministrativa_ex_provincia</iri>
+          <label size="12" customSize="0" height="53" x="610" width="110" y="1020"/>
+        </node>
+        <node id="n19" type="range-restriction" color="#000000">
+          <geometry height="20" x="523" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="523" width="39" y="468">exists</label>
+        </node>
+        <node id="n20" type="role" color="#fcfcfc">
+          <geometry height="50" x="610" width="70" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_regione</iri>
+          <label size="12" customSize="0" height="38" x="665" width="139" y="450"/>
+        </node>
+        <node id="n21" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="700" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="700" width="39" y="468">exists</label>
+        </node>
+        <node id="n23" type="concept" color="#fcfcfc">
+          <geometry height="50" x="900" width="110" y="910"/>
+          <iri>https://w3id.org/italia/onto/ITO/Provincia</iri>
+          <label size="12" customSize="0" height="23" x="900" width="110" y="910"/>
+        </node>
+        <node id="n24" type="concept" color="#fcfcfc">
+          <geometry height="50" x="800" width="110" y="1020"/>
+          <iri>https://w3id.org/italia/onto/ITO/Provincia_autonoma</iri>
+          <label size="12" customSize="0" height="38" x="800" width="110" y="1020"/>
+        </node>
+        <node id="n250" type="concept" color="#fcfcfc">
+          <geometry height="50" x="590" width="125" y="200"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_amministrativa_estinta</iri>
+          <label size="12" customSize="0" height="53" x="592" width="125" y="200"/>
+        </node>
+        <node id="n259" type="role" color="#fcfcfc">
+          <geometry height="50" x="1040" width="70" y="-90"/>
+          <iri>https://w3id.org/italia/onto/ITO/attuale_unita_amministrativa_di_origine</iri>
+          <label size="12" customSize="0" height="38" x="1045" width="144" y="-130"/>
+        </node>
+        <node id="n26" type="concept" color="#fcfcfc">
+          <geometry height="50" x="740" width="110" y="910"/>
+          <iri>https://w3id.org/italia/onto/ITO/Libero_consorzio</iri>
+          <label size="12" customSize="0" height="38" x="740" width="110" y="910"/>
+        </node>
+        <node id="n260" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1040" width="20" y="-30"/>
+          <label size="12" customSize="0" height="23" x="1070" width="39" y="-30">exists</label>
+        </node>
+        <node id="n261" type="range-restriction" color="#000000">
+          <geometry height="20" x="940" width="20" y="-90"/>
+          <label size="12" customSize="0" height="23" x="940" width="39" y="-112">exists</label>
+        </node>
+        <node id="n27" type="disjoint-union" color="#000000">
+          <geometry height="30" x="900" width="50" y="820"/>
+        </node>
+        <node id="n287" type="concept" color="#fcfcfc">
+          <geometry height="50" x="770" width="125" y="200"/>
+          <iri>https://w3id.org/italia/onto/ITO/Unita_amministrativa_non_estinta</iri>
+          <label size="12" customSize="0" height="38" x="772" width="125" y="200"/>
+        </node>
+        <node id="n288" type="disjoint-union" color="#000000">
+          <geometry height="30" x="680" width="50" y="130"/>
+        </node>
+        <node id="n29" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1060" width="110" y="910"/>
+          <iri>https://w3id.org/italia/onto/ITO/Citta_metropolitana</iri>
+          <label size="12" customSize="0" height="38" x="1060" width="110" y="910"/>
+        </node>
+        <node id="n293" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4790" width="110" y="170"/>
+          <iri>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa</iri>
+          <label size="12" customSize="0" height="53" x="4790" width="110" y="170"/>
+        </node>
+        <node id="n297" type="role" color="#fcfcfc">
+          <geometry height="50" x="4250" width="70" y="170"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_tipo_variazione_unita_amministrativa</iri>
+          <label size="12" customSize="0" height="38" x="4250" width="119" y="125"/>
+        </node>
+        <node id="n300" type="range-restriction" color="#000000">
+          <geometry height="20" x="4350" width="20" y="170"/>
+          <label size="12" customSize="0" height="23" x="4350" width="39" y="148">exists</label>
+        </node>
+        <node id="n301" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="4150" width="20" y="170"/>
+          <label size="12" customSize="0" height="23" x="4150" width="39" y="148">exists</label>
+        </node>
+        <node id="n302" type="role" color="#fcfcfc">
+          <geometry height="50" x="1540" width="70" y="640"/>
+          <iri>https://w3id.org/italia/onto/ITO/istituito_dal_comune_di</iri>
+          <label size="12" customSize="0" height="23" x="1560" width="133" y="675"/>
+        </node>
+        <node id="n305" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1540" width="20" y="570"/>
+          <label size="12" customSize="0" height="23" x="1510" width="39" y="570">exists</label>
+        </node>
+        <node id="n306" type="range-restriction" color="#000000">
+          <geometry height="20" x="1630" width="20" y="640"/>
+          <label size="12" customSize="0" height="23" x="1630" width="39" y="660">exists</label>
+        </node>
+        <node id="n31" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1740" width="110" y="500"/>
+          <iri>https://w3id.org/italia/onto/ITO/Comune</iri>
+          <label size="12" customSize="0" height="23" x="1740" width="110" y="500"/>
+        </node>
+        <node id="n314" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2530" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_prima_validita</iri>
+          <label size="12" customSize="0" height="83" x="2530" width="110" y="690"/>
+        </node>
+        <node id="n315" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2660" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione_per_annessione_da_stato_estero</iri>
+          <label size="12" customSize="0" height="83" x="2660" width="110" y="690"/>
+        </node>
+        <node id="n316" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2790" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione_di_territorio_per_costituzione</iri>
+          <label size="12" customSize="0" height="68" x="2790" width="110" y="690"/>
+        </node>
+        <node id="n317" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3050" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione_per_estinzione</iri>
+          <label size="12" customSize="0" height="68" x="3050" width="110" y="690"/>
+        </node>
+        <node id="n318" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3170" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione_per_cessione_stato_estero</iri>
+          <label size="12" customSize="0" height="83" x="3170" width="110" y="690"/>
+        </node>
+        <node id="n319" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2390" width="110" y="690"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza</iri>
+          <label size="12" customSize="0" height="83" x="2390" width="110" y="690"/>
+        </node>
+        <node id="n320" type="concept" color="#fcfcfc">
+          <geometry height="50" x="5460" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_UTS_regione_per_variazione_sigla_automobilistica</iri>
+          <label size="12" customSize="0" height="68" x="5460" width="110" y="600"/>
+        </node>
+        <node id="n321" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4700" width="110" y="320"/>
+          <iri>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_comune</iri>
+          <label size="12" customSize="0" height="68" x="4700" width="110" y="320"/>
+        </node>
+        <node id="n322" type="concept" color="#fcfcfc">
+          <geometry height="50" x="4880" width="110" y="320"/>
+          <iri>https://w3id.org/italia/onto/ITO/Tipo_variazione_unita_amministrativa_regione_UTS</iri>
+          <label size="12" customSize="0" height="68" x="4880" width="110" y="320"/>
+        </node>
+        <node id="n323" type="disjoint-union" color="#000000">
+          <geometry height="30" x="4790" width="50" y="250"/>
+        </node>
+        <node id="n324" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="4480" width="20" y="280"/>
+          <label size="12" customSize="0" height="23" x="4450" width="39" y="275">forall</label>
+        </node>
+        <node id="n325" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="4250" width="20" y="250"/>
+          <label size="12" customSize="0" height="23" x="4212" width="39" y="250">forall</label>
+        </node>
+        <node id="n33" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1600" width="110" y="1060"/>
+          <iri>https://w3id.org/italia/onto/ITO/Capoluogo_regione</iri>
+          <label size="12" customSize="0" height="38" x="1600" width="110" y="1060"/>
+        </node>
+        <node id="n335" type="role" color="#fcfcfc">
+          <geometry height="50" x="2800" width="70" y="-70"/>
+          <iri>https://w3id.org/italia/onto/ITO/ha_comune</iri>
+          <label size="12" customSize="0" height="23" x="2800" width="67" y="-100"/>
+        </node>
+        <node id="n336" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="2890" width="20" y="-70"/>
+          <label size="12" customSize="0" height="23" x="2920" width="39" y="-70">exists</label>
+        </node>
+        <node id="n338" type="range-restriction" color="#000000">
+          <geometry height="20" x="2720" width="20" y="-70"/>
+          <label size="12" customSize="0" height="23" x="2720" width="39" y="-90">exists</label>
+        </node>
+        <node id="n339" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2890" width="110" y="-170"/>
+          <iri>https://w3id.org/italia/onto/ITO/Comune_sezione_di_censimento</iri>
+          <label size="12" customSize="0" height="38" x="2890" width="110" y="-170"/>
+        </node>
+        <node id="n34" type="role" color="#fcfcfc">
+          <geometry height="50" x="1300" width="70" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/appartiene_attualmente_a_UTS</iri>
+          <label size="12" customSize="0" height="38" x="1305" width="139" y="535"/>
+        </node>
+        <node id="n35" type="range-restriction" color="#000000">
+          <geometry height="20" x="1190" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="1190" width="39" y="468">exists</label>
+        </node>
+        <node id="n36" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="1390" width="20" y="490"/>
+          <label size="12" customSize="0" height="23" x="1390" width="39" y="468">exists</label>
+        </node>
+        <node id="n37" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1670" width="110" y="980"/>
+          <iri>https://w3id.org/italia/onto/ITO/Capoluogo_provincia</iri>
+          <label size="12" customSize="0" height="38" x="1670" width="110" y="980"/>
+        </node>
+        <node id="n38" type="concept" color="#fcfcfc">
+          <geometry height="50" x="1820" width="110" y="980"/>
+          <iri>https://w3id.org/italia/onto/ITO/Capoluogo_citta_metropolitana</iri>
+          <label size="12" customSize="0" height="53" x="1820" width="110" y="980"/>
+        </node>
+        <node id="n389" type="range-restriction" color="#000000">
+          <geometry height="20" x="1300" width="20" y="390"/>
+          <label size="12" customSize="0" height="23" x="1330" width="39" y="390">forall</label>
+        </node>
+        <node id="n392" type="range-restriction" color="#000000">
+          <geometry height="20" x="770" width="20" y="560"/>
+          <label size="12" customSize="0" height="23" x="800" width="39" y="560">forall</label>
+        </node>
+        <node id="n46" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3770" width="110" y="170"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione</iri>
+          <label size="12" customSize="0" height="23" x="3770" width="110" y="170"/>
+        </node>
+        <node id="n467" type="concept" color="#fcfcfc">
+          <geometry height="50" x="-420" width="110" y="620"/>
+          <iri>https://w3id.org/italia/onto/ITO/Stato_estero</iri>
+          <label size="12" customSize="0" height="23" x="-420" width="110" y="620"/>
+        </node>
+        <node id="n55" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2150" width="110" y="980"/>
+          <iri>https://w3id.org/italia/onto/ITO/Comune_estinto</iri>
+          <label size="12" customSize="0" height="23" x="2150" width="110" y="980"/>
+        </node>
+        <node id="n60" type="disjoint-union" color="#000000">
+          <geometry height="30" x="2980" width="50" y="490"/>
+        </node>
+        <node id="n61" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2590" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_costituzione</iri>
+          <label size="12" customSize="0" height="53" x="2590" width="110" y="600"/>
+        </node>
+        <node id="n62" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2720" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_ricostituzione</iri>
+          <label size="12" customSize="0" height="53" x="2720" width="110" y="600"/>
+        </node>
+        <node id="n63" type="concept" color="#fcfcfc">
+          <geometry height="50" x="2460" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_estinzione</iri>
+          <label size="12" customSize="0" height="53" x="2460" width="110" y="600"/>
+        </node>
+        <node id="n64" type="concept" color="#fcfcfc">
+          <geometry height="65" x="2850" width="115" y="610"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_unita_territoriale_superiore</iri>
+          <label size="12" customSize="0" height="83" x="2847" width="115" y="607"/>
+        </node>
+        <node id="n65" type="concept" color="#fcfcfc">
+          <geometry height="67" x="2980" width="125" y="610"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore</iri>
+          <label size="12" customSize="0" height="98" x="2977" width="125" y="608"/>
+        </node>
+        <node id="n66" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3110" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_acquisizione</iri>
+          <label size="12" customSize="0" height="53" x="3110" width="110" y="600"/>
+        </node>
+        <node id="n67" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3240" width="130" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cambio_denominazione</iri>
+          <label size="12" customSize="0" height="68" x="3240" width="130" y="600"/>
+        </node>
+        <node id="n68" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3370" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_cessione</iri>
+          <label size="12" customSize="0" height="53" x="3370" width="110" y="600"/>
+        </node>
+        <node id="n69" type="concept" color="#fcfcfc">
+          <geometry height="50" x="3500" width="110" y="600"/>
+          <iri>https://w3id.org/italia/onto/ITO/Variazione_comunale_per_rinumerazione</iri>
+          <label size="12" customSize="0" height="53" x="3500" width="110" y="600"/>
+        </node>
+        <node id="n70" type="role" color="#fcfcfc">
+          <geometry height="50" x="2560" width="70" y="170"/>
+          <iri>https://w3id.org/italia/onto/ITO/subisce</iri>
+          <label size="12" customSize="0" height="23" x="2560" width="49" y="140"/>
+        </node>
+        <node id="n73" type="role" color="#fcfcfc">
+          <geometry height="50" x="2560" width="70" y="380"/>
+          <iri>https://w3id.org/italia/onto/ITO/coinvolge_ulteriori_comuni</iri>
+          <label size="12" customSize="0" height="23" x="2560" width="150" y="350"/>
+        </node>
+        <node id="n74" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="2660" width="20" y="380"/>
+          <label size="12" customSize="0" height="23" x="2660" width="39" y="358">exists</label>
+        </node>
+        <node id="n75" type="range-restriction" color="#000000">
+          <geometry height="20" x="2460" width="20" y="380"/>
+          <label size="12" customSize="0" height="23" x="2460" width="39" y="358">exists</label>
+        </node>
+        <node id="n76" type="range-restriction" color="#000000">
+          <geometry height="20" x="2660" width="20" y="170"/>
+          <label size="12" customSize="0" height="23" x="2660" width="39" y="148">exists</label>
+        </node>
+        <node id="n77" type="domain-restriction" color="#fcfcfc">
+          <geometry height="20" x="2460" width="20" y="170"/>
+          <label size="12" customSize="0" height="23" x="2460" width="39" y="148">exists</label>
+        </node>
+        <node id="n9" type="concept" color="#fcfcfc">
+          <geometry height="50" x="-420" width="110" y="490"/>
+          <iri>https://w3id.org/italia/onto/ITO/Stato</iri>
+          <label size="12" customSize="0" height="23" x="-420" width="110" y="490"/>
+        </node>
+        <edge id="e10" type="input" target="n10" source="n9">
+          <point x="-380" y="465"/>
+          <point x="-380" y="290"/>
+          <point x="900" y="290"/>
+        </edge>
+        <edge id="e11" type="input" target="n10" source="n12">
+          <point x="170" y="490"/>
+          <point x="170" y="290"/>
+          <point x="900" y="290"/>
+        </edge>
+        <edge id="e12" type="input" target="n14" source="n13">
+          <point x="-50" y="490"/>
+          <point x="33" y="490"/>
+        </edge>
+        <edge id="e13" type="input" target="n15" source="n13">
+          <point x="-50" y="490"/>
+          <point x="-137" y="490"/>
+        </edge>
+        <edge id="e139" type="inclusion" target="n31" source="n138">
+          <point x="1740" y="890"/>
+          <point x="1740" y="500"/>
+        </edge>
+        <edge id="e141" type="input" target="n138" source="n37">
+          <point x="1670" y="980"/>
+          <point x="1670" y="890"/>
+          <point x="1740" y="890"/>
+        </edge>
+        <edge id="e142" type="input" target="n138" source="n38">
+          <point x="1820" y="980"/>
+          <point x="1820" y="890"/>
+          <point x="1740" y="890"/>
+        </edge>
+        <edge id="e146" type="input" target="n137" source="n70">
+          <point x="2560" y="170"/>
+          <point x="2560" y="330"/>
+          <point x="2350" y="330"/>
+        </edge>
+        <edge id="e148" type="inclusion" target="n137" source="n55">
+          <point x="2170" y="955"/>
+          <point x="2170" y="690"/>
+          <point x="2170" y="330"/>
+          <point x="2350" y="330"/>
+        </edge>
+        <edge id="e149" type="input" target="n137" source="n63">
+          <point x="2460" y="600"/>
+          <point x="2350" y="600"/>
+          <point x="2350" y="330"/>
+        </edge>
+        <edge id="e15" type="inclusion" target="n9" source="n15">
+          <point x="-137" y="490"/>
+          <point x="-420" y="490"/>
+        </edge>
+        <edge id="e16" type="inclusion" target="n12" source="n16">
+          <point x="170" y="590"/>
+          <point x="170" y="490"/>
+        </edge>
+        <edge id="e17" type="input" target="n10" source="n18">
+          <point x="900" y="490"/>
+          <point x="900" y="290"/>
+        </edge>
+        <edge id="e177" type="inclusion" target="n155" source="n74">
+          <point x="2660" y="380"/>
+          <point x="2980" y="380"/>
+        </edge>
+        <edge id="e178" type="equivalence" target="n60" source="n155">
+          <point x="2980" y="380"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e179" type="input" target="n157" source="n155">
+          <point x="2980" y="380"/>
+          <point x="2980" y="300"/>
+          <point x="3770" y="300"/>
+        </edge>
+        <edge id="e18" type="input" target="n19" source="n20">
+          <point x="610" y="490"/>
+          <point x="523" y="490"/>
+        </edge>
+        <edge id="e180" type="equivalence" target="n157" source="n46">
+          <point x="3770" y="170"/>
+          <point x="3770" y="300"/>
+        </edge>
+        <edge id="e181" type="inclusion" target="n0" source="n77">
+          <point x="2460" y="170"/>
+          <point x="1180" y="170"/>
+          <point x="1180" y="-10"/>
+          <point x="900" y="-10"/>
+        </edge>
+        <edge id="e182" type="input" target="n157" source="n156">
+          <point x="4460" y="390"/>
+          <point x="4460" y="300"/>
+          <point x="3770" y="300"/>
+        </edge>
+        <edge id="e184" type="equivalence" target="n156" source="n159">
+          <point x="4460" y="470"/>
+          <point x="4460" y="390"/>
+        </edge>
+        <edge id="e19" type="input" target="n21" source="n20">
+          <point x="610" y="490"/>
+          <point x="700" y="490"/>
+        </edge>
+        <edge id="e190" type="input" target="n159" source="n165">
+          <point x="3720" y="600"/>
+          <point x="3720" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e191" type="inclusion" target="n23" source="n166">
+          <point x="990" y="1020"/>
+          <point x="900" y="910"/>
+        </edge>
+        <edge id="e192" type="inclusion" target="n31" source="n167">
+          <point x="1980" y="955"/>
+          <point x="1980" y="520"/>
+          <point x="1794" y="520"/>
+        </edge>
+        <edge id="e193" type="input" target="n159" source="n168">
+          <point x="3840" y="600"/>
+          <point x="3840" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e194" type="input" target="n159" source="n170">
+          <point x="3960" y="600"/>
+          <point x="3960" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e196" type="input" target="n159" source="n171">
+          <point x="4080" y="600"/>
+          <point x="4080" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e197" type="input" target="n159" source="n172">
+          <point x="4200" y="600"/>
+          <point x="4200" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e198" type="input" target="n159" source="n173">
+          <point x="4330" y="600"/>
+          <point x="4330" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e199" type="input" target="n159" source="n174">
+          <point x="4460" y="600"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e200" type="input" target="n159" source="n175">
+          <point x="4580" y="600"/>
+          <point x="4580" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e201" type="input" target="n159" source="n176">
+          <point x="4700" y="600"/>
+          <point x="4700" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e202" type="input" target="n159" source="n177">
+          <point x="4830" y="600"/>
+          <point x="4830" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e203" type="input" target="n159" source="n178">
+          <point x="4950" y="599"/>
+          <point x="4950" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e204" type="input" target="n159" source="n179">
+          <point x="5080" y="600"/>
+          <point x="5080" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e205" type="input" target="n159" source="n180">
+          <point x="5210" y="600"/>
+          <point x="5210" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e206" type="input" target="n159" source="n181">
+          <point x="5330" y="600"/>
+          <point x="5330" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e207" type="input" target="n183" source="n182">
+          <point x="3510" y="730"/>
+          <point x="3620" y="730"/>
+        </edge>
+        <edge id="e208" type="input" target="n184" source="n182">
+          <point x="3510" y="730"/>
+          <point x="3410" y="730"/>
+        </edge>
+        <edge id="e209" type="inclusion" target="n156" source="n183">
+          <point x="3620" y="730"/>
+          <point x="3620" y="390"/>
+          <point x="4460" y="390"/>
+        </edge>
+        <edge id="e210" type="inclusion" target="n18" source="n184">
+          <point x="3410" y="730"/>
+          <point x="1160" y="730"/>
+          <point x="1160" y="500"/>
+          <point x="954" y="500"/>
+        </edge>
+        <edge id="e211" type="inclusion" target="n31" source="n55">
+          <point x="2150" y="980"/>
+          <point x="2150" y="510"/>
+          <point x="1794" y="510"/>
+        </edge>
+        <edge id="e22" type="inclusion" target="n23" source="n24">
+          <point x="800" y="1020"/>
+          <point x="900" y="910"/>
+        </edge>
+        <edge id="e221" type="inclusion" target="n37" source="n33">
+          <point x="1600" y="1060"/>
+          <point x="1670" y="980"/>
+        </edge>
+        <edge id="e222" type="equivalence" target="n186" source="n187">
+          <point x="610" y="1020"/>
+          <point x="610" y="910"/>
+        </edge>
+        <edge id="e23" type="equivalence" target="n27" source="n18">
+          <point x="900" y="490"/>
+          <point x="900" y="820"/>
+        </edge>
+        <edge id="e24" type="input" target="n27" source="n26">
+          <point x="740" y="910"/>
+          <point x="740" y="820"/>
+          <point x="900" y="820"/>
+        </edge>
+        <edge id="e25" type="input" target="n27" source="n23">
+          <point x="900" y="910"/>
+          <point x="900" y="820"/>
+        </edge>
+        <edge id="e26" type="input" target="n27" source="n29">
+          <point x="1060" y="911"/>
+          <point x="1060" y="820"/>
+          <point x="900" y="820"/>
+        </edge>
+        <edge id="e27" type="input" target="n10" source="n31">
+          <point x="1700" y="475"/>
+          <point x="1700" y="290"/>
+          <point x="900" y="290"/>
+        </edge>
+        <edge id="e29" type="input" target="n35" source="n34">
+          <point x="1300" y="490"/>
+          <point x="1190" y="490"/>
+        </edge>
+        <edge id="e296" type="inclusion" target="n250" source="n55">
+          <point x="2150" y="980"/>
+          <point x="2150" y="710"/>
+          <point x="1220" y="710"/>
+          <point x="1220" y="250"/>
+          <point x="590" y="250"/>
+          <point x="590" y="200"/>
+        </edge>
+        <edge id="e298" type="input" target="n260" source="n259">
+          <point x="1040" y="-90"/>
+          <point x="1040" y="-30"/>
+        </edge>
+        <edge id="e299" type="input" target="n261" source="n259">
+          <point x="1040" y="-90"/>
+          <point x="940" y="-90"/>
+        </edge>
+        <edge id="e30" type="input" target="n36" source="n34">
+          <point x="1300" y="490"/>
+          <point x="1390" y="490"/>
+        </edge>
+        <edge id="e300" type="inclusion" target="n0" source="n261">
+          <point x="940" y="-90"/>
+          <point x="940" y="-35"/>
+        </edge>
+        <edge id="e301" type="inclusion" target="n0" source="n260">
+          <point x="1040" y="-30"/>
+          <point x="954" y="-30"/>
+        </edge>
+        <edge id="e31" type="inclusion" target="n18" source="n35">
+          <point x="1190" y="490"/>
+          <point x="900" y="490"/>
+        </edge>
+        <edge id="e331" type="equivalence" target="n0" source="n288">
+          <point x="680" y="130"/>
+          <point x="680" y="50"/>
+          <point x="870" y="14"/>
+        </edge>
+        <edge id="e332" type="input" target="n288" source="n250">
+          <point x="590" y="200"/>
+          <point x="590" y="130"/>
+          <point x="680" y="130"/>
+        </edge>
+        <edge id="e333" type="input" target="n288" source="n287">
+          <point x="770" y="200"/>
+          <point x="770" y="130"/>
+          <point x="680" y="130"/>
+        </edge>
+        <edge id="e344" type="input" target="n300" source="n297">
+          <point x="4250" y="170"/>
+          <point x="4350" y="170"/>
+        </edge>
+        <edge id="e345" type="input" target="n301" source="n297">
+          <point x="4250" y="170"/>
+          <point x="4150" y="170"/>
+        </edge>
+        <edge id="e346" type="equivalence" target="n301" source="n46">
+          <point x="3770" y="170"/>
+          <point x="4150" y="170"/>
+        </edge>
+        <edge id="e347" type="inclusion" target="n293" source="n300">
+          <point x="4350" y="170"/>
+          <point x="4790" y="170"/>
+        </edge>
+        <edge id="e348" type="input" target="n306" source="n302">
+          <point x="1540" y="640"/>
+          <point x="1630" y="640"/>
+        </edge>
+        <edge id="e349" type="input" target="n305" source="n302">
+          <point x="1540" y="640"/>
+          <point x="1540" y="570"/>
+        </edge>
+        <edge id="e350" type="inclusion" target="n31" source="n305">
+          <point x="1540" y="570"/>
+          <point x="1540" y="510"/>
+          <point x="1685" y="510"/>
+        </edge>
+        <edge id="e351" type="inclusion" target="n31" source="n306">
+          <point x="1630" y="640"/>
+          <point x="1710" y="640"/>
+          <point x="1710" y="524"/>
+        </edge>
+        <edge id="e363" type="input" target="n60" source="n314">
+          <point x="2530" y="690"/>
+          <point x="2530" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e364" type="input" target="n60" source="n315">
+          <point x="2660" y="690"/>
+          <point x="2660" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e365" type="input" target="n60" source="n316">
+          <point x="2790" y="690"/>
+          <point x="2790" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e366" type="input" target="n60" source="n317">
+          <point x="3050" y="690"/>
+          <point x="3050" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e367" type="input" target="n60" source="n318">
+          <point x="3170" y="690"/>
+          <point x="3170" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e368" type="input" target="n60" source="n319">
+          <point x="2390" y="690"/>
+          <point x="2390" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e369" type="input" target="n159" source="n320">
+          <point x="5460" y="600"/>
+          <point x="5460" y="470"/>
+          <point x="4460" y="470"/>
+        </edge>
+        <edge id="e370" type="input" target="n323" source="n321">
+          <point x="4700" y="320"/>
+          <point x="4700" y="250"/>
+          <point x="4790" y="250"/>
+        </edge>
+        <edge id="e371" type="input" target="n323" source="n322">
+          <point x="4880" y="320"/>
+          <point x="4880" y="250"/>
+          <point x="4790" y="250"/>
+        </edge>
+        <edge id="e372" type="equivalence" target="n323" source="n293">
+          <point x="4790" y="170"/>
+          <point x="4790" y="250"/>
+        </edge>
+        <edge id="e373" type="input" target="n324" source="n297">
+          <point x="4250" y="170"/>
+          <point x="4280" y="200"/>
+          <point x="4480" y="200"/>
+          <point x="4480" y="280"/>
+        </edge>
+        <edge id="e374" type="inclusion" target="n324" source="n156">
+          <point x="4480" y="365"/>
+          <point x="4480" y="280"/>
+        </edge>
+        <edge id="e375" type="input" target="n324" source="n322">
+          <point x="4880" y="320"/>
+          <point x="4880" y="380"/>
+          <point x="4570" y="380"/>
+          <point x="4570" y="280"/>
+          <point x="4480" y="280"/>
+        </edge>
+        <edge id="e376" type="input" target="n325" source="n297">
+          <point x="4250" y="170"/>
+          <point x="4250" y="250"/>
+        </edge>
+        <edge id="e377" type="inclusion" target="n325" source="n155">
+          <point x="3034" y="370"/>
+          <point x="4250" y="370"/>
+          <point x="4250" y="250"/>
+        </edge>
+        <edge id="e378" type="input" target="n325" source="n321">
+          <point x="4670" y="295"/>
+          <point x="4670" y="250"/>
+          <point x="4250" y="250"/>
+        </edge>
+        <edge id="e387" type="input" target="n338" source="n335">
+          <point x="2800" y="-70"/>
+          <point x="2720" y="-70"/>
+        </edge>
+        <edge id="e388" type="input" target="n336" source="n335">
+          <point x="2800" y="-70"/>
+          <point x="2890" y="-70"/>
+        </edge>
+        <edge id="e389" type="equivalence" target="n336" source="n339">
+          <point x="2890" y="-170"/>
+          <point x="2890" y="-70"/>
+        </edge>
+        <edge id="e391" type="inclusion" target="n31" source="n338">
+          <point x="2720" y="-70"/>
+          <point x="2720" y="-10"/>
+          <point x="2140" y="-10"/>
+          <point x="2140" y="480"/>
+          <point x="1794" y="480"/>
+        </edge>
+        <edge id="e445" type="input" target="n389" source="n34">
+          <point x="1300" y="490"/>
+          <point x="1300" y="390"/>
+        </edge>
+        <edge id="e446" type="input" target="n389" source="n287">
+          <point x="770" y="200"/>
+          <point x="1300" y="200"/>
+          <point x="1300" y="390"/>
+        </edge>
+        <edge id="e447" type="inclusion" target="n389" source="n18">
+          <point x="950" y="465"/>
+          <point x="950" y="390"/>
+          <point x="1300" y="390"/>
+        </edge>
+        <edge id="e451" type="input" target="n392" source="n20">
+          <point x="610" y="490"/>
+          <point x="770" y="560"/>
+        </edge>
+        <edge id="e452" type="inclusion" target="n392" source="n12">
+          <point x="170" y="490"/>
+          <point x="260" y="560"/>
+          <point x="770" y="560"/>
+        </edge>
+        <edge id="e453" type="input" target="n392" source="n287">
+          <point x="770" y="200"/>
+          <point x="770" y="560"/>
+        </edge>
+        <edge id="e507" type="inclusion" target="n31" source="n36">
+          <point x="1390" y="490"/>
+          <point x="1685" y="490"/>
+        </edge>
+        <edge id="e508" type="inclusion" target="n18" source="n21">
+          <point x="700" y="490"/>
+          <point x="900" y="490"/>
+        </edge>
+        <edge id="e510" type="inclusion" target="n12" source="n14">
+          <point x="33" y="490"/>
+          <point x="170" y="490"/>
+        </edge>
+        <edge id="e511" type="inclusion" target="n12" source="n19">
+          <point x="523" y="490"/>
+          <point x="170" y="490"/>
+        </edge>
+        <edge id="e513" type="input" target="n27" source="n186">
+          <point x="610" y="910"/>
+          <point x="610" y="820"/>
+          <point x="900" y="820"/>
+        </edge>
+        <edge id="e543" type="inclusion" target="n9" source="n467">
+          <point x="-420" y="620"/>
+          <point x="-420" y="490"/>
+        </edge>
+        <edge id="e57" type="input" target="n60" source="n63">
+          <point x="2460" y="600"/>
+          <point x="2460" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e58" type="input" target="n60" source="n61">
+          <point x="2590" y="600"/>
+          <point x="2590" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e59" type="input" target="n60" source="n62">
+          <point x="2720" y="600"/>
+          <point x="2720" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e60" type="input" target="n60" source="n64">
+          <point x="2850" y="610"/>
+          <point x="2850" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e61" type="input" target="n60" source="n65">
+          <point x="2980" y="610"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e62" type="input" target="n60" source="n66">
+          <point x="3110" y="600"/>
+          <point x="3110" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e63" type="input" target="n60" source="n67">
+          <point x="3240" y="600"/>
+          <point x="3240" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e64" type="input" target="n60" source="n68">
+          <point x="3370" y="600"/>
+          <point x="3370" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e65" type="input" target="n60" source="n69">
+          <point x="3500" y="600"/>
+          <point x="3500" y="490"/>
+          <point x="2980" y="490"/>
+        </edge>
+        <edge id="e66" type="input" target="n76" source="n70">
+          <point x="2560" y="170"/>
+          <point x="2660" y="170"/>
+        </edge>
+        <edge id="e67" type="input" target="n77" source="n70">
+          <point x="2560" y="170"/>
+          <point x="2460" y="170"/>
+        </edge>
+        <edge id="e68" type="equivalence" target="n76" source="n46">
+          <point x="3770" y="170"/>
+          <point x="2660" y="170"/>
+        </edge>
+        <edge id="e70" type="input" target="n74" source="n73">
+          <point x="2560" y="380"/>
+          <point x="2660" y="380"/>
+        </edge>
+        <edge id="e71" type="input" target="n75" source="n73">
+          <point x="2560" y="380"/>
+          <point x="2460" y="380"/>
+        </edge>
+        <edge id="e73" type="inclusion" target="n31" source="n75">
+          <point x="2460" y="380"/>
+          <point x="2230" y="380"/>
+          <point x="2230" y="500"/>
+          <point x="1740" y="500"/>
+        </edge>
+        <edge id="e9" type="equivalence" target="n10" source="n0">
+          <point x="900" y="-10"/>
+          <point x="900" y="290"/>
+        </edge>
+      </diagram>
+    </diagrams>
+  </project>
+</graphol>
