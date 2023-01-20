@@ -17,7 +17,6 @@ Unita_amministrativa
 ------- DISJOINT -------
 Stato
 Unita_territoriale_sovracomunale
-Comune
 Regione
 ------- ROLES -------
 ha_storico_di_comune
@@ -35,7 +34,6 @@ Unita_amministrativa
 Stato
 Comune
 Unita_territoriale_sovracomunale
-Regione
 ------- ROLES -------
 ha_storico_di_regione
 appartiene_attualmente_a_stato
@@ -50,8 +48,6 @@ Unita_amministrativa
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Unita_amministrativa
-Stato
 Comune
 Unita_territoriale_sovracomunale
 Regione
@@ -70,7 +66,6 @@ Storico_unita_amministrativa
 ------- DISJOINT -------
 Storico_di_stato
 Storico_di_regione
-Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_unita_territoriale_sovracomunale
@@ -86,7 +81,6 @@ Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
 Storico_di_stato
-Storico_di_regione
 Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
@@ -103,8 +97,6 @@ Storico_unita_amministrativa
 Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_unita_amministrativa
-Storico_di_stato
 Storico_di_regione
 Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
@@ -124,7 +116,6 @@ Storico_unita_amministrativa
 Storico_di_stato
 Storico_di_regione
 Storico_di_comune
-Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_regione
 appartiene_a_unita_territoriale_sovracomunale
@@ -141,7 +132,6 @@ Storico_di_unità_territoriale_sovracomunale
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_di_stato
 ------- ROLES -------
 appartiene_a_regione
 appartiene_a_stato
@@ -162,7 +152,6 @@ Regione
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Stato
 ------- ROLES -------
 ha_storico_di_regione
 ha_storico_di_stato
@@ -183,7 +172,6 @@ Unita_amministrativa
 ------- DISJOINT -------
 Stato
 Comune
-Unita_territoriale_sovracomunale
 Regione
 ------- ROLES -------
 appartiene_attualmente_a_UTS

@@ -12,8 +12,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @Ignore
 public class TestOntologyProximityManager {
@@ -50,24 +55,47 @@ public class TestOntologyProximityManager {
     @Test
     public void testIssue_29() throws Exception {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+        OWLDataFactory df = manager.getOWLDataFactory();
         GraphOLParser_v3 parser = new GraphOLParser_v3();
 
-        FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_29/ISTAT_SPARQLING_ISSUE_29_0.graphol");
-        //FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol");
-
+        FileInputStream fileInputStream = new FileInputStream("src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol");
         String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
                 .lines().collect(Collectors.joining("\n"));
         OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
 
         OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
 
-        OWLDataFactory df = manager.getOWLDataFactory();
+        OWLClass comune = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Comune"));
+        OWLClass uts = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Unita_territoriale_sovracomunale"));
+        OWLClass regione = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Regione"));
+        OWLClass stato = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Stato"));
+        OWLClass uaEstinta = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Unita_amministrativa_estinta"));
+        OWLClass uaNonEstinta = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Unita_amministrativa_non_estinta"));
+        OWLClass unitaAmministrativa = df.getOWLClass(IRI.create("https://w3id.org/italia/onto/ITO/Unita_amministrativa"));
+        Set<OWLClass> classes = Stream.of(comune, uts, regione, stato, uaEstinta, uaNonEstinta, unitaAmministrativa)
+                .collect(Collectors.toCollection(HashSet::new));
+
+        OWLObjectProperty attualeUAOrigine = df.getOWLObjectProperty(IRI.create("https://w3id.org/italia/onto/ITO/attuale_unita_amministrativa_di_origine"));
+        OWLObjectProperty storicoUA = df.getOWLObjectProperty(IRI.create("https://w3id.org/italia/onto/ITO/ha_storico_di_unita_amministrativa"));
+        OWLObjectProperty uaOrigine = df.getOWLObjectProperty(IRI.create("https://w3id.org/italia/onto/ITO/unita_amministrativa_di_origine"));
+        OWLObjectProperty subisce = df.getOWLObjectProperty(IRI.create("https://w3id.org/italia/onto/ITO/subisce"));
+        Set<OWLObjectProperty> roles = Stream.of(attualeUAOrigine, storicoUA, uaOrigine, subisce)
+                .collect(Collectors.toCollection(HashSet::new));
+
+        OWLDataProperty denominazione = df.getOWLDataProperty(IRI.create("https://w3id.org/italia/onto/ITO/denominazione_unita_amministrativa_attuale"));
+        OWLDataProperty dataCostituzione = df.getOWLDataProperty(IRI.create("https://w3id.org/italia/onto/ITO/data_costituzione"));
+        OWLDataProperty codiceIstat = df.getOWLDataProperty(IRI.create("https://w3id.org/italia/onto/ITO/codice_istat_UA"));
+        Set<OWLDataProperty> attrs = Stream.of(denominazione, dataCostituzione, codiceIstat)
+                .collect(Collectors.toCollection(HashSet::new));
+
     }
+
+
 
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
         GraphOLParser_v3 parser = new GraphOLParser_v3();
-        //String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
+        String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
         //String grapholFilePath =  "src/test/resources/issue_29/ISTAT_SPARQLING_ISSUE_29_0.graphol";
         //String grapholFilePath =  "src/test/resources/issue_29/NOT_appartiene_attualmente_a_regione.graphol";
         //String grapholFilePath =  "src/test/resources/issue_29/NOT_contiene_attualmente_sezione_di_censimento.graphol";
@@ -84,7 +112,7 @@ public class TestOntologyProximityManager {
         //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL.graphol";
         //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_NO_ISA_ha_storico_di_comune.graphol";
         //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_SOLO_ISA_ha_storico_di_comune.graphol";
-        String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_SOLO_ISA_ha_storico_di_stato.graphol";
+        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_SOLO_ISA_ha_storico_di_stato.graphol";
         FileInputStream fileInputStream = new FileInputStream(grapholFilePath);
 
         String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
