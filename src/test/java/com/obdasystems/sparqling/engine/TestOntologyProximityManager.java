@@ -88,6 +88,24 @@ public class TestOntologyProximityManager {
         Set<OWLDataProperty> attrs = Stream.of(denominazione, dataCostituzione, codiceIstat)
                 .collect(Collectors.toCollection(HashSet::new));
 
+        //Check if all DIRECTLY father-related props are related to all children
+        classes.forEach(cl->{
+            System.out.println();
+            System.out.println("############## "+cl.getIRI().getShortForm()+" ##############");
+            Set<OWLObjectProperty> classRoles = proximityManager.getClassRoles(cl);
+            roles.forEach(r->{
+                System.out.println(r.getIRI().getShortForm());
+                assertTrue(classRoles.contains(r));
+            });
+
+
+            Set<OWLDataProperty> classAttributes = proximityManager.getClassAttributes(cl);
+            attrs.forEach(u->{
+                System.out.println(u.getIRI().getShortForm());
+                assertTrue(classAttributes.contains(u));
+            });
+        });
+
     }
 
 
@@ -95,24 +113,8 @@ public class TestOntologyProximityManager {
     public static void main(String[] args) throws IOException, OWLOntologyCreationException {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
         GraphOLParser_v3 parser = new GraphOLParser_v3();
-        String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/ISTAT_SPARQLING_ISSUE_29_0.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NOT_appartiene_attualmente_a_regione.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NOT_contiene_attualmente_sezione_di_censimento.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NOT_OR_Comune_estinto.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NOT_ppartiene_attualmente_a_UTS.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_NOTS.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_NOTS_CHAIN.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_NOTS_CHAIN_ATTRS.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_NOTS_CHAIN_ATTRS_Sezione_di_censimento.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_NOTS_CHAIN_ATTRS_Sezione_di_censimento_Storico_unita_amministrativa.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/NO_Storico_unita_amministrativa.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_NO_ISA_RUOLI.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_NO_ISA_ha_storico_di_comune.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_SOLO_ISA_ha_storico_di_comune.graphol";
-        //String grapholFilePath =  "src/test/resources/issue_29/SOLO_STORICO_MINIMAL_SOLO_ISA_ha_storico_di_stato.graphol";
+        //String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
+        String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1_NO_QUALIFIED_EXISTENTIAL.graphol";
         FileInputStream fileInputStream = new FileInputStream(grapholFilePath);
 
         String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))

@@ -14,39 +14,37 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
-Aeroporto
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-contiene_attualmente_sezione_di_censimento
 appartiene_a_localita
+contiene_attualmente_sezione_di_censimento
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -63,34 +61,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Agglomerato_insediativo_in_seguito_a_calamita
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -112,34 +108,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Monumento
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -161,34 +155,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -211,33 +203,36 @@ Comune
 Unita_amministrativa
 Comune
 ------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
 Unita_territoriale_sovracomunale
-Comune
 Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
 Stato_estero
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Capoluogo_citta_metropolitana
-Unita_amministrativa
-Provincia_autonoma
 Stato
+Provincia_autonoma
 Capoluogo_provincia
 Regione_a_statuto_speciale
 Comune_estinto
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
 ha_storico_di_comune
+appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+ha_comune
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -245,6 +240,7 @@ codice_istat_UA
 data_inizio_appartenenza_a_UTS_attuale
 data_costituzione
 tipo_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Capoluogo_provincia ##########################
 ------- DESCENDANTS -------
 Capoluogo_regione
@@ -254,33 +250,35 @@ Comune
 Unita_amministrativa
 Comune
 ------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Comune
 Unita_territoriale_sovracomunale
 Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
 Stato_estero
-Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Stato
 Provincia_autonoma
-Capoluogo_provincia
 Regione_a_statuto_speciale
 Comune_estinto
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
 ha_storico_di_comune
+appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+ha_comune
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -288,6 +286,7 @@ data_inizio_appartenenza_a_UTS_attuale
 codice_istat_UA
 data_costituzione
 tipo_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Capoluogo_regione ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -300,30 +299,30 @@ Capoluogo_provincia
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Comune
 Unita_territoriale_sovracomunale
 Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
-Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
 Stato
 Regione_a_statuto_speciale
-Capoluogo_provincia
-Comune_estinto
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
 ha_storico_di_comune
+appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+ha_comune
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -331,6 +330,7 @@ data_inizio_appartenenza_a_UTS_attuale
 codice_istat_UA
 data_costituzione
 tipo_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Caserma ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -338,34 +338,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -387,39 +385,37 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Centro_di_permanenza_temporanea_per_stranieri
-Cava_o_miniera
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-appartiene_a_localita
 contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -436,39 +432,37 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-appartiene_a_localita
 contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -484,7 +478,6 @@ perimetro_sezione_di_censimento
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Centroide_poligono
 ------- ROLES -------
 ha_centroide_poligono
 ------- ATTRIBUTES -------
@@ -495,34 +488,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
-Chiesa_abbazia_santuario_convento
+Colonia
+Area_verde_parco
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -544,34 +535,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -595,22 +584,17 @@ Unita_amministrativa
 Unita_territoriale_sovracomunale
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Citta_metropolitana
 Provincia_dalla_fondazione_Italia
 Comune
-Unita_territoriale_sovracomunale
 Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
 Capoluogo_citta_metropolitana
-Stato
 Provincia_autonoma
+Stato
 Capoluogo_provincia
 Regione_a_statuto_speciale
 Comune_estinto
@@ -618,9 +602,14 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -628,13 +617,13 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Cittadinanza ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Cittadinanza
 ------- ROLES -------
 attuale_stato_della_cittadinanza
 ------- ATTRIBUTES -------
@@ -738,13 +727,13 @@ LAU
 broader_0_1
 broader_1_2
 ha_codifica_NUTS3
-narrower_0_1
 ha_codifica_NUTS
+narrower_0_1
 ha_codifca_NUTS2
 narrower_2_3
 narrower_1_2
-ha_codifica_NUTS1
 broader_2_3
+ha_codifica_NUTS1
 ------- ATTRIBUTES -------
 valore_codice_regolamento_TERCET
 ########################## Class Codice_Regolamento_TERCET ##########################
@@ -761,16 +750,16 @@ Codice_Nuts
 ------- DISJOINT -------
 ------- ROLES -------
 broader_0_1
-ha_codifica_NUTS3
 broader_1_2
-ha_codifica_NUTS
+ha_codifica_NUTS3
 narrower_0_1
+ha_codifica_NUTS
 ha_codifca_NUTS2
 narrower_2_3
-ha_LAU
 narrower_1_2
-broader_2_3
+ha_LAU
 ha_codifica_NUTS1
+broader_2_3
 ------- ATTRIBUTES -------
 valore_codice_regolamento_TERCET
 ########################## Class Colonia ##########################
@@ -780,39 +769,37 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-appartiene_a_localita
 contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -834,38 +821,34 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
-Comune
-Provincia
-Libero_consorzio
-Unita_amministrativa_non_estinta
-Stato_estero
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
-Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
-Capoluogo_citta_metropolitana
 Stato
 Provincia_autonoma
-Capoluogo_provincia
+Unita_territoriale_sovracomunale
 Regione_a_statuto_speciale
-Comune_estinto
+Provincia
+Libero_consorzio
+Stato_estero
+Unità_amministrativa_ex_provincia
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
+Regione
 ------- ROLES -------
 contiene_attualmente_sezione_di_censimento
 coinvolge_ulteriori_comuni
 ha_storico_di_comune
 appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
 istituito_dal_comune_di
 ha_comune
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -873,6 +856,7 @@ data_inizio_appartenenza_a_UTS_attuale
 codice_istat_UA
 data_costituzione
 tipo_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Comune_dalla_fondazione_Italia ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -881,33 +865,35 @@ Comune
 Unita_amministrativa
 Comune
 ------- NON DISJOINT SIBLINGS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Comune
-Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Unita_amministrativa_non_estinta
-Stato_estero
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
-Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
-Capoluogo_citta_metropolitana
 Stato
 Provincia_autonoma
-Capoluogo_provincia
+Unita_territoriale_sovracomunale
 Regione_a_statuto_speciale
-Comune_estinto
+Provincia
+Libero_consorzio
+Stato_estero
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
+Unità_amministrativa_ex_provincia
+Regione
 ------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
 ha_storico_di_comune
+appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+ha_comune
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -915,6 +901,7 @@ codice_istat_UA
 data_inizio_appartenenza_a_UTS_attuale
 data_costituzione
 tipo_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Comune_estinto ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -925,34 +912,36 @@ Unita_amministrativa
 Comune
 Unita_amministrativa_estinta
 ------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
 Unita_territoriale_sovracomunale
-Comune
 Provincia
 Libero_consorzio
-Stato_estero
 Unita_amministrativa_non_estinta
-Capoluogo_regione
+Stato_estero
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
 Stato
 Capoluogo_provincia
 Regione_a_statuto_speciale
-Comune_estinto
 Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- ROLES -------
+contiene_attualmente_sezione_di_censimento
+coinvolge_ulteriori_comuni
 ha_storico_di_comune
-subisce
+appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
+unita_amministrativa_di_origine
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+ha_comune
 ------- ATTRIBUTES -------
 codice_catastale
 denominazione_unita_amministrativa_attuale
@@ -967,7 +956,6 @@ data_estinzione_unita_amministrativa
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Comune_sezione_di_censimento
 ------- ROLES -------
 ha_comune
 ha_comune_sezione_di_censimento
@@ -981,34 +969,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Demanio_militare
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1030,33 +1016,31 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
 Piazza_monumentale
 ------- ROLES -------
@@ -1079,34 +1063,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1128,34 +1110,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
+Cimitero
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1177,34 +1157,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1226,34 +1204,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Sezione_di_censimento_non_classificabile
-Istituto_di_ricerca_struttura_universitaria
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1296,18 +1272,13 @@ Unita_territoriale_sovracomunale
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
 Comune
 Provincia
-Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
 Stato
 Regione_a_statuto_speciale
@@ -1317,9 +1288,14 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -1327,13 +1303,13 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Localita ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Localita
 ------- ROLES -------
 ha_tipo_localita
 appartiene_a_localita
@@ -1347,34 +1323,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1396,39 +1370,37 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento_altro
-Ospedale
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-appartiene_a_localita
 contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -1445,35 +1417,33 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
-Piazza_monumentale
+Destinazione_produttiva
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
 appartiene_a_localita
@@ -1494,34 +1464,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Stazione_ferroviaria
-Porto
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1548,21 +1516,14 @@ Unita_territoriale_sovracomunale
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
 Citta_metropolitana
-Provincia_dalla_fondazione_Italia
 Comune
-Unita_territoriale_sovracomunale
-Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
 Capoluogo_citta_metropolitana
 Stato
-Provincia_autonoma
 Regione_a_statuto_speciale
 Capoluogo_provincia
 Comune_estinto
@@ -1570,9 +1531,14 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -1580,6 +1546,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Provincia_autonoma ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -1589,23 +1556,17 @@ Unita_amministrativa
 Unita_territoriale_sovracomunale
 Provincia
 ------- NON DISJOINT SIBLINGS -------
+Provincia_dalla_fondazione_Italia
 ------- DISJOINT -------
 Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
 Comune
-Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
 Stato_estero
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Stato
-Provincia_autonoma
 Regione_a_statuto_speciale
 Capoluogo_provincia
 Comune_estinto
@@ -1613,9 +1574,14 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -1623,6 +1589,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Provincia_dalla_fondazione_Italia ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -1632,22 +1599,16 @@ Unita_amministrativa
 Unita_territoriale_sovracomunale
 Provincia
 ------- NON DISJOINT SIBLINGS -------
+Provincia_autonoma
 ------- DISJOINT -------
 Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
 Comune
-Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
 Capoluogo_citta_metropolitana
-Provincia_autonoma
 Stato
 Capoluogo_provincia
 Regione_a_statuto_speciale
@@ -1656,9 +1617,14 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -1666,6 +1632,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Regione ##########################
 ------- DESCENDANTS -------
 Regione_a_statuto_speciale
@@ -1674,6 +1641,8 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
@@ -1682,32 +1651,31 @@ Unita_territoriale_sovracomunale
 Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
-Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Stato
 Provincia_autonoma
 Capoluogo_provincia
-Regione_a_statuto_speciale
 Comune_estinto
 Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 appartiene_a_ripartizione_geografica
-ha_codifca_NUTS2
 ha_storico_di_regione
+ha_codifca_NUTS2
+subisce
 appartiene_attualmente_a_stato
+unita_amministrativa_di_origine
 appartiene_attualmente_a_regione
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_stato_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Regione_a_statuto_speciale ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -1723,32 +1691,32 @@ Unita_territoriale_sovracomunale
 Comune
 Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
 Stato_estero
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
-Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
 Stato
-Regione_a_statuto_speciale
 Capoluogo_provincia
 Comune_estinto
 Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 appartiene_a_ripartizione_geografica
-ha_storico_di_regione
 ha_codifca_NUTS2
-appartiene_attualmente_a_regione
+ha_storico_di_regione
+subisce
+appartiene_attualmente_a_stato
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+appartiene_attualmente_a_regione
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_stato_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Ripartizione_geografica ##########################
 ------- DESCENDANTS -------
 Ripartizione_geografica_livello2
@@ -1757,9 +1725,6 @@ Ripartizione_geografica_livello1
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Ripartizione_geografica
-Ripartizione_geografica_livello2
-Ripartizione_geografica_livello1
 ------- ROLES -------
 associata_a_ripartizione_di_livello1
 appartiene_a_ripartizione_geografica
@@ -1776,8 +1741,6 @@ Ripartizione_geografica
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
 Ripartizione_geografica_livello2
-Ripartizione_geografica
-Ripartizione_geografica_livello1
 ------- ROLES -------
 associata_a_ripartizione_di_livello1
 appartiene_a_ripartizione_geografica
@@ -1792,8 +1755,6 @@ Ripartizione_geografica
 Ripartizione_geografica
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Ripartizione_geografica
-Ripartizione_geografica_livello2
 Ripartizione_geografica_livello1
 ------- ROLES -------
 associata_a_ripartizione_di_livello1
@@ -1809,34 +1770,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
-Roulotte_e_o_prefabbricati
+Istituto_assistenziale
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1855,8 +1814,8 @@ perimetro_sezione_di_censimento
 ------- DESCENDANTS -------
 Cimitero
 Edificio_civile
-Colonia
 Sezione_di_censimento_di_terra
+Colonia
 Area_verde_parco
 Monumento
 Cava_o_miniera
@@ -1868,8 +1827,8 @@ Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Impianto_sportivo
 Sezione_di_censimento_di_acqua
+Impianto_sportivo
 Porto
 Stazione_ferroviaria
 Chiesa_abbazia_santuario_convento
@@ -1884,38 +1843,10 @@ Piazza_monumentale
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
-Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Centro_di_permanenza_temporanea_per_stranieri
-Cava_o_miniera
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
-Demanio_militare
-Sezione_di_censimento_non_classificabile
-Istituto_di_ricerca_struttura_universitaria
-Agglomerato_insediativo_in_seguito_a_calamita
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
-Porto
-Stazione_ferroviaria
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Ospedale
-Sezione_di_censimento_altro
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
-appartiene_a_localita
 contiene_attualmente_sezione_di_censimento
+appartiene_a_localita
 ha_shape
 ha_centroide_poligono
 ha_comune_sezione_di_censimento
@@ -1932,34 +1863,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
-Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -1981,10 +1910,8 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
 Cimitero
 Edificio_civile
-Sezione_di_censimento_di_terra
 Colonia
 Area_verde_parco
 Monumento
@@ -1992,24 +1919,24 @@ Cava_o_miniera
 Centro_di_permanenza_temporanea_per_stranieri
 Sezione_di_censimento_fittizia_in_rsbl
 Istituto_assistenziale
-Sezione_di_censimento
 Destinazione_produttiva
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
 Agglomerato_insediativo_in_seguito_a_calamita
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Sezione_di_censimento_di_acqua
 Impianto_sportivo
 Porto
 Stazione_ferroviaria
 Chiesa_abbazia_santuario_convento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
 Caserma
-Sezione_di_censimento_altro
 Ospedale
-Roulotte_e_o_prefabbricati
+Sezione_di_censimento_altro
 Aeroporto
+Roulotte_e_o_prefabbricati
 Piazza_monumentale
+------- DISJOINT -------
+Sezione_di_censimento_di_terra
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
 contiene_attualmente_sezione_di_censimento
@@ -2030,35 +1957,33 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
 Cimitero
 Edificio_civile
 Colonia
-Sezione_di_censimento_di_terra
 Area_verde_parco
 Monumento
-Centro_di_permanenza_temporanea_per_stranieri
 Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Sezione_di_censimento_fittizia_in_rsbl
 Istituto_assistenziale
-Sezione_di_censimento
 Destinazione_produttiva
-Sezione_di_censimento_non_classificabile
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
 Agglomerato_insediativo_in_seguito_a_calamita
-Sezione_di_censimento_di_acqua
+Demanio_militare
+Istituto_di_ricerca_struttura_universitaria
+Sezione_di_censimento_non_classificabile
 Impianto_sportivo
-Stazione_ferroviaria
 Porto
+Stazione_ferroviaria
 Chiesa_abbazia_santuario_convento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
 Caserma
-Sezione_di_censimento_altro
 Ospedale
-Roulotte_e_o_prefabbricati
+Sezione_di_censimento_altro
 Aeroporto
+Roulotte_e_o_prefabbricati
 Piazza_monumentale
+------- DISJOINT -------
+Sezione_di_censimento_di_acqua
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
 contiene_attualmente_sezione_di_censimento
@@ -2079,34 +2004,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -2128,34 +2051,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
-Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
 Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -2176,7 +2097,6 @@ perimetro_sezione_di_censimento
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Shape
 ------- ROLES -------
 ha_shape
 ------- ATTRIBUTES -------
@@ -2190,6 +2110,8 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
@@ -2197,18 +2119,13 @@ Comune
 Unita_territoriale_sovracomunale
 Provincia
 Libero_consorzio
-Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Unita_amministrativa
 Capoluogo_citta_metropolitana
 Provincia_autonoma
-Stato
-Capoluogo_provincia
 Regione_a_statuto_speciale
+Capoluogo_provincia
 Comune_estinto
 Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
@@ -2216,12 +2133,16 @@ Comune_dalla_fondazione_Italia
 ha_codifica_NUTS
 attuale_stato_della_cittadinanza
 ha_storico_di_stato
+subisce
 appartiene_attualmente_a_stato
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Stato_estero ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -2237,16 +2158,11 @@ Unita_territoriale_sovracomunale
 Comune
 Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
-Stato_estero
 Capoluogo_regione
 Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
-Stato
 Capoluogo_provincia
 Regione_a_statuto_speciale
 Comune_estinto
@@ -2256,11 +2172,16 @@ Comune_dalla_fondazione_Italia
 ha_codifica_NUTS
 ha_storico_di_stato
 attuale_stato_della_cittadinanza
+subisce
+appartiene_attualmente_a_stato
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
+data_estinzione_unita_amministrativa
 ########################## Class Stazione_ferroviaria ##########################
 ------- DESCENDANTS -------
 ------- FATHERS -------
@@ -2268,34 +2189,32 @@ Sezione_di_censimento
 ------- ANCESTORS -------
 Sezione_di_censimento
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Cimitero
-Edificio_civile
-Colonia
+Sezione_di_censimento_di_acqua
 Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
-Istituto_assistenziale
-Sezione_di_censimento
-Destinazione_produttiva
+------- DISJOINT -------
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
+Cimitero
 Impianto_sportivo
-Sezione_di_censimento_di_acqua
+Edificio_civile
 Porto
-Stazione_ferroviaria
+Colonia
+Area_verde_parco
 Chiesa_abbazia_santuario_convento
+Monumento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
+Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Caserma
+Sezione_di_censimento_fittizia_in_rsbl
 Ospedale
 Sezione_di_censimento_altro
 Aeroporto
+Istituto_assistenziale
 Roulotte_e_o_prefabbricati
+Destinazione_produttiva
 Piazza_monumentale
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
@@ -2318,14 +2237,13 @@ Storico_unita_amministrativa
 Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_unita_amministrativa
 Storico_di_stato
 Storico_di_regione
-Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_unita_territoriale_sovracomunale
 ha_storico_di_comune
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 determina_inizio_di_storico
 ------- ATTRIBUTES -------
@@ -2344,15 +2262,14 @@ Storico_unita_amministrativa
 Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_unita_amministrativa
 Storico_di_stato
-Storico_di_regione
 Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_regione
 appartiene_a_stato
 ha_storico_di_regione
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 determina_inizio_di_storico
 ------- ATTRIBUTES -------
@@ -2371,14 +2288,13 @@ Storico_unita_amministrativa
 Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_unita_amministrativa
-Storico_di_stato
 Storico_di_regione
 Storico_di_comune
 Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_stato
 ha_storico_di_stato
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 determina_inizio_di_storico
 ------- ATTRIBUTES -------
@@ -2397,15 +2313,14 @@ Storico_unita_amministrativa
 Storico_unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_unita_amministrativa
 Storico_di_stato
 Storico_di_regione
 Storico_di_comune
-Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_regione
 appartiene_a_unita_territoriale_sovracomunale
 ha_storico_di_unita_territoriale_sovracomunale
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 determina_inizio_di_storico
 ------- ATTRIBUTES -------
@@ -2428,10 +2343,6 @@ Storico_di_unità_territoriale_sovracomunale
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Storico_di_stato
-Storico_di_regione
-Storico_di_comune
-Storico_di_unità_territoriale_sovracomunale
 ------- ROLES -------
 appartiene_a_regione
 appartiene_a_stato
@@ -2459,7 +2370,6 @@ denominazione_storico_unita_amministrativa
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Tipo_localita
 ------- ROLES -------
 ha_tipo_localita
 ------- ATTRIBUTES -------
@@ -2471,7 +2381,6 @@ codice_tipo_localita
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Tipo_sezione_di_censimento
 ------- ROLES -------
 ha_tipo_sezione_di_censimento
 ------- ATTRIBUTES -------
@@ -2535,8 +2444,8 @@ Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
 Stato
 Provincia_autonoma
-Regione_a_statuto_speciale
 Capoluogo_provincia
+Regione_a_statuto_speciale
 Comune_estinto
 Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
@@ -2544,24 +2453,6 @@ Comune_dalla_fondazione_Italia
 ------- ANCESTORS -------
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Comune
-Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Stato_estero
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
-Regione
-Capoluogo_citta_metropolitana
-Provincia_autonoma
-Stato
-Capoluogo_provincia
-Regione_a_statuto_speciale
-Comune_estinto
-Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
@@ -2577,8 +2468,8 @@ ha_comune
 ha_codifica_NUTS
 contiene_attualmente_sezione_di_censimento
 ha_storico_di_regione
-ha_storico_di_stato
 coinvolge_ulteriori_comuni
+ha_storico_di_stato
 attuale_stato_della_cittadinanza
 ha_storico_di_comune
 ha_storico_di_unita_territoriale_sovracomunale
@@ -2594,8 +2485,8 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_inizio_appartenenza_a_UTS_attuale
 data_costituzione
-data_inizio_appartenenza_a_regione_attuale
 data_inizio_appartenenza_a_stato_attuale
+data_inizio_appartenenza_a_regione_attuale
 tipo_costituzione
 data_estinzione_unita_amministrativa
 ########################## Class Unita_amministrativa_estinta ##########################
@@ -2606,34 +2497,47 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
+Stato
 Comune
 Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Unita_amministrativa_non_estinta
-Stato_estero
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
 Regione
-Capoluogo_citta_metropolitana
-Stato
-Provincia_autonoma
-Capoluogo_provincia
-Regione_a_statuto_speciale
-Comune_estinto
-Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Unita_amministrativa_non_estinta
 ------- ROLES -------
-unita_amministrativa_di_origine
+ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
+appartiene_a_ripartizione_geografica
+ha_codifca_NUTS2
+appartiene_attualmente_a_UTS
+appartiene_attualmente_a_stato
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+ha_comune
+ha_codifica_NUTS
+contiene_attualmente_sezione_di_censimento
+ha_storico_di_regione
+coinvolge_ulteriori_comuni
+ha_storico_di_stato
+attuale_stato_della_cittadinanza
+ha_storico_di_comune
+ha_storico_di_unita_territoriale_sovracomunale
+subisce
+ha_LAU
+unita_amministrativa_di_origine
+comune_attualmente_in_ripartizione_geografica
 ------- ATTRIBUTES -------
+codice_catastale
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
 data_costituzione
+data_inizio_appartenenza_a_stato_attuale
+data_inizio_appartenenza_a_regione_attuale
+tipo_costituzione
 data_estinzione_unita_amministrativa
 ########################## Class Unita_amministrativa_non_estinta ##########################
 ------- DESCENDANTS -------
@@ -2642,34 +2546,45 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
+Stato
 Comune
 Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Stato_estero
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Capoluogo_citta_metropolitana
-Stato
-Provincia_autonoma
-Regione_a_statuto_speciale
-Capoluogo_provincia
+------- DISJOINT -------
 Comune_estinto
-Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
+Unita_amministrativa_estinta
 ------- ROLES -------
-unita_amministrativa_di_origine
+ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
+appartiene_a_ripartizione_geografica
+ha_codifca_NUTS2
+appartiene_attualmente_a_UTS
+appartiene_attualmente_a_stato
+istituito_dal_comune_di
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
+ha_comune
+ha_codifica_NUTS
+contiene_attualmente_sezione_di_censimento
+ha_storico_di_regione
+coinvolge_ulteriori_comuni
+ha_storico_di_stato
+attuale_stato_della_cittadinanza
+ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
+codice_catastale
+sigla_automobilistica_attuale
+tipo_unita_territoriale_sovracomunale
 denominazione_unita_amministrativa_attuale
 codice_istat_UA
+data_inizio_appartenenza_a_UTS_attuale
 data_costituzione
+data_inizio_appartenenza_a_stato_attuale
+data_inizio_appartenenza_a_regione_attuale
+tipo_costituzione
 ########################## Class Unita_non_amministrativa ##########################
 ------- DESCENDANTS -------
 Unità_amministrativa_ex_provincia
@@ -2684,30 +2599,29 @@ Unità_amministrativa_ex_provincia
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
 Comune
 Provincia
 Libero_consorzio
-Unita_amministrativa_non_estinta
 Stato_estero
 Capoluogo_regione
-Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
 Provincia_autonoma
 Stato
-Regione_a_statuto_speciale
 Capoluogo_provincia
+Regione_a_statuto_speciale
 Comune_estinto
-Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -2715,6 +2629,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Unita_territoriale_sovracomunale ##########################
 ------- DESCENDANTS -------
 Citta_metropolitana
@@ -2729,35 +2644,29 @@ Unita_amministrativa
 ------- ANCESTORS -------
 Unita_amministrativa
 ------- NON DISJOINT SIBLINGS -------
-------- DISJOINT -------
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Comune
-Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
 Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Comune
+Capoluogo_provincia
+Regione_a_statuto_speciale
+Comune_estinto
 Stato_estero
 Capoluogo_regione
-Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
-Capoluogo_citta_metropolitana
-Unita_amministrativa
-Stato
-Provincia_autonoma
-Regione_a_statuto_speciale
-Capoluogo_provincia
-Comune_estinto
-Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 appartiene_attualmente_a_regione
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -2765,6 +2674,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Unità_amministrativa_ex_provincia ##########################
 ------- DESCENDANTS -------
 Unita_non_amministrativa
@@ -2778,30 +2688,29 @@ Unita_non_amministrativa
 ------- DISJOINT -------
 Citta_metropolitana
 Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
 Comune
 Provincia
 Libero_consorzio
 Stato_estero
-Unita_amministrativa_non_estinta
 Capoluogo_regione
-Unità_amministrativa_ex_provincia
 Regione
-Unita_amministrativa_estinta
 Capoluogo_citta_metropolitana
-Unita_amministrativa
-Provincia_autonoma
 Stato
+Provincia_autonoma
 Regione_a_statuto_speciale
 Capoluogo_provincia
 Comune_estinto
-Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS3
+coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
+attuale_unita_amministrativa_di_origine
+appartiene_attualmente_a_regione
 ------- ATTRIBUTES -------
 sigla_automobilistica_attuale
 tipo_unita_territoriale_sovracomunale
@@ -2809,6 +2718,7 @@ denominazione_unita_amministrativa_attuale
 codice_istat_UA
 data_costituzione
 data_inizio_appartenenza_a_regione_attuale
+data_estinzione_unita_amministrativa
 ########################## Class Variazione ##########################
 ------- DESCENDANTS -------
 Variazione_comunale
@@ -3335,8 +3245,8 @@ Variazione
 Variazione_di_regione_o_UTS
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Variazione_comunale_per_acquisizione_per_estinzione
 Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
 Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
 Variazione_comunale_per_estinzione
 Variazione_comunale_per_ricostituzione
@@ -3429,8 +3339,8 @@ Variazione
 Variazione_di_regione_o_UTS
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Variazione_comunale_per_acquisizione_per_estinzione
 Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
 Variazione_comunale_per_estinzione
 Variazione_comunale_per_ricostituzione
 Variazione_UTS_regione_per_acquisizione_per_estinzione
@@ -3476,8 +3386,8 @@ Variazione
 Variazione_di_regione_o_UTS
 ------- NON DISJOINT SIBLINGS -------
 ------- DISJOINT -------
-Variazione_comunale
 Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
 Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
 Variazione_comunale_per_estinzione
 Variazione_comunale_per_ricostituzione
@@ -3692,8 +3602,8 @@ Variazione_UTS_regione_per_estinzione
 Variazione_UTS_regione_per_appartenenza
 Variazione_UTS_regione_per_prima_validita
 Variazione_comunale_per_cambio_unita_territoriale_superiore
-Variazione_UTS_regione_per_appartenenza_regione
 Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
 ------- ROLES -------
 ha_tipo_variazione_unita_amministrativa
 coinvolge_ulteriori_comuni
@@ -3739,8 +3649,8 @@ Variazione_UTS_regione_per_estinzione
 Variazione_UTS_regione_per_appartenenza
 Variazione_UTS_regione_per_prima_validita
 Variazione_comunale_per_cambio_unita_territoriale_superiore
-Variazione_di_regione_o_UTS
 Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
 ------- ROLES -------
 ha_tipo_variazione_unita_amministrativa
 coinvolge_ulteriori_comuni
@@ -3880,8 +3790,8 @@ Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
 Variazione_UTS_regione_per_estinzione
 Variazione_UTS_regione_per_appartenenza
 Variazione_UTS_regione_per_prima_validita
-Variazione_UTS_regione_per_appartenenza_regione
 Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
 ------- ROLES -------
 ha_tipo_variazione_unita_amministrativa
 coinvolge_ulteriori_comuni
@@ -4365,8 +4275,8 @@ descrizione_variazione
 ------- DOMAIN -------
 Cimitero
 Edificio_civile
-Colonia
 Sezione_di_censimento_di_terra
+Colonia
 Area_verde_parco
 Monumento
 Cava_o_miniera
@@ -4388,8 +4298,8 @@ Area_di_grande_valore_naturalistico_in_ambito_extraurbano
 Caserma
 Ospedale
 Sezione_di_censimento_altro
-Roulotte_e_o_prefabbricati
 Aeroporto
+Roulotte_e_o_prefabbricati
 Piazza_monumentale
 ------- RANGE -------
 Localita
@@ -4578,8 +4488,8 @@ Istituto_assistenziale
 Destinazione_produttiva
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
-Sezione_di_censimento_non_classificabile
 Agglomerato_insediativo_in_seguito_a_calamita
+Sezione_di_censimento_non_classificabile
 Sezione_di_censimento_di_acqua
 Impianto_sportivo
 Stazione_ferroviaria
@@ -4587,8 +4497,8 @@ Porto
 Chiesa_abbazia_santuario_convento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
 Caserma
-Sezione_di_censimento_altro
 Ospedale
+Sezione_di_censimento_altro
 Aeroporto
 Roulotte_e_o_prefabbricati
 Piazza_monumentale
@@ -4665,9 +4575,9 @@ Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
 Istituto_assistenziale
 Destinazione_produttiva
+Demanio_militare
 Agglomerato_insediativo_in_seguito_a_calamita
 Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
 Sezione_di_censimento_non_classificabile
 Sezione_di_censimento_di_acqua
 Impianto_sportivo
@@ -4676,8 +4586,8 @@ Porto
 Chiesa_abbazia_santuario_convento
 Area_di_grande_valore_naturalistico_in_ambito_extraurbano
 Caserma
-Sezione_di_censimento_altro
 Ospedale
+Sezione_di_censimento_altro
 Aeroporto
 Roulotte_e_o_prefabbricati
 Piazza_monumentale
@@ -4756,10 +4666,10 @@ Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
 Istituto_assistenziale
 Destinazione_produttiva
-Agglomerato_insediativo_in_seguito_a_calamita
 Istituto_di_ricerca_struttura_universitaria
 Demanio_militare
 Sezione_di_censimento_non_classificabile
+Agglomerato_insediativo_in_seguito_a_calamita
 Impianto_sportivo
 Sezione_di_censimento_di_acqua
 Porto
@@ -4784,16 +4694,16 @@ Colonia
 Sezione_di_censimento_di_terra
 Area_verde_parco
 Monumento
-Centro_di_permanenza_temporanea_per_stranieri
 Cava_o_miniera
+Centro_di_permanenza_temporanea_per_stranieri
 Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
 Istituto_assistenziale
 Destinazione_produttiva
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
 Sezione_di_censimento_non_classificabile
 Agglomerato_insediativo_in_seguito_a_calamita
+Istituto_di_ricerca_struttura_universitaria
+Demanio_militare
 Sezione_di_censimento_di_acqua
 Impianto_sportivo
 Stazione_ferroviaria
@@ -4812,8 +4722,8 @@ Shape
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_storico_di_comune ##########################
 ------- DOMAIN -------
-Capoluogo_citta_metropolitana
 Unita_amministrativa
+Capoluogo_citta_metropolitana
 Comune
 Capoluogo_provincia
 Comune_estinto
@@ -4860,8 +4770,8 @@ Regione
 Unita_amministrativa_estinta
 Unita_amministrativa
 Capoluogo_citta_metropolitana
-Provincia_autonoma
 Stato
+Provincia_autonoma
 Regione_a_statuto_speciale
 Capoluogo_provincia
 Comune_estinto
@@ -4902,8 +4812,8 @@ Tipo_localita
 ------- DOMAIN -------
 Cimitero
 Edificio_civile
-Colonia
 Sezione_di_censimento_di_terra
+Colonia
 Area_verde_parco
 Monumento
 Centro_di_permanenza_temporanea_per_stranieri
@@ -4912,9 +4822,9 @@ Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
 Istituto_assistenziale
 Destinazione_produttiva
+Istituto_di_ricerca_struttura_universitaria
 Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
-Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
 Sezione_di_censimento_di_acqua
 Impianto_sportivo
@@ -5016,7 +4926,6 @@ Codice_Nuts
 ########################## ObjectProperty subisce ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Comune_estinto
 ------- RANGE -------
 Variazione_comunale_per_acquisizione_per_estinzione
 Variazione_comunale

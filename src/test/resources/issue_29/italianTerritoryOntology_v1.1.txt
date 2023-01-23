@@ -2122,8 +2122,8 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS
-attuale_stato_della_cittadinanza
 ha_storico_di_stato
+attuale_stato_della_cittadinanza
 appartiene_attualmente_a_stato
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
