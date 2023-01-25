@@ -226,6 +226,7 @@ coinvolge_ulteriori_comuni
 ha_storico_di_comune
 appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
 unita_amministrativa_di_origine
 istituito_dal_comune_di
@@ -271,6 +272,7 @@ coinvolge_ulteriori_comuni
 ha_storico_di_comune
 appartiene_attualmente_a_UTS
 ha_LAU
+subisce
 comune_attualmente_in_ripartizione_geografica
 unita_amministrativa_di_origine
 istituito_dal_comune_di
@@ -603,6 +605,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -1288,6 +1291,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -1530,6 +1534,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -1572,6 +1577,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -1614,6 +1620,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -1657,6 +1664,7 @@ Comune_dalla_fondazione_Italia
 appartiene_a_ripartizione_geografica
 ha_storico_di_regione
 ha_codifca_NUTS2
+subisce
 appartiene_attualmente_a_stato
 unita_amministrativa_di_origine
 appartiene_attualmente_a_regione
@@ -1697,6 +1705,7 @@ Comune_dalla_fondazione_Italia
 appartiene_a_ripartizione_geografica
 ha_codifca_NUTS2
 ha_storico_di_regione
+subisce
 appartiene_attualmente_a_stato
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
@@ -1805,8 +1814,8 @@ perimetro_sezione_di_censimento
 ------- DESCENDANTS -------
 Cimitero
 Edificio_civile
-Colonia
 Sezione_di_censimento_di_terra
+Colonia
 Area_verde_parco
 Monumento
 Cava_o_miniera
@@ -1818,8 +1827,8 @@ Agglomerato_insediativo_in_seguito_a_calamita
 Demanio_militare
 Istituto_di_ricerca_struttura_universitaria
 Sezione_di_censimento_non_classificabile
-Impianto_sportivo
 Sezione_di_censimento_di_acqua
+Impianto_sportivo
 Porto
 Stazione_ferroviaria
 Chiesa_abbazia_santuario_convento
@@ -2122,8 +2131,9 @@ Unita_non_amministrativa
 Comune_dalla_fondazione_Italia
 ------- ROLES -------
 ha_codifica_NUTS
-ha_storico_di_stato
 attuale_stato_della_cittadinanza
+ha_storico_di_stato
+subisce
 appartiene_attualmente_a_stato
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
@@ -2162,6 +2172,7 @@ Comune_dalla_fondazione_Italia
 ha_codifica_NUTS
 ha_storico_di_stato
 attuale_stato_della_cittadinanza
+subisce
 appartiene_attualmente_a_stato
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
@@ -2560,8 +2571,12 @@ ha_storico_di_regione
 coinvolge_ulteriori_comuni
 ha_storico_di_stato
 attuale_stato_della_cittadinanza
+ha_storico_di_comune
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
+ha_LAU
 unita_amministrativa_di_origine
+comune_attualmente_in_ripartizione_geografica
 ------- ATTRIBUTES -------
 codice_catastale
 sigla_automobilistica_attuale
@@ -2605,6 +2620,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -2649,6 +2665,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 appartiene_attualmente_a_regione
 ha_storico_di_unita_amministrativa
@@ -2692,6 +2709,7 @@ ha_codifica_NUTS3
 coinvolge_ulteriori_UTS
 appartiene_attualmente_a_UTS
 ha_storico_di_unita_territoriale_sovracomunale
+subisce
 unita_amministrativa_di_origine
 ha_storico_di_unita_amministrativa
 attuale_unita_amministrativa_di_origine
@@ -4258,34 +4276,7 @@ descrizione_variazione
 
 ########################## ObjectProperty appartiene_a_localita ##########################
 ------- DOMAIN -------
-Cimitero
-Edificio_civile
-Sezione_di_censimento_di_terra
-Colonia
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Sezione_di_censimento_non_classificabile
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
-Agglomerato_insediativo_in_seguito_a_calamita
-Impianto_sportivo
-Sezione_di_censimento_di_acqua
-Porto
-Stazione_ferroviaria
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Ospedale
-Sezione_di_censimento_altro
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- RANGE -------
 Localita
 ------- CHILDREN -------
@@ -4302,12 +4293,9 @@ Storico_di_regione
 ########################## ObjectProperty appartiene_a_ripartizione_geografica ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Regione_a_statuto_speciale
 Regione
 ------- RANGE -------
 Ripartizione_geografica
-Ripartizione_geografica_livello2
-Ripartizione_geografica_livello1
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty appartiene_a_stato ##########################
@@ -4333,15 +4321,8 @@ Storico_di_unità_territoriale_sovracomunale
 Unita_amministrativa
 Comune
 ------- RANGE -------
-Citta_metropolitana
 Unita_amministrativa
-Provincia_dalla_fondazione_Italia
-Provincia_autonoma
 Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Unita_non_amministrativa
-Unità_amministrativa_ex_provincia
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty appartiene_attualmente_a_regione ##########################
@@ -4350,7 +4331,6 @@ Unita_amministrativa
 Unita_territoriale_sovracomunale
 ------- RANGE -------
 Unita_amministrativa
-Regione_a_statuto_speciale
 Regione
 ------- CHILDREN -------
 ------- ANCESTORS -------
@@ -4378,7 +4358,6 @@ Cittadinanza
 ------- RANGE -------
 Unita_amministrativa
 Stato
-Stato_estero
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty attuale_unita_amministrativa_di_origine ##########################
@@ -4442,16 +4421,9 @@ Comune
 ########################## ObjectProperty comune_attualmente_in_ripartizione_geografica ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Capoluogo_citta_metropolitana
 Comune
-Capoluogo_provincia
-Comune_estinto
-Capoluogo_regione
-Comune_dalla_fondazione_Italia
 ------- RANGE -------
 Ripartizione_geografica
-Ripartizione_geografica_livello2
-Ripartizione_geografica_livello1
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty contiene_attualmente_sezione_di_censimento ##########################
@@ -4459,88 +4431,20 @@ Ripartizione_geografica_livello1
 Unita_amministrativa
 Comune
 ------- RANGE -------
-Cimitero
-Edificio_civile
-Sezione_di_censimento_di_terra
-Colonia
-Area_verde_parco
-Monumento
-Centro_di_permanenza_temporanea_per_stranieri
-Cava_o_miniera
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Demanio_militare
-Istituto_di_ricerca_struttura_universitaria
-Agglomerato_insediativo_in_seguito_a_calamita
-Sezione_di_censimento_non_classificabile
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
-Stazione_ferroviaria
-Porto
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Ospedale
-Sezione_di_censimento_altro
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty determina_inizio_di_storico ##########################
 ------- DOMAIN -------
-Variazione_comunale
-Variazione_comunale_per_acquisizione_per_estinzione
-Variazione_comunale_per_estinzione
-Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
-Variazione_comunale_per_ricostituzione
-Variazione_comunale_per_costituzione
-Variazione_UTS_regione_per_acquisizione_per_estinzione
-Variazione_comunale_per_estinzione_per_cessione_stato_estero
-Variazione_UTS_regione_per_annessione
-Variazione_comunale_per_rinumerazione
-Variazione_comunale_per_acquisizione
-Variazione_comunale_per_costituzione_per_prima_validita
-Variazione_comunale_per_cambio_denominazione
-Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
-Variazione_comunale_per_cessione_di_territorio_per_costituzione
-Variazione_UTS_regione_per_cessione_per_costituzione
 Variazione
-Variazione_UTS_regione_per_cambio_tipologia
-Variazione_UTS_regione_per_altro_stato
-Variazione_UTS_regione_per_variazione_sigla_automobilistica
-Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
-Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
-Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
-Variazione_comunale_per_cessione
-Variazione_UTS_regione_per_cambio_denominazione
-Variazione_UTS_regione_per_costituzione
-Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
-Variazione_UTS_regione_per_estinzione
-Variazione_UTS_regione_per_appartenenza
-Variazione_UTS_regione_per_prima_validita
-Variazione_comunale_per_cambio_unita_territoriale_superiore
-Variazione_UTS_regione_per_appartenenza_regione
-Variazione_di_regione_o_UTS
 ------- RANGE -------
 Storico_unita_amministrativa
-Storico_di_stato
-Storico_di_regione
-Storico_di_comune
-Storico_di_unità_territoriale_sovracomunale
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_LAU ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Capoluogo_citta_metropolitana
 Comune
-Capoluogo_provincia
-Comune_estinto
-Capoluogo_regione
-Comune_dalla_fondazione_Italia
 ------- RANGE -------
 Codice_Regolamento_TERCET
 LAU
@@ -4548,34 +4452,7 @@ LAU
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_centroide_poligono ##########################
 ------- DOMAIN -------
-Cimitero
-Edificio_civile
-Sezione_di_censimento_di_terra
-Colonia
-Area_verde_parco
-Monumento
-Centro_di_permanenza_temporanea_per_stranieri
-Cava_o_miniera
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Demanio_militare
-Agglomerato_insediativo_in_seguito_a_calamita
-Istituto_di_ricerca_struttura_universitaria
-Sezione_di_censimento_non_classificabile
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
-Stazione_ferroviaria
-Porto
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Ospedale
-Sezione_di_censimento_altro
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- RANGE -------
 Centroide_poligono
 ------- CHILDREN -------
@@ -4583,7 +4460,6 @@ Centroide_poligono
 ########################## ObjectProperty ha_codifca_NUTS2 ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Regione_a_statuto_speciale
 Regione
 ------- RANGE -------
 Codice_Regolamento_TERCET
@@ -4595,7 +4471,6 @@ Codice_Nuts
 ------- DOMAIN -------
 Unita_amministrativa
 Stato
-Stato_estero
 ------- RANGE -------
 Codice_Regolamento_TERCET
 Codice_NUTS0
@@ -4615,14 +4490,7 @@ Codice_Nuts
 ########################## ObjectProperty ha_codifica_NUTS3 ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Provincia_autonoma
 Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Unità_amministrativa_ex_provincia
-Unita_non_amministrativa
 ------- RANGE -------
 Codice_NUTS3
 Codice_Regolamento_TERCET
@@ -4639,68 +4507,14 @@ Comune
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_comune_sezione_di_censimento ##########################
 ------- DOMAIN -------
-Cimitero
-Edificio_civile
-Sezione_di_censimento_di_terra
-Colonia
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
-Sezione_di_censimento_non_classificabile
-Agglomerato_insediativo_in_seguito_a_calamita
-Impianto_sportivo
-Sezione_di_censimento_di_acqua
-Porto
-Stazione_ferroviaria
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Sezione_di_censimento_altro
-Ospedale
-Roulotte_e_o_prefabbricati
-Aeroporto
-Piazza_monumentale
 ------- RANGE -------
 Comune_sezione_di_censimento
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_shape ##########################
 ------- DOMAIN -------
-Cimitero
-Edificio_civile
-Colonia
-Sezione_di_censimento_di_terra
-Area_verde_parco
-Monumento
-Cava_o_miniera
-Centro_di_permanenza_temporanea_per_stranieri
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Sezione_di_censimento_non_classificabile
-Agglomerato_insediativo_in_seguito_a_calamita
-Istituto_di_ricerca_struttura_universitaria
-Demanio_militare
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
-Stazione_ferroviaria
-Porto
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Sezione_di_censimento_altro
-Ospedale
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- RANGE -------
 Shape
 ------- CHILDREN -------
@@ -4708,12 +4522,7 @@ Shape
 ########################## ObjectProperty ha_storico_di_comune ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Capoluogo_citta_metropolitana
 Comune
-Capoluogo_provincia
-Comune_estinto
-Capoluogo_regione
-Comune_dalla_fondazione_Italia
 ------- RANGE -------
 Storico_unita_amministrativa
 Storico_di_comune
@@ -4722,7 +4531,6 @@ Storico_di_comune
 ########################## ObjectProperty ha_storico_di_regione ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Regione_a_statuto_speciale
 Regione
 ------- RANGE -------
 Storico_unita_amministrativa
@@ -4733,7 +4541,6 @@ Storico_di_regione
 ------- DOMAIN -------
 Unita_amministrativa
 Stato
-Stato_estero
 ------- RANGE -------
 Storico_unita_amministrativa
 Storico_di_stato
@@ -4741,46 +4548,15 @@ Storico_di_stato
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_storico_di_unita_amministrativa ##########################
 ------- DOMAIN -------
-Citta_metropolitana
-Provincia_dalla_fondazione_Italia
-Unita_territoriale_sovracomunale
-Comune
-Provincia
-Libero_consorzio
-Stato_estero
-Unita_amministrativa_non_estinta
-Capoluogo_regione
-Unità_amministrativa_ex_provincia
-Regione
-Unita_amministrativa_estinta
 Unita_amministrativa
-Capoluogo_citta_metropolitana
-Stato
-Provincia_autonoma
-Regione_a_statuto_speciale
-Capoluogo_provincia
-Comune_estinto
-Unita_non_amministrativa
-Comune_dalla_fondazione_Italia
 ------- RANGE -------
 Storico_unita_amministrativa
-Storico_di_stato
-Storico_di_regione
-Storico_di_comune
-Storico_di_unità_territoriale_sovracomunale
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_storico_di_unita_territoriale_sovracomunale ##########################
 ------- DOMAIN -------
-Citta_metropolitana
 Unita_amministrativa
-Provincia_dalla_fondazione_Italia
-Provincia_autonoma
 Unita_territoriale_sovracomunale
-Provincia
-Libero_consorzio
-Unità_amministrativa_ex_provincia
-Unita_non_amministrativa
 ------- RANGE -------
 Storico_unita_amministrativa
 Storico_di_unità_territoriale_sovracomunale
@@ -4795,73 +4571,14 @@ Tipo_localita
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_tipo_sezione_di_censimento ##########################
 ------- DOMAIN -------
-Cimitero
-Edificio_civile
-Sezione_di_censimento_di_terra
-Colonia
-Area_verde_parco
-Monumento
-Centro_di_permanenza_temporanea_per_stranieri
-Cava_o_miniera
-Sezione_di_censimento_fittizia_in_rsbl
 Sezione_di_censimento
-Istituto_assistenziale
-Destinazione_produttiva
-Istituto_di_ricerca_struttura_universitaria
-Agglomerato_insediativo_in_seguito_a_calamita
-Demanio_militare
-Sezione_di_censimento_non_classificabile
-Sezione_di_censimento_di_acqua
-Impianto_sportivo
-Stazione_ferroviaria
-Porto
-Chiesa_abbazia_santuario_convento
-Area_di_grande_valore_naturalistico_in_ambito_extraurbano
-Caserma
-Sezione_di_censimento_altro
-Ospedale
-Aeroporto
-Roulotte_e_o_prefabbricati
-Piazza_monumentale
 ------- RANGE -------
 Tipo_sezione_di_censimento
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty ha_tipo_variazione_unita_amministrativa ##########################
 ------- DOMAIN -------
-Variazione_comunale
-Variazione_comunale_per_acquisizione_per_estinzione
-Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
-Variazione_comunale_per_estinzione
-Variazione_comunale_per_ricostituzione
-Variazione_UTS_regione_per_acquisizione_per_estinzione
-Variazione_comunale_per_costituzione
-Variazione_comunale_per_estinzione_per_cessione_stato_estero
-Variazione_UTS_regione_per_annessione
-Variazione_comunale_per_rinumerazione
-Variazione_comunale_per_acquisizione
-Variazione_comunale_per_costituzione_per_prima_validita
-Variazione_comunale_per_cambio_denominazione
-Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
-Variazione_comunale_per_cessione_di_territorio_per_costituzione
-Variazione_UTS_regione_per_cessione_per_costituzione
 Variazione
-Variazione_UTS_regione_per_cambio_tipologia
-Variazione_UTS_regione_per_altro_stato
-Variazione_UTS_regione_per_variazione_sigla_automobilistica
-Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
-Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
-Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
-Variazione_comunale_per_cessione
-Variazione_UTS_regione_per_cambio_denominazione
-Variazione_UTS_regione_per_costituzione
-Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
-Variazione_UTS_regione_per_estinzione
-Variazione_UTS_regione_per_appartenenza
-Variazione_UTS_regione_per_prima_validita
-Variazione_comunale_per_cambio_unita_territoriale_superiore
-Variazione_di_regione_o_UTS
-Variazione_UTS_regione_per_appartenenza_regione
 ------- RANGE -------
 Tipo_variazione_unita_amministrativa
 ------- CHILDREN -------
@@ -4911,41 +4628,8 @@ Codice_Nuts
 ########################## ObjectProperty subisce ##########################
 ------- DOMAIN -------
 Unita_amministrativa
-Comune_estinto
 ------- RANGE -------
-Variazione_comunale_per_acquisizione_per_estinzione
-Variazione_comunale
-Variazione_comunale_per_estinzione
-Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
-Variazione_comunale_per_ricostituzione
-Variazione_UTS_regione_per_acquisizione_per_estinzione
-Variazione_comunale_per_costituzione
-Variazione_comunale_per_estinzione_per_cessione_stato_estero
-Variazione_UTS_regione_per_annessione
-Variazione_comunale_per_rinumerazione
-Variazione_comunale_per_acquisizione
-Variazione_comunale_per_costituzione_per_prima_validita
-Variazione_comunale_per_cambio_denominazione
-Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
-Variazione_comunale_per_cessione_di_territorio_per_costituzione
-Variazione_UTS_regione_per_cessione_per_costituzione
 Variazione
-Variazione_UTS_regione_per_cambio_tipologia
-Variazione_UTS_regione_per_altro_stato
-Variazione_UTS_regione_per_variazione_sigla_automobilistica
-Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
-Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
-Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
-Variazione_comunale_per_cessione
-Variazione_UTS_regione_per_cambio_denominazione
-Variazione_UTS_regione_per_costituzione
-Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
-Variazione_UTS_regione_per_estinzione
-Variazione_UTS_regione_per_appartenenza
-Variazione_UTS_regione_per_prima_validita
-Variazione_comunale_per_cambio_unita_territoriale_superiore
-Variazione_UTS_regione_per_appartenenza_regione
-Variazione_di_regione_o_UTS
 ------- CHILDREN -------
 ------- ANCESTORS -------
 ########################## ObjectProperty unita_amministrativa_di_origine ##########################

@@ -1,0 +1,1634 @@
+
+########################## Class Thing ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+------- ATTRIBUTES -------
+########################## Class Capoluogo_citta_metropolitana ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Stato
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Capoluogo_provincia ##########################
+------- DESCENDANTS -------
+Capoluogo_regione
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Unita_territoriale_sovracomunale
+Comune_estinto
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Capoluogo_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Capoluogo_provincia
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Capoluogo_provincia
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Unita_territoriale_sovracomunale
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Comune ##########################
+------- DESCENDANTS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Stato
+Unita_territoriale_sovracomunale
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Comune_dalla_fondazione_Italia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+------- NON DISJOINT SIBLINGS -------
+Capoluogo_citta_metropolitana
+Capoluogo_provincia
+Comune_estinto
+------- DISJOINT -------
+Stato
+Unita_territoriale_sovracomunale
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Comune_estinto ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Comune
+Unita_amministrativa_estinta
+------- ANCESTORS -------
+Unita_amministrativa
+Comune
+Unita_amministrativa_estinta
+------- NON DISJOINT SIBLINGS -------
+Comune_dalla_fondazione_Italia
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Unita_amministrativa_non_estinta
+Regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Comune
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Stato ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Comune
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa ##########################
+------- DESCENDANTS -------
+Capoluogo_citta_metropolitana
+Stato
+Comune
+Unita_territoriale_sovracomunale
+Capoluogo_provincia
+Comune_estinto
+Unita_amministrativa_non_estinta
+Capoluogo_regione
+Regione
+Comune_dalla_fondazione_Italia
+Unita_amministrativa_estinta
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa_estinta ##########################
+------- DESCENDANTS -------
+Comune_estinto
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Stato
+Comune
+Unita_territoriale_sovracomunale
+Regione
+------- DISJOINT -------
+Unita_amministrativa_non_estinta
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Unita_amministrativa_non_estinta ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Stato
+Comune
+Unita_territoriale_sovracomunale
+Regione
+------- DISJOINT -------
+Comune_estinto
+Unita_amministrativa_estinta
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Unita_territoriale_sovracomunale ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Unita_amministrativa
+------- ANCESTORS -------
+Unita_amministrativa
+------- NON DISJOINT SIBLINGS -------
+Unita_amministrativa_non_estinta
+Unita_amministrativa_estinta
+------- DISJOINT -------
+Capoluogo_citta_metropolitana
+Stato
+Comune
+Capoluogo_provincia
+Comune_estinto
+Capoluogo_regione
+Regione
+Comune_dalla_fondazione_Italia
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione ##########################
+------- DESCENDANTS -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- FATHERS -------
+------- ANCESTORS -------
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_acquisizione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_altro_stato ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_annessione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_appartenenza ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_appartenenza_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_denominazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_cessione_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_costituzione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_estinzione_per_cambio_tipologia ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_prima_validita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_UTS_regione_per_variazione_sigla_automobilistica ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_di_regione_o_UTS
+------- ANCESTORS -------
+Variazione
+Variazione_di_regione_o_UTS
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale ##########################
+------- DESCENDANTS -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_cessione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- FATHERS -------
+Variazione
+------- ANCESTORS -------
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_acquisizione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_acquisizione_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_denominazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cambio_unita_territoriale_superiore ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cessione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_cessione_di_territorio_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione_per_annessione_da_stato_estero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_costituzione_per_prima_validita ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_estinzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_estinzione_per_cessione_stato_estero ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_di_regione_o_UTS
+Variazione_UTS_regione_per_appartenenza_regione
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_ricostituzione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_comunale_per_rinumerazione ##########################
+------- DESCENDANTS -------
+------- FATHERS -------
+Variazione_comunale
+------- ANCESTORS -------
+Variazione_comunale
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_costituzione
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_UTS_regione_per_annessione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_cessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+Variazione_UTS_regione_per_appartenenza_regione
+Variazione_di_regione_o_UTS
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+########################## Class Variazione_di_regione_o_UTS ##########################
+------- DESCENDANTS -------
+Variazione_UTS_regione_per_estinzione_per_cambio_tipologia
+Variazione_UTS_regione_per_variazione_sigla_automobilistica
+Variazione_UTS_regione_per_costituzione_per_cambio_tipologia
+Variazione_UTS_regione_per_acquisizione_per_estinzione
+Variazione_UTS_regione_per_annessione
+Variazione_UTS_regione_per_cambio_denominazione
+Variazione_UTS_regione_per_costituzione
+Variazione_UTS_regione_per_cambio_appartenenza_tipologia_regione
+Variazione_UTS_regione_per_estinzione
+Variazione_UTS_regione_per_appartenenza
+Variazione_UTS_regione_per_prima_validita
+Variazione_UTS_regione_per_cessione_per_costituzione
+Variazione_UTS_regione_per_cambio_tipologia
+Variazione_UTS_regione_per_altro_stato
+Variazione_UTS_regione_per_appartenenza_regione
+------- FATHERS -------
+Variazione
+------- ANCESTORS -------
+Variazione
+------- NON DISJOINT SIBLINGS -------
+------- DISJOINT -------
+Variazione_comunale
+Variazione_comunale_per_acquisizione_per_estinzione
+Variazione_comunale_per_estinzione
+Variazione_comunale_per_cambio_tipologia_unita_territoriale_superiore
+Variazione_comunale_per_ricostituzione
+Variazione_comunale_per_cambio_di_denominazione_e_dell_unita_territoriale_di_livello_superiore_di_appartenenza
+Variazione_comunale_per_costituzione
+Variazione_comunale_per_cessione
+Variazione_comunale_per_estinzione_per_cessione_stato_estero
+Variazione_comunale_per_rinumerazione
+Variazione_comunale_per_acquisizione
+Variazione_comunale_per_costituzione_per_prima_validita
+Variazione_comunale_per_cambio_denominazione
+Variazione_comunale_per_costituzione_per_annessione_da_stato_estero
+Variazione_comunale_per_cessione_di_territorio_per_costituzione
+Variazione_comunale_per_cambio_unita_territoriale_superiore
+------- ROLES -------
+subisce
+------- ATTRIBUTES -------
+
+########################## ObjectProperty subisce ##########################
+------- DOMAIN -------
+Unita_amministrativa
+------- RANGE -------
+Variazione
+------- CHILDREN -------
+------- ANCESTORS -------

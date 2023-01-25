@@ -495,21 +495,12 @@ public class OntologyProximityManager {
             classDescendantsMap.get(sup).add(sub);
         } else {
             if (sup instanceof OWLObjectSomeValuesFrom) {
-                OWLObjectPropertyExpression p = ((OWLObjectSomeValuesFrom) sup).getProperty();
+                OWLObjectSomeValuesFrom objSomeVal = (OWLObjectSomeValuesFrom) sup;
+                OWLObjectPropertyExpression p = objSomeVal.getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
-                if (p instanceof OWLObjectProperty) {
-                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
-                } else if (p instanceof OWLObjectInverseOf) {
-                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
-                }
             } else if (sup instanceof OWLObjectAllValuesFrom) {
                 OWLObjectPropertyExpression p = ((OWLObjectAllValuesFrom) sup).getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
-                if (p instanceof OWLObjectProperty) {
-                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
-                } else if (p instanceof OWLObjectInverseOf) {
-                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
-                }
             } else {
                 if (sup instanceof OWLDataSomeValuesFrom) {
                     OWLDataProperty prop = (OWLDataProperty) ((OWLDataSomeValuesFrom) sup).getProperty();

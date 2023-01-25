@@ -90,8 +90,6 @@ public class TestOntologyProximityManager {
 
         //Check if all DIRECTLY father-related props are related to all children
         classes.forEach(cl->{
-            System.out.println();
-            System.out.println("############## "+cl.getIRI().getShortForm()+" ##############");
             Set<OWLObjectProperty> classRoles = proximityManager.getClassRoles(cl);
             roles.forEach(r->{
                 System.out.println(r.getIRI().getShortForm());
@@ -106,118 +104,6 @@ public class TestOntologyProximityManager {
             });
         });
 
-    }
-
-
-
-    public static void main(String[] args) throws IOException, OWLOntologyCreationException {
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        GraphOLParser_v3 parser = new GraphOLParser_v3();
-        //String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1.graphol";
-        String grapholFilePath =  "src/test/resources/issue_29/italianTerritoryOntology_v1.1_NO_QUALIFIED_EXISTENTIAL.graphol";
-        FileInputStream fileInputStream = new FileInputStream(grapholFilePath);
-
-        String graphol = new BufferedReader(new InputStreamReader(fileInputStream, StandardCharsets.UTF_8))
-                .lines().collect(Collectors.joining("\n"));
-        OWLOntology ontology = parser.parseOWLOntology(graphol, manager);
-
-        OntologyProximityManager proximityManager = new OntologyProximityManager(ontology);
-
-        String[] pathSplit = grapholFilePath.split("/");
-        String testFilePath = "";
-        for (int i = 0; i < pathSplit.length - 1; i++) {
-            if(i!=0) {
-                testFilePath += "/";
-            }
-            testFilePath += pathSplit[i];
-        }
-        testFilePath += "/" + pathSplit[pathSplit.length - 1].substring(0, pathSplit[pathSplit.length - 1].lastIndexOf('.')) + ".txt";
-        BufferedWriter bf = new BufferedWriter(new FileWriter(testFilePath));
-
-        ontology.getClassesInSignature(Imports.INCLUDED).forEach(cl -> {
-            try {
-                bf.write("\n########################## Class " + cl.getIRI().getShortForm() + " ##########################");
-                bf.write("\n------- DESCENDANTS -------");
-                for (OWLClass op : proximityManager.getClassDescendants(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- FATHERS -------");
-                for (OWLClass op : proximityManager.getClassFathers(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- ANCESTORS -------");
-                for (OWLClass op : proximityManager.getClassAncestors(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- NON DISJOINT SIBLINGS -------");
-                for (OWLClass op : proximityManager.getClassNonDisjointSiblings(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- DISJOINT -------");
-                for (OWLClass op : proximityManager.getClassDisjoint(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- ROLES -------");
-                for (OWLObjectProperty op : proximityManager.getClassRoles(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- ATTRIBUTES -------");
-                for (OWLDataProperty op : proximityManager.getClassAttributes(cl)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        bf.write("\n");
-        ontology.getObjectPropertiesInSignature().forEach(objProp -> {
-            try {
-                bf.write("\n########################## ObjectProperty " + objProp.getIRI().getShortForm() + " ##########################");
-                bf.write("\n------- DOMAIN -------");
-                for (OWLClass op : proximityManager.getObjPropDomain(objProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- RANGE -------");
-                for (OWLClass op : proximityManager.getObjPropRange(objProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- CHILDREN -------");
-                for (OWLObjectProperty op : proximityManager.getObjPropChildren(objProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- ANCESTORS -------");
-                for (OWLObjectProperty op : proximityManager.getObjPropAncestors(objProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        bf.write("\n");
-        ontology.getDataPropertiesInSignature().forEach(dtProp -> {
-            try {
-                bf.write("\n########################## DataProperty " + dtProp.getIRI().getShortForm() + " ##########################");
-                bf.write("\n------- DOMAIN -------");
-                for (OWLClass op : proximityManager.getDataPropDomainMap(dtProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- CHILDREN -------");
-                for (OWLDataProperty op : proximityManager.getDataPropChildrenMap(dtProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.write("\n------- ANCESTORS -------");
-                for (OWLDataProperty op : proximityManager.getDataPropAncestorsMap(dtProp)) {
-                    bf.write("\n" + op.getIRI().getShortForm());
-                }
-                bf.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-        bf.close();
     }
 
 }
