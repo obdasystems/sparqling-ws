@@ -26,6 +26,8 @@ public class OntologyProximityManager {
     //OBJ PROPS
     private Map<OWLObjectProperty, Set<OWLClass>> objPropDomainMap;
     private Map<OWLObjectProperty, Set<OWLClass>> objPropRangeMap;
+    private Map<OWLObjectProperty, Set<OWLClass>> objPropMandPartDomainMap;
+    private Map<OWLObjectProperty, Set<OWLClass>> objPropMandPartRangeMap;
     private Map<OWLObjectProperty, Set<OWLObjectProperty>> objPropChildrenMap;
     private Map<OWLObjectProperty, Set<OWLObjectProperty>> objPropAncestorsMap;
 
@@ -49,6 +51,8 @@ public class OntologyProximityManager {
         this.classAttributesMap = new HashMap<>();
         this.objPropDomainMap = new HashMap<>();
         this.objPropRangeMap = new HashMap<>();
+        this.objPropMandPartDomainMap = new HashMap<>();
+        this.objPropMandPartRangeMap = new HashMap<>();
         this.dataPropDomainMap = new HashMap<>();
         this.objPropChildrenMap = new HashMap<>();
         this.objPropAncestorsMap = new HashMap<>();
@@ -136,7 +140,6 @@ public class OntologyProximityManager {
         });
         computeDisjointSiblingsMap();
         closeClassRolesAndAttributesMaps();
-        closePropertiesDomainRangeMaps();
     }
 
     private void processSignature() {
@@ -232,30 +235,7 @@ public class OntologyProximityManager {
         return first.stream().anyMatch(second::contains);
     }
 
-    private void closePropertiesDomainRangeMaps() {
-        // https://github.com/obdasystems/sparqling-ws/issues/4
-        /*objPropDomainMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });
-        objPropRangeMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });
-        dataPropDomainMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });*/
-    }
+
 
     private Set<OWLClass> getClassesWithNoFather() {
         Set<OWLClass> result = new HashSet<>();
