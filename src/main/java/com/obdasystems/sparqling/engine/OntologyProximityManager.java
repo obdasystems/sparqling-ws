@@ -104,6 +104,14 @@ public class OntologyProximityManager {
         return objPropRangeMap.get(prop);
     }
 
+    public Set<OWLClass> getObjPropMandPartDomain(OWLObjectProperty prop) {
+        return objPropMandPartDomainMap.get(prop);
+    }
+
+    public Set<OWLClass> getObjPropMandPartRange(OWLObjectProperty prop) {
+        return objPropMandPartRangeMap.get(prop);
+    }
+
     public Set<OWLObjectProperty> getObjPropChildren(OWLObjectProperty prop) {
         return objPropChildrenMap.get(prop);
     }
@@ -158,6 +166,8 @@ public class OntologyProximityManager {
             objPropAncestorsMap.put(objProp, new HashSet<>());
             objPropDomainMap.put(objProp, new HashSet<>());
             objPropRangeMap.put(objProp, new HashSet<>());
+            objPropMandPartDomainMap.put(objProp, new HashSet<>());
+            objPropMandPartRangeMap.put(objProp, new HashSet<>());
         });
         ontology.getDataPropertiesInSignature(Imports.INCLUDED).forEach(dataProp -> {
             dataPropChildrenMap.put(dataProp, new HashSet<>());
@@ -478,9 +488,19 @@ public class OntologyProximityManager {
                 OWLObjectSomeValuesFrom objSomeVal = (OWLObjectSomeValuesFrom) sup;
                 OWLObjectPropertyExpression p = objSomeVal.getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
+                if (p instanceof OWLObjectProperty) {
+                    objPropMandPartDomainMap.get(p.getNamedProperty()).add(sub);
+                } else if (p instanceof OWLObjectInverseOf) {
+                    objPropMandPartRangeMap.get(p.getNamedProperty()).add(sub);
+                }
             } else if (sup instanceof OWLObjectAllValuesFrom) {
                 OWLObjectPropertyExpression p = ((OWLObjectAllValuesFrom) sup).getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
+                if (p instanceof OWLObjectProperty) {
+                    objPropMandPartDomainMap.get(p.getNamedProperty()).add(sub);
+                } else if (p instanceof OWLObjectInverseOf) {
+                    objPropMandPartRangeMap.get(p.getNamedProperty()).add(sub);
+                }
             } else {
                 if (sup instanceof OWLDataSomeValuesFrom) {
                     OWLDataProperty prop = (OWLDataProperty) ((OWLDataSomeValuesFrom) sup).getProperty();
@@ -655,6 +675,19 @@ public class OntologyProximityManager {
         classAttributesMap.get(cl).add(prop);
     }
 
+    private boolean isDomainRelated(OWLClass cl, OWLObjectProperty objProp) {
+        Set<OWLClass> domain = getObjPropDomain(objProp);
+        Set<OWLClass> mandPart = getObjPropMandPartDomain(objProp);
+        Set<OWLClass> ancestors = getClassAncestors(cl);
+        return domain.contains(cl) || domain.stream().anyMatch(ancestors::contains) || mandPart.contains(cl) || mandPart.stream().anyMatch(ancestors::contains);
+    }
+    private boolean isRangeRelated(OWLClass cl, OWLObjectProperty objProp) {
+        Set<OWLClass> range = getObjPropRange(objProp);
+        Set<OWLClass> mandPart = getObjPropMandPartRange(objProp);
+        Set<OWLClass> ancestors = getClassAncestors(cl);
+        return range.contains(cl) || range.stream().anyMatch(ancestors::contains) || mandPart.contains(cl) || mandPart.stream().anyMatch(ancestors::contains);
+    }
+
     public Highlights getHighlights(String clickedClassIRI) {
         Highlights ret = new Highlights();
         OWLClass cl = new OWLClassImpl(IRI.create(clickedClassIRI));
@@ -666,18 +699,18 @@ public class OntologyProximityManager {
         classes.addAll(getClassNonDisjointSiblings(cl));
         ret.setClasses(classes.stream().map(i -> i.getIRI().toString()).collect(Collectors.toList()));
 
-        for(OWLObjectProperty i : getClassRoles(cl)) {
+        for(OWLObjectProperty objProp : getClassRoles(cl)) {
             Branch b = new Branch();
-            b.setObjectPropertyIRI(i.getIRI().toString());
-            Set<OWLClass> domain = getObjPropDomain(i);
-            Set<OWLClass> range = getObjPropRange(i);
+            b.setObjectPropertyIRI(objProp.getIRI().toString());
+            Set<OWLClass> domain = getObjPropDomain(objProp);
+            Set<OWLClass> range = getObjPropRange(objProp);
             /**
              * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
              * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
             **/
             boolean notAdd = false;
-            if(domain.contains(cl) || domain.stream().anyMatch(ancestors::contains)) {
-                for (OWLObjectPropertyDomainAxiom a : ontology.getObjectPropertyDomainAxioms(i)) {
+            if(isDomainRelated(cl, objProp)) {
+                for (OWLObjectPropertyDomainAxiom a : ontology.getObjectPropertyDomainAxioms(objProp)) {
                     if (a.getDomain() instanceof OWLClass) {
                         OWLClass domainClass = (OWLClass) a.getDomain();
                         if(getClassDescendants(cl).contains(domainClass)) {
@@ -689,15 +722,15 @@ public class OntologyProximityManager {
                 if (notAdd) {
                     continue;
                 }
-                if(getObjPropRange(i).contains(cl)) {
+                if(isRangeRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:range) {
-                    b.addRelatedClassesItem(c.getIRI().toString());
-                }
+                getObjPropRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropMandPartRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+
                 b.setDirect(true);
-            } else if(range.contains(cl) || range.stream().anyMatch(ancestors::contains)) {
-                for (OWLObjectPropertyRangeAxiom a : ontology.getObjectPropertyRangeAxioms(i)) {
+            } else if(isRangeRelated(cl, objProp)) {
+                for (OWLObjectPropertyRangeAxiom a : ontology.getObjectPropertyRangeAxioms(objProp)) {
                     if (a.getRange() instanceof OWLClass) {
                         OWLClass rangeClass = (OWLClass) a.getRange();
                         if(getClassDescendants(cl).contains(rangeClass)) {
@@ -709,12 +742,11 @@ public class OntologyProximityManager {
                 if (notAdd) {
                     continue;
                 }
-                if(domain.contains(cl)) {
+                if(isDomainRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:domain) {
-                    b.addRelatedClassesItem(c.getIRI().toString());
-                }
+                getObjPropDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropMandPartDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
                 b.setDirect(false);
             }
             ret.addObjectPropertiesItem(b);
