@@ -26,6 +26,8 @@ public class OntologyProximityManager {
     //OBJ PROPS
     private Map<OWLObjectProperty, Set<OWLClass>> objPropDomainMap;
     private Map<OWLObjectProperty, Set<OWLClass>> objPropRangeMap;
+    private Map<OWLObjectProperty, Set<OWLClass>> objPropMandPartDomainMap;
+    private Map<OWLObjectProperty, Set<OWLClass>> objPropMandPartRangeMap;
     private Map<OWLObjectProperty, Set<OWLObjectProperty>> objPropChildrenMap;
     private Map<OWLObjectProperty, Set<OWLObjectProperty>> objPropAncestorsMap;
 
@@ -49,6 +51,8 @@ public class OntologyProximityManager {
         this.classAttributesMap = new HashMap<>();
         this.objPropDomainMap = new HashMap<>();
         this.objPropRangeMap = new HashMap<>();
+        this.objPropMandPartDomainMap = new HashMap<>();
+        this.objPropMandPartRangeMap = new HashMap<>();
         this.dataPropDomainMap = new HashMap<>();
         this.objPropChildrenMap = new HashMap<>();
         this.objPropAncestorsMap = new HashMap<>();
@@ -100,6 +104,14 @@ public class OntologyProximityManager {
         return objPropRangeMap.get(prop);
     }
 
+    public Set<OWLClass> getObjPropMandPartDomain(OWLObjectProperty prop) {
+        return objPropMandPartDomainMap.get(prop);
+    }
+
+    public Set<OWLClass> getObjPropMandPartRange(OWLObjectProperty prop) {
+        return objPropMandPartRangeMap.get(prop);
+    }
+
     public Set<OWLObjectProperty> getObjPropChildren(OWLObjectProperty prop) {
         return objPropChildrenMap.get(prop);
     }
@@ -129,11 +141,13 @@ public class OntologyProximityManager {
         dedProc = new SimpleOwlOntologyDeductiveClosureProcesor(ontology);
         simpleDedClos = dedProc.computeSimpleDeductiveClosure();
         simpleDedClos.forEach(axiom -> {
+            if (axiom instanceof OWLDisjointObjectPropertiesAxiom) {
+                System.out.println(axiom);
+            }
             processAxiom(axiom, false);
         });
         computeDisjointSiblingsMap();
         closeClassRolesAndAttributesMaps();
-        closePropertiesDomainRangeMaps();
     }
 
     private void processSignature() {
@@ -152,6 +166,8 @@ public class OntologyProximityManager {
             objPropAncestorsMap.put(objProp, new HashSet<>());
             objPropDomainMap.put(objProp, new HashSet<>());
             objPropRangeMap.put(objProp, new HashSet<>());
+            objPropMandPartDomainMap.put(objProp, new HashSet<>());
+            objPropMandPartRangeMap.put(objProp, new HashSet<>());
         });
         ontology.getDataPropertiesInSignature(Imports.INCLUDED).forEach(dataProp -> {
             dataPropChildrenMap.put(dataProp, new HashSet<>());
@@ -229,30 +245,7 @@ public class OntologyProximityManager {
         return first.stream().anyMatch(second::contains);
     }
 
-    private void closePropertiesDomainRangeMaps() {
-        // https://github.com/obdasystems/sparqling-ws/issues/4
-        /*objPropDomainMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });
-        objPropRangeMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });
-        dataPropDomainMap.forEach((prop, set)->{
-            Set<OWLClass> toAdd = new HashSet<>();
-            set.forEach(domCl->{
-                toAdd.addAll(classDescendantsMap.get(domCl));
-            });
-            set.addAll(toAdd);
-        });*/
-    }
+
 
     private Set<OWLClass> getClassesWithNoFather() {
         Set<OWLClass> result = new HashSet<>();
@@ -338,7 +331,7 @@ public class OntologyProximityManager {
                     }
                 }
             } else {
-                //NORMAL SUBSUMPTION
+                //STANDARD SUBSUMPTION
                 if (sub instanceof OWLClass) {
                     processClassContainment(sup, (OWLClass) sub, isAsserted);
                 } else {
@@ -441,13 +434,28 @@ public class OntologyProximityManager {
     }
 
     private void processClassComplementOf(OWLObjectComplementOf sup, OWLClass sub) {
+        if(sub.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+            System.out.println();
+        }
+
+
         OWLClassExpression disjExpr =  sup.getOperand();
         if (disjExpr instanceof OWLClass) {
+
+            if(disjExpr.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                System.out.println();
+            }
+
             classDisjointMap.get(sub).add((OWLClass) disjExpr);
         } else {
             if (disjExpr instanceof OWLObjectUnionOf) {
                 ((OWLObjectUnionOf) disjExpr).getOperands().forEach(innDisj -> {
                     if (innDisj instanceof OWLClass) {
+
+                        if(innDisj.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                            System.out.println();
+                        }
+
                         classDisjointMap.get(sub).add((OWLClass) innDisj);
                     }
                 });
@@ -477,20 +485,21 @@ public class OntologyProximityManager {
             classDescendantsMap.get(sup).add(sub);
         } else {
             if (sup instanceof OWLObjectSomeValuesFrom) {
-                OWLObjectPropertyExpression p = ((OWLObjectSomeValuesFrom) sup).getProperty();
+                OWLObjectSomeValuesFrom objSomeVal = (OWLObjectSomeValuesFrom) sup;
+                OWLObjectPropertyExpression p = objSomeVal.getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
                 if (p instanceof OWLObjectProperty) {
-                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
+                    objPropMandPartDomainMap.get(p.getNamedProperty()).add(sub);
                 } else if (p instanceof OWLObjectInverseOf) {
-                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
+                    objPropMandPartRangeMap.get(p.getNamedProperty()).add(sub);
                 }
             } else if (sup instanceof OWLObjectAllValuesFrom) {
                 OWLObjectPropertyExpression p = ((OWLObjectAllValuesFrom) sup).getProperty();
                 classRolesMap.get(sub).add(p.getNamedProperty());
                 if (p instanceof OWLObjectProperty) {
-                    objPropDomainMap.get(p.getNamedProperty()).add(sub);
+                    objPropMandPartDomainMap.get(p.getNamedProperty()).add(sub);
                 } else if (p instanceof OWLObjectInverseOf) {
-                    objPropRangeMap.get(p.getNamedProperty()).add(sub);
+                    objPropMandPartRangeMap.get(p.getNamedProperty()).add(sub);
                 }
             } else {
                 if (sup instanceof OWLDataSomeValuesFrom) {
@@ -503,13 +512,23 @@ public class OntologyProximityManager {
 
     //CLASS DISJOINTNESS
     private void processDisjointClassesAxiom(OWLDisjointClassesAxiom axiom) {
-        List<OWLClassExpression> operandList = axiom.getClassExpressionsAsList();
+        List<OWLClassExpression> operandList = new LinkedList<>(axiom.getClassExpressions());
         for (int i = 0; i < operandList.size() - 1; i++) {
             OWLClassExpression first = operandList.get(i);
             if (first instanceof OWLClass) {
+
+                if(first.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                    System.out.println();
+                }
+
                 for (int j = i + 1; j < operandList.size(); j++) {
                     OWLClassExpression second = operandList.get(j);
                     if (second instanceof OWLClass) {
+
+                        if(second.asOWLClass().getIRI().toString().equals("https://w3id.org/italia/onto/ITO/Unita_amministrativa")) {
+                            System.out.println();
+                        }
+
                         classDisjointMap.get(first.asOWLClass()).add(second.asOWLClass());
                         classDisjointMap.get(second.asOWLClass()).add(first.asOWLClass());
                     }
@@ -656,6 +675,19 @@ public class OntologyProximityManager {
         classAttributesMap.get(cl).add(prop);
     }
 
+    private boolean isDomainRelated(OWLClass cl, OWLObjectProperty objProp) {
+        Set<OWLClass> domain = getObjPropDomain(objProp);
+        Set<OWLClass> mandPart = getObjPropMandPartDomain(objProp);
+        Set<OWLClass> ancestors = getClassAncestors(cl);
+        return domain.contains(cl) || domain.stream().anyMatch(ancestors::contains) || mandPart.contains(cl) || mandPart.stream().anyMatch(ancestors::contains);
+    }
+    private boolean isRangeRelated(OWLClass cl, OWLObjectProperty objProp) {
+        Set<OWLClass> range = getObjPropRange(objProp);
+        Set<OWLClass> mandPart = getObjPropMandPartRange(objProp);
+        Set<OWLClass> ancestors = getClassAncestors(cl);
+        return range.contains(cl) || range.stream().anyMatch(ancestors::contains) || mandPart.contains(cl) || mandPart.stream().anyMatch(ancestors::contains);
+    }
+
     public Highlights getHighlights(String clickedClassIRI) {
         Highlights ret = new Highlights();
         OWLClass cl = new OWLClassImpl(IRI.create(clickedClassIRI));
@@ -667,32 +699,77 @@ public class OntologyProximityManager {
         classes.addAll(getClassNonDisjointSiblings(cl));
         ret.setClasses(classes.stream().map(i -> i.getIRI().toString()).collect(Collectors.toList()));
 
-        for(OWLObjectProperty i : getClassRoles(cl)) {
+        for(OWLObjectProperty objProp : getClassRoles(cl)) {
             Branch b = new Branch();
-            b.setObjectPropertyIRI(i.getIRI().toString());
-            Set<OWLClass> domain = getObjPropDomain(i);
-            Set<OWLClass> range = getObjPropRange(i);
-            if(domain.contains(cl) || domain.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
-                if(getObjPropRange(i).contains(cl)) {
+            b.setObjectPropertyIRI(objProp.getIRI().toString());
+            Set<OWLClass> domain = getObjPropDomain(objProp);
+            Set<OWLClass> range = getObjPropRange(objProp);
+            /**
+             * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
+             * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
+            **/
+            boolean notAdd = false;
+            if(isDomainRelated(cl, objProp)) {
+                for (OWLObjectPropertyDomainAxiom a : ontology.getObjectPropertyDomainAxioms(objProp)) {
+                    if (a.getDomain() instanceof OWLClass) {
+                        OWLClass domainClass = (OWLClass) a.getDomain();
+                        if(getClassDescendants(cl).contains(domainClass)) {
+                            notAdd = true;
+                            break;
+                        }
+                    }
+                }
+                if (notAdd) {
+                    continue;
+                }
+                if(isRangeRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:range) {
-                    b.addRelatedClassesItem(c.getIRI().toString());
-                }
+                getObjPropRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropMandPartRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+
                 b.setDirect(true);
-            } else if(range.contains(cl) || range.stream().anyMatch(owlClass -> ancestors.contains(owlClass))) {
-                if(domain.contains(cl)) {
+            } else if(isRangeRelated(cl, objProp)) {
+                for (OWLObjectPropertyRangeAxiom a : ontology.getObjectPropertyRangeAxioms(objProp)) {
+                    if (a.getRange() instanceof OWLClass) {
+                        OWLClass rangeClass = (OWLClass) a.getRange();
+                        if(getClassDescendants(cl).contains(rangeClass)) {
+                            notAdd = true;
+                            break;
+                        }
+                    }
+                }
+                if (notAdd) {
+                    continue;
+                }
+                if(isDomainRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                for(OWLClass c:domain) {
-                    b.addRelatedClassesItem(c.getIRI().toString());
-                }
+                getObjPropDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropMandPartDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
                 b.setDirect(false);
             }
             ret.addObjectPropertiesItem(b);
         }
 
         for(OWLDataProperty i : getClassAttributes(cl)) {
+            /**
+             * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
+             * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
+             **/
+            boolean notAdd = false;
+            for (OWLDataPropertyDomainAxiom a : ontology.getDataPropertyDomainAxioms(i)) {
+                if (a.getDomain() instanceof OWLClass) {
+                    OWLClass domainClass = (OWLClass) a.getDomain();
+                    if(getClassDescendants(cl).contains(domainClass)) {
+                        notAdd = true;
+                        break;
+                    }
+                }
+            }
+            if (notAdd) {
+                continue;
+            }
             ret.addDataPropertiesItem(i.getIRI().toString());
         }
         return ret;

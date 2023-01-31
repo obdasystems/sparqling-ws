@@ -7,6 +7,7 @@ import org.apache.jena.arq.querybuilder.SelectBuilder;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.core.TriplePath;
+import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.expr.E_StrSubstring;
 import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprAggregator;
@@ -18,7 +19,10 @@ import org.semanticweb.owlapi.model.IRI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
@@ -26,21 +30,25 @@ import static org.junit.Assert.*;
 public class TestQueryGraphHandler {
 
     private static String bookIRI;
+    private static String ebookIRI;
     private static String audioBookIRI;
     private static String writtenByIRI;
     private static String authorIRI;
     private static String nameIRI;
     private static SPARQLParser parser;
     private static String titleIRI;
+    private static String genreIRI;
 
     @BeforeClass
     public static void init() throws FileNotFoundException {
         bookIRI = "http://www.obdasystems.com/books/Book";
+        ebookIRI = "http://www.obdasystems.com/books/E-Book";
         audioBookIRI = "http://www.obdasystems.com/books/AudioBook";
         writtenByIRI = "http://www.obdasystems.com/books/writtenBy";
         authorIRI = "http://www.obdasystems.com/books/Author";
         nameIRI = "http://www.obdasystems.com/books/name";
         titleIRI = "http://www.obdasystems.com/books/title";
+        genreIRI = "http://www.obdasystems.com/books/genre";
         parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
         SWSOntologyManager.getOntologyManager().loadGrapholFile(new FileInputStream("src/test/resources/books/books_1.0.0/books_ontology.graphol"));
     }
@@ -801,9 +809,35 @@ public class TestQueryGraphHandler {
         Expr e = it.next();
         assertTrue(e instanceof ExprAggregator);
         assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
-        qg = qgb.deleteHeadTerm(qg, "?COUNT_STAR");
+        qg = qgb.countStar(qg, false);
         q = parser.parse(new Query(), qg.getSparql());
-        assertTrue(q.isQueryResultStar());
+        assertFalse(q.getQueryPattern() instanceof ElementSubQuery);
+    }
+
+    @Test
+    public void testCountStarDistinct() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.setDistinct(qg, true);
+        qg = qgb.countStar(qg, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        Query sub = ((ElementSubQuery) q.getQueryPattern()).getQuery();
+        assertTrue(sub.isDistinct());
+        assertFalse(q.isDistinct());
+        qg = qgb.countStar(qg, false);
+        q = parser.parse(new Query(), qg.getSparql());
+        assertFalse(q.getQueryPattern() instanceof ElementSubQuery);
+        assertTrue(q.isDistinct());
     }
 
     @Test
@@ -1204,17 +1238,230 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void testSpecialCharsOnIRIRemainder() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        // special char "-"
+        QueryGraph qg = qgb.getQueryGraph(ebookIRI);
+    }
+
+    @Test
+    public void testCountAndThenAdd() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.countStar(qg, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        Iterator<Expr> it = q.getProject().getExprs().values().iterator();
+        Expr e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        q = parser.parse(new Query(), qg.getSparql());
+        it = q.getProject().getExprs().values().iterator();
+        e = it.next();
+        assertTrue(e instanceof ExprAggregator);
+        assertEquals("COUNT", ((ExprAggregator)e).getAggregator().getName());
+    }
+
+    @Test
+    public void filterAndAddTwice() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphClass(
+                qg,"",audioBookIRI,"Book0");
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Filter f = new Filter();
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.EQUAL);
+        List<VarOrConstant> params = new LinkedList<>();
+        VarOrConstant v1 = new VarOrConstant();
+        v1.setValue("?name0");
+        v1.setType(VarOrConstant.TypeEnum.VAR);
+        params.add(v1);
+        VarOrConstant v2 = new VarOrConstant();
+        v2.setValue("Pippo");
+        v2.setType(VarOrConstant.TypeEnum.CONSTANT);
+        v2.setConstantType(VarOrConstant.ConstantTypeEnum.STRING);
+        params.add(v2);
+        fe.setParameters(params);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while (it.hasNext()) {
+                            TriplePath triple = it.next();
+                            if (triple.getObject().isVariable()) {
+                                if (((Var) triple.getObject()).getVarName().equals("name2")) {
+                                    passed[0] = true;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                });
+        assertTrue(passed[0]);
+    }
+
+    @Test
+    public void joinAndOptional() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, authorIRI, true, "Book0"
+        );
+        qg = qgb.putQueryGraphObjectProperty(
+                qg, "", writtenByIRI, bookIRI, false, "Author0"
+        );
+        qg = qgb.putQueryGraphJoin(qg,"Book1", "Book0");
+        qg = qgb.newOptional(qg, qg.getGraph().getChildren().get(0).getId());
+        assertTrue(qg.getOptionals().size() > 0);
+    }
+
+    @Test
+    public void aggregateAndAddHead() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.addHeadTerm(qg, "Book0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(2, q.getProject().size());
+    }
+
+    @Test
+    public void multipleAggregateCount() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(0).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.addHeadTerm(qg, "Book0");
+        GroupByElement gb2 = new GroupByElement();
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb2.setDistinct(true);
+        qg.getHead().get(1).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?Book0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(2, q.getProject().size());
+    }
+
+    @Test
+    public void multipleAggregateAndGroupBy() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.addHeadTerm(qg, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(true);
+        qg.getHead().get(1).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", genreIRI, "Book0");
+        GroupByElement gb2 = new GroupByElement();
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.AVARAGE);
+        gb2.setDistinct(true);
+        qg.getHead().get(2).setGroupBy(gb2);
+        qg = qgb.aggregationHeadTerm(qg, "?genre0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(3, q.getProject().size());
+    }
+
+    @Test
+    public void isBlankFilter() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementFilter el) {
+                        if(el.getExpr().getFunction().getFunctionSymbol().getSymbol().equals("not")
+                                && el.getExpr().getVarsMentioned().contains(
+                                AbstractQueryBuilder.makeVar("?title0")))
+                            passed[0] = true;
+                    }
+                });
+        assertTrue(passed[0]);
+    }
+
+    @Test
+    public void issue32() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.removeFilter(qg, 0, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while(it.hasNext()) {
+                            TriplePath t = it.next();
+                            if (t.getObject().isVariable() && t.getObject().getName().equals("name0")) {
+                                passed[0] = true;
+                                return;
+                            }
+                        }
+                    }
+                });
+        assertTrue(passed[0]);
+    }
+
+    @Test
     public void sandbox() {
-        String sparql = "SELECT distinct (sum(distinct ?y) as ?sum) " +
-                "{ " +
-                "?x <op> ?y." +
-                "?x <op> ?z." +
-                "?x <op> ?z1." +
-                "?x <op> ?z2." +
-                "}" +
-                "GROUP BY ?z ?z1 ?z2";
+        String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);
-        q.setLimit(Query.NOLIMIT);
         System.out.println(q);
     }
 }

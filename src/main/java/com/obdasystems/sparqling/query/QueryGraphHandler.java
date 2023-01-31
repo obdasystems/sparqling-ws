@@ -47,7 +47,10 @@ public class QueryGraphHandler {
     private final SPARQLParser parser;
 
     public QueryGraphHandler() {
-        ontology = SWSOntologyManager.getOntologyManager().getOwlOntology();
+        this(SWSOntologyManager.getOntologyManager().getOwlOntology());
+    }
+    public QueryGraphHandler(OWLOntology o) {
+        ontology = o;
         if(ontology == null) throw new RuntimeException("Please load an ontology before start building queries.");
         pdf = (PrefixDocumentFormat) ontology.getOWLOntologyManager().getOntologyFormat(ontology);
         if (pdf != null && pdf.isPrefixOWLDocumentFormat()) {
@@ -56,6 +59,17 @@ public class QueryGraphHandler {
             prefixes = new HashMap<>();
         }
         parser = SPARQLParser.createParser(Syntax.syntaxSPARQL_11);
+    }
+
+    private Query getMainQuery(QueryGraph body) {
+        Query ret = parser.parse(new Query(), body.getSparql());
+        if (body.isCountStar()) {
+            Query internal = ((ElementSubQuery) ret.getQueryPattern()).getQuery();
+            internal.setPrefixMapping(ret.getPrefixMapping());
+            return internal;
+        } else {
+            return ret;
+        }
     }
 
     /********************
@@ -74,9 +88,11 @@ public class QueryGraphHandler {
         sb.addVar("*").addWhere(var, "a", iri.toQuotedString());
         // Modify Graph
         QueryGraph qg = new QueryGraph();
-        qg.setSparql(sb.build().serialize());
+        String sparql = sb.build().serialize();
+        validate(sparql);
+        qg.setSparql(sparql);
         GraphElement root = new GraphElement();
-        root.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        root.addEntitiesItem(SWSOntologyManager.extractEntity(ontology, iri, pdf));
         root.setId(var.substring(1));
         root.addVariablesItem(var);
         qg.setGraph(root);
@@ -92,7 +108,7 @@ public class QueryGraphHandler {
             throw new RuntimeException("Cannot add a class to an optional node");
         }
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         wh.addWhere(new TriplePath(new Triple(
@@ -100,13 +116,14 @@ public class QueryGraphHandler {
                 RDF.Nodes.type,
                 AbstractQueryBuilder.makeNode(iri.toQuotedString(), p)
         )));
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
         //Modify graph
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement ge = gef.findElementById(graphElementId, body.getGraph());
-        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        ge.addEntitiesItem(SWSOntologyManager.extractEntity(ontology, iri, pdf));
         return body;
     }
 
@@ -123,7 +140,7 @@ public class QueryGraphHandler {
             throw new RuntimeException("Cannot add an object property to an optional node");
         }
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
         String var = QueryUtils.guessNewVarFromIRI(target, q);
@@ -144,6 +161,7 @@ public class QueryGraphHandler {
                 RDF.Nodes.type,
                 AbstractQueryBuilder.makeNode(target.toQuotedString(), p)
         )));
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -152,7 +170,7 @@ public class QueryGraphHandler {
         GraphElement found = gef.findElementById(graphElementId, body.getGraph());
         GraphElement ge = new GraphElement();
         ge.setId("x" + System.currentTimeMillis());
-        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(predicate, pdf));
+        ge.addEntitiesItem(SWSOntologyManager.extractEntity(ontology, predicate, pdf));
         ge.addVariablesItem(var2);
         ge.addVariablesItem(var);
         if (!isPredicateDirect) {
@@ -160,7 +178,7 @@ public class QueryGraphHandler {
         }
         GraphElement ge1 = new GraphElement();
         ge1.setId(var.substring(1));
-        ge1.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(target, pdf));
+        ge1.addEntitiesItem(SWSOntologyManager.extractEntity(ontology, target, pdf));
         ge1.addVariablesItem(var);
         ge.addChildrenItem(ge1);
         found.addChildrenItem(ge);
@@ -176,7 +194,7 @@ public class QueryGraphHandler {
             throw new RuntimeException("Cannot add a data property to an optional node");
         }
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         AggregationHandler aggHandler = new AggregationHandler(q);
         SelectHandler sh = new SelectHandler(aggHandler);
         WhereHandler wh = new WhereHandler(q);
@@ -185,8 +203,7 @@ public class QueryGraphHandler {
         String var2 = varPrefix + graphElementId;
         Var newVar = AbstractQueryBuilder.makeVar(var);
         // count star handling => do not add elements to the head
-        boolean isCountStarActive = body.getHead().size() == 1 && body.getHead().get(0).getGraphElementId() == null;
-        if (!isCountStarActive)
+        if (!body.isCountStar())
             sh.addVar(newVar);
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(var2, p),
@@ -196,6 +213,7 @@ public class QueryGraphHandler {
         if (!q.getAggregators().isEmpty()) {
             q.getGroupBy().add(newVar);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -204,7 +222,7 @@ public class QueryGraphHandler {
         GraphElement found = gef.findElementById(graphElementId, body.getGraph());
         GraphElement ge = new GraphElement();
         ge.setId(var.substring(1));
-        ge.addEntitiesItem(SWSOntologyManager.getOntologyManager().extractEntity(iri, pdf));
+        ge.addEntitiesItem(SWSOntologyManager.extractEntity(ontology, iri, pdf));
         ge.addVariablesItem(var2);
         ge.addVariablesItem(var);
         found.addChildrenItem(ge);
@@ -212,7 +230,7 @@ public class QueryGraphHandler {
         headItem.setId(var);
         headItem.setVar(var);
         headItem.setGraphElementId(var.substring(1));
-        if (!isCountStarActive)
+        if (!body.isCountStar())
             body.addHeadItem(headItem);
         return body;
     }
@@ -232,10 +250,11 @@ public class QueryGraphHandler {
             }
         }
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         Op renamed = Rename.renameVar(Algebra.compile(q), AbstractQueryBuilder.makeVar(graphElementId2), AbstractQueryBuilder.makeVar(graphElementId1));
         Query newQ = OpAsQuery.asQuery(renamed);
         newQ.setPrefixMapping(q.getPrefixMapping());
+        if (body.isCountStar()) newQ = getCountStarQuery(newQ, true);
         body.setSparql(newQ.serialize());
         // Modify graph
         if(ge1.getChildren() != null && ge2.getChildren() != null) {
@@ -272,7 +291,7 @@ public class QueryGraphHandler {
         }
         varToBeDeleted.add(graphElementId);
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted);
         q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
         for(String var:varToBeDeleted) {
@@ -283,6 +302,7 @@ public class QueryGraphHandler {
         if(q.getProject().isEmpty()) {
             q.setQueryResultStar(true);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -331,11 +351,12 @@ public class QueryGraphHandler {
         }
         if (!found) throw new RuntimeException("Cannot find class " + classIRI + " in GraphElement " + graphElementId);
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         Set<String> varToBeDeleted = new HashSet<>();
         varToBeDeleted.add(graphElementId);
         DeleteElementVisitor deleteQueryGraphElementVisitor = new DeleteElementVisitor(varToBeDeleted, classIRI);
         q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -344,9 +365,10 @@ public class QueryGraphHandler {
     public QueryGraph newFilter(QueryGraph body, Integer filterId) {
         Filter f = body.getFilters().get(filterId);
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         WhereHandler wh = new WhereHandler(q);
         wh.addFilter(QueryUtils.getExprForFilter(f, q.getPrefixMapping(), null));
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -358,7 +380,7 @@ public class QueryGraphHandler {
         // Modify Graph
         if (modifyGraph) body.getFilters().remove((int)filterId);
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         final int[] index = {-1};
         final boolean[] removed = {false};
         q.getQueryPattern().visit(new ElementVisitorBase() {
@@ -376,11 +398,13 @@ public class QueryGraphHandler {
                     if(index[0] == filterId) {
                         it.remove();
                         removed[0] = true;
+                        return;
                     }
                 }
             }
         });
         if (!removed[0]) throw new RuntimeException("Cannot find FILTER " + filterId);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -391,13 +415,14 @@ public class QueryGraphHandler {
         // Modify Graph
         body.getFilters().clear();
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         q.getQueryPattern().visit(new ElementVisitorBase() {
             @Override
             public void visit(ElementGroup elementGroup) {
                 elementGroup.getElements().removeIf(el -> el instanceof ElementFilter);
             }
         });
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -408,15 +433,16 @@ public class QueryGraphHandler {
         GraphElementFinder gef = new GraphElementFinder();
         gef.findElementById(graphElementId, body.getGraph());
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         AggregationHandler aggHandler = new AggregationHandler(q);
         SelectHandler sh = new SelectHandler(aggHandler);
         String var = varPrefix + graphElementId;
         Var jVar = AbstractQueryBuilder.makeVar(var);
         sh.addVar(jVar);
-        if(!q.getGroupBy().isEmpty()) {
+        if(!q.getAggregators().isEmpty()) {
             q.getGroupBy().add(jVar);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -442,7 +468,7 @@ public class QueryGraphHandler {
         }
         if (he == null) throw new RuntimeException("Cannot find head element id " + id);
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         Var jVar = AbstractQueryBuilder.makeVar(id);
         q.getProject().remove(jVar);
         if(!q.getGroupBy().isEmpty()) {
@@ -464,6 +490,7 @@ public class QueryGraphHandler {
         Set<String> toRemove = new HashSet<>();
         toRemove.add(id);
         QueryUtils.removeOrderBy(q, toRemove);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -485,15 +512,16 @@ public class QueryGraphHandler {
         if (renamedHe == null) throw new RuntimeException("Cannot find head element id " + id);
         if (renamedHe.getAlias() == null) throw new RuntimeException("Alias not defined for element id " + id);
         //Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         Var newVar = AbstractQueryBuilder.makeVar(varPrefix + renamedHe.getAlias());
         Var jVar = AbstractQueryBuilder.makeVar(id);
         q.getProject().remove(jVar);
         q.getProject().getVars().add(index, newVar);
         q.getProject().getExprs().put(
-            newVar,
-            new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
+                newVar,
+                new ExprVar(AbstractQueryBuilder.makeVar(renamedHe.getVar()))
         );
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -504,7 +532,7 @@ public class QueryGraphHandler {
         int ordering = body.getHead().stream().filter(i -> i.getId().equals(headTerm)).findFirst().
                 orElseThrow(() -> new RuntimeException("Cannot find head term " + headTerm)).getOrdering();
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         Var orderVar = AbstractQueryBuilder.makeVar(headTerm);
         Expr expr = q.getProject().getExpr(orderVar);
         //remove precedent order for that var
@@ -529,6 +557,7 @@ public class QueryGraphHandler {
                 q.addOrderBy(orderVar, ordering);
             }
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -554,7 +583,7 @@ public class QueryGraphHandler {
         he.setId(var);
         he.setAlias(newVar.getVarName());
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         PrefixMapping p = q.getPrefixMapping();
         Expr expr = QueryUtils.getExprForFunction(f, p);
         q.getProject().remove(AbstractQueryBuilder.makeVar(headTerm));
@@ -563,6 +592,7 @@ public class QueryGraphHandler {
                 newVar,
                 expr
         );
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -582,7 +612,7 @@ public class QueryGraphHandler {
         if (he.getGroupBy() == null) throw new RuntimeException("Cannot find aggregate/group by function for head element " + headTerm);
         GroupByElement gb = he.getGroupBy();
         // Modify SPARQL
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         AggregationHandler ah = new AggregationHandler(q);
         Aggregator agg;
         Var var = AbstractQueryBuilder.makeVar(headTerm);
@@ -642,7 +672,14 @@ public class QueryGraphHandler {
                 gbVars.add(v,e);
             }
         }
-        q.getGroupBy().addAll(gbVars);
+        Iterator var2 = gbVars.getVars().iterator();
+        while(var2.hasNext()) {
+            Var v = (Var)var2.next();
+            Expr e = gbVars.getExpr(v);
+            if (!q.getGroupBy().contains(v)) {
+                q.getGroupBy().add(v, e);
+            }
+        }
         if (he.getHaving() != null) {
             List<Filter> havingGraph = he.getHaving();
             Expr having = QueryUtils.getExprForFilter(havingGraph.get(havingGraph.size() - 1), q.getPrefixMapping(), exprAgg);
@@ -654,6 +691,7 @@ public class QueryGraphHandler {
         he.setAlias(newVar.getVarName());
         SelectHandler sh = new SelectHandler(ah);
         sh.addVar(exprAgg, newVar);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -661,7 +699,7 @@ public class QueryGraphHandler {
     }
 
     public QueryGraph reorderHeadTerm(QueryGraph body) {
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         VarExprList oldHead = q.getProject();
         VarExprList newHead = new VarExprList();
         for(HeadElement he:body.getHead()) {
@@ -672,39 +710,51 @@ public class QueryGraphHandler {
         newHead.getExprs().putAll(oldHead.getExprs());
         q.getProject().clear();
         q.getProject().addAll(newHead);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
         return body;
     }
 
-    public QueryGraph countStar(QueryGraph body, Boolean distinct) {
-        body.getHead().clear();
-        String var = varPrefix + "COUNT_STAR";
-        HeadElement he = new HeadElement();
-        he.setId(var);
-        he.setAlias(var);
-        body.addHeadItem(he);
+    public QueryGraph countStar(QueryGraph body, Boolean active) {
         Query q = parser.parse(new Query(), body.getSparql());
-        q.getProject().clear();
-        AggregationHandler ah = new AggregationHandler(q);
-        Aggregator agg;
-            if(distinct) agg = new AggCountDistinct();
-            else agg = new AggCount();
-        Var newVar = AbstractQueryBuilder.makeVar(var);
-        ExprAggregator exprAgg = new ExprAggregator(newVar, agg);
-        SelectHandler sh = new SelectHandler(ah);
-        sh.addVar(exprAgg, newVar);
-        String sparql = q.serialize();
+        body.setCountStar(active);
+        Query newQuery = getCountStarQuery(q, active);
+        String sparql = newQuery.serialize();
         validate(sparql);
         body.setSparql(sparql);
         return body;
+    }
+
+    private Query getCountStarQuery(Query q, Boolean active) {
+        Query newQuery = new Query();
+        if (active) {
+            String var = varPrefix + "COUNT_STAR";
+            newQuery.setQuerySelectType();
+            newQuery.setPrefixMapping(q.getPrefixMapping());
+            q.setPrefixMapping(null);
+            newQuery.getProject().clear();
+            newQuery.setQueryResultStar(true);
+            newQuery.setQueryPattern(new ElementSubQuery(q));
+            AggregationHandler ah = new AggregationHandler(newQuery);
+            Aggregator agg = new AggCount();
+            Var newVar = AbstractQueryBuilder.makeVar(var);
+            ExprAggregator exprAgg = new ExprAggregator(newVar, agg);
+            SelectHandler sh = new SelectHandler(ah);
+            sh.addVar(exprAgg, newVar);
+        } else {
+            newQuery = ((ElementSubQuery) q.getQueryPattern()).getQuery();
+            newQuery.setPrefixMapping(q.getPrefixMapping());
+        }
+        return newQuery;
     }
 
     public QueryGraph setDistinct(QueryGraph body, Boolean distinct) {
         body.setDistinct(distinct);
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         q.setDistinct(distinct);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -714,12 +764,13 @@ public class QueryGraphHandler {
 
     public QueryGraph setLimit(QueryGraph body, Integer limit) {
         body.setLimit(limit);
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         if (limit < 0) {
             q.setLimit(Query.NOLIMIT);
         } else {
             q.setLimit(limit);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -729,12 +780,13 @@ public class QueryGraphHandler {
 
     public QueryGraph setOffset(QueryGraph body, Integer offset) {
         body.setOffset(offset);
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         if (offset < 0) {
             q.setOffset(Query.NOLIMIT);
         } else {
             q.setOffset(offset);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -753,10 +805,10 @@ public class QueryGraphHandler {
         list.add(graphElementId);
         op.setGraphIds(list);
         body.addOptionalsItem(op);
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list, body.getGraph());
         WhereHandler wh2 = new WhereHandler();
         for (Triple triple : triplesToMove) {
             wh2.addWhere(new TriplePath(triple));
@@ -764,6 +816,7 @@ public class QueryGraphHandler {
             q.getQueryPattern().visit(deleteQueryGraphElementVisitor);
         }
         wh.addOptional(wh2);
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -772,13 +825,14 @@ public class QueryGraphHandler {
 
     public QueryGraph removeAllOptionals(QueryGraph body) {
         body.getOptionals().clear();
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional();
         q.getQueryPattern().visit(visitor);
         WhereHandler wh = new WhereHandler(q);
         for (TriplePath tp:visitor.getTriplePaths()) {
             wh.addWhere(tp);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);
@@ -787,18 +841,19 @@ public class QueryGraphHandler {
 
     public QueryGraph removeOptional(QueryGraph body, String graphElementId) {
         body.getOptionals().removeIf(o -> o.getGraphIds().contains(graphElementId));
-        Query q = parser.parse(new Query(), body.getSparql());
+        Query q = getMainQuery(body);
         GraphElementFinder gef = new GraphElementFinder();
         GraphElement el = gef.findElementById(graphElementId, body.getGraph());
         PrefixMapping p = q.getPrefixMapping();
         List<String> list = new LinkedList<>();
-        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list);
+        List<Triple> triplesToMove = QueryUtils.getOptionalTriplesToMove(el, p, list, body.getGraph());
         DeleteElementVisitorOptional visitor = new DeleteElementVisitorOptional(triplesToMove);
         q.getQueryPattern().visit(visitor);
         WhereHandler wh = new WhereHandler(q);
         for (TriplePath tp:visitor.getTriplePaths()) {
             wh.addWhere(tp);
         }
+        if (body.isCountStar()) q = getCountStarQuery(q, true);
         String sparql = q.serialize();
         validate(sparql);
         body.setSparql(sparql);

@@ -513,7 +513,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
 
             if (tgt instanceof OWLObjectComplementOf) {
                 OWLObjectComplementOf nbc = (OWLObjectComplementOf) tgt;
-                OWLClassExpression op = ((OWLObjectComplementOf) tgt).getOperand();
+                OWLClassExpression op = (nbc).getOperand();
                 if (op.isOWLThing()) {
                     GC.addEdge(src, dataFactory.getOWLObjectComplementOf(src));
                 }
@@ -671,7 +671,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                 GC.addEdge(newSrc2, newTgt2);
             }
 
-            if (src instanceof OWLObjectPropertyExpression && tgt instanceof OWLObjectPropertyExpression) {
+            /*if (src instanceof OWLObjectPropertyExpression && tgt instanceof OWLObjectPropertyExpression) {
                 OWLObjectSomeValuesFrom newSrc2 = dataFactory.getOWLObjectSomeValuesFrom(src, dataFactory.getOWLThing());
                 OWLObjectSomeValuesFrom negTgt2 = dataFactory.getOWLObjectSomeValuesFrom(tgt, dataFactory.getOWLThing());
                 OWLObjectComplementOf newTgt2 = dataFactory.getOWLObjectComplementOf(negTgt2);
@@ -684,7 +684,7 @@ public class SimpleOwlOntologyDeductiveClosureProcesor {
                 GC.addVertex(newSrc3);
                 GC.addVertex(newTgt3);
                 GC.addEdge(newSrc3, newTgt3);
-            }
+            }*/
         }
     }
 

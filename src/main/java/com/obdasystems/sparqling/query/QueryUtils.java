@@ -2,7 +2,6 @@ package com.obdasystems.sparqling.query;
 
 import com.google.common.collect.Sets;
 import com.obdasystems.sparqling.model.*;
-import com.obdasystems.sparqling.query.visitors.DeleteElementVisitorByTriple;
 import org.apache.jena.arq.querybuilder.AbstractQueryBuilder;
 import org.apache.jena.arq.querybuilder.ExprFactory;
 import org.apache.jena.graph.Node;
@@ -50,6 +49,7 @@ public class QueryUtils {
             res = "x" + System.currentTimeMillis();
         } else {
             if (res.length() > VAR_MAX_LENGTH - 2) res = res.substring(0, VAR_MAX_LENGTH - 3);
+            res = res.replaceAll("[^a-zA-Z0-9]", "_");
             res = getNewCountedVarFromQuery(res, q);
         }
         return varPrefix + res;
@@ -61,6 +61,7 @@ public class QueryUtils {
         if (q == null) return ret;
         final boolean[] found = {true};
         while (found[0]) {
+            found[0] = false;
             ret = varName + count[0];
             String finalRet = ret;
             ElementWalker_New.walk(
@@ -68,25 +69,27 @@ public class QueryUtils {
                     new ElementVisitorBase() {
                         @Override
                         public void visit(ElementPathBlock el) {
-                            Iterator<TriplePath> it = el.patternElts();
-                            while (it.hasNext()) {
-                                TriplePath triple = it.next();
-                                if (triple.getSubject().isVariable()) {
-                                    if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
+                            if(!found[0]){
+                                Iterator<TriplePath> it = el.patternElts();
+                                while (it.hasNext()) {
+                                    TriplePath triple = it.next();
+                                    if (triple.getSubject().isVariable()) {
+                                        if (((Var) triple.getSubject()).getVarName().equals(finalRet)) {
+                                            found[0] = true;
+                                            count[0]++;
+                                            return;
+                                        }
+                                    }
+                                    if (triple.getObject().isVariable()) {
+                                        if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
+                                            found[0] = true;
+                                            count[0]++;
+                                            return;
+                                        }
                                     }
                                 }
-                                if (triple.getObject().isVariable()) {
-                                    if (((Var) triple.getObject()).getVarName().equals(finalRet)) {
-                                        found[0] = true;
-                                        count[0]++;
-                                        return;
-                                    }
-                                }
+                                found[0] = false;
                             }
-                            found[0] = false;
                         }
                     },
                     new ExprVisitorBase() {}
@@ -98,14 +101,16 @@ public class QueryUtils {
     public static String getVarFromFunction(String funcName, QueryGraph qg) {
         int count = 0;
         Iterator<HeadElement> it = qg.getHead().iterator();
+        String newVar = varPrefix + funcName + count;
         while(it.hasNext()) {
             HeadElement v = it.next();
-            if (v.getId().equals(funcName)) {
+            newVar = varPrefix + funcName + count;
+            if (v.getId().equals(newVar)) {
                 it = qg.getHead().iterator();
                 count++;
             }
         }
-        return varPrefix + funcName + count;
+        return newVar;
     }
 
     static Expr getVarOrConstant(VarOrConstant varOrConstant, PrefixMapping p) {
@@ -199,6 +204,12 @@ public class QueryUtils {
                         f.getExpression().getParameters().get(1).getValue(),
                         f.getExpression().getParameters().get(2).getValue());
                 break;
+            case ISBLANK:
+                filterExpr = ef.isBlank(firstArg);
+                break;
+            case NOT_ISBLANK:
+                filterExpr = ef.not(ef.isBlank(firstArg));
+                break;
             default:
                 throw new RuntimeException("Cannot recognize operator of filter. Found " + f.getExpression().getOperator());
         }
@@ -263,6 +274,21 @@ public class QueryUtils {
             case SECONDS:
                 expr = ef.seconds(getVarOrConstant(f.getParameters().get(0), p));
                 break;
+            case STRLEN:
+                expr = ef.strlen(getVarOrConstant(f.getParameters().get(0), p));
+                break;
+            case STRBEFORE:
+                expr = ef.strbefore(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRAFTER:
+                expr = ef.strafter(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRSTARTS:
+                expr = ef.strstarts(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
+            case STRENDS:
+                expr = ef.strends(getVarOrConstant(f.getParameters().get(0), p), getVarOrConstant(f.getParameters().get(1), p));
+                break;
             default: throw new RuntimeException("Cannot find function name.");
         }
         return expr;
@@ -317,7 +343,7 @@ public class QueryUtils {
         }
     }
 
-    public static List<Triple> getOptionalTriplesToMove(GraphElement el, PrefixMapping p, List<String> list) {
+    public static List<Triple> getOptionalTriplesToMove(GraphElement el, PrefixMapping p, List<String> list, GraphElement root) {
         Entity.TypeEnum type = el.getEntities().get(0).getType();
         List<Triple> res = new LinkedList<>();
         if (type.equals(Entity.TypeEnum.CLASS)) {
@@ -334,10 +360,6 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(1), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
-            /*
-              In recursive step the object property might not be in the list.
-              Add it if not present.
-             */
             if (!list.contains(el.getId())) {
                 list.add(el.getId());
             }
@@ -345,8 +367,8 @@ public class QueryUtils {
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
-                    GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, p, list));
+                    GraphElement child = new GraphElementFinder().findElementById(id, root);
+                    res.addAll(getOptionalTriplesToMove(child, p, list, root));
                 }
             }
         } else if (type.equals(Entity.TypeEnum.INVERSEOBJECTPROPERTY)) {
@@ -355,10 +377,6 @@ public class QueryUtils {
             Node obj2 = AbstractQueryBuilder.makeNode(el.getVariables().get(0), p);
             Triple triple2 = new Triple(sub2, pred2, obj2);
             res.add(triple2);
-            /*
-              In recursive step the object property might not be in the list.
-              Add it if not present.
-             */
             if (!list.contains(el.getId())) {
                 list.add(el.getId());
             }
@@ -366,8 +384,8 @@ public class QueryUtils {
             Set<String> ids = new GraphElementFinder().findChildrenIds(el.getId(), el);
             for (String id : ids) {
                 if (!id.equals(el.getId())) {
-                    GraphElement child = new GraphElementFinder().findElementById(id, el);
-                    res.addAll(getOptionalTriplesToMove(child, p, list));
+                    GraphElement child = new GraphElementFinder().findElementById(id, root);
+                    res.addAll(getOptionalTriplesToMove(child, p, list, root));
                 }
             }
 

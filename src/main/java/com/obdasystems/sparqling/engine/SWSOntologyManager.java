@@ -36,7 +36,7 @@ public class SWSOntologyManager {
         grapholParser = new GraphOLParser_v3();
     }
 
-    public Entity extractEntity(IRI iri, PrefixDocumentFormat pdf) {
+    public static Entity extractEntity(OWLOntology owlOntology, IRI iri, PrefixDocumentFormat pdf) {
         Entity entity = new Entity();
         OWLAnnotationProperty labelProp = owlOntology.getOWLOntologyManager().getOWLDataFactory()
                 .getOWLAnnotationProperty(IRI.create("http://www.w3.org/2000/01/rdf-schema#label"));
