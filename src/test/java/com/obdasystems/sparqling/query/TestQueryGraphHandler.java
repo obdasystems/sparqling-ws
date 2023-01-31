@@ -19,7 +19,10 @@ import org.semanticweb.owlapi.model.IRI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.*;
@@ -1412,6 +1415,44 @@ public class TestQueryGraphHandler {
                                 && el.getExpr().getVarsMentioned().contains(
                                 AbstractQueryBuilder.makeVar("?title0")))
                             passed[0] = true;
+                    }
+                });
+        assertTrue(passed[0]);
+    }
+
+    @Test
+    public void issue32() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg = qgb.removeFilter(qg, 0, true);
+        Query q = parser.parse(new Query(), qg.getSparql());
+        final boolean[] passed = {false};
+        ElementWalker.walk(
+                q.getQueryPattern(),
+                new ElementVisitorBase() {
+                    @Override
+                    public void visit(ElementPathBlock el) {
+                        Iterator<TriplePath> it = el.patternElts();
+                        while(it.hasNext()) {
+                            TriplePath t = it.next();
+                            if (t.getObject().isVariable() && t.getObject().getName().equals("name0")) {
+                                passed[0] = true;
+                                return;
+                            }
+                        }
                     }
                 });
         assertTrue(passed[0]);

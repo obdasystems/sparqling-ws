@@ -398,6 +398,7 @@ public class QueryGraphHandler {
                     if(index[0] == filterId) {
                         it.remove();
                         removed[0] = true;
+                        return;
                     }
                 }
             }
