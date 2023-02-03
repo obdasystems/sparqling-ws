@@ -674,12 +674,11 @@ public class OntologyProximityManager {
         for(OWLObjectProperty objProp : getClassRoles(cl)) {
             Branch b = new Branch();
             b.setObjectPropertyIRI(objProp.getIRI().toString());
-            Set<OWLClass> domain = getObjPropDomain(objProp);
-            Set<OWLClass> range = getObjPropRange(objProp);
+            Set<String> relatedClasses = new HashSet<>();
             /**
              * the variable "toAdd" is used to remove from the highlights the children properties inferred by the reasoner
              * as described here: https://github.com/obdasystems/sparqling-ws/issues/28
-            **/
+             **/
             boolean notAdd = false;
             if(isDomainRelated(cl, objProp)) {
                 for (OWLObjectPropertyDomainAxiom a : ontology.getObjectPropertyDomainAxioms(objProp)) {
@@ -697,8 +696,8 @@ public class OntologyProximityManager {
                 if(isRangeRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                getObjPropRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
-                getObjPropMandPartRange(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropRange(objProp).forEach(c->relatedClasses.add(c.getIRI().toString()));
+                getObjPropMandPartRange(objProp).forEach(c->relatedClasses.add(c.getIRI().toString()));
 
                 b.setDirect(true);
             } else if(isRangeRelated(cl, objProp)) {
@@ -717,10 +716,11 @@ public class OntologyProximityManager {
                 if(isDomainRelated(cl, objProp)) {
                     b.setCyclic(true);
                 }
-                getObjPropDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
-                getObjPropMandPartDomain(objProp).forEach(c->b.addRelatedClassesItem(c.getIRI().toString()));
+                getObjPropDomain(objProp).forEach(c->relatedClasses.add(c.getIRI().toString()));
+                getObjPropMandPartDomain(objProp).forEach(c->relatedClasses.add(c.getIRI().toString()));
                 b.setDirect(false);
             }
+            b.setRelatedClasses(relatedClasses.stream().collect(Collectors.toList()));
             ret.addObjectPropertiesItem(b);
         }
 
