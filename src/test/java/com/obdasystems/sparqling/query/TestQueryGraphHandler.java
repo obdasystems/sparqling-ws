@@ -730,7 +730,7 @@ public class TestQueryGraphHandler {
         fe.setOperator(FilterExpression.OperatorEnum.NOT_IN);
         List<VarOrConstant> params = new LinkedList<>();
         VarOrConstant v1 = new VarOrConstant();
-        v1.setValue("?name0");
+        v1.setValue("name0");
         v1.setType(VarOrConstant.TypeEnum.VAR);
         params.add(v1);
         VarOrConstant v2 = new VarOrConstant();
