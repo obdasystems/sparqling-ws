@@ -1459,6 +1459,30 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void issue36() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg.getHead().get(0).setOrdering(1);
+        qg = qgb.orderBy(qg, "?title0");
+        qg = qgb.deleteHeadTerm(qg, "?title0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(null, q.getOrderBy());
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);
