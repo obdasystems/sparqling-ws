@@ -336,8 +336,8 @@ public class QueryUtils {
 
     public static void removeOrderBy(Query q, Set<String> varToBeDeleted) {
         if (q.getOrderBy() != null) {
-            q.getOrderBy().removeIf(sortCondition -> !org.apache.jena.ext.com.google.common.collect.Sets.intersection(
-                    sortCondition.getExpression().getVarsMentioned().stream().map(v -> v.getName()).collect(Collectors.toSet()),
+            q.getOrderBy().removeIf(sortCondition -> !Sets.intersection(
+                    sortCondition.getExpression().getVarsMentioned().stream().map(v -> v.toString()).collect(Collectors.toSet()),
                     varToBeDeleted)
                     .isEmpty());
         }

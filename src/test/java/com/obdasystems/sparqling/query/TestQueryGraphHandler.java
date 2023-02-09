@@ -730,7 +730,7 @@ public class TestQueryGraphHandler {
         fe.setOperator(FilterExpression.OperatorEnum.NOT_IN);
         List<VarOrConstant> params = new LinkedList<>();
         VarOrConstant v1 = new VarOrConstant();
-        v1.setValue("?name0");
+        v1.setValue("name0");
         v1.setType(VarOrConstant.TypeEnum.VAR);
         params.add(v1);
         VarOrConstant v2 = new VarOrConstant();
@@ -1456,6 +1456,30 @@ public class TestQueryGraphHandler {
                     }
                 });
         assertTrue(passed[0]);
+    }
+
+    @Test
+    public void issue36() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        Filter f = new Filter();
+        VarOrConstant v = new VarOrConstant();
+        v.setValue("?title0");
+        v.setType(VarOrConstant.TypeEnum.VAR);
+        FilterExpression fe = new FilterExpression();
+        fe.setOperator(FilterExpression.OperatorEnum.NOT_ISBLANK);
+        fe.addParametersItem(v);
+        f.setExpression(fe);
+        qg.addFiltersItem(f);
+        qg = qgb.newFilter(qg, 0);
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg.getHead().get(0).setOrdering(1);
+        qg = qgb.orderBy(qg, "?title0");
+        qg = qgb.deleteHeadTerm(qg, "?title0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(null, q.getOrderBy());
     }
 
     @Test
