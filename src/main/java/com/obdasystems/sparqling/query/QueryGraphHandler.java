@@ -32,6 +32,7 @@ import org.apache.jena.vocabulary.RDF;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.parameters.Imports;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -78,7 +79,7 @@ public class QueryGraphHandler {
 
     public QueryGraph getQueryGraph(String clickedClassIRI) {
         IRI iri = IRI.create(clickedClassIRI);
-        if(!ontology.containsClassInSignature(iri)) {
+        if(!ontology.containsClassInSignature(iri, Imports.INCLUDED)) {
             throw new RuntimeException("Iri " + clickedClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
         // Modify SPARQL
@@ -101,7 +102,7 @@ public class QueryGraphHandler {
 
     public QueryGraph putQueryGraphClass(QueryGraph body, String sourceClassIRI, String targetClassIRI, String graphElementId) {
         IRI iri = IRI.create(targetClassIRI);
-        if(!ontology.containsClassInSignature(iri)) {
+        if(!ontology.containsClassInSignature(iri, Imports.INCLUDED)) {
             throw new RuntimeException("Iri " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
         if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
@@ -129,11 +130,11 @@ public class QueryGraphHandler {
 
     public QueryGraph putQueryGraphObjectProperty(QueryGraph body, String sourceClassIRI, String predicateIRI, String targetClassIRI, Boolean isPredicateDirect, String graphElementId) {
         IRI target = IRI.create(targetClassIRI);
-        if(!ontology.containsClassInSignature(target)) {
+        if(!ontology.containsClassInSignature(target, Imports.INCLUDED)) {
             throw new RuntimeException("Class " + targetClassIRI + " not found in ontology " + ontology.getOntologyID());
         }
         IRI predicate = IRI.create(predicateIRI);
-        if(!ontology.containsObjectPropertyInSignature(predicate)) {
+        if(!ontology.containsObjectPropertyInSignature(predicate, Imports.INCLUDED)) {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
         }
         if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
@@ -187,7 +188,7 @@ public class QueryGraphHandler {
 
     public QueryGraph putQueryGraphDataProperty(QueryGraph body, String sourceClassIRI, String predicateIRI, String graphElementId) {
         IRI iri = IRI.create(predicateIRI);
-        if(!ontology.containsDataPropertyInSignature(iri)) {
+        if(!ontology.containsDataPropertyInSignature(iri, Imports.INCLUDED)) {
             throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
         }
         if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
