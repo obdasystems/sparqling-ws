@@ -472,7 +472,11 @@ public class QueryGraphHandler {
         Var jVar = AbstractQueryBuilder.makeVar(id);
         q.getProject().remove(jVar);
         if(!q.getGroupBy().isEmpty()) {
-            q.getGroupBy().remove(jVar);
+            if(he.getGroupBy() != null && !body.getHead().stream().filter(i -> i.getGroupBy() != null).findAny().isPresent()) {
+                q.getGroupBy().clear();
+            } else {
+                q.getGroupBy().remove(jVar);
+            }
         }
         if(!q.getHavingExprs().isEmpty()) {
             Iterator<Expr> itH = q.getHavingExprs().iterator();

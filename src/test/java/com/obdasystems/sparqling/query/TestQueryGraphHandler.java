@@ -1483,6 +1483,23 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void issue39() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(false);
+        qg.getHead().get(0).setGroupBy(gb);
+        qg = qgb.aggregationHeadTerm(qg, "?title0");
+        qg = qgb.deleteHeadTerm(qg, "?count0");
+        Query q = parser.parse(new Query(), qg.getSparql());
+        assertEquals(0, q.getGroupBy().size());
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
         Query q = parser.parse(new Query(), sparql);
