@@ -61,8 +61,7 @@ public class TestQueryGraphHandler {
         qg = qgb.putQueryGraphObjectProperty(
                 qg, "", writtenByIRI, authorIRI, true, "Book0"
         );
-        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
-        System.out.println(qg);
+        qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
     }
     @Test
     public void testGuessNewVar() {
@@ -552,7 +551,6 @@ public class TestQueryGraphHandler {
         he.setFunction(f);
         qg = qgb.functionHeadTerm(qg, "?name0");
         Query q = parser.parse(new Query(), qg.getSparql());
-        System.out.println(q);
         assertTrue(q.getProject().getExprs().values().iterator().next() instanceof E_StrSubstring);
     }
 
@@ -771,7 +769,7 @@ public class TestQueryGraphHandler {
         qg = qgb.orderBy(qg, "?name0");
         qg = qgb.deleteQueryGraphElement(qg, "name0");
         Query q = parser.parse(new Query(), qg.getSparql());
-        assertTrue(q.getOrderBy() == null);
+        assertNull(q.getOrderBy());
     }
 
     @Test
@@ -790,7 +788,7 @@ public class TestQueryGraphHandler {
         qg = qgb.orderBy(qg, "?name0");
         qg = qgb.deleteHeadTerm(qg, "name0");
         Query q = parser.parse(new Query(), qg.getSparql());
-        assertTrue(q.getOrderBy() == null);
+        assertNull(q.getOrderBy());
     }
 
     @Test
@@ -857,8 +855,8 @@ public class TestQueryGraphHandler {
         qg = qgb.setOffset(qg, o);
         Query q = parser.parse(new Query(), qg.getSparql());
         assertTrue(q.isDistinct());
-        assertTrue(q.getLimit() == l);
-        assertTrue(q.getOffset() == o);
+        assertEquals(q.getLimit(), l);
+        assertEquals(q.getOffset(), o);
 
         qg = qgb.setDistinct(qg, false);
         qg = qgb.setLimit(qg, -1);
@@ -902,7 +900,7 @@ public class TestQueryGraphHandler {
         havings.add(having);
         qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
-        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
     }
 
     @Test
@@ -938,7 +936,7 @@ public class TestQueryGraphHandler {
         havings.add(having);
         qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
-        qg = qgb.deleteHeadTerm(qg, "count_name0");
+        qgb.deleteHeadTerm(qg, "count_name0");
     }
 
     @Test
@@ -974,7 +972,7 @@ public class TestQueryGraphHandler {
         havings.add(having);
         qg.getHead().get(0).setHaving(havings);
         qg = qgb.aggregationHeadTerm(qg, "?name0");
-        qg = qgb.deleteQueryGraphElement(qg, "name0");
+        qgb.deleteQueryGraphElement(qg, "name0");
     }
 
     @Test
@@ -1072,7 +1070,6 @@ public class TestQueryGraphHandler {
                         found[0] = true;
                     }
                 });
-        System.out.println(qg);
         assertTrue(found[0]);
         qg = qgb.removeAllOptionals(qg);
         q = parser.parse(new Query(), qg.getSparql());
@@ -1241,7 +1238,7 @@ public class TestQueryGraphHandler {
     public void testSpecialCharsOnIRIRemainder() {
         QueryGraphHandler qgb = new QueryGraphHandler();
         // special char "-"
-        QueryGraph qg = qgb.getQueryGraph(ebookIRI);
+        qgb.getQueryGraph(ebookIRI);
     }
 
     @Test
@@ -1479,7 +1476,7 @@ public class TestQueryGraphHandler {
         qg = qgb.orderBy(qg, "?title0");
         qg = qgb.deleteHeadTerm(qg, "?title0");
         Query q = parser.parse(new Query(), qg.getSparql());
-        assertEquals(null, q.getOrderBy());
+        assertNull(q.getOrderBy());
     }
 
     @Test
@@ -1500,9 +1497,24 @@ public class TestQueryGraphHandler {
     }
 
     @Test
+    public void issue40() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        qg = qgb.putQueryGraphObjectProperty(qg, "", writtenByIRI, authorIRI, true, "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", nameIRI, "Author0");
+        qg.getHead().get(0).setAlias("alias");
+        qg = qgb.renameHeadTerm(qg, "?title0");
+        GroupByElement gb = new GroupByElement();
+        gb.setAggregateFunction(GroupByElement.AggregateFunctionEnum.COUNT);
+        gb.setDistinct(false);
+        qg.getHead().get(1).setGroupBy(gb);
+        qgb.aggregationHeadTerm(qg, "?name0");
+    }
+
+    @Test
     public void sandbox() {
         String sparql = "SELECT (count(*) as ?COUNT_STAR) { select distinct * { ?x ?y ?z } }";
-        Query q = parser.parse(new Query(), sparql);
-        System.out.println(q);
+        parser.parse(new Query(), sparql);
     }
 }

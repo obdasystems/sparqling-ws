@@ -316,7 +316,7 @@ public class QueryGraphHandler {
             body.getFilters().removeIf(filter -> {
                 List<String> filterVars = filter.getExpression().getParameters().stream()
                         .filter(params -> params.getType().equals(VarOrConstant.TypeEnum.VAR))
-                        .map(params -> params.getValue()).collect(Collectors.toList());
+                        .map(VarOrConstant::getValue).collect(Collectors.toList());
                 for (String v : filterVars) {
                     if (varToBeDeleted.contains(v)) {
                         return true;
@@ -327,7 +327,7 @@ public class QueryGraphHandler {
         }
         if (body.getOptionals() != null) {
             for (Optional o:body.getOptionals()) {
-                o.getGraphIds().removeIf(id -> varToBeDeleted.contains(id));
+                o.getGraphIds().removeIf(varToBeDeleted::contains);
             }
             body.getOptionals().removeIf(optional -> optional.getGraphIds().isEmpty());
         }
@@ -472,16 +472,15 @@ public class QueryGraphHandler {
         Var jVar = AbstractQueryBuilder.makeVar(id);
         q.getProject().remove(jVar);
         if(!q.getGroupBy().isEmpty()) {
-            if(he.getGroupBy() != null && !body.getHead().stream().filter(i -> i.getGroupBy() != null).findAny().isPresent()) {
+            if(he.getGroupBy() != null && body.getHead().stream().noneMatch(i -> i.getGroupBy() != null)) {
                 q.getGroupBy().clear();
             } else {
                 q.getGroupBy().remove(jVar);
             }
         }
         if(!q.getHavingExprs().isEmpty()) {
-            Iterator<Expr> itH = q.getHavingExprs().iterator();
-            while(itH.hasNext()) {
-                if (itH.next().getVarsMentioned().contains(jVar)) {
+            for (Expr expr : q.getHavingExprs()) {
+                if (expr.getVarsMentioned().contains(jVar)) {
                     it.remove();
                 }
             }
@@ -676,11 +675,13 @@ public class QueryGraphHandler {
                 gbVars.add(v,e);
             }
         }
-        Iterator var2 = gbVars.getVars().iterator();
-        while(var2.hasNext()) {
-            Var v = (Var)var2.next();
+        for (Var v : gbVars.getVars()) {
             Expr e = gbVars.getExpr(v);
-            if (!q.getGroupBy().contains(v)) {
+            if (e instanceof ExprVar) {
+                if (!q.getGroupBy().contains(v)) {
+                    q.getGroupBy().add(((ExprVar) e).getExpr().asVar());
+                }
+            } else if (!q.getGroupBy().contains(v)) {
                 q.getGroupBy().add(v, e);
             }
         }
