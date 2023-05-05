@@ -55,6 +55,7 @@ public class QueryGraphBgpApiServiceImpl extends QueryGraphBgpApiService {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
     }
+
     @Override
     public Response putQueryGraphClass(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String targetClassIRI, String graphElementId, SecurityContext securityContext) throws NotFoundException {
         logger.info("Adding {} to query graph", targetClassIRI);
@@ -77,6 +78,19 @@ public class QueryGraphBgpApiServiceImpl extends QueryGraphBgpApiService {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
         }
     }
+
+    @Override
+    public Response putQueryGraphAnnotation(QueryGraph body,  @NotNull String sourceClassIRI,  @NotNull String predicateIRI, String graphElementId, SecurityContext securityContext) throws NotFoundException {
+        logger.info("Adding {} to query graph", predicateIRI);
+        try {
+            QueryGraphHandler qgb = new QueryGraphHandler();
+            return Response.ok().entity(qgb.putQueryGraphDataProperty(body, sourceClassIRI, predicateIRI, graphElementId)).build();
+        } catch (Exception e) {
+            logger.error("Error!", e);
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, e.getMessage())).build();
+        }
+    }
+
     @Override
     public Response putQueryGraphJoin(QueryGraph body, String graphElementId1, String graphElementId2, SecurityContext securityContext) throws NotFoundException {
         logger.info("Joining {} and {}", graphElementId1, graphElementId2);

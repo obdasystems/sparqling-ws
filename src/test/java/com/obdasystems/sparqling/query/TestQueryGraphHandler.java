@@ -13,6 +13,7 @@ import org.apache.jena.sparql.expr.Expr;
 import org.apache.jena.sparql.expr.ExprAggregator;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
+import org.apache.jena.vocabulary.RDFS;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.semanticweb.owlapi.model.IRI;
@@ -1510,6 +1511,16 @@ public class TestQueryGraphHandler {
         gb.setDistinct(false);
         qg.getHead().get(1).setGroupBy(gb);
         qgb.aggregationHeadTerm(qg, "?name0");
+    }
+
+    @Test
+    public void addLabel() {
+        QueryGraphHandler qgb = new QueryGraphHandler();
+        QueryGraph qg = qgb.getQueryGraph(bookIRI);
+        qg = qgb.putQueryGraphDataProperty(qg, "", RDFS.label.getURI(), "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", RDFS.label.getURI(), "Book0");
+        qg = qgb.putQueryGraphDataProperty(qg, "", titleIRI, "Book0");
+        assertEquals("?Book0_label0", qg.getHead().get(0).getVar());
     }
 
     @Test

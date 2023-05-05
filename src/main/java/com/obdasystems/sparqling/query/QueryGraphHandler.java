@@ -29,6 +29,7 @@ import org.apache.jena.sparql.expr.aggregate.*;
 import org.apache.jena.sparql.lang.SPARQLParser;
 import org.apache.jena.sparql.syntax.*;
 import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -188,8 +189,10 @@ public class QueryGraphHandler {
 
     public QueryGraph putQueryGraphDataProperty(QueryGraph body, String sourceClassIRI, String predicateIRI, String graphElementId) {
         IRI iri = IRI.create(predicateIRI);
-        if(!ontology.containsDataPropertyInSignature(iri, Imports.INCLUDED)) {
-            throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+        if (!predicateIRI.equals(RDFS.label.getURI()) && !predicateIRI.equals(RDFS.comment.getURI())) {
+            if (!ontology.containsDataPropertyInSignature(iri, Imports.INCLUDED)) {
+                throw new RuntimeException("Predicate " + predicateIRI + " not found in ontology " + ontology.getOntologyID());
+            }
         }
         if (body.getOptionals() != null && body.getOptionals().stream().anyMatch(optional -> optional.getGraphIds().contains(graphElementId))) {
             throw new RuntimeException("Cannot add a data property to an optional node");
@@ -200,7 +203,14 @@ public class QueryGraphHandler {
         SelectHandler sh = new SelectHandler(aggHandler);
         WhereHandler wh = new WhereHandler(q);
         PrefixMapping p = q.getPrefixMapping();
-        String var = QueryUtils.guessNewVarFromIRI(iri, q);
+        String var;
+        if (predicateIRI.equals(RDFS.label.getURI())) {
+            var = varPrefix + QueryUtils.getNewCountedVarFromQuery(graphElementId + "_label", q);
+        } else if (predicateIRI.equals(RDFS.comment.getURI())) {
+            var = varPrefix + QueryUtils.getNewCountedVarFromQuery(graphElementId + "_comment", q);;
+        } else {
+            var = QueryUtils.guessNewVarFromIRI(iri, q);
+        }
         String var2 = varPrefix + graphElementId;
         Var newVar = AbstractQueryBuilder.makeVar(var);
         // count star handling => do not add elements to the head
@@ -208,7 +218,7 @@ public class QueryGraphHandler {
             sh.addVar(newVar);
         wh.addWhere(new TriplePath(new Triple(
                 AbstractQueryBuilder.makeNode(var2, p),
-                (Node)AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
+                (Node) AbstractQueryBuilder.makeNodeOrPath(iri.toQuotedString(), p),
                 AbstractQueryBuilder.makeNode(var, p)
         )));
         if (!q.getAggregators().isEmpty()) {
