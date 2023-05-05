@@ -87,7 +87,7 @@ public class SWSOntologyManager {
             }
         }
 
-        if(IRI.create(RDFS.label.getURI()).equals(iri) || IRI.create(RDFS.label.getURI()).equals(iri)) {
+        if(IRI.create(RDFS.label.getURI()).equals(iri) || IRI.create(RDFS.comment.getURI()).equals(iri)) {
             entity.setType(Entity.TypeEnum.ANNOTATION);
             return entity;
         }
