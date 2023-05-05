@@ -35,7 +35,9 @@ import java.util.Objects;
     
     INVERSEOBJECTPROPERTY("inverseObjectProperty"),
     
-    DATAPROPERTY("dataProperty");
+    DATAPROPERTY("dataProperty"),
+
+    ANNOTATION("annotation");
 
     private String value;
 

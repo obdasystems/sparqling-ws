@@ -2,6 +2,7 @@ package com.obdasystems.sparqling.engine;
 
 import com.obdasystems.sparqling.model.Entity;
 import com.obdasystems.sparqling.parsers.GraphOLParser_v3;
+import org.apache.jena.vocabulary.RDFS;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.formats.PrefixDocumentFormat;
 import org.semanticweb.owlapi.model.*;
@@ -39,7 +40,7 @@ public class SWSOntologyManager {
     public static Entity extractEntity(OWLOntology owlOntology, IRI iri, PrefixDocumentFormat pdf) {
         Entity entity = new Entity();
         OWLAnnotationProperty labelProp = owlOntology.getOWLOntologyManager().getOWLDataFactory()
-                .getOWLAnnotationProperty(IRI.create("http://www.w3.org/2000/01/rdf-schema#label"));
+                .getOWLAnnotationProperty(IRI.create(RDFS.label.getURI()));
         Map<String, String> labels = new HashMap<>();
         for (OWLAnnotationAssertionAxiom annotation : owlOntology.getAnnotationAssertionAxioms(iri)) {
             if (!annotation.getValue().asLiteral().isPresent())
@@ -84,6 +85,11 @@ public class SWSOntologyManager {
             if (!found) {
                 entity.setPrefixedIri(entityShortIri);
             }
+        }
+
+        if(IRI.create(RDFS.label.getURI()).equals(iri) || IRI.create(RDFS.label.getURI()).equals(iri)) {
+            entity.setType(Entity.TypeEnum.ANNOTATION);
+            return entity;
         }
 
         for(OWLClass c:owlOntology.getClassesInSignature()) {
