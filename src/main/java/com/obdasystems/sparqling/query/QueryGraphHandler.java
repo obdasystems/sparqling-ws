@@ -665,7 +665,7 @@ public class QueryGraphHandler {
                 }
                 exprAgg = new ExprAggregator(var,agg);
                 break;
-            case AVARAGE:
+            case AVERAGE:
                 if (gb.isDistinct()) {
                     agg = new AggAvgDistinct(expVar);
                 } else {

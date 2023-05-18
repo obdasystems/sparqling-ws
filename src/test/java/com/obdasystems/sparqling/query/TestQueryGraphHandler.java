@@ -1379,7 +1379,7 @@ public class TestQueryGraphHandler {
         qg = qgb.aggregationHeadTerm(qg, "?title0");
         qg = qgb.putQueryGraphDataProperty(qg, "", genreIRI, "Book0");
         GroupByElement gb2 = new GroupByElement();
-        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.AVARAGE);
+        gb2.setAggregateFunction(GroupByElement.AggregateFunctionEnum.AVERAGE);
         gb2.setDistinct(true);
         qg.getHead().get(2).setGroupBy(gb2);
         qg = qgb.aggregationHeadTerm(qg, "?genre0");

@@ -12,13 +12,12 @@
 
 package com.obdasystems.sparqling.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
+
+import java.util.Objects;
 
 /**
  * GroupByElement
@@ -39,7 +38,7 @@ import javax.validation.Valid;
     
     MAX("max"),
     
-    AVARAGE("avarage");
+    AVERAGE("average");
 
     private String value;
 
